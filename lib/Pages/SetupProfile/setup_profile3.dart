@@ -29,7 +29,7 @@ class _SetupProfile3State extends State<SetupProfile3> {
               icon: Icon(
                 size: 30.h,
                 Icons.close,
-                color: AppStyles.btnColor,
+                color: AppStyles.greyColor,
               ),
             ),
           ),
@@ -43,7 +43,7 @@ class _SetupProfile3State extends State<SetupProfile3> {
             icon: Icon(
               size: 30.h,
               Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
+              color: AppStyles.greyColor,
             ),
           ),
         ),
@@ -76,7 +76,7 @@ class _SetupProfile3State extends State<SetupProfile3> {
                     text: "Setup Profile",
                   ),
                   AppText(
-                    color: AppStyles.btnColor,
+                    color: AppStyles.greyColor,
                     size: 21.sp,
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                         .fontFamily,

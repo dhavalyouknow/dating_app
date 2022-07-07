@@ -30,7 +30,7 @@ class _CreatePasswordState extends State<CreatePassword> {
               icon: Icon(
                 size: 30.h,
                 Icons.close,
-                color: AppStyles.btnColor,
+                color: AppStyles.greyColor,
               ),
             ),
           ),
@@ -44,7 +44,7 @@ class _CreatePasswordState extends State<CreatePassword> {
             icon: Icon(
               size: 30.h,
               Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
+              color: AppStyles.greyColor,
             ),
           ),
         ),
@@ -87,7 +87,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                 txt: "Password",
                 obscureText: true,
                 border: 1,
-                borderColor: AppStyles.btnColor,
+                borderColor: AppStyles.greyColor,
               ),
               TextFormFieldWidget(
                  borderRadius: 10,
@@ -95,7 +95,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                 txt: "Confirm Password",
                 obscureText: true,
                 border: 1,
-                borderColor: AppStyles.btnColor,
+                borderColor: AppStyles.greyColor,
               ),
               SizedBox(height: 20.h),
               GradientBtn(

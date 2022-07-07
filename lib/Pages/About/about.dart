@@ -26,7 +26,7 @@ class _AboutState extends State<About> {
             },
             icon: Icon(
               Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
+              color: AppStyles.greyColor,
               size: 30.h,
             ),
           ),

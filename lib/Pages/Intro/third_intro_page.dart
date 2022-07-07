@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
@@ -63,7 +65,7 @@ class _ThirdIntroPageState extends State<ThirdIntroPage> {
                                 color: AppStyles.whiteColor,
                                 width: 3.w,
                               ),
-                              color: AppStyles.btnColor,
+                              color: AppStyles.greyColor,
                               shape: BoxShape.circle,
                             ),
                             child: Icon(
@@ -81,7 +83,7 @@ class _ThirdIntroPageState extends State<ThirdIntroPage> {
                               color: AppStyles.whiteColor,
                               width: 3.w,
                             ),
-                            color: AppStyles.btnColor,
+                            color: AppStyles.greyColor,
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
@@ -104,7 +106,7 @@ class _ThirdIntroPageState extends State<ThirdIntroPage> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: AppStyles.IntroGradientColor,
+                  colors: AppStyles.introGradientColor,
                 ),
               ),
               child: Column(
@@ -116,7 +118,7 @@ class _ThirdIntroPageState extends State<ThirdIntroPage> {
                     effect: ExpandingDotsEffect(
                       dotHeight: 10.h,
                       radius: 12.0.r,
-                      activeDotColor: AppStyles.btnColor,
+                      activeDotColor: AppStyles.greyColor,
                     ),
                   ),
                   SizedBox(height: 15.h),

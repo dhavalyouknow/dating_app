@@ -44,7 +44,7 @@ class _EditEmailState extends State<EditEmail> {
                   icon: Icon(
                     Icons.close,
                     size: 25.sp,
-                    color: AppStyles.btnColor,
+                    color: AppStyles.greyColor,
                   ),
                 ),
               ),

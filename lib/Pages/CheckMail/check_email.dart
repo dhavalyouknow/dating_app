@@ -44,7 +44,7 @@ class _CheckEmailState extends State<CheckEmail> {
                   icon: Icon(
                     Icons.close,
                     size: 20.h,
-                    color: AppStyles.btnColor,
+                    color: AppStyles.greyColor,
                   ),
                 ),
               ),

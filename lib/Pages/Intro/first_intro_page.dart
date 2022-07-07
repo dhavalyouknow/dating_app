@@ -19,7 +19,6 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
     final size = MediaQuery.of(context).size;
     final controller = PageController(viewportFraction: 1, keepPage: true);
     // PageController? pageController;
-    int currentIndex = 0;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -31,7 +30,6 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                   PageView.builder(
                     onPageChanged: (index) {
                       setState(() {
-                        currentIndex = index;
                       });
                     },
                     controller: controller,
@@ -115,7 +113,7 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: AppStyles.IntroGradientColor,
+                  colors: AppStyles.introGradientColor,
                 ),
               ),
               child: Column(
@@ -127,7 +125,7 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                     effect: ExpandingDotsEffect(
                       dotHeight: 10.h,
                       radius: 12.0.r,
-                      activeDotColor: AppStyles.btnColor,
+                      activeDotColor: AppStyles.greyColor,
                     ),
                   ),
                   SizedBox(height: 10.h),

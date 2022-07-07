@@ -1,4 +1,5 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
+import 'package:dating_app/Pages/Login/login_handler.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
@@ -11,10 +12,9 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> with LoginHandlers {
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -33,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               TextFormFieldWidget(
+                validator: emailValidator,
                 borderRadius: 10,
                 height: size.height / 14,
                 txt: "Email",
@@ -42,6 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                 borderColor: AppStyles.trasnparentColor,
               ),
               TextFormFieldWidget(
+                validator: passwordValidator,
                 borderRadius: 10,
                 height: size.height / 14,
                 txt: "Password",
@@ -68,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               GradientBtn(
-                height: size.height/14,
+                height: size.height / 14,
                 txt: "Login",
                 onTap: () {
                   Navigator.pushNamed(context, "/SetupProfile2");

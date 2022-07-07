@@ -29,7 +29,7 @@ class _ChoosePartnerState extends State<ChoosePartner> {
               icon: Icon(
                 size: 30.h,
                 Icons.close,
-                color: AppStyles.btnColor,
+                color: AppStyles.greyColor,
               ),
             ),
           ),
@@ -43,7 +43,7 @@ class _ChoosePartnerState extends State<ChoosePartner> {
             icon: Icon(
               size: 30.h,
               Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
+              color: AppStyles.greyColor,
             ),
           ),
         ),
@@ -95,7 +95,7 @@ class _ChoosePartnerState extends State<ChoosePartner> {
                   color: AppStyles.whiteColor,
                   borderRadius: BorderRadius.circular(25.r),
                   border: Border.all(
-                    color: AppStyles.btnColor,
+                    color: AppStyles.greyColor,
                     width: 1,
                   ),
                 ),
@@ -123,7 +123,7 @@ class _ChoosePartnerState extends State<ChoosePartner> {
                   color: AppStyles.whiteColor,
                   borderRadius: BorderRadius.circular(25.r),
                   border: Border.all(
-                    color: AppStyles.btnColor,
+                    color: AppStyles.greyColor,
                     width: 1,
                   ),
                 ),
@@ -148,7 +148,7 @@ class _ChoosePartnerState extends State<ChoosePartner> {
                   color: AppStyles.whiteColor,
                   borderRadius: BorderRadius.circular(25.r),
                   border: Border.all(
-                    color: AppStyles.btnColor,
+                    color: AppStyles.greyColor,
                     width: 1,
                   ),
                 ),

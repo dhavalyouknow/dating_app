@@ -26,7 +26,7 @@ class _AccountRecoveryState extends State<AccountRecovery> {
           },
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: AppStyles.btnColor,
+            color: AppStyles.greyColor,
           ),
         ),
         backgroundColor: AppStyles.whiteColor,
@@ -77,7 +77,7 @@ class _AccountRecoveryState extends State<AccountRecovery> {
                 icon: const Icon(Icons.person),
                 obscureText: false,
                 border: 1,
-                borderColor: AppStyles.btnColor,
+                borderColor: AppStyles.greyColor,
               ),
               SizedBox(
                 height: 20.h,

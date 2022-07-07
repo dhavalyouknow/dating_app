@@ -27,7 +27,7 @@ class _ChooseDogPictureState extends State<ChooseDogPicture> {
             icon: Icon(
               size: 30.h,
               Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
+              color: AppStyles.greyColor,
             ),
           ),
         ),

@@ -12,18 +12,24 @@ class TextFormFieldWidget extends StatefulWidget {
   final double border;
   final double borderRadius;
   final Color borderColor;
+  final FormFieldValidator<String>? validator;
+  final TextEditingController? textEditingController;
+  VoidCallback? onTap;
 
-  const TextFormFieldWidget(
-      {Key? key,
-      required this.height,
-      required this.txt,
-      this.icon,
-      this.backIcon,
-      required this.obscureText,
-      required this.border,
-      required this.borderColor,
-      required this.borderRadius})
-      : super(key: key);
+  TextFormFieldWidget({
+    Key? key,
+    required this.height,
+    required this.txt,
+    this.icon,
+    this.backIcon,
+    required this.obscureText,
+    required this.border,
+    required this.borderColor,
+    required this.borderRadius,
+    this.validator,
+    this.textEditingController,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   State<TextFormFieldWidget> createState() => _TextFormFieldWidgetState();
@@ -47,6 +53,9 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
           ),
         ),
         child: TextFormField(
+          onTap: widget.onTap,
+          controller: widget.textEditingController,
+          validator: widget.validator,
           obscureText: widget.obscureText,
           decoration: InputDecoration(
             suffixIcon: widget.backIcon,
