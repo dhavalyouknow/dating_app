@@ -7,6 +7,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -16,9 +17,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     on<AuthEvent>((event, emit) {});
     on<SignUpRequest>(_onSignUpRequest);
     on<LoginRequest>(_onLoginRequest);
+    on<DuplicateEvent>(_onDuplicateEvent);
   }
 
-  Future<void> _onSignUpRequest(       //For Signup
+  Future<void> _onDuplicateEvent(
+      DuplicateEvent event, Emitter<AuthState> emit) async {
+    try {
+      var resp =
+          await post(url: ApiEndPoints.duplicate, body: {"email": event.email});
+      if (resp != null) {
+        if (resp.statusCode == 200) {
+          print(resp.body);
+          print(resp.statusCode);
+          event.onSuccess();
+          Fluttertoast.showToast(msg: 'Valid Email');
+        } else {
+          print(resp.body);
+          print(resp.statusCode);
+        }
+      } else {}
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> _onSignUpRequest(
+    //For Signup
     SignUpRequest event,
     Emitter<AuthState> emit,
   ) async {
@@ -41,15 +65,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           "gender": event.gender,
           "dob": event.dob,
           "password": event.password,
+          "city": event.location,
         },
       );
-      if (kDebugMode) {
-        print(resp?.statusCode);
-        print(resp?.body);
-        print('0=0=0=0=0=0=0=0=0');
-        print(resp?.headers);
-        print('0=0=0=0=0=0=0=0=0');
-      }
 
       if (resp != null) {
         if (resp.statusCode == 200) {
@@ -84,6 +102,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           User user = User.fromJson(data);
 
           event.success(user);
+          Fluttertoast.showToast(msg: 'SignUp Successfully');
         } else {
           if (kDebugMode) {
             print(resp.statusCode);
@@ -103,7 +122,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     }
   }
 
-  Future<void> _onLoginRequest(     // For Login
+  Future<void> _onLoginRequest(
+    // For Login
+
     LoginRequest event,
     Emitter<AuthState> emit,
   ) async {
@@ -111,7 +132,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
       var resp = await post(
         url: ApiEndPoints.login,
         body: {
-          "userName": event.userName,
+          "email": event.email,
           "password": event.password,
           "pushToken": event.pushToken,
         },
@@ -134,8 +155,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
               token: resp.headers["x-auth-token"],
             ),
           );
+
           User user = User.fromJson(data);
+          print('user ===> $user');
           event.success(user);
+          Fluttertoast.showToast(msg: 'Login Successfully');
           if (kDebugMode) {
             print(resp.body);
             print(resp.statusCode);
@@ -153,6 +177,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
       }
     } catch (e) {
       if (kDebugMode) {
+        print('object');
         print(e);
         print('------------login error---------');
       }

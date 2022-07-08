@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 mixin LoginHandlers<T extends StatefulWidget> on State<T> {
-  final TextEditingController userNameController = TextEditingController(text: 'test1@gmail.com');
-  final TextEditingController passwordController = TextEditingController(text: '121212');
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   int index = 0;
   final formKey = GlobalKey<FormState>();
 
@@ -30,7 +30,7 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
     if (formKey.currentState!.validate()) {
       BlocProvider.of<AuthBloc>(context).add(
         LoginRequest(
-          userName: userNameController.text,
+          email: emailController.text,
           password: passwordController.text,
           pushToken: '222222',
           success: (User user) {

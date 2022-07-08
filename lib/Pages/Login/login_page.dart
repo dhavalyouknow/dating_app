@@ -22,84 +22,93 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    top: 100.h, left: 40.w, right: 40.w, bottom: 30.h),
-                child: const Image(
-                  image: AssetImage("assets/logo.png"),
-                ),
-              ),
-              TextFormFieldWidget(
-                validator: emailValidator,
-                borderRadius: 10,
-                height: size.height / 14,
-                txt: "Email",
-                icon: const Icon(Icons.person_outline),
-                obscureText: false,
-                border: 0,
-                borderColor: AppStyles.trasnparentColor,
-              ),
-              TextFormFieldWidget(
-                validator: passwordValidator,
-                borderRadius: 10,
-                height: size.height / 14,
-                txt: "Password",
-                icon: const Icon(Icons.lock_outline),
-                obscureText: false,
-                border: 0,
-                borderColor: AppStyles.trasnparentColor,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/ForgetPassword");
-                    },
-                    child: Text(
-                      "Forgot Password?",
-                      style: TextStyle(
-                        fontSize: 13.sp,
-                        color: AppStyles.blackColor,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              GradientBtn(
-                height: size.height / 14,
-                txt: "Login",
-                onTap: () {
-                  Navigator.pushNamed(context, "/SetupProfile2");
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Don’t have an account?",
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: AppStyles.blackColor,
-                    ),
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 100.h,
+                    left: 40.w,
+                    right: 40.w,
+                    bottom: 30.h,
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Sign Up",
+                  child: const Image(
+                    image: AssetImage("assets/logo.png"),
+                  ),
+                ),
+                TextFormFieldWidget(
+                  textEditingController: emailController,
+                  validator: emailValidator,
+                  borderRadius: 10,
+                  height: size.height / 14,
+                  txt: "Email",
+                  icon: const Icon(Icons.person_outline),
+                  obscureText: false,
+                  border: 0,
+                  borderColor: AppStyles.trasnparentColor,
+                ),
+                TextFormFieldWidget(
+                  textEditingController: passwordController,
+                  validator: passwordValidator,
+                  borderRadius: 10,
+                  height: size.height / 14,
+                  txt: "Password",
+                  icon: const Icon(Icons.lock_outline),
+                  obscureText: true,
+                  border: 0,
+                  borderColor: AppStyles.trasnparentColor,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/ForgetPassword");
+                      },
+                      child: Text(
+                        "Forgot Password?",
+                        style: TextStyle(
+                          fontSize: 13.sp,
+                          color: AppStyles.blackColor,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                GradientBtn(
+                  height: size.height / 14,
+                  txt: "Login",
+                  onTap: onLogin,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Don’t have an account?",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
                         fontSize: 14.sp,
                         color: AppStyles.blackColor,
                       ),
                     ),
-                  )
-                ],
-              )
-            ],
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/CreateAccount");
+                      },
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14.sp,
+                          color: AppStyles.blackColor,
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

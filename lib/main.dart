@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget {
         builder: (context, widget) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: "Real Estate",
+            title: "Dating App",
             routes: routes,
-            initialRoute: "/CreateAccount",
+            initialRoute: "/",
           );
         },
       ),

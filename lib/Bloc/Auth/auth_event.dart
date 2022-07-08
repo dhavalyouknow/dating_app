@@ -4,14 +4,22 @@ abstract class AuthEvent extends Equatable {
   const AuthEvent();
 }
 
+class DuplicateEvent extends AuthEvent {
+  final String email;
+  final VoidCallback onSuccess;
+  const DuplicateEvent({required this.email, required this.onSuccess});
+  @override
+  List<Object?> get props => [];
+}
+
 class LoginRequest extends AuthEvent {
-  final String userName;
+  final String email;
   final String password;
   final String pushToken;
   final Function(User) success;
 
   const LoginRequest({
-    required this.userName,
+    required this.email,
     required this.password,
     required this.pushToken,
     required this.success,
@@ -19,7 +27,7 @@ class LoginRequest extends AuthEvent {
 
   @override
   List<Object?> get props => [
-        userName,
+        email,
         password,
         pushToken,
         success,
@@ -34,6 +42,7 @@ class SignUpRequest extends AuthEvent {
   final String dob;
   final String password;
   final String repeatPassword;
+  final String location;
   final Function(User) success;
 
   const SignUpRequest({
@@ -44,6 +53,7 @@ class SignUpRequest extends AuthEvent {
     required this.dob,
     required this.password,
     required this.repeatPassword,
+    required this.location,
     required this.success,
   });
 
@@ -56,6 +66,7 @@ class SignUpRequest extends AuthEvent {
         dob,
         password,
         repeatPassword,
+        location,
         success,
       ];
 }
