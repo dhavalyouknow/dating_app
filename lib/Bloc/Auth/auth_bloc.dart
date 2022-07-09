@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:dating_app/Core/base/api_end_point.dart';
 import 'package:dating_app/Core/base/base_http_service.dart';
-import 'package:dating_app/Model/user_model.dart';
+import 'package:dating_app/Model/user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     on<SignUpRequest>(_onSignUpRequest);
     on<LoginRequest>(_onLoginRequest);
     on<DuplicateEvent>(_onDuplicateEvent);
+    on<SessionRequest>(_onSessionRequest);
   }
 
   Future<void> _onDuplicateEvent(
@@ -157,7 +158,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           );
 
           User user = User.fromJson(data);
-          print('user ===> $user');
+          print('Bloc.Auth.user ===> $user');
           event.success(user);
           Fluttertoast.showToast(msg: 'Login Successfully');
           if (kDebugMode) {
@@ -169,6 +170,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
             print(resp.statusCode);
             print(resp.body);
           }
+          Fluttertoast.showToast(msg: 'Invalid Username or Password');
         }
       } else {
         if (kDebugMode) {
@@ -181,6 +183,51 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
         print(e);
         print('------------login error---------');
       }
+    }
+  }
+
+  Future<void> _onSessionRequest(
+      SessionRequest event, Emitter<AuthState> emit) async {
+    try {
+      var res = await get(url: ApiEndPoints.getUser);
+      if (res != null) {
+        print(res.body);
+        print(res.statusCode);
+        if (res.statusCode == 200) {
+          var data = jsonDecode(res.body);
+          User user = User.fromJson(data);
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          String token = prefs.getString('auth_token') as String;
+          event.onSuccess(user);
+          emit(
+            state.copyWith(
+              status: AuthStatus.loginSuccess,
+              token: token,
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              status: AuthStatus.loginFailure,
+            ),
+          );
+        }
+      } else {
+        emit(
+          state.copyWith(
+            status: AuthStatus.loginFailure,
+          ),
+        );
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      emit(
+        state.copyWith(
+          status: AuthStatus.loginFailure,
+        ),
+      );
     }
   }
 }

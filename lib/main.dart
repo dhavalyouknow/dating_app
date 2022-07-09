@@ -1,4 +1,5 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
+import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,10 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => AuthBloc(),
           lazy: true,
         ),
+        BlocProvider<UserBloc>(
+          create: (BuildContext context) => UserBloc(),
+          lazy: true,
+        )
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 680),

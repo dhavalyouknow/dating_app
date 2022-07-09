@@ -106,7 +106,7 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   //         repeatPassword: rePasswordController.text,
   //         dob: selectedDate.toString(),
   //         gender: genderController.text,
-  //         success: (User user) {
+  //         success: (User Bloc.Auth.user) {
   //           if (kDebugMode) {
   //             print('******success****');
   //           }

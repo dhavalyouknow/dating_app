@@ -3,4 +3,6 @@ class ApiEndPoints {
   static const String signUp = '$baseUrl/auth/register';
   static const String login = '$baseUrl/auth/login';
   static const String duplicate = '$baseUrl/auth/duplicate';
+  static const String updateUser = '$baseUrl/user/';
+  static const String getUser = '$baseUrl/user/';
 }

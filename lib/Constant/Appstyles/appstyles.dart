@@ -38,3 +38,117 @@ class AppStyles {
     const Color(0xffB6E4FA),
   ];
 }
+
+List<String> interestList = [
+  "Blog",
+  "Audiobook",
+  "Music",
+  "Trip",
+  "Shopping",
+  "Cooking",
+  "Brunch",
+  "TV game",
+  "Dog lovers",
+  "Wine tasting",
+  "Vlog",
+  "Agility",
+  "Fashion",
+  "Crafts",
+  "Vernissage",
+  "Photographing",
+  "Books",
+  "Dog Park",
+  "Cava",
+  "Nature",
+  "Poddar",
+  "Film",
+  "Policy",
+  "Social media",
+  "Exercise",
+  "Road trips",
+  "Discover Dog Restaurants",
+  "Home decoration",
+  "Food lovers",
+  "Dog clothes",
+];
+
+List<String> favouriteNight = [
+  'Friday cosiness',
+  'Meet friends',
+  'Hang out with the family',
+  'Thank you tonight',
+  'Hundmingel',
+  'Eating out (restrictions)',
+  'Youtube',
+  'Concert',
+  'Cinema',
+  'Nightlife & party',
+  'Check out the series',
+  'Opera / theatre',
+  'Read books',
+  'Bar / pub',
+  'Go to a concert',
+  'Take a glass',
+  'Dinner parties',
+  'Spotyevermang',
+  'Event',
+  'Karaoke',
+];
+
+List<String> occupation = [
+  'Working',
+  'influencer',
+  'studying',
+  'between',
+  'jobs',
+  'entrepreneur',
+  'freelancer',
+  'pensioner',
+  'other'
+];
+
+List<String> eyeColor = [
+  'Brown',
+  'Blue',
+  'Hazel',
+  'Honey',
+  'Green',
+  'Gray',
+];
+
+List<String> activity = [
+  'Yoga',
+  'Padel',
+  'Bike ride with the dog',
+  'Walk',
+  'Golf',
+  'Dance',
+  'Motocross',
+  'Tennis',
+  'Go by boat',
+  'Skating',
+  'Dog paddle',
+  'Running',
+  'Riding',
+  'Jogging Trip with the dog',
+  'Work out at a gym',
+  'Hiking',
+  'Motorsport',
+  'Hunting',
+  'Diving',
+  'Parachuting',
+  'Mediation',
+  'Surfing',
+  'Fishing',
+  'Football',
+  'Climbing',
+  'Swimming',
+  'Skiing / snowboarding',
+  'Paddle board',
+  'Badminton',
+  'Hockey',
+];
+
+List<String> yesNo = ['Yes', 'No'];
+List<String> relationShip = ['Single', 'Mingle'];
+List<String> interestedIn = ['Women', 'Men', 'Both'];

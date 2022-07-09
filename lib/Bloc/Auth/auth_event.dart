@@ -70,3 +70,12 @@ class SignUpRequest extends AuthEvent {
         success,
       ];
 }
+
+class SessionRequest extends AuthEvent {
+  final Function(User) onSuccess;
+
+  const SessionRequest({required this.onSuccess});
+
+  @override
+  List<Object?> get props => [onSuccess];
+}

@@ -1,7 +1,12 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Dialog/ImInterestedIn/im_interested_in.dart';
+import 'package:dating_app/Dialog/RelationshipStatus/relationship_status.dart';
+import 'package:dating_app/Pages/SetupProfile/setup_profile1/setup_profile1_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
+import 'package:dating_app/widget/eyecolor/eyecolor_widget.dart';
+import 'package:dating_app/widget/occuption/occuptionWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,7 +18,8 @@ class SetupProfile1 extends StatefulWidget {
   State<SetupProfile1> createState() => _SetupProfile1State();
 }
 
-class _SetupProfile1State extends State<SetupProfile1> {
+class _SetupProfile1State extends State<SetupProfile1>
+    with SetupProfile1Handlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -93,28 +99,22 @@ class _SetupProfile1State extends State<SetupProfile1> {
               SizedBox(height: 10.h),
               Row(
                 children: [
-                  Expanded(
-                    child: DefaultAppBtn(
-                      onTap: () {},
-                      borderRadius: 20.r,
-                      height: size.height / 16,
-                      border: 1.r,
-                      borderColor: AppStyles.greyColor,
-                      txt: "Yes",
-                      txtColor: AppStyles.blackColor,
-                    ),
-                  ),
-                  SizedBox(width: 15.w),
-                  Expanded(
-                    child: DefaultAppBtn(
-                      onTap: () {},
-                      borderRadius: 20.r,
-                      height: size.height / 16,
-                      border: 1.r,
-                      borderColor: AppStyles.greyColor,
-                      txt: "No",
-                      txtColor: AppStyles.greyColor,
-                    ),
+                  ...yesNo.map(
+                    (e) {
+                      return Expanded(
+                        child: DefaultAppBtn(
+                          height: size.height / 16,
+                          border: 1.r,
+                          borderRadius: 20.r,
+                          borderColor: AppStyles.greyColor,
+                          txt: e,
+                          txtColor: AppStyles.blackColor,
+                          onTap: () {
+                            onHaveDogSubmit(e);
+                          },
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -126,13 +126,26 @@ class _SetupProfile1State extends State<SetupProfile1> {
               ),
               SizedBox(height: 10.h),
               DefaultAppBtn(
-                onTap: () {},
+                onTap: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return RelationshipStatus(
+                        callback: (value) {
+                          setState(() {
+                            selectedStatus = value;
+                          });
+                        },
+                      );
+                    },
+                  );
+                },
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: 1.r,
                 borderColor: AppStyles.greyColor,
                 txt: "Select An Option",
-                txtColor: AppStyles.greyColor,
+                txtColor: Colors.red,
               ),
               SizedBox(height: 10.h),
               AppText(
@@ -142,7 +155,20 @@ class _SetupProfile1State extends State<SetupProfile1> {
               ),
               SizedBox(height: 10.h),
               DefaultAppBtn(
-                onTap: () {},
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return ImInterestedIn(
+                        callback: (value) {
+                          setState(() {
+                            selectedInterestedIn = value;
+                          });
+                        },
+                      );
+                    },
+                  );
+                },
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: 1.r,
@@ -159,28 +185,22 @@ class _SetupProfile1State extends State<SetupProfile1> {
               SizedBox(height: 10.h),
               Row(
                 children: [
-                  Expanded(
-                    child: DefaultAppBtn(
-                      onTap: () {},
-                      borderRadius: 20.r,
-                      height: size.height / 16,
-                      border: 1.r,
-                      borderColor: AppStyles.greyColor,
-                      txt: "Yes",
-                      txtColor: AppStyles.blackColor,
-                    ),
-                  ),
-                  SizedBox(width: 15.w),
-                  Expanded(
-                    child: DefaultAppBtn(
-                      onTap: () {},
-                      borderRadius: 20.r,
-                      height: size.height / 16,
-                      border: 1.r,
-                      borderColor: AppStyles.greyColor,
-                      txt: "No",
-                      txtColor: AppStyles.greyColor,
-                    ),
+                  ...yesNo.map(
+                    (e) {
+                      return Expanded(
+                        child: DefaultAppBtn(
+                          height: size.height / 16,
+                          border: 1.r,
+                          borderRadius: 20.r,
+                          borderColor: AppStyles.greyColor,
+                          txt: e,
+                          txtColor: AppStyles.blackColor,
+                          onTap: () {
+                            onKidSubmit(e);
+                          },
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -192,7 +212,20 @@ class _SetupProfile1State extends State<SetupProfile1> {
               ),
               SizedBox(height: 10.h),
               DefaultAppBtn(
-                onTap: () {},
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return OccupationWidget(
+                        callback: (value) {
+                          setState(() {
+                            selectedOccupation = value;
+                          });
+                        },
+                      );
+                    },
+                  );
+                },
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: 1.r,
@@ -208,7 +241,20 @@ class _SetupProfile1State extends State<SetupProfile1> {
               ),
               SizedBox(height: 10.h),
               DefaultAppBtn(
-                onTap: () {},
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return EyeColorWidget(
+                        callback: (value) {
+                          setState(() {
+                            selectedEyeColor = value;
+                          });
+                        },
+                      );
+                    },
+                  );
+                },
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: 1.r,
@@ -236,9 +282,7 @@ class _SetupProfile1State extends State<SetupProfile1> {
               GradientBtn(
                 height: size.height / 14,
                 txt: "Next",
-                onTap: () {
-                  Navigator.pushNamed(context, "/SetupProfile2");
-                },
+                onTap: onSubmitProfile1,
               ),
               SizedBox(height: 60.h),
             ],

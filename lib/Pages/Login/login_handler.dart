@@ -1,5 +1,5 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
-import 'package:dating_app/Model/user_model.dart';
+import 'package:dating_app/Model/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

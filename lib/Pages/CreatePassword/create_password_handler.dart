@@ -1,5 +1,5 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
-import 'package:dating_app/Model/user_model.dart';
+import 'package:dating_app/Model/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,7 +62,7 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
             if (kDebugMode) {
               print('******success****');
             }
-            Navigator.pushNamed(context, "/HomePage");
+            Navigator.pushNamed(context, "/SetupProfile1");
           },
         ),
       );
