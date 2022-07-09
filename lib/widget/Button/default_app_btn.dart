@@ -33,7 +33,7 @@ class _DefaultAppBtnState extends State<DefaultAppBtn> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 5.w),
+        margin: EdgeInsets.symmetric(horizontal: 5.w),
         height: widget.height,
         // width: double.infinity,
         alignment: Alignment.center,

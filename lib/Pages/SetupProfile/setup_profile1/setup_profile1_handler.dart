@@ -47,7 +47,7 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
             );
             BlocProvider.of<UserBloc>(context).add(
               UpdateUserEvent(
-                user: user!,
+                user: user,
                 success: (value) {
                   print('***success***');
                 },

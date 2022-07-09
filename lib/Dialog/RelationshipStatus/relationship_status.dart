@@ -49,15 +49,18 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     child: DefaultAppBtn(
                       height: size.height / 14,
-                      border: 1,
+                      border: isRelationshipselected ? 1 : 2,
                       borderRadius: 20,
-                      borderColor: AppStyles.greyColor,
+                      borderColor: isRelationshipselected
+                          ? AppStyles.greyColor
+                          : AppStyles.pinkColor,
                       txt: e,
                       txtColor: AppStyles.greyColor,
                       onTap: () {
                         setState(() {
                           selectedStatus = e;
                           print(selectedStatus);
+                          isRelationshipselected = true;
                         });
                       },
                     ),
