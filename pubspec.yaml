@@ -46,6 +46,7 @@ dependencies:
   flutter_datetime_picker: ^1.5.1
   intl: ^0.17.0
   fluttertoast: ^8.0.9
+  swipable_stack: ^2.0.0
 
 dev_dependencies:
   flutter_test:

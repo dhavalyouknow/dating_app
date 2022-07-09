@@ -4,6 +4,7 @@ import 'package:dating_app/Pages/BottomBar/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipable_stack/swipable_stack.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -66,9 +67,14 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // SwipableStack(
+            //   builder: (context, properties) {
+            //     return Image.asset(imagePath);
+            //   },
+            // ),
             Container(
-              height: size.height / 1.4,
-              padding: EdgeInsets.symmetric(horizontal: 30.w),
+              height: size.height /1.5,
+              padding: EdgeInsets.symmetric(horizontal: 30.w,vertical: 16.0),
               decoration: const BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -79,125 +85,116 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 30.h),
-                  SizedBox(
-                    height: size.height/2.1,
-                    child: Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20.r),
-                            topRight: Radius.circular(20.r),
-                          ),
-                          child: Image.asset(
-                            "assets/intro/Intro3Background.png",
-                            fit: BoxFit.cover,
-                            height: size.height / 2,
-                          ),
-                        ),
-                        Positioned(
-                          left: 15.w,
-                          bottom: 15.h,
-                          child: Container(
-                            height: size.height / 6,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.r),
-                              border: Border.all(
-                                width: 5.r,
-                                color: AppStyles.primaryColor,
+              child: SwipableStack(
+
+                builder: (c,p){
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const  SizedBox(height: 16.0),
+                      SizedBox(
+                        height: size.height/2.1,
+                        child: Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20.r),
+                                topRight: Radius.circular(20.r),
+                              ),
+                              child: Image.asset(
+                                "assets/intro/Intro3Background.png",
+                                fit: BoxFit.cover,
+                                height: size.height / 2,
                               ),
                             ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15.r),
-                              child: Image.asset("assets/intro/Person.png"),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: AppStyles.whiteColor,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20.r),
-                        bottomRight: Radius.circular(20.r),
+                            Positioned(
+                              left: 15.w,
+                              bottom: 15.h,
+                              child: Container(
+                                height: size.height / 6,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15.r),
+                                  border: Border.all(
+                                    width: 5.r,
+                                    color: AppStyles.primaryColor,
+                                  ),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15.r),
+                                  child: Image.asset("assets/intro/Person.png"),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 20.r),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 10.h),
-                        AppText(
-                          size: 21.sp,
-                          fontFamily:
+                      Container(
+                        decoration: BoxDecoration(
+                          color: AppStyles.whiteColor,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20.r),
+                            bottomRight: Radius.circular(20.r),
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 20.r),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 10.h),
+                            AppText(
+                              size: 21.sp,
+                              fontFamily:
                               GoogleFonts.raleway(fontWeight: FontWeight.bold)
                                   .fontFamily,
-                          text: "Indie",
-                        ),
-                        SizedBox(height: 10.h),
-                        Row(
-                          children: [
-                            Icon(
-                              size: 15.sp,
-                              Icons.location_on_outlined,
-                              color: AppStyles.greyColor,
+                              text: "Indie test",
                             ),
-                            AppText(
-                              size: 14.sp,
-                              text: "3 kilometers away",
-                              color: AppStyles.greyColor,
-                            )
+                            SizedBox(height: 10.h),
+                            Row(
+                              children: [
+                                Icon(
+                                  size: 15.sp,
+                                  Icons.location_on_outlined,
+                                  color: AppStyles.greyColor,
+                                ),
+                                AppText(
+                                  size: 14.sp,
+                                  text: "3 kilometers away",
+                                  color: AppStyles.greyColor,
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10.h),
+                            Row(
+                              children: [
+                                Icon(
+                                  size: 15.sp,
+                                  Icons.favorite_border,
+                                  color: AppStyles.greyColor,
+                                ),
+                                AppText(
+                                  size: 14.sp,
+                                  text: "Friends, Parents, Nanny, Bonus Matte",
+                                  color: AppStyles.greyColor,textOverflow: TextOverflow.fade,
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: 16.0),
                           ],
                         ),
-                        SizedBox(height: 10.h),
-                        Row(
-                          children: [
-                            Icon(
-                              size: 15.sp,
-                              Icons.favorite_border,
-                              color: AppStyles.greyColor,
-                            ),
-                            AppText(
-                              size: 14.sp,
-                              text: "Friends, Parents, Nanny, Bonus Matte",
-                              color: AppStyles.greyColor,
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 20.h),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.r),
-                    child: Container(
-                      height: 20.h,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffEDDCC0),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20.r),
-                          bottomRight: Radius.circular(20.r),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+                      )
+                    ],
+                  );
+                },
               ),
             ),
-            SizedBox(height: 5.h),
+            // SizedBox(height: 5.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
                   onTap: () {},
                   child: Container(
-                    height: 70.h,
-                    width: 70.w,
+                    padding: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: AppStyles.whiteColor,
