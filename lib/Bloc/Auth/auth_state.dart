@@ -11,19 +11,23 @@ class AuthState extends Equatable {
   final AuthStatus status;
   final String? token;
   final String? message;
+  final User? user;
 
-  const AuthState({this.status = AuthStatus.initial, this.token, this.message});
+  const AuthState(
+      {this.status = AuthStatus.initial, this.token, this.message, this.user});
 
-  AuthState copyWith({AuthStatus? status, String? token, String? message}) {
+  AuthState copyWith(
+      {AuthStatus? status, String? token, String? message, User? user}) {
     return AuthState(
       status: status ?? this.status,
       token: token ?? this.token,
       message: message ?? this.message,
+      user: user ?? this.user,
     );
   }
 
   @override
-  List<Object?> get props => [status, token, message];
+  List<Object?> get props => [status, token, message, user];
 }
 
 class AuthInitial extends AuthState {

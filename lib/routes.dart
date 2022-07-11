@@ -25,10 +25,10 @@ import 'package:dating_app/Pages/Login/login_page.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
 import 'package:dating_app/Pages/PersonPublicProfile/person_public_profille.dart';
 import 'package:dating_app/Pages/Setting/setting.dart';
-import 'package:dating_app/Pages/SetupProfile/add_interests.dart';
+import 'package:dating_app/Dialog/AddInterest/add_interests.dart';
 import 'package:dating_app/Pages/SetupProfile/setup_profile1/setup_profile1.dart';
-import 'package:dating_app/Pages/SetupProfile/setup_profile2.dart';
-import 'package:dating_app/Pages/SetupProfile/setup_profile3.dart';
+import 'package:dating_app/Pages/SetupProfile/set_up_profile2/setup_profile2.dart';
+import 'package:dating_app/Pages/SetupProfile/set_up_profile3/setup_profile3.dart';
 import 'package:dating_app/Pages/SwipeSettings/swipe_settings.dart';
 import 'package:dating_app/Pages/UploadProfile/upload_profile.dart';
 import 'package:flutter/material.dart';
@@ -65,5 +65,4 @@ Map<String, WidgetBuilder> routes = {
   '/EditPersonProfile': (ctx) => const EditPersonProfile(),
   '/DogPublicProfile': (ctx) => const DogPublicProfile(),
   '/PersonPublicProfile': (ctx) => const PersonPublicProfile(),
-  '/AddInterests': (ctx) => const AddInterests(),
 };

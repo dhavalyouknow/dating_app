@@ -47,9 +47,9 @@ List<String> interestList = [
   "Shopping",
   "Cooking",
   "Brunch",
-  "TV game",
-  "Dog lovers",
-  "Wine tasting",
+  "TV Game",
+  "Dog Lovers",
+  "Wine Tasting",
   "Vlog",
   "Agility",
   "Fashion",
@@ -65,31 +65,31 @@ List<String> interestList = [
   "Policy",
   "Social media",
   "Exercise",
-  "Road trips",
+  "Road Trips",
   "Discover Dog Restaurants",
-  "Home decoration",
-  "Food lovers",
-  "Dog clothes",
+  "Home Decoration",
+  "Food Lovers",
+  "Dog Clothes",
 ];
 
 List<String> favouriteNight = [
-  'Friday cosiness',
-  'Meet friends',
-  'Hang out with the family',
+  'Friday Cosiness',
+  'Meet Friends',
+  'Hang Out With The Family',
   'Thank you tonight',
   'Hundmingel',
-  'Eating out (restrictions)',
+  'Eating Out (Restrictions)',
   'Youtube',
   'Concert',
   'Cinema',
-  'Nightlife & party',
-  'Check out the series',
-  'Opera / theatre',
-  'Read books',
-  'Bar / pub',
-  'Go to a concert',
-  'Take a glass',
-  'Dinner parties',
+  'Nightlife & Party',
+  'Check Out The Series',
+  'Opera / Theatre',
+  'Read Books',
+  'Bar / Pub',
+  'Go To A Concert',
+  'Take A Glass',
+  'Dinner Parties',
   'Spotyevermang',
   'Event',
   'Karaoke',
@@ -97,14 +97,14 @@ List<String> favouriteNight = [
 
 List<String> occupation = [
   'Working',
-  'influencer',
-  'studying',
-  'between',
-  'jobs',
-  'entrepreneur',
-  'freelancer',
-  'pensioner',
-  'other'
+  'Influencer',
+  'Studying',
+  'Between',
+  'Jobs',
+  'Entrepreneur',
+  'Freelancer',
+  'Pensioner',
+  'Other'
 ];
 
 List<String> eyeColor = [
@@ -119,19 +119,19 @@ List<String> eyeColor = [
 List<String> activity = [
   'Yoga',
   'Padel',
-  'Bike ride with the dog',
+  'Bike Ride With The Dog',
   'Walk',
   'Golf',
   'Dance',
   'Motocross',
   'Tennis',
-  'Go by boat',
+  'Go By Boat',
   'Skating',
-  'Dog paddle',
+  'Dog Paddle',
   'Running',
   'Riding',
-  'Jogging Trip with the dog',
-  'Work out at a gym',
+  'Jogging Trip With The Dog',
+  'Work Out At A Gym',
   'Hiking',
   'Motorsport',
   'Hunting',
@@ -143,12 +143,54 @@ List<String> activity = [
   'Football',
   'Climbing',
   'Swimming',
-  'Skiing / snowboarding',
-  'Paddle board',
+  'Skiing / Snowboarding',
+  'Paddle Board',
   'Badminton',
   'Hockey',
 ];
 
-List<String> yesNo = ['Yes', 'No'];
-List<String> relationShip = ['Single', 'Mingle'];
-List<String> interestedIn = ['Women', 'Men', 'Both'];
+class YesNo {
+  String name;
+  bool selected;
+
+  YesNo({required this.name, required this.selected});
+}
+
+List<YesNo> isHaveDog = [
+  YesNo(name: 'Yes', selected: false),
+  YesNo(name: 'No', selected: false),
+];
+
+List<YesNo> isHaveKids = [
+  YesNo(name: 'Yes', selected: false),
+  YesNo(name: 'No', selected: false),
+];
+
+// For RelationShip Popup Border
+
+class SingleMingle {
+  String status;
+  bool selected;
+
+  SingleMingle({required this.status, required this.selected});
+}
+
+List<SingleMingle> relationShip = [
+  SingleMingle(status: "Single", selected: false),
+  SingleMingle(status: "Mingle", selected: false),
+];
+
+// For InterestGender Popup Border
+
+class InterestGender {
+  String interest;
+  bool selected;
+
+  InterestGender({required this.interest, required this.selected});
+}
+
+List<InterestGender> interestedIn = [
+  InterestGender(interest: "Men", selected: false),
+  InterestGender(interest: "Women", selected: false),
+  InterestGender(interest: "Other", selected: false),
+];

@@ -47,16 +47,19 @@ class _ImInterestedInState extends State<ImInterestedIn>
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     child: DefaultAppBtn(
                       height: size.height / 14,
-                      border: 1,
+                      border: e.selected ? 3.r : 1.r,
                       borderRadius: 20,
                       borderColor: AppStyles.greyColor,
-                      txt: e,
+                      txt: e.interest,
                       txtColor: AppStyles.greyColor,
                       onTap: () {
                         setState(() {
-                          selectedInterestedIn = e;
-                          print(selectedInterestedIn);
+                          selectedInterestedIn = e.interest;
                         });
+                        for (var tapped in interestedIn) {
+                          tapped.selected = false;
+                        }
+                        e.selected = true;
                       },
                     ),
                   );
@@ -66,7 +69,9 @@ class _ImInterestedInState extends State<ImInterestedIn>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     child: AppText(
                       size: 21.sp,
                       fontFamily:
@@ -82,6 +87,7 @@ class _ImInterestedInState extends State<ImInterestedIn>
                       txt: "Save",
                       onTap: () {
                         widget.callback(selectedInterestedIn);
+                        Navigator.pop(context);
                       },
                     ),
                   )

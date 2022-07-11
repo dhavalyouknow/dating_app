@@ -23,8 +23,9 @@ class _OccupationWidgetState extends State<OccupationWidget>
       backgroundColor: AppStyles.trasnparentColor,
       body: Center(
         child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 10.w),
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
-          height: size.height / 1.5,
+          height: size.height / 1.6,
           decoration: BoxDecoration(
             color: AppStyles.whiteColor,
             borderRadius: BorderRadius.circular(20),
@@ -58,7 +59,13 @@ class _OccupationWidgetState extends State<OccupationWidget>
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
+                          border: Border.all(
+                            color: Colors.grey,
+                            width:
+                                selectedOccupation.contains(occupation[index])
+                                    ? 3.r
+                                    : 1.r,
+                          ),
                           borderRadius: BorderRadius.circular(22),
                         ),
                         child: Center(

@@ -21,7 +21,7 @@ class Dog {
   String? size;
   List<String>? lookingFor;
   List<SquareProfileImage>? squareProfileImage;
-  dynamic circleProfileImage;
+  String? circleProfileImage;
   String? userId;
   DateTime? createdAt;
   DateTime? updatedAt;

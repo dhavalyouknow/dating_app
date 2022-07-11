@@ -49,19 +49,19 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     child: DefaultAppBtn(
                       height: size.height / 14,
-                      border: isRelationshipselected ? 1 : 2,
+                      border: e.selected ? 3.r : 1.r,
                       borderRadius: 20,
-                      borderColor: isRelationshipselected
-                          ? AppStyles.greyColor
-                          : AppStyles.pinkColor,
-                      txt: e,
+                      borderColor: AppStyles.greyColor,
+                      txt: e.status,
                       txtColor: AppStyles.greyColor,
                       onTap: () {
                         setState(() {
-                          selectedStatus = e;
-                          print(selectedStatus);
-                          isRelationshipselected = true;
+                          selectedStatus = e.status;
                         });
+                        for (var tapped in relationShip) {
+                          tapped.selected = false;
+                        }
+                        e.selected = true;
                       },
                     ),
                   );
@@ -72,7 +72,9 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     child: AppText(
                       size: 21.sp,
                       fontFamily:
@@ -88,6 +90,7 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                       txt: "Save",
                       onTap: () {
                         widget.callback(selectedStatus);
+                        Navigator.pop(context);
                       },
                     ),
                   )

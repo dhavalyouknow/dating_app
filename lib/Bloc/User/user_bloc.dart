@@ -15,8 +15,13 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
 
   _onUpdateUserEvent(UpdateUserEvent event, Emitter<UserState> emit) async {
     try {
+      print('object');
+      Map<String, dynamic> payload = event.user.toJson();
+      payload.removeWhere((key, value) =>
+          value == null || key == "_id" || key == "email" || key == "userType");
       var resp = await patch(
-          url: '${ApiEndPoints.updateUser}${event.user.id}', body: {});
+          url: '${ApiEndPoints.updateUser}${event.user.id}', body: payload);
+      print('payload ===> $payload');
       if (resp != null) {
         if (resp.statusCode == 200) {
           print(resp.body);

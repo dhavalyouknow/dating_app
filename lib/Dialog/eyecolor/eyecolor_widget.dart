@@ -24,6 +24,7 @@ class _EyeColorWidgetState extends State<EyeColorWidget> with EyeColorHandlers {
       body: Center(
         child: Container(
             height: size.height / 2,
+            margin: EdgeInsets.symmetric(horizontal: 10.w),
             padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
             decoration: BoxDecoration(
               color: AppStyles.whiteColor,
@@ -54,13 +55,17 @@ class _EyeColorWidgetState extends State<EyeColorWidget> with EyeColorHandlers {
                         onTap: () {
                           setState(() {
                             selectedEyeColor = eyeColor[index];
-                            print(selectedEyeColor);
                             widget.callback(selectedEyeColor);
                           });
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
+                            border: Border.all(
+                              width: selectedEyeColor.contains(eyeColor[index])
+                                  ? 3.r
+                                  : 1.r,
+                              color: Colors.grey,
+                            ),
                             borderRadius: BorderRadius.circular(22),
                           ),
                           child: Center(

@@ -36,24 +36,22 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
       BlocProvider.of<AuthBloc>(context).add(
         SessionRequest(
           onSuccess: (user) {
-            user = user.copyWith(
-              haveDog: haveDog,
-              relationshipStatus: selectedStatus,
-              interestedIn: selectedInterestedIn,
-              occupation: selectedOccupation,
-              eyeColor: selectedEyeColor,
-              haveKids: haveKids,
-              length: int.parse(lengthController.text),
-            );
             BlocProvider.of<UserBloc>(context).add(
               UpdateUserEvent(
-                user: user,
+                user: user.copyWith(
+                  haveDog: haveDog,
+                  relationshipStatus: selectedStatus,
+                  interestedIn: selectedInterestedIn,
+                  occupation: selectedOccupation,
+                  eyeColor: selectedEyeColor,
+                  haveKids: haveKids,
+                  length: int.parse(lengthController.text),
+                ),
                 success: (value) {
-                  print('***success***');
+                  Navigator.pushNamed(context, "/SetupProfile2");
                 },
               ),
             );
-            //  Navigator.pushNamed(context, "/SetupProfile2");
           },
         ),
       );

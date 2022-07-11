@@ -222,6 +222,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     } catch (e) {
       if (kDebugMode) {
         print(e);
+        print('--session--');
       }
       emit(
         state.copyWith(

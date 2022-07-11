@@ -8,7 +8,6 @@ class User {
     this.lastName,
     this.email,
     this.isPro,
-    this.isEmailVerified,
     this.gender,
     this.dob,
     this.city,
@@ -28,8 +27,6 @@ class User {
     this.activity,
     this.aboutSelf,
     this.dog,
-    this.createdAt,
-    this.updatedAt,
   });
 
   String? id;
@@ -37,13 +34,12 @@ class User {
   String? lastName;
   String? email;
   bool? isPro;
-  bool? isEmailVerified;
   String? gender;
   DateTime? dob;
   String? city;
   List<dynamic>? searchingFor;
   List<SquareProfileImage>? squareProfileImage;
-  dynamic circleProfileImage;
+  SquareProfileImage? circleProfileImage;
   String? userType;
   bool? haveDog;
   bool? haveKids;
@@ -57,8 +53,6 @@ class User {
   List<dynamic>? activity;
   String? aboutSelf;
   List<Dog>? dog;
-  DateTime? createdAt;
-  DateTime? updatedAt;
 
   User copyWith({
     String? id,
@@ -66,13 +60,12 @@ class User {
     String? lastName,
     String? email,
     bool? isPro,
-    bool? isEmailVerified,
     String? gender,
     DateTime? dob,
     String? city,
     List<dynamic>? searchingFor,
     List<SquareProfileImage>? squareProfileImage,
-    dynamic circleProfileImage,
+    SquareProfileImage? circleProfileImage,
     String? userType,
     bool? haveDog,
     bool? haveKids,
@@ -86,8 +79,6 @@ class User {
     List<dynamic>? activity,
     String? aboutSelf,
     List<Dog>? dog,
-    DateTime? createdAt,
-    DateTime? updatedAt,
   }) {
     return User(
       id: id ?? this.id,
@@ -95,7 +86,6 @@ class User {
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
       isPro: isPro ?? this.isPro,
-      isEmailVerified: isEmailVerified ?? this.isEmailVerified,
       gender: gender ?? this.gender,
       dob: dob ?? this.dob,
       city: city ?? this.city,
@@ -115,42 +105,39 @@ class User {
       aboutSelf: aboutSelf ?? this.aboutSelf,
       dog: dog ?? this.dog,
       haveKids: haveKids ?? this.haveKids,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json["_id"],
-      firstName: json["firstName"],
-      lastName: json["lastName"],
-      email: json["email"],
-      isPro: json["isPro"],
-      isEmailVerified: json["isEmailVerified"],
-      gender: json["gender"],
+      id: json["_id"] ?? "",
+      firstName: json["firstName"] ?? "",
+      lastName: json["lastName"] ?? "",
+      email: json["email"] ?? "",
+      isPro: json["isPro"] ?? false,
+      gender: json["gender"] ?? "",
       dob: DateTime.parse(json["dob"]),
-      city: json["city"],
+      city: json["city"] ?? "",
       searchingFor: List<dynamic>.from(json["searchingFor"].map((x) => x)),
       squareProfileImage: List<SquareProfileImage>.from(
           json["squareProfileImage"]
               .map((x) => SquareProfileImage.fromJson(x))),
-      circleProfileImage: json["circleProfileImage"],
-      userType: json["userType"],
-      haveDog: json["haveDog"],
-      relationshipStatus: json["relationshipStatus"],
-      interestedIn: json["interestedIn"],
-      occupation: json["occupation"],
-      eyeColor: json["eyeColor"],
-      length: json["length"],
-      haveKids: json["haveKids"],
+      circleProfileImage: json["circleProfileImage"] != null
+          ? SquareProfileImage.fromJson(json["circleProfileImage"])
+          : null,
+      userType: json["userType"] ?? "",
+      haveDog: json["haveDog"] ?? false,
+      relationshipStatus: json["relationshipStatus"] ?? "",
+      interestedIn: json["interestedIn"] ?? "",
+      occupation: json["occupation"] ?? "",
+      eyeColor: json["eyeColor"] ?? "",
+      length: json["length"] ?? "",
+      haveKids: json["haveKids"] ?? false,
       interests: List<dynamic>.from(json["interests"].map((x) => x)),
       favouriteNight: List<dynamic>.from(json["favouriteNight"].map((x) => x)),
       activity: List<dynamic>.from(json["activity"].map((x) => x)),
-      aboutSelf: json["aboutSelf"],
+      aboutSelf: json["aboutSelf"] ?? "",
       dog: List<Dog>.from(json["dog"].map((x) => Dog.fromJson(x))),
-      createdAt: DateTime.parse(json["createdAt"]),
-      updatedAt: DateTime.parse(json["updatedAt"]),
     );
   }
 
@@ -160,7 +147,6 @@ class User {
         "lastName": lastName,
         "email": email,
         "isPro": isPro,
-        "isEmailVerified": isEmailVerified,
         "gender": gender,
         "dob": dob?.toIso8601String(),
         "city": city,
@@ -181,7 +167,5 @@ class User {
         "aboutSelf": aboutSelf,
         "haveKids": haveKids,
         "dog": List<Dog>.from(dog!.map((x) => x.toJson())),
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
       };
 }

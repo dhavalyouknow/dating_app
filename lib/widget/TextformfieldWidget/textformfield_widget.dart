@@ -17,23 +17,23 @@ class TextFormFieldWidget extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final TextEditingController? textEditingController;
   VoidCallback? onTap;
-  final TextAlign? textAlign;
+  // TextAlign? textAlign;
 
-  TextFormFieldWidget(
-      {Key? key,
-      required this.height,
-      required this.txt,
-      this.icon,
-      this.backIcon,
-      required this.obscureText,
-      required this.border,
-      required this.borderColor,
-      required this.borderRadius,
-      this.validator,
-      this.textEditingController,
-      this.onTap,
-      this.textAlign})
-      : super(key: key);
+  TextFormFieldWidget({
+    Key? key,
+    required this.height,
+    required this.txt,
+    this.icon,
+    this.backIcon,
+    required this.obscureText,
+    required this.border,
+    required this.borderColor,
+    required this.borderRadius,
+    this.validator,
+    this.textEditingController,
+    this.onTap,
+    // this.textAlign,
+  }) : super(key: key);
 
   @override
   State<TextFormFieldWidget> createState() => _TextFormFieldWidgetState();
@@ -46,7 +46,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
       padding: EdgeInsets.only(top: 18.h),
       child: Container(
         height: widget.height,
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        padding: EdgeInsets.only(left: 10.w),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: AppStyles.whiteColor,
@@ -57,7 +57,6 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
           ),
         ),
         child: TextFormField(
-          textAlign: widget.textAlign!,
           onTap: widget.onTap,
           controller: widget.textEditingController,
           validator: widget.validator,

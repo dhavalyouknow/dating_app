@@ -7,8 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
   Map<String, dynamic>? detailList;
   final formKey = GlobalKey<FormState>();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController rePasswordController = TextEditingController();
+  final TextEditingController passwordController =
+      TextEditingController(text: '111111');
+  final TextEditingController rePasswordController =
+      TextEditingController(text: '111111');
 
   @override
   void initState() {

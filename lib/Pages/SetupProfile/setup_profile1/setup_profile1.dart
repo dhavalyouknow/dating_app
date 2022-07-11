@@ -101,18 +101,23 @@ class _SetupProfile1State extends State<SetupProfile1>
               SizedBox(height: 10.h),
               Row(
                 children: [
-                  ...yesNo.map(
+                  ...isHaveDog.map(
                     (e) {
                       return Expanded(
                         child: DefaultAppBtn(
                           height: size.height / 16,
-                          border: 1.r,
+                          border: e.selected ? 3.r : 1.r,
                           borderRadius: 20.r,
                           borderColor: AppStyles.greyColor,
-                          txt: e,
+                          txt: e.name,
                           txtColor: AppStyles.blackColor,
                           onTap: () {
-                            onHaveDogSubmit(e);
+                            onHaveDogSubmit(e.name);
+                            for (var tapped in isHaveDog) {
+                              tapped.selected = false;
+                            }
+                            e.selected = true;
+                            setState(() {});
                           },
                         ),
                       );
@@ -144,12 +149,14 @@ class _SetupProfile1State extends State<SetupProfile1>
                 },
                 borderRadius: 20.r,
                 height: size.height / 16,
-                border: 1.r,
+                border: selectedStatus.isEmpty ? 1.r : 3.r,
                 borderColor: AppStyles.greyColor,
                 txt: selectedStatus.isEmpty
                     ? "Select An Option"
                     : selectedStatus,
-                txtColor: Colors.red,
+                txtColor: selectedStatus.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.blackColor,
               ),
               SizedBox(height: 10.h),
               AppText(
@@ -175,12 +182,14 @@ class _SetupProfile1State extends State<SetupProfile1>
                 },
                 borderRadius: 20.r,
                 height: size.height / 16,
-                border: 1.r,
+                border: selectedInterestedIn.isEmpty ? 1.r : 3.r,
                 borderColor: AppStyles.greyColor,
                 txt: selectedInterestedIn.isEmpty
                     ? "Select An Option"
                     : selectedInterestedIn,
-                txtColor: AppStyles.greyColor,
+                txtColor: selectedInterestedIn.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.blackColor,
               ),
               SizedBox(height: 10.h),
               AppText(
@@ -191,18 +200,23 @@ class _SetupProfile1State extends State<SetupProfile1>
               SizedBox(height: 10.h),
               Row(
                 children: [
-                  ...yesNo.map(
+                  ...isHaveKids.map(
                     (e) {
                       return Expanded(
                         child: DefaultAppBtn(
                           height: size.height / 16,
-                          border: 1.r,
+                          border: e.selected ? 3.r : 1.r,
                           borderRadius: 20.r,
                           borderColor: AppStyles.greyColor,
-                          txt: e,
+                          txt: e.name,
                           txtColor: AppStyles.blackColor,
                           onTap: () {
-                            onKidSubmit(e);
+                            onKidSubmit(e.name);
+                            for (var tapped in isHaveKids) {
+                              tapped.selected = false;
+                            }
+                            e.selected = true;
+                            setState(() {});
                           },
                         ),
                       );
@@ -234,12 +248,14 @@ class _SetupProfile1State extends State<SetupProfile1>
                 },
                 borderRadius: 20.r,
                 height: size.height / 16,
-                border: 1.r,
+                border: selectedOccupation.isEmpty ? 1.r : 3.r,
                 borderColor: AppStyles.greyColor,
                 txt: selectedOccupation.isEmpty
                     ? "Select An Option"
                     : selectedOccupation,
-                txtColor: AppStyles.greyColor,
+                txtColor: selectedOccupation.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.blackColor,
               ),
               SizedBox(height: 10.h),
               AppText(
@@ -265,12 +281,14 @@ class _SetupProfile1State extends State<SetupProfile1>
                 },
                 borderRadius: 20.r,
                 height: size.height / 16,
-                border: 1.r,
+                border: selectedEyeColor.isEmpty ? 1.r : 3.r,
                 borderColor: AppStyles.greyColor,
                 txt: selectedEyeColor.isEmpty
                     ? "Select An Option"
                     : selectedEyeColor,
-                txtColor: AppStyles.greyColor,
+                txtColor: selectedEyeColor.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.blackColor,
               ),
               SizedBox(height: 10.h),
               AppText(
@@ -281,17 +299,20 @@ class _SetupProfile1State extends State<SetupProfile1>
               // SizedBox(height: 10.h),
               TextFormFieldWidget(
                 height: size.height / 14,
-                txt: "Enter your lenght",
+                txt: "Enter your lenght (cm)",
                 obscureText: false,
                 border: 1.r,
                 borderColor: AppStyles.greyColor,
                 borderRadius: 20.r,
+                textEditingController: lengthController,
               ),
               SizedBox(height: 20.h),
               GradientBtn(
                 height: size.height / 14,
                 txt: "Next",
-                onTap: onSubmitProfile1,
+                onTap: () {
+                  onSubmitProfile1();
+                },
               ),
               SizedBox(height: 60.h),
             ],
