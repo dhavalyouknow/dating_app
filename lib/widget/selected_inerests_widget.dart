@@ -1,3 +1,4 @@
+import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,7 +18,10 @@ class _SelectedChipWidgetState extends State<SelectedChipWidget> {
       margin: EdgeInsets.symmetric(horizontal: 4.r, vertical: 4.r),
       padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 7.h),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.pink),
+        border: Border.all(
+          color: AppStyles.pinkColor,
+          width: 3.r,
+        ),
         borderRadius: BorderRadius.circular(22),
       ),
       child: Text(widget.interestsName),

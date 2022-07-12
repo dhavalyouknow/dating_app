@@ -194,3 +194,54 @@ List<InterestGender> interestedIn = [
   InterestGender(interest: "Women", selected: false),
   InterestGender(interest: "Other", selected: false),
 ];
+
+// For Gender Selection
+
+class MaleFemale {
+  String name;
+  bool selected;
+  Icon icon;
+
+  MaleFemale({
+    required this.name,
+    required this.selected,
+    required this.icon,
+  });
+}
+
+List<MaleFemale> selectGender = [
+  MaleFemale(
+    name: "Male",
+    selected: false,
+    icon: const Icon(Icons.male),
+  ),
+  MaleFemale(
+    name: "Female",
+    selected: false,
+    icon: const Icon(Icons.female),
+  ),
+];
+
+// For Dog Size
+
+class DogSize {
+  String name;
+  bool selected;
+
+  DogSize({required this.name, required this.selected});
+}
+
+List<DogSize> sizeOfDog = [
+  DogSize(name: "Big", selected: false),
+  DogSize(name: "Medium", selected: false),
+  DogSize(name: "Small", selected: false),
+  DogSize(name: "Mini", selected: false),
+  DogSize(name: "Micro", selected: false),
+];
+
+List<DogSize> dogLookingFor = [
+  DogSize(name: "Friends", selected: false),
+  DogSize(name: "Nanny", selected: false),
+  DogSize(name: "Love", selected: false),
+  DogSize(name: "Bonus Husse", selected: false),
+];

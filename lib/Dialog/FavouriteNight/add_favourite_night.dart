@@ -1,13 +1,13 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
-import 'package:dating_app/Pages/SetupProfile/set_up_profile2/add_night_handler.dart';
+import 'package:dating_app/Dialog/FavouriteNight/add_favourite_night_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/interests_chip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../widget/selected_inerests_widget.dart';
+import '../../widget/selected_inerests_widget.dart';
 
 class AddNightModule extends StatefulWidget {
   final Function(List<String>) callback;
@@ -41,7 +41,9 @@ class _AddNightModuleState extends State<AddNightModule>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: AppText(
                     size: 15.sp,
                     text: "Cancel",
@@ -51,12 +53,17 @@ class _AddNightModuleState extends State<AddNightModule>
                 ),
                 AppText(
                   size: 18.sp,
-                  text: "Interests",
+                  text: "Favourite Night",
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      widget.callback(selectedNights);
+                    });
+                    Navigator.pop(context);
+                  },
                   child: AppText(
                     size: 15.sp,
                     text: "Done",
@@ -70,14 +77,11 @@ class _AddNightModuleState extends State<AddNightModule>
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(
-                  onPressed: () {},
-                  child: AppText(
-                    size: 15.sp,
-                    text: "Interests Selected",
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
-                        .fontFamily,
-                  ),
+                AppText(
+                  size: 15.sp,
+                  text: "Favourite Night Selected",
+                  fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
+                      .fontFamily,
                 ),
                 AppText(
                   size: 15.sp,
@@ -87,23 +91,26 @@ class _AddNightModuleState extends State<AddNightModule>
                 ),
               ],
             ),
-            Wrap(
-              children: [
-                ...favouriteNight.map(
-                  (e) => ListOfChipWidget(
-                    interestsName: e,
-                    onTap: () {
-                      if (selectedNights.contains(e)) {
-                        selectedNights.remove(e);
-                      } else {
-                        selectedNights.add(e);
-                      }
-                      setState(() {});
-                    },
-                    isSelected: selectedNights.contains(e),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.h),
+              child: Wrap(
+                children: [
+                  ...favouriteNight.map(
+                    (e) => ListOfChipWidget(
+                      interestsName: e,
+                      onTap: () {
+                        if (selectedNights.contains(e)) {
+                          selectedNights.remove(e);
+                        } else {
+                          selectedNights.add(e);
+                        }
+                        setState(() {});
+                      },
+                      isSelected: selectedNights.contains(e),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             GradientBtn(
               height: size.height / 14,

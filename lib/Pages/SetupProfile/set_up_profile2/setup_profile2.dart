@@ -1,8 +1,8 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
-import 'package:dating_app/Pages/SetupProfile/set_up_profile2/activities.dart';
+import 'package:dating_app/Dialog/AddActivities/add_activities.dart';
 import 'package:dating_app/Dialog/AddInterest/add_interests.dart';
-import 'package:dating_app/Pages/SetupProfile/set_up_profile2/add_night.dart';
+import 'package:dating_app/Dialog/FavouriteNight/add_favourite_night.dart';
 import 'package:dating_app/Pages/SetupProfile/set_up_profile2/set_up_profile2_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
@@ -40,19 +40,19 @@ class _SetupProfile2State extends State<SetupProfile2>
             ),
           ),
         ],
-        leading: Padding(
-          padding: EdgeInsets.only(left: 10.w),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              size: 30.h,
-              Icons.arrow_back_ios,
-              color: AppStyles.greyColor,
-            ),
-          ),
-        ),
+        // leading: Padding(
+        //   padding: EdgeInsets.only(left: 10.w),
+        //   child: IconButton(
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //     icon: Icon(
+        //       size: 30.h,
+        //       Icons.arrow_back_ios,
+        //       color: AppStyles.greyColor,
+        //     ),
+        //   ),
+        // ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),

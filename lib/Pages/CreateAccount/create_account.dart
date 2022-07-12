@@ -37,19 +37,19 @@ class _CreateAccountState extends State<CreateAccount>
             ),
           ),
         ],
-        leading: Padding(
-          padding: EdgeInsets.only(left: 10.w),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              size: 30.h,
-              Icons.arrow_back_ios,
-              color: AppStyles.greyColor,
-            ),
-          ),
-        ),
+        // leading: Padding(
+        //   padding: EdgeInsets.only(left: 10.w),
+        //   child: IconButton(
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //     icon: Icon(
+        //       size: 30.h,
+        //       Icons.arrow_back_ios,
+        //       color: AppStyles.greyColor,
+        //     ),
+        //   ),
+        // ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),

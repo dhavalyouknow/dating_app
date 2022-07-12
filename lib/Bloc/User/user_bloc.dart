@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dating_app/Core/base/api_end_point.dart';
 import 'package:dating_app/Core/base/base_http_service.dart';
+import 'package:dating_app/Model/dog.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:equatable/equatable.dart';
 
@@ -11,6 +12,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
   UserBloc() : super(const UserInitial()) {
     on<UserEvent>((event, emit) {});
     on<UpdateUserEvent>(_onUpdateUserEvent);
+    on<SetUser>(_onSetUser);
   }
 
   _onUpdateUserEvent(UpdateUserEvent event, Emitter<UserState> emit) async {
@@ -37,4 +39,6 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
       print('update-user-----');
     }
   }
+
+  _onSetUser(SetUser event, Emitter<UserState> emit) async {}
 }

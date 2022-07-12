@@ -1,6 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
-import 'package:dating_app/Pages/SetupProfile/set_up_profile2/activities_handler.dart';
+import 'package:dating_app/Dialog/AddActivities/add_activities_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/interests_chip_widget.dart';
 import 'package:flutter/material.dart';
@@ -86,23 +86,26 @@ class _SelectedActivitiesState extends State<SelectedActivities>
                 ),
               ],
             ),
-            Wrap(
-              children: [
-                ...interestList.map(
-                  (e) => ListOfChipWidget(
-                    interestsName: e,
-                    onTap: () {
-                      if (selectedActivities.contains(e)) {
-                        selectedActivities.remove(e);
-                      } else {
-                        selectedActivities.add(e);
-                      }
-                      setState(() {});
-                    },
-                    isSelected: selectedActivities.contains(e),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.h),
+              child: Wrap(
+                children: [
+                  ...interestList.map(
+                    (e) => ListOfChipWidget(
+                      interestsName: e,
+                      onTap: () {
+                        if (selectedActivities.contains(e)) {
+                          selectedActivities.remove(e);
+                        } else {
+                          selectedActivities.add(e);
+                        }
+                        setState(() {});
+                      },
+                      isSelected: selectedActivities.contains(e),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             GradientBtn(
               height: size.height / 14,

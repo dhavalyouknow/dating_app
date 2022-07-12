@@ -21,7 +21,7 @@ class Dog {
   String? size;
   List<String>? lookingFor;
   List<SquareProfileImage>? squareProfileImage;
-  String? circleProfileImage;
+  SquareProfileImage? circleProfileImage;
   String? userId;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -37,7 +37,9 @@ class Dog {
       squareProfileImage: List<SquareProfileImage>.from(
           json["squareProfileImage"]
               .map((x) => SquareProfileImage.fromJson(x))),
-      circleProfileImage: json["circleProfileImage"],
+      circleProfileImage: json["circleProfileImage"] != null
+          ? SquareProfileImage.fromJson(json["circleProfileImage"])
+          : null,
       userId: json["userId"],
       createdAt: DateTime.parse(json["createdAt"]),
       updatedAt: DateTime.parse(json["updatedAt"]),

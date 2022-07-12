@@ -5,4 +5,6 @@ class ApiEndPoints {
   static const String duplicate = '$baseUrl/auth/duplicate';
   static const String updateUser = '$baseUrl/user/';
   static const String getUser = '$baseUrl/user/';
+  static const String addDog = '$baseUrl/dog';
+  static const String uploadImage = '$baseUrl/image';
 }

@@ -27,7 +27,7 @@ mixin SetupProfile3Handlers<T extends StatefulWidget> on State<T> {
                 ),
                 success: (value) {
                   print(value);
-                  Navigator.pushNamed(context, "/HomePage");
+                  Navigator.pushNamed(context, "/AddYourDog");
                   Fluttertoast.showToast(msg: 'SetUp Profile Done');
                 },
               ),

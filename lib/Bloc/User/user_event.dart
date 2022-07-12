@@ -1,3 +1,4 @@
+// ignore_for_file: camel_case_types
 part of 'user_bloc.dart';
 
 abstract class UserEvent extends Equatable {
@@ -15,4 +16,15 @@ class UpdateUserEvent extends UserEvent {
   @override
   // TODO: implement props
   List<Object?> get props => [user, success];
+}
+
+class SetUser extends UserEvent {
+  final User user;
+
+  const SetUser({
+    required this.user,
+  });
+
+  @override
+  List<Object?> get props => [user];
 }

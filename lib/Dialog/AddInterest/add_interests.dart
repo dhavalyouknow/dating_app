@@ -38,7 +38,9 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: AppText(
                     size: 15.sp,
                     text: "Cancel",
@@ -53,7 +55,12 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
                       .fontFamily,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      widget.callback(selectedInterestsName);
+                    });
+                    Navigator.pop(context);
+                  },
                   child: AppText(
                     size: 15.sp,
                     text: "Done",
@@ -67,14 +74,11 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(
-                  onPressed: () {},
-                  child: AppText(
-                    size: 15.sp,
-                    text: "Interests Selected",
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
-                        .fontFamily,
-                  ),
+                AppText(
+                  size: 15.sp,
+                  text: "Interests Selected",
+                  fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
+                      .fontFamily,
                 ),
                 AppText(
                   size: 15.sp,
@@ -84,24 +88,26 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
                 ),
               ],
             ),
-            Wrap(
-              children: [
-                ...interestList.map(
-                  (e) => ListOfChipWidget(
-
-                    interestsName: e,
-                    onTap: () {
-                      if (selectedInterestsName.contains(e)) {
-                        selectedInterestsName.remove(e);
-                      } else {
-                        selectedInterestsName.add(e);
-                      }
-                      setState(() {});
-                    },
-                    isSelected: selectedInterestsName.contains(e),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.h),
+              child: Wrap(
+                children: [
+                  ...interestList.map(
+                    (e) => ListOfChipWidget(
+                      interestsName: e,
+                      onTap: () {
+                        if (selectedInterestsName.contains(e)) {
+                          selectedInterestsName.remove(e);
+                        } else {
+                          selectedInterestsName.add(e);
+                        }
+                        setState(() {});
+                      },
+                      isSelected: selectedInterestsName.contains(e),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             GradientBtn(
               height: size.height / 14,

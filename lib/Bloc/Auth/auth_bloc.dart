@@ -190,6 +190,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
       SessionRequest event, Emitter<AuthState> emit) async {
     try {
       var res = await get(url: ApiEndPoints.getUser);
+      print(ApiEndPoints.getUser);
       if (res != null) {
         print(res.body);
         print(res.statusCode);

@@ -94,6 +94,7 @@ class _SetupProfile3State extends State<SetupProfile3>
               ),
               SizedBox(height: 10.h),
               TextFormFieldWidget(
+                textEditingController: aboutSelfController,
                 borderRadius: 40,
                 height: size.width / 3,
                 txt: "Description",

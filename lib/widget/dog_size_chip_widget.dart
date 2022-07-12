@@ -2,12 +2,11 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ListOfChipWidget extends StatefulWidget {
+class DogSizeChipWidget extends StatefulWidget {
   final String interestsName;
   final VoidCallback onTap;
   final bool isSelected;
-
-  const ListOfChipWidget({
+  const DogSizeChipWidget({
     Key? key,
     required this.interestsName,
     required this.onTap,
@@ -15,10 +14,10 @@ class ListOfChipWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ListOfChipWidget> createState() => _ListOfChipWidgetState();
+  State<DogSizeChipWidget> createState() => _DogSizeChipWidgetState();
 }
 
-class _ListOfChipWidgetState extends State<ListOfChipWidget> {
+class _DogSizeChipWidgetState extends State<DogSizeChipWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

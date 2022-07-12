@@ -12,6 +12,7 @@ class GenderBtn extends StatefulWidget {
   final String txt;
   final VoidCallback onTap;
   final Icon icon;
+  // String? fontFamily;
 
   const GenderBtn({
     Key? key,
@@ -23,6 +24,7 @@ class GenderBtn extends StatefulWidget {
     required this.txtColor,
     required this.onTap,
     required this.icon,
+    // this.fontFamily,
   }) : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class _GenderBtnState extends State<GenderBtn> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 5.w),
         padding: EdgeInsets.symmetric(horizontal: 30.w),
         height: widget.height,
         width: double.infinity,
