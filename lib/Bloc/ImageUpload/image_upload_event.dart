@@ -3,12 +3,12 @@ part of 'image_upload_bloc.dart';
 abstract class ImageUploadEvent extends Equatable {}
 
 class UploadImage extends ImageUploadEvent {
-  final String? image;
-  final VoidCallback? onSuccess;
+  final File image;
+  final Function(Image) onSuccess;
 
   UploadImage({
-    this.image,
-    this.onSuccess,
+    required this.image,
+    required this.onSuccess,
   });
 
   @override

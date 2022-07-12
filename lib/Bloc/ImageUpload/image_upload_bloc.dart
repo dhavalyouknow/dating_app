@@ -2,14 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:dating_app/Core/base/base_http_service.dart';
+import 'package:dating_app/Model/image.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_cropper/image_cropper.dart';
-import '../../lib/Model/image.dart' as imageModel;
 
 part 'image_upload_event.dart';
-
 part 'image_upload_state.dart';
 
 class ImageUploadBloc extends Bloc<ImageUploadEvent, ImageUploadState>
@@ -34,7 +32,7 @@ class ImageUploadBloc extends Bloc<ImageUploadEvent, ImageUploadState>
           print(rawImage);
         }
         if (rawImage["_id"] != null) {
-          event.onSuccess(imageModel.Image.fromJson(rawImage));
+          event.onSuccess(Image.fromJson(rawImage));
           emit(state.copyWith(status: ImageStatus.success));
         } else {
           emit(state.copyWith(status: ImageStatus.failure));
