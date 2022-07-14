@@ -7,13 +7,21 @@ import 'package:dating_app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var token = prefs.getString('auth_token');
+  print('token ===> $token');
+  runApp(MyApp(
+    token: token!,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final String? token;
+  const MyApp({Key? key, required this.token}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -46,7 +54,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: "Dating App",
             routes: routes,
-            initialRoute: "/",
+            initialRoute: token == null ? "/" : "/HomePage",
           );
         },
       ),

@@ -37,8 +37,8 @@ class _GenderBtnState extends State<GenderBtn> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 5.w),
-        padding: EdgeInsets.symmetric(horizontal: 30.w),
+        margin: EdgeInsets.symmetric(horizontal: 0.w),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         height: widget.height,
         width: double.infinity,
         alignment: Alignment.center,
@@ -51,9 +51,10 @@ class _GenderBtnState extends State<GenderBtn> {
           ),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             widget.icon,
+            SizedBox(width: 10.h),
             Text(
               widget.txt,
               style: TextStyle(

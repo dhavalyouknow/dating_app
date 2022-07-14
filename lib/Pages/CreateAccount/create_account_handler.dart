@@ -10,6 +10,8 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
+  String selectedGender = '';
+  // Icon selectedIcon;
 
   final formKey = GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();

@@ -1,6 +1,9 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Dialog/SelectGender/select_gender.dart';
 import 'package:dating_app/Pages/CreateAccount/create_account_handler.dart';
+import 'package:dating_app/widget/Button/default_app_btn.dart';
+import 'package:dating_app/widget/Button/gender_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:flutter/material.dart';
@@ -122,21 +125,37 @@ class _CreateAccountState extends State<CreateAccount>
                   borderColor: AppStyles.greyColor,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Flexible(
-                      child: TextFormFieldWidget(
-                        textEditingController: genderController,
-                        validator: genderValidator,
-                        borderRadius: 10,
-                        icon: IconButton(
-                          icon: const Icon(Icons.male),
-                          onPressed: () {},
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 18.h),
+                        child: GenderBtn(
+                          height: size.height / 14,
+                          icon: selectedGender.isEmpty
+                              ? const Icon(Icons.male)
+                              : const Icon(Icons.female),
+                          txt: selectedGender.isEmpty
+                              ? "Select Gender"
+                              : selectedGender,
+                          border: 1.r,
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return SelectGender(
+                                  callback: (value) {
+                                    selectedGender = value;
+                                    setState(() {});
+                                  },
+                                );
+                              },
+                            );
+                          },
+                          borderRadius: 10.r,
+                          borderColor: AppStyles.greyColor,
+                          txtColor: AppStyles.greyColor,
                         ),
-                        height: size.height / 14,
-                        txt: "Gender",
-                        obscureText: false,
-                        border: 1,
-                        borderColor: AppStyles.greyColor,
                       ),
                     ),
                     SizedBox(width: 10.w),

@@ -220,6 +220,11 @@ List<MaleFemale> selectGender = [
     selected: false,
     icon: const Icon(Icons.female),
   ),
+  MaleFemale(
+    name: "Other",
+    selected: false,
+    icon: const Icon(Icons.transgender),
+  ),
 ];
 
 // For Dog Size
