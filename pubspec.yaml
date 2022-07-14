@@ -48,6 +48,7 @@ dependencies:
   fluttertoast: ^8.0.9
   swipable_stack: ^2.0.0
   image_cropper: ^2.0.3
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,7 @@ flutter:
     - assets/
     - assets/intro/
     - assets/icons/
+    - assets/searchingForIcon/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -153,7 +153,7 @@ class User {
         "searchingFor": List<dynamic>.from(searchingFor!.map((x) => x)),
         "squareProfileImage": List<SquareProfileImage>.from(
             squareProfileImage!.map((x) => x.toJson())),
-        "circleProfileImage": circleProfileImage,
+        "circleProfileImage": circleProfileImage?.id,
         "userType": userType,
         "haveDog": haveDog,
         "relationshipStatus": relationshipStatus,

@@ -1,5 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/ImageCropper/image_cropper_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,25 +13,26 @@ class ChooseDogPicture extends StatefulWidget {
   State<ChooseDogPicture> createState() => _ChooseDogPictureState();
 }
 
-class _ChooseDogPictureState extends State<ChooseDogPicture> {
+class _ChooseDogPictureState extends State<ChooseDogPicture>
+    with ImageCropperHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: EdgeInsets.only(left: 10.w),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              size: 30.h,
-              Icons.arrow_back_ios,
-              color: AppStyles.greyColor,
-            ),
-          ),
-        ),
+        // leading: Padding(
+        //   padding: EdgeInsets.only(left: 10.w),
+        //   child: IconButton(
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //     icon: Icon(
+        //       size: 30.h,
+        //       Icons.arrow_back_ios,
+        //       color: AppStyles.greyColor,
+        //     ),
+        //   ),
+        // ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
@@ -83,7 +85,9 @@ class _ChooseDogPictureState extends State<ChooseDogPicture> {
               ),
               SizedBox(height: 20.h),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  editImage(type: "dog");
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

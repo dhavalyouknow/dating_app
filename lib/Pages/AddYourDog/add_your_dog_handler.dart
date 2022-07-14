@@ -35,6 +35,7 @@ mixin AddYourDogHandlers<T extends StatefulWidget> on State<T> {
                 id: user.id!,
                 onSuccess: (e) {
                   print(e);
+                  Navigator.pushNamed(context, "/ChooseDogPicture");
                 },
               ),
             );

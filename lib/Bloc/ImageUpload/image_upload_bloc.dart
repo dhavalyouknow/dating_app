@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dating_app/Core/base/base_http_service.dart';
 import 'package:dating_app/Model/image.dart';
+import 'package:dating_app/Model/squareprofileimage.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,9 +33,10 @@ class ImageUploadBloc extends Bloc<ImageUploadEvent, ImageUploadState>
           print(rawImage);
         }
         if (rawImage["_id"] != null) {
-          event.onSuccess(Image.fromJson(rawImage));
+          event.onSuccess(SquareProfileImage.fromJson(rawImage));
           emit(state.copyWith(status: ImageStatus.success));
         } else {
+          print('---fail---');
           emit(state.copyWith(status: ImageStatus.failure));
         }
       }

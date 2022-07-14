@@ -4,7 +4,7 @@ abstract class ImageUploadEvent extends Equatable {}
 
 class UploadImage extends ImageUploadEvent {
   final File image;
-  final Function(Image) onSuccess;
+  final Function(SquareProfileImage) onSuccess;
 
   UploadImage({
     required this.image,

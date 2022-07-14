@@ -65,12 +65,15 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                 height: size.height / 14,
               ),
               TextFormFieldWidget(
+                textEditingController: dogNameController,
                 height: size.height / 14,
                 txt: "Dog Name",
                 obscureText: false,
-                border: 2,
-                borderColor: AppStyles.greyColor,
-                borderRadius: 22,
+                border: dogNameController.text.isEmpty ? 1.r : 3.r,
+                borderColor: dogNameController.text.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.pinkColor,
+                borderRadius: 25.r,
               ),
               SizedBox(height: 15.h),
               AppText(
@@ -90,10 +93,10 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                           border: e.selected ? 3.r : 1.r,
                           borderRadius: 25,
                           borderColor: e.selected
-                              ? AppStyles.greyColor
-                              : AppStyles.pinkColor,
+                              ? AppStyles.pinkColor
+                              : AppStyles.greyColor,
                           txt: e.name,
-                          txtColor: AppStyles.blackColor,
+                          txtColor: AppStyles.greyColor,
                           onTap: () {
                             for (var tapped in selectGender) {
                               tapped.selected = false;
@@ -102,7 +105,12 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                             selectedDogGender = e.name;
                             setState(() {});
                           },
-                          icon: e.icon,
+                          icon: Icon(
+                            e.icon.icon,
+                            color: e.selected
+                                ? AppStyles.pinkColor
+                                : AppStyles.greyColor,
+                          ),
                         ),
                       );
                     },
@@ -118,26 +126,28 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
               ),
               SizedBox(height: 15.h),
               Wrap(
+                runSpacing: 10.w,
                 children: [
                   ...sizeOfDog.map(
                     (e) {
-                      return Flexible(
-                        child: DefaultAppBtn(
-                          height: size.height / 14,
-                          border: e.selected ? 3.r : 1.r,
-                          borderRadius: 20.r,
-                          borderColor: AppStyles.greyColor,
-                          txt: e.name,
-                          txtColor: AppStyles.greyColor,
-                          onTap: () {
-                            for (var tapped in sizeOfDog) {
-                              tapped.selected = false;
-                            }
-                            e.selected = true;
-                            selectedDogSize = e.name;
-                            setState(() {});
-                          },
-                        ),
+                      return DefaultAppBtn(
+                        height: size.height / 14,
+                        width: size.width / 4,
+                        border: e.selected ? 3.r : 1.r,
+                        borderRadius: 25.r,
+                        borderColor: e.selected
+                            ? AppStyles.pinkColor
+                            : AppStyles.greyColor,
+                        txt: e.name,
+                        txtColor: AppStyles.greyColor,
+                        onTap: () {
+                          for (var tapped in sizeOfDog) {
+                            tapped.selected = false;
+                          }
+                          e.selected = true;
+                          selectedDogSize = e.name;
+                          setState(() {});
+                        },
                       );
                     },
                   ),
@@ -152,23 +162,31 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
               ),
               SizedBox(height: 15.h),
               Wrap(
+                runSpacing: 10.w,
+                spacing: 10.w,
+                // direction: Axis,
+
                 children: [
                   ...dogLookingFor.map(
                     (e) {
                       return DefaultAppBtn(
                         height: size.height / 14,
-                        border: e.selected ? 3.r : 1.r,
-                        borderRadius: 20.r,
-                        borderColor: AppStyles.greyColor,
+                        width: size.width / 2.6,
+                        border: myDogLookingFor.contains(e.name) ? 3.r : 1.r,
+                        borderRadius: 25.r,
+                        borderColor: myDogLookingFor.contains(e.name)
+                            ? AppStyles.pinkColor
+                            : AppStyles.greyColor,
                         txt: e.name,
                         txtColor: AppStyles.greyColor,
                         onTap: () {
-                          // onHaveDogSubmit(e.name);
-                          for (var tapped in dogLookingFor) {
-                            tapped.selected = false;
+                          if (myDogLookingFor.contains(e.name)) {
+                            myDogLookingFor.remove(e.name);
+                            print(myDogLookingFor);
+                          } else {
+                            myDogLookingFor.add(e.name);
+                            print('myDogLookingFor ===> $myDogLookingFor');
                           }
-                          myDogLookingFor.add(e.name);
-                          e.selected = true;
                           setState(
                             () {},
                           );

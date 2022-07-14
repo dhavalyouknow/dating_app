@@ -7,7 +7,7 @@ import 'package:dating_app/Pages/AddYourDog/add_your_dog_dialog.dart';
 import 'package:dating_app/Pages/BecomeAPremium/become_premium.dart';
 import 'package:dating_app/Pages/CheckMail/edit_email.dart';
 import 'package:dating_app/Pages/ChooseDogPicture/choose_dog_picture.dart';
-import 'package:dating_app/Pages/ChooseDogPicture/choose_dog_picture2.dart';
+import 'package:dating_app/Pages/ChooseDogPicture/CropDogPicture/choose_dog_picture2.dart';
 import 'package:dating_app/Pages/ChoosePartner/choose_partner.dart';
 import 'package:dating_app/Pages/CreateAccount/create_account.dart';
 import 'package:dating_app/Pages/CreatePassword/create_password.dart';

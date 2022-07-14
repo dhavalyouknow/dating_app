@@ -64,7 +64,7 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
             if (kDebugMode) {
               print('******success****');
             }
-            Navigator.pushNamed(context, "/SetupProfile1");
+            Navigator.pushNamed(context, "/ChoosePartner");
           },
         ),
       );
