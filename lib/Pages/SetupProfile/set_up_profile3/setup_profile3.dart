@@ -1,5 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/SetupProfile/set_up_profile3/setup_profile3_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ class SetupProfile3 extends StatefulWidget {
   State<SetupProfile3> createState() => _SetupProfile3State();
 }
 
-class _SetupProfile3State extends State<SetupProfile3> {
+class _SetupProfile3State extends State<SetupProfile3>
+    with SetupProfile3Handlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -29,24 +31,24 @@ class _SetupProfile3State extends State<SetupProfile3> {
               icon: Icon(
                 size: 30.h,
                 Icons.close,
-                color: AppStyles.btnColor,
+                color: AppStyles.greyColor,
               ),
             ),
           ),
         ],
-        leading: Padding(
-          padding: EdgeInsets.only(left: 10.w),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              size: 30.h,
-              Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
-            ),
-          ),
-        ),
+        // leading: Padding(
+        //   padding: EdgeInsets.only(left: 10.w),
+        //   child: IconButton(
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //     icon: Icon(
+        //       size: 30.h,
+        //       Icons.arrow_back_ios,
+        //       color: AppStyles.greyColor,
+        //     ),
+        //   ),
+        // ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
@@ -76,7 +78,7 @@ class _SetupProfile3State extends State<SetupProfile3> {
                     text: "Setup Profile",
                   ),
                   AppText(
-                    color: AppStyles.btnColor,
+                    color: AppStyles.greyColor,
                     size: 21.sp,
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                         .fontFamily,
@@ -92,7 +94,7 @@ class _SetupProfile3State extends State<SetupProfile3> {
               ),
               SizedBox(height: 10.h),
               TextFormFieldWidget(
-                
+                textEditingController: aboutSelfController,
                 borderRadius: 40,
                 height: size.width / 3,
                 txt: "Description",
@@ -105,7 +107,7 @@ class _SetupProfile3State extends State<SetupProfile3> {
                 height: size.height / 14,
                 txt: "Next",
                 onTap: () {
-                  Navigator.pushNamed(context, "/FirstIntroPage");
+                  onSubmitProfile3();
                 },
               ),
               SizedBox(height: 60.h),

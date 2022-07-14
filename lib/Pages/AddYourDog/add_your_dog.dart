@@ -1,9 +1,12 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/AddYourDog/add_your_dog_handler.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:dating_app/widget/Button/gender_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
+import 'package:dating_app/widget/TextformfieldWidget/add_your_dog.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
+import 'package:dating_app/widget/dog_size_chip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,24 +19,19 @@ class AddYourDog extends StatefulWidget {
   State<AddYourDog> createState() => _AddYourDogState();
 }
 
-class _AddYourDogState extends State<AddYourDog> {
+class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: Padding(
           padding: EdgeInsets.only(left: 10.w),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              size: 30.h,
-              Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
-            ),
+          child: Icon(
+            size: 30.h,
+            Icons.arrow_back_ios,
+            color: AppStyles.greyColor,
           ),
         ),
         backgroundColor: AppStyles.whiteColor,
@@ -54,7 +52,7 @@ class _AddYourDogState extends State<AddYourDog> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 40.h),
+              SizedBox(height: 10.h),
               Center(
                 child: AppText(
                   size: 21.sp,
@@ -63,14 +61,19 @@ class _AddYourDogState extends State<AddYourDog> {
                   text: "Add Your Dog",
                 ),
               ),
-              TextFormFieldWidget(
-                icon: const Icon(FontAwesomeIcons.dog),
+              SizedBox(
                 height: size.height / 14,
-                txt: "Your dog name",
+              ),
+              TextFormFieldWidget(
+                textEditingController: dogNameController,
+                height: size.height / 14,
+                txt: "Dog Name",
                 obscureText: false,
-                border: 1,
-                borderColor: AppStyles.btnColor,
-                borderRadius: 10,
+                border: dogNameController.text.isEmpty ? 1.r : 3.r,
+                borderColor: dogNameController.text.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.pinkColor,
+                borderRadius: 25.r,
               ),
               SizedBox(height: 15.h),
               AppText(
@@ -82,30 +85,35 @@ class _AddYourDogState extends State<AddYourDog> {
               SizedBox(height: 15.h),
               Row(
                 children: [
-                  Expanded(
-                    child: GenderBtn(
-                      icon: const Icon(Icons.male),
-                      height: size.height / 14,
-                      border: 1.r,
-                      borderRadius: 20.r,
-                      borderColor: AppStyles.btnColor,
-                      txt: "Male",
-                      txtColor: AppStyles.btnColor,
-                      onTap: () {},
-                    ),
-                  ),
-                  SizedBox(width: 10.w),
-                  Expanded(
-                    child: GenderBtn(
-                      icon: const Icon(Icons.female),
-                      height: size.height / 14,
-                      border: 1.r,
-                      borderRadius: 20.r,
-                      borderColor: AppStyles.btnColor,
-                      txt: "Female",
-                      txtColor: AppStyles.btnColor,
-                      onTap: () {},
-                    ),
+                  ...selectGender.map(
+                    (e) {
+                      return Flexible(
+                        child: GenderBtn(
+                          height: size.height / 14,
+                          border: e.selected ? 3.r : 1.r,
+                          borderRadius: 25,
+                          borderColor: e.selected
+                              ? AppStyles.pinkColor
+                              : AppStyles.greyColor,
+                          txt: e.name,
+                          txtColor: AppStyles.greyColor,
+                          onTap: () {
+                            for (var tapped in selectGender) {
+                              tapped.selected = false;
+                            }
+                            e.selected = true;
+                            selectedDogGender = e.name;
+                            setState(() {});
+                          },
+                          icon: Icon(
+                            e.icon.icon,
+                            color: e.selected
+                                ? AppStyles.pinkColor
+                                : AppStyles.greyColor,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -117,70 +125,31 @@ class _AddYourDogState extends State<AddYourDog> {
                 text: "Size",
               ),
               SizedBox(height: 15.h),
-              Row(
+              Wrap(
+                runSpacing: 10.w,
                 children: [
-                  Flexible(
-                    child: DefaultAppBtn(
-                      height: size.height / 14,
-                      border: 1.r,
-                      borderRadius: 20.r,
-                      borderColor: AppStyles.btnColor,
-                      txt: "Big",
-                      txtColor: AppStyles.btnColor,
-                      onTap: () {},
-                    ),
-                  ),
-                  SizedBox(width: 10.w),
-                  Flexible(
-                    child: DefaultAppBtn(
-                      height: size.height / 14,
-                      border: 1.r,
-                      borderRadius: 20.r,
-                      borderColor: AppStyles.btnColor,
-                      txt: "Medium",
-                      txtColor: AppStyles.btnColor,
-                      onTap: () {},
-                    ),
-                  ),
-                  SizedBox(width: 10.w),
-                  Flexible(
-                    child: DefaultAppBtn(
-                      height: size.height / 14,
-                      border: 1.r,
-                      borderRadius: 20.r,
-                      borderColor: AppStyles.btnColor,
-                      txt: "Small",
-                      txtColor: AppStyles.btnColor,
-                      onTap: () {},
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(height: 15.h),
-              Row(
-                children: [
-                  Flexible(
-                    child: DefaultAppBtn(
-                      height: size.height / 14,
-                      border: 1.r,
-                      borderRadius: 20.r,
-                      borderColor: AppStyles.btnColor,
-                      txt: "Mini",
-                      txtColor: AppStyles.btnColor,
-                      onTap: () {},
-                    ),
-                  ),
-                  SizedBox(width: 10.w),
-                  Flexible(
-                    child: DefaultAppBtn(
-                      height: size.height / 14,
-                      border: 1.r,
-                      borderRadius: 20.r,
-                      borderColor: AppStyles.btnColor,
-                      txt: "Micro",
-                      txtColor: AppStyles.btnColor,
-                      onTap: () {},
-                    ),
+                  ...sizeOfDog.map(
+                    (e) {
+                      return DefaultAppBtn(
+                        height: size.height / 14,
+                        width: size.width / 4,
+                        border: e.selected ? 3.r : 1.r,
+                        borderRadius: 25.r,
+                        borderColor: e.selected
+                            ? AppStyles.pinkColor
+                            : AppStyles.greyColor,
+                        txt: e.name,
+                        txtColor: AppStyles.greyColor,
+                        onTap: () {
+                          for (var tapped in sizeOfDog) {
+                            tapped.selected = false;
+                          }
+                          e.selected = true;
+                          selectedDogSize = e.name;
+                          setState(() {});
+                        },
+                      );
+                    },
                   ),
                 ],
               ),
@@ -192,63 +161,46 @@ class _AddYourDogState extends State<AddYourDog> {
                 text: "My dog is looking for",
               ),
               SizedBox(height: 15.h),
-              Row(
+              Wrap(
+                runSpacing: 10.w,
+                spacing: 10.w,
+                // direction: Axis,
+
                 children: [
-                  Flexible(
-                    child: DefaultAppBtn(
-                      height: size.height / 14,
-                      border: 1.r,
-                      borderRadius: 20.r,
-                      borderColor: AppStyles.btnColor,
-                      txt: "Friends",
-                      txtColor: AppStyles.btnColor,
-                      onTap: () {},
-                    ),
+                  ...dogLookingFor.map(
+                    (e) {
+                      return DefaultAppBtn(
+                        height: size.height / 14,
+                        width: size.width / 2.6,
+                        border: myDogLookingFor.contains(e.name) ? 3.r : 1.r,
+                        borderRadius: 25.r,
+                        borderColor: myDogLookingFor.contains(e.name)
+                            ? AppStyles.pinkColor
+                            : AppStyles.greyColor,
+                        txt: e.name,
+                        txtColor: AppStyles.greyColor,
+                        onTap: () {
+                          if (myDogLookingFor.contains(e.name)) {
+                            myDogLookingFor.remove(e.name);
+                            print(myDogLookingFor);
+                          } else {
+                            myDogLookingFor.add(e.name);
+                            print('myDogLookingFor ===> $myDogLookingFor');
+                          }
+                          setState(
+                            () {},
+                          );
+                        },
+                      );
+                    },
                   ),
-                  SizedBox(width: 10.w),
-                  Flexible(
-                    child: DefaultAppBtn(
-                      height: size.height / 14,
-                      border: 1.r,
-                      borderRadius: 20.r,
-                      borderColor: AppStyles.btnColor,
-                      txt: "Nanny",
-                      txtColor: AppStyles.btnColor,
-                      onTap: () {},
-                    ),
-                  ),
-                  SizedBox(width: 10.w),
-                  Flexible(
-                    child: DefaultAppBtn(
-                      height: size.height / 14,
-                      border: 1.r,
-                      borderRadius: 20.r,
-                      borderColor: AppStyles.btnColor,
-                      txt: "Love",
-                      txtColor: AppStyles.btnColor,
-                      onTap: () {},
-                    ),
-                  )
                 ],
-              ),
-              SizedBox(height: 15.h),
-              SizedBox(
-                width: size.width / 3,
-                child: DefaultAppBtn(
-                  height: size.height / 14,
-                  border: 1.r,
-                  borderRadius: 20.r,
-                  borderColor: AppStyles.btnColor,
-                  txt: "Bonus Husse",
-                  txtColor: AppStyles.btnColor,
-                  onTap: () {},
-                ),
               ),
               SizedBox(height: 15.h),
               GradientBtn(
                 height: size.height / 14,
                 txt: "Next",
-                onTap: () {},
+                onTap: onSubmitDog,
               ),
               SizedBox(height: 15.h),
             ],

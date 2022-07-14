@@ -1,8 +1,8 @@
 flutter/ephemeral/
 
-# Visual Studio user-specific files.
+# Visual Studio Bloc.Auth.user-specific files.
 *.suo
-*.user
+*.Bloc.Auth.user
 *.userosscache
 *.sln.docstates
 

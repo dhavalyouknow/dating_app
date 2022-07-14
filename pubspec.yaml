@@ -38,6 +38,18 @@ dependencies:
   google_fonts: ^3.0.1
   font_awesome_flutter: ^10.1.0
   smooth_page_indicator: ^1.0.0+2
+  http_services: ^2.1.1
+  flutter_bloc: ^8.0.1
+  equatable: ^2.0.3
+  http: ^0.13.4
+  shared_preferences: ^2.0.15
+  flutter_datetime_picker: ^1.5.1
+  intl: ^0.17.0
+  fluttertoast: ^8.0.9
+  swipable_stack: ^2.0.0
+  image_cropper: ^2.0.3
+  image_picker: ^0.8.5+3
+  cached_network_image: ^3.2.1
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +78,7 @@ flutter:
     - assets/
     - assets/intro/
     - assets/icons/
+    - assets/searchingForIcon/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

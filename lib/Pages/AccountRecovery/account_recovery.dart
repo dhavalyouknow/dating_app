@@ -1,6 +1,6 @@
-
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/AccountRecovery/account_recovery_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,8 @@ class AccountRecovery extends StatefulWidget {
   State<AccountRecovery> createState() => _AccountRecoveryState();
 }
 
-class _AccountRecoveryState extends State<AccountRecovery> {
+class _AccountRecoveryState extends State<AccountRecovery>
+    with AccountRecoveryHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -26,7 +27,7 @@ class _AccountRecoveryState extends State<AccountRecovery> {
           },
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: AppStyles.btnColor,
+            color: AppStyles.greyColor,
           ),
         ),
         backgroundColor: AppStyles.whiteColor,
@@ -62,7 +63,8 @@ class _AccountRecoveryState extends State<AccountRecovery> {
                 height: 40.h,
               ),
               AppText(
-                fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w400).fontFamily,
+                fontFamily:
+                    GoogleFonts.raleway(fontWeight: FontWeight.w400).fontFamily,
                 text:
                     "Enter your email and receive a link to recover\nyour account.",
                 size: 15.sp,
@@ -71,13 +73,16 @@ class _AccountRecoveryState extends State<AccountRecovery> {
                 height: 15.h,
               ),
               TextFormFieldWidget(
-                 borderRadius: 10,
+                borderRadius: 10,
                 height: size.height / 14,
                 txt: "Email",
-                icon: const Icon(Icons.person),
+                icon: IconButton(
+                  icon: const Icon(Icons.person_outline),
+                  onPressed: () {},
+                ),
                 obscureText: false,
                 border: 1,
-                borderColor: AppStyles.btnColor,
+                borderColor: AppStyles.greyColor,
               ),
               SizedBox(
                 height: 20.h,

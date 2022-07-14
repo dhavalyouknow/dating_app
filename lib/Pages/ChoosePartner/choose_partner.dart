@@ -1,5 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/ChoosePartner/choose_partner_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +14,8 @@ class ChoosePartner extends StatefulWidget {
   State<ChoosePartner> createState() => _ChoosePartnerState();
 }
 
-class _ChoosePartnerState extends State<ChoosePartner> {
+class _ChoosePartnerState extends State<ChoosePartner>
+    with ChoosePartnerHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -29,7 +31,7 @@ class _ChoosePartnerState extends State<ChoosePartner> {
               icon: Icon(
                 size: 30.h,
                 Icons.close,
-                color: AppStyles.btnColor,
+                color: AppStyles.greyColor,
               ),
             ),
           ),
@@ -43,7 +45,7 @@ class _ChoosePartnerState extends State<ChoosePartner> {
             icon: Icon(
               size: 30.h,
               Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
+              color: AppStyles.greyColor,
             ),
           ),
         ),
@@ -86,90 +88,60 @@ class _ChoosePartnerState extends State<ChoosePartner> {
                     GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
                 text: "You must choose at least one!",
               ),
-              SizedBox(height: 40.h),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.r),
-                width: size.width / 2,
-                height: size.height / 14,
-                decoration: BoxDecoration(
-                  color: AppStyles.whiteColor,
-                  borderRadius: BorderRadius.circular(25.r),
-                  border: Border.all(
-                    color: AppStyles.btnColor,
-                    width: 1,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const ImageIcon(
-                      // color: AppStyles.btnColor,
-                      AssetImage("assets/Dog.png"),
+              SizedBox(height: 30.h),
+              ...searchingFor
+                  .map(
+                    (e) => GestureDetector(
+                      onTap: () {
+                        if (imSearchingFor.contains(e.name)) {
+                          imSearchingFor.remove(e.name);
+                          print(imSearchingFor);
+                        } else {
+                          imSearchingFor.add(e.name);
+                          print('imSearchingFor ===> $imSearchingFor');
+                        }
+                        setState(() {});
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(vertical: 5.h),
+                        padding: EdgeInsets.symmetric(horizontal: 20.r),
+                        width: size.width / 2,
+                        height: size.height / 14,
+                        decoration: BoxDecoration(
+                          color: AppStyles.whiteColor,
+                          borderRadius: BorderRadius.circular(25.r),
+                          border: Border.all(
+                            color: AppStyles.greyColor,
+                            width: imSearchingFor.contains(e.name) ? 3.r : 1.r,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 18.h, child: (e.image)),
+                            SizedBox(width: 10.w),
+                            AppText(
+                              color: imSearchingFor.contains(e.name)
+                                  ? AppStyles.blackColor
+                                  : AppStyles.greyColor,
+                              text: e.name,
+                              fontFamily: GoogleFonts.raleway(
+                                      fontWeight: FontWeight.w500)
+                                  .fontFamily,
+                            )
+                          ],
+                        ),
+                      ),
                     ),
-                    SizedBox(width: 10.w),
-                    AppText(
-                      text: "Dog walks",
-                      fontFamily: GoogleFonts.raleway().fontFamily,
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(height: 20.h),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.r),
-                width: size.width / 2,
-                height: size.height / 14,
-                decoration: BoxDecoration(
-                  color: AppStyles.whiteColor,
-                  borderRadius: BorderRadius.circular(25.r),
-                  border: Border.all(
-                    color: AppStyles.btnColor,
-                    width: 1,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(FontAwesomeIcons.heart),
-                    SizedBox(width: 10.w),
-                    AppText(
-                      text: "Partner",
-                      fontFamily: GoogleFonts.raleway().fontFamily,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20.h),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.r),
-                width: size.width / 2,
-                height: size.height / 14,
-                decoration: BoxDecoration(
-                  color: AppStyles.whiteColor,
-                  borderRadius: BorderRadius.circular(25.r),
-                  border: Border.all(
-                    color: AppStyles.btnColor,
-                    width: 1,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(FontAwesomeIcons.userGroup),
-                    SizedBox(width: 10.w),
-                    AppText(
-                      text: "Friends",
-                      fontFamily: GoogleFonts.raleway().fontFamily,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 150.h),
+                  )
+                  .toList(),
+              SizedBox(height: 140.h),
               GradientBtn(
                 height: size.height / 14,
                 txt: "Next",
                 onTap: () {
-                  Navigator.pushNamed(context, "/UploadProfile");
+                  onSearchingFor();
+                  // Navigator.pushNamed(context, "/UploadProfile");
                 },
               ),
               Row(

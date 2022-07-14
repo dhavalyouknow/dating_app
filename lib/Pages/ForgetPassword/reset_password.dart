@@ -43,7 +43,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
-                    color: AppStyles.btnColor,
+                    color: AppStyles.greyColor,
                   ),
                 ),
               ),
@@ -76,7 +76,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       txt: "New Password",
                       obscureText: true,
                       border: 1,
-                      borderColor: AppStyles.btnColor,
+                      borderColor: AppStyles.greyColor,
                     ),
                     TextFormFieldWidget(
                       borderRadius: 10,
@@ -84,7 +84,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       txt: "Confirm Password",
                       obscureText: true,
                       border: 1,
-                      borderColor: AppStyles.btnColor,
+                      borderColor: AppStyles.greyColor,
                     ),
                     SizedBox(height: 20.h),
                     GradientBtn(

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
@@ -19,7 +21,7 @@ class _SecondIntroPageState extends State<SecondIntroPage> {
     final size = MediaQuery.of(context).size;
     final controller = PageController(viewportFraction: 1, keepPage: true);
     // PageController? pageController;
-    int currentIndex = 0;
+    int currentIndex = 0;   
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -104,7 +106,7 @@ class _SecondIntroPageState extends State<SecondIntroPage> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: AppStyles.IntroGradientColor,
+                  colors: AppStyles.introGradientColor,
                 ),
               ),
               child: Column(
@@ -116,7 +118,7 @@ class _SecondIntroPageState extends State<SecondIntroPage> {
                     effect: ExpandingDotsEffect(
                       dotHeight: 10.h,
                       radius: 12.0.r,
-                      activeDotColor: AppStyles.btnColor,
+                      activeDotColor: AppStyles.greyColor,
                     ),
                   ),
                   SizedBox(height: 10.h),

@@ -1,5 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/CheckMail/check_mail_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,7 @@ class CheckEmail extends StatefulWidget {
   State<CheckEmail> createState() => _CheckEmailState();
 }
 
-class _CheckEmailState extends State<CheckEmail> {
+class _CheckEmailState extends State<CheckEmail> with checkMailHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -44,7 +45,7 @@ class _CheckEmailState extends State<CheckEmail> {
                   icon: Icon(
                     Icons.close,
                     size: 20.h,
-                    color: AppStyles.btnColor,
+                    color: AppStyles.greyColor,
                   ),
                 ),
               ),

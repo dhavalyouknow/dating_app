@@ -1,8 +1,12 @@
-
+import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
+import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/ImageCropper/image_cropper_handler.dart';
+import 'package:dating_app/Pages/UploadProfile/upload_profile_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,7 +17,8 @@ class UploadProfile extends StatefulWidget {
   State<UploadProfile> createState() => _UploadProfileState();
 }
 
-class _UploadProfileState extends State<UploadProfile> {
+class _UploadProfileState extends State<UploadProfile>
+    with UploadProfileHandlers, ImageCropperHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -24,29 +29,16 @@ class _UploadProfileState extends State<UploadProfile> {
             padding: EdgeInsets.only(right: 10.w),
             child: IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                //
               },
               icon: Icon(
                 size: 30.h,
                 Icons.close,
-                color: AppStyles.btnColor,
+                color: AppStyles.greyColor,
               ),
             ),
           ),
         ],
-        leading: Padding(
-          padding: EdgeInsets.only(left: 10.w),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              size: 30.h,
-              Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
-            ),
-          ),
-        ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
@@ -72,50 +64,98 @@ class _UploadProfileState extends State<UploadProfile> {
                 text: "Upload Profile Picture",
               ),
               SizedBox(height: 20.h),
-              Container(
-                height: 200.h,
-                width: 200.w,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xffFAC7D1),
-                      blurRadius: 20.sp,
-                      offset: const Offset(-1, -4),
+              BlocBuilder<UserBloc, UserState>(
+                builder: (context, state) {
+                  return GestureDetector(
+                    onTap: () {
+                      editImage(type: "person");
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 200.h,
+                          width: 200.w,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color(0xffFAC7D1),
+                                blurRadius: 20.sp,
+                                offset: const Offset(-1, -4),
+                              ),
+                            ],
+                          ),
+                          child: CircleAvatar(
+                            backgroundColor: AppStyles.rosyWhiteColor,
+                            radius: 300.r,
+                            child: imageFile == null
+                                ? Icon(
+                                    Icons.person,
+                                    size: 100.sp,
+                                    color: AppStyles.greyColor,
+                                  )
+                                : Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: FileImage(imageFile!),
+                                      ),
+                                    ),
+                                  ),
+                          ),
+                        ),
+                        SizedBox(height: 20.h),
+                        imageFile == null
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(Icons.camera_alt_outlined),
+                                  SizedBox(width: 10.w),
+                                  AppText(
+                                    text: "Upload picture",
+                                    fontFamily: GoogleFonts.raleway(
+                                            fontWeight: FontWeight.bold)
+                                        .fontFamily,
+                                  ),
+                                ],
+                              )
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.close,
+                                    color: AppStyles.crimsonPinkColor,
+                                  ),
+                                  SizedBox(width: 10.w),
+                                  AppText(
+                                    color: AppStyles.crimsonPinkColor,
+                                    text: "Remove Picture",
+                                    fontFamily: GoogleFonts.raleway(
+                                            fontWeight: FontWeight.bold)
+                                        .fontFamily,
+                                  ),
+                                ],
+                              )
+                      ],
                     ),
-                  ],
-                ),
-                child: CircleAvatar(
-                  backgroundColor: AppStyles.rosyWhiteColor,
-                  radius: 300.r,
-                  child: Icon(
-                    color: const Color(0xffFAC7D1),
-                    Icons.person,
-                    size: 120.h,
-                  ),
-                ),
-              ),
-              SizedBox(height: 20.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.camera_alt_outlined),
-                  SizedBox(width: 10.w),
-                  AppText(
-                    text: "Upload picture",
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
-                        .fontFamily,
-                  ),
-                ],
-              ),
-              SizedBox(height: 180.h),
-              GradientBtn(
-                height: size.height / 14,
-                txt: "Next",
-                onTap: () {
-                  Navigator.pushNamed(context, "/CreatePassword");
+                  );
                 },
               ),
+              SizedBox(height: 180.h),
+              imageFile == null
+                  ? GradientBtn(
+                      height: size.height / 14,
+                      txt: "Next",
+                      onTap: () {},
+                    )
+                  : GradientBtn(
+                      height: size.height / 14,
+                      txt: "Save",
+                      onTap: () {
+                        Navigator.pushNamed(context, "/SetupProfile1");
+                      },
+                    ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

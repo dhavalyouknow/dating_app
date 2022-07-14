@@ -1,5 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/About/about_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,7 @@ class About extends StatefulWidget {
   State<About> createState() => _AboutState();
 }
 
-class _AboutState extends State<About> {
+class _AboutState extends State<About> with AboutHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -26,7 +27,7 @@ class _AboutState extends State<About> {
             },
             icon: Icon(
               Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
+              color: AppStyles.greyColor,
               size: 30.h,
             ),
           ),

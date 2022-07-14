@@ -25,7 +25,7 @@ class _SettingsState extends State<Settings> {
             },
             icon: Icon(
               Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
+              color: AppStyles.greyColor,
               size: 30.h,
             ),
           ),
@@ -57,7 +57,7 @@ class _SettingsState extends State<Settings> {
               const Divider(),
               ListTile(
                 leading: Image.asset(
-                  color: AppStyles.btnColor,
+                  color: AppStyles.greyColor,
                   "assets/icons/StarIcon.png",
                   height: 20.h,
                 ),
@@ -71,7 +71,7 @@ class _SettingsState extends State<Settings> {
               ListTile(
                 leading: const Icon(
                   Icons.lock_outline,
-                  color: AppStyles.btnColor,
+                  color: AppStyles.greyColor,
                 ),
                 title: AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
@@ -91,7 +91,7 @@ class _SettingsState extends State<Settings> {
               const Divider(),
               ListTile(
                 leading: Image.asset(
-                  color: AppStyles.btnColor,
+                  color: AppStyles.greyColor,
                   "assets/icons/EarthIcon.png",
                   height: 20.h,
                 ),

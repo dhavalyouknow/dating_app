@@ -1,9 +1,11 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DefaultAppBtn extends StatefulWidget {
   final double height;
+  final double? width;
   final double border;
   final double borderRadius;
   final Color borderColor;
@@ -14,6 +16,7 @@ class DefaultAppBtn extends StatefulWidget {
   const DefaultAppBtn({
     Key? key,
     required this.height,
+    this.width,
     required this.border,
     required this.borderRadius,
     required this.borderColor,
@@ -32,7 +35,9 @@ class _DefaultAppBtnState extends State<DefaultAppBtn> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 5.w),
         height: widget.height,
+        width: widget.width,
         // width: double.infinity,
         alignment: Alignment.center,
         decoration: BoxDecoration(

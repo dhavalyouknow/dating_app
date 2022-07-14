@@ -28,7 +28,7 @@ class _MyPageState extends State<MyPage> {
               icon: Icon(
                 size: 30.h,
                 Icons.settings,
-                color: AppStyles.btnColor,
+                color: AppStyles.greyColor,
               ),
             ),
           ),
@@ -41,7 +41,7 @@ class _MyPageState extends State<MyPage> {
             },
             icon: Icon(
               Icons.arrow_back_ios,
-              color: AppStyles.btnColor,
+              color: AppStyles.greyColor,
               size: 30.h,
             ),
           ),
@@ -128,7 +128,7 @@ class _MyPageState extends State<MyPage> {
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                             width: 2,
-                                            color: AppStyles.btnColor)),
+                                            color: AppStyles.greyColor)),
                                     child: CircleAvatar(
                                       radius: 12.r,
                                       backgroundImage: const AssetImage(
@@ -140,7 +140,7 @@ class _MyPageState extends State<MyPage> {
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border: Border.all(
-                                          width: 2, color: AppStyles.btnColor)),
+                                          width: 2, color: AppStyles.greyColor)),
                                   child: CircleAvatar(
                                     radius: 12.r,
                                     backgroundImage: const AssetImage(
@@ -214,7 +214,7 @@ class _MyPageState extends State<MyPage> {
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                    width: 2, color: AppStyles.btnColor)),
+                                    width: 2, color: AppStyles.greyColor)),
                             child: CircleAvatar(
                               radius: 12.r,
                               backgroundImage: const AssetImage(
