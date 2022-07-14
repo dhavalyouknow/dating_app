@@ -1,4 +1,5 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
+import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -61,6 +62,9 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
       minTime: DateTime(1900, 1, 1),
       maxTime: DateTime(
           selectedDate.year - 18, selectedDate.month, selectedDate.day),
+      theme: const DatePickerTheme(
+        backgroundColor: AppStyles.whiteColor,
+      ),
     );
 
     if (datePicked != null && datePicked != selectedDate) {

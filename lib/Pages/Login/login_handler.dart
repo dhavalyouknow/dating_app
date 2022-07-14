@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 mixin LoginHandlers<T extends StatefulWidget> on State<T> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController =
+      TextEditingController(text: 'dp@gmail.com');
+  final TextEditingController passwordController =
+      TextEditingController(text: '111111');
   int index = 0;
+  bool signUpPwd = true;
   final formKey = GlobalKey<FormState>();
 
   String? emailValidator(dynamic email) {

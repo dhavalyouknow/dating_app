@@ -1,5 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/BecomeAPremium/become_premium_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,8 @@ class BecomePremium extends StatefulWidget {
   State<BecomePremium> createState() => _BecomePremiumState();
 }
 
-class _BecomePremiumState extends State<BecomePremium> {
+class _BecomePremiumState extends State<BecomePremium>
+    with BecomePremiumHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

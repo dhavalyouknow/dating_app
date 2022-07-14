@@ -10,7 +10,9 @@ enum ImageStatus {
 class ImageUploadState extends Equatable {
   final ImageStatus status;
 
-  const ImageUploadState({this.status = ImageStatus.initial});
+  const ImageUploadState({
+    this.status = ImageStatus.initial,
+  });
 
   ImageUploadState copyWith({ImageStatus? status}) {
     return ImageUploadState(

@@ -189,7 +189,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
               UpdateUserEvent(
                 user: user!,
                 success: (value) {
-                  Navigator.pushNamed(context, "/SetupProfile3");
+                  // Navigator.pushNamed(context, "/SetupProfile3");
                 },
               ),
             );

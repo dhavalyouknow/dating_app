@@ -1,5 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Pages/Login/login_handler.dart';
+import 'package:dating_app/widget/Button/google_btn.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
@@ -44,38 +45,55 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                   borderRadius: 10,
                   height: size.height / 14,
                   txt: "Email",
-                  icon: const Icon(Icons.person_outline),
+                  icon: IconButton(
+                    icon: const Icon(Icons.person_outline),
+                    onPressed: () {},
+                  ),
                   obscureText: false,
                   border: 0,
                   borderColor: AppStyles.trasnparentColor,
                 ),
                 TextFormFieldWidget(
+                  obSecure: signUpPwd,
                   textEditingController: passwordController,
                   validator: passwordValidator,
                   borderRadius: 10,
                   height: size.height / 14,
                   txt: "Password",
-                  icon: const Icon(Icons.lock_outline),
-                  obscureText: true,
+                  icon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        signUpPwd = !signUpPwd;
+                      });
+                    },
+                    icon: signUpPwd
+                        ? const Icon(
+                            Icons.lock_outlined,
+                            color: AppStyles.textColor,
+                          )
+                        : const Icon(
+                            Icons.lock_open,
+                            color: AppStyles.textColor,
+                          ),
+                  ),
+                  obscureText: signUpPwd,
                   border: 0,
                   borderColor: AppStyles.trasnparentColor,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/ForgetPassword");
-                      },
-                      child: Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                          fontSize: 13.sp,
-                          color: AppStyles.blackColor,
-                        ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/ForgetPassword");
+                    },
+                    child: Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                        fontSize: 13.sp,
+                        color: AppStyles.blackColor,
                       ),
-                    )
-                  ],
+                    ),
+                  ),
                 ),
                 GradientBtn(
                   height: size.height / 14,

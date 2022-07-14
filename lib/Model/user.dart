@@ -8,6 +8,7 @@ class User {
     this.lastName,
     this.email,
     this.isPro,
+    this.isEmailVerified,
     this.gender,
     this.dob,
     this.city,
@@ -34,6 +35,7 @@ class User {
   String? lastName;
   String? email;
   bool? isPro;
+  bool? isEmailVerified;
   String? gender;
   DateTime? dob;
   String? city;
@@ -60,6 +62,7 @@ class User {
     String? lastName,
     String? email,
     bool? isPro,
+    bool? isEmailVerified,
     String? gender,
     DateTime? dob,
     String? city,
@@ -86,6 +89,7 @@ class User {
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
       isPro: isPro ?? this.isPro,
+      isEmailVerified: isEmailVerified ?? this.isEmailVerified,
       gender: gender ?? this.gender,
       dob: dob ?? this.dob,
       city: city ?? this.city,
@@ -115,6 +119,7 @@ class User {
       lastName: json["lastName"] ?? "",
       email: json["email"] ?? "",
       isPro: json["isPro"] ?? false,
+      isEmailVerified: json["isEmailVerified"] ?? false,
       gender: json["gender"] ?? "",
       dob: DateTime.parse(json["dob"]),
       city: json["city"] ?? "",
@@ -153,7 +158,7 @@ class User {
         "searchingFor": List<dynamic>.from(searchingFor!.map((x) => x)),
         "squareProfileImage": List<SquareProfileImage>.from(
             squareProfileImage!.map((x) => x.toJson())),
-        "circleProfileImage": circleProfileImage?.id,
+        "circleProfileImage": circleProfileImage,
         "userType": userType,
         "haveDog": haveDog,
         "relationshipStatus": relationshipStatus,

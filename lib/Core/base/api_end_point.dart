@@ -7,4 +7,5 @@ class ApiEndPoints {
   static const String getUser = '$baseUrl/user/';
   static const String addDog = '$baseUrl/dog';
   static const String uploadImage = '$baseUrl/image';
+  static const String swipe = '$baseUrl/user/swiper';
 }

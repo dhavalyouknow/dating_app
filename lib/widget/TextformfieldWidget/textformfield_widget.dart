@@ -8,7 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 class TextFormFieldWidget extends StatefulWidget {
   final double height;
   final String txt;
-  final Icon? icon;
+  final IconButton? icon;
+  bool? obSecure;
   final Icon? backIcon;
   final bool obscureText;
   final double border;
@@ -24,6 +25,7 @@ class TextFormFieldWidget extends StatefulWidget {
     required this.height,
     required this.txt,
     this.icon,
+    this.obSecure,
     this.backIcon,
     required this.obscureText,
     required this.border,
@@ -63,7 +65,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
           obscureText: widget.obscureText,
           decoration: InputDecoration(
             suffixIcon: widget.backIcon,
-            icon: widget.icon,
+            icon: widget.obSecure == true ? widget.icon : widget.icon,
             hintText: widget.txt,
             hintStyle: TextStyle(
               fontFamily: GoogleFonts.raleway(fontSize: 15.sp).fontFamily,
