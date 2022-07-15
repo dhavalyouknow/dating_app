@@ -2,6 +2,7 @@
 
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/AddYourDog/add_your_dog_dialog.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -143,7 +144,12 @@ class _ThirdIntroPageState extends State<ThirdIntroPage> {
                     height: size.height / 14,
                     txt: "Get Started",
                     onTap: () {
-                      Navigator.pushNamed(context, "/AddYourDog");
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const AddYourDogNow();
+                        },
+                      );
                     },
                   ),
                   SizedBox(height: 15.h),

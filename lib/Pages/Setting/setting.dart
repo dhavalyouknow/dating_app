@@ -1,7 +1,9 @@
+import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/Setting/setting_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -116,6 +118,9 @@ class _SettingsState extends State<Settings> with SettingHandlers {
               ),
               const Divider(),
               ListTile(
+                onTap: () {
+                  Navigator.pushNamed(context, "/");
+                },
                 leading: Image.asset(
                   "assets/icons/LogoutIcon.png",
                   height: 20.h,

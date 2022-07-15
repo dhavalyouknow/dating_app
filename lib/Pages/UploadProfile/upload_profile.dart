@@ -153,7 +153,7 @@ class _UploadProfileState extends State<UploadProfile>
                       height: size.height / 14,
                       txt: "Save",
                       onTap: () {
-                        Navigator.pushNamed(context, "/SetupProfile1");
+                        onProfileSave();
                       },
                     ),
               Row(

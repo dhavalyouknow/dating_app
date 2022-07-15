@@ -51,7 +51,9 @@ class _AddYourDogNowState extends State<AddYourDogNow> {
                       borderColor: AppStyles.blackColor,
                       txt: "Yes",
                       txtColor: AppStyles.blackColor,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, "/AddYourDog");
+                      },
                     ),
                   ),
                   SizedBox(width: 10.w),

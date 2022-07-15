@@ -89,7 +89,7 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
                 "name": nameController.text,
                 "surname": surnameController.text,
                 "email": emailController.text,
-                "gender": genderController.text,
+                "gender": selectedGender,
                 "dob": selectedDate.toString(),
                 "location": locationController.text,
               },
