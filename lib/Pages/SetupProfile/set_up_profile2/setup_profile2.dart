@@ -125,6 +125,10 @@ class _SetupProfile2State extends State<SetupProfile2>
                                   interestedName = value;
                                   setState(() {});
                                 },
+<<<<<<< Updated upstream
+=======
+                                selectedList: interestedName,
+>>>>>>> Stashed changes
                               );
                             },
                           );
@@ -241,6 +245,10 @@ class _SetupProfile2State extends State<SetupProfile2>
                                   activities = value;
                                   setState(() {});
                                 },
+<<<<<<< Updated upstream
+=======
+                                selectedList: activities,
+>>>>>>> Stashed changes
                               );
                             },
                           );
@@ -257,8 +265,25 @@ class _SetupProfile2State extends State<SetupProfile2>
                       children: [
                         ...activities
                             .map(
+<<<<<<< Updated upstream
                               (e) => SelectedChipWidget(
                                 interestsName: e,
+=======
+                              (e) => Column(
+                                children: [
+                                  // IconButton(
+                                  //   onPressed: () {
+                                  //     activities.remove(e);
+                                  //     setState(() {});
+                                  //   },
+                                  //   icon: const Icon(Icons.close),
+                                  //   color: Colors.red,
+                                  // ),
+                                  SelectedChipWidget(
+                                    interestsName: e,
+                                  ),
+                                ],
+>>>>>>> Stashed changes
                               ),
                             )
                             .toList()
