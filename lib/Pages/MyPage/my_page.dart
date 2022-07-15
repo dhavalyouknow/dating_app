@@ -61,7 +61,6 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
               GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
         ),
       ),
-<<<<<<< Updated upstream
       body: user == null
           ? const Center(child: CircularProgressIndicator())
           : Container(
@@ -73,22 +72,6 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: AppStyles.forgotPassGradientColor,
-=======
-      body: BlocBuilder<UserBloc, UserState>(
-        builder: (context, userState) {
-          return BlocBuilder<DogBloc, DogState>(
-            builder: (context, dogState) {
-              return Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                height: size.height,
-                width: size.width,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: AppStyles.forgotPassGradientColor,
-                  ),
->>>>>>> Stashed changes
                 ),
               ),
               child: SingleChildScrollView(
