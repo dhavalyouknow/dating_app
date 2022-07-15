@@ -125,10 +125,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                                   interestedName = value;
                                   setState(() {});
                                 },
-<<<<<<< Updated upstream
-=======
-                                selectedList: interestedName,
->>>>>>> Stashed changes
+                               // selectedList: interestedName,
                               );
                             },
                           );
@@ -245,10 +242,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                                   activities = value;
                                   setState(() {});
                                 },
-<<<<<<< Updated upstream
-=======
-                                selectedList: activities,
->>>>>>> Stashed changes
+                             //   selectedList: activities,
                               );
                             },
                           );
@@ -265,10 +259,6 @@ class _SetupProfile2State extends State<SetupProfile2>
                       children: [
                         ...activities
                             .map(
-<<<<<<< Updated upstream
-                              (e) => SelectedChipWidget(
-                                interestsName: e,
-=======
                               (e) => Column(
                                 children: [
                                   // IconButton(
@@ -283,7 +273,6 @@ class _SetupProfile2State extends State<SetupProfile2>
                                     interestsName: e,
                                   ),
                                 ],
->>>>>>> Stashed changes
                               ),
                             )
                             .toList()
