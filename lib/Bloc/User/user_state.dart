@@ -20,6 +20,8 @@ class UserState extends Equatable {
     UserStatus? status,
     User? user,
   }) {
+    print(user);
+    print('****');
     return UserState(status: status ?? this.status, user: user ?? this.user);
   }
 

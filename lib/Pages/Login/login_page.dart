@@ -7,7 +7,7 @@ import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginPage extends StatefulWidget {
-  static const routeName = '/LoginPage';
+  static const routeName = '/LoginPage ';
   const LoginPage({Key? key}) : super(key: key);
 
   @override

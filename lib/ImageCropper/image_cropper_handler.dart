@@ -221,7 +221,6 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
           success: (value) {
             Fluttertoast.showToast(
                 msg: 'Your Profile Picture is added successfully');
-            Navigator.pushNamed(context, "/SetupProfile3");
           },
         ),
       );

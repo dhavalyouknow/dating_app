@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: "Dating App",
             routes: routes,
-            initialRoute: token == null ? "/" : "/HomePage",
+            initialRoute: token == null ? "/" : "/MyPage",
           );
         },
       ),

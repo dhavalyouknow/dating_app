@@ -187,7 +187,9 @@ class _UploadProfileState extends State<UploadProfile>
                       height: size.height / 14,
                       txt: "Save",
                       onTap: () {
-                        onProfileSave();
+                        if (imageFile != null) {
+                          onProfileSave();
+                        }
                       },
                     ),
               Row(

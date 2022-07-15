@@ -162,17 +162,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           prefs.setString('auth_token', token!);
           prefs.setString('user_id', id);
 
-          emit(
-            state.copyWith(
-              status: AuthStatus.loginSuccess,
-              token: resp.headers["x-auth-token"],
-            ),
-          );
-
           User user = User.fromJson(data);
           print('Bloc.Auth.user ===> $user');
           event.success(user);
           Fluttertoast.showToast(msg: 'Login Successfully');
+          emit(
+            state.copyWith(
+              status: AuthStatus.loginSuccess,
+              token: resp.headers["x-auth-token"],
+              user: User.fromJson(data),
+            ),
+          );
           if (kDebugMode) {
             print(resp.body);
             print(resp.statusCode);
