@@ -41,19 +41,19 @@ class AddDogEvent extends DogEvent {
 }
 
 class UpdateDogEvent extends DogEvent {
-  final User user;
+  final Dog dog;
   final Function(String) success;
-  //final List<SquareProfileImage> squareProfileImage;
+  final List<String> squareProfileImage;
   final String circleProfileImage;
 
   const UpdateDogEvent({
-    required this.user,
+    required this.dog,
     required this.success,
-    // required this.squareProfileImage,
+    required this.squareProfileImage,
     required this.circleProfileImage,
   });
 
   @override
   // TODO: implement props
-  List<Object?> get props => [user, success, circleProfileImage];
+  List<Object?> get props => [dog, success, circleProfileImage];
 }

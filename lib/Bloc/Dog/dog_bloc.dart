@@ -81,12 +81,15 @@ class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
   _onUpdateDogEvent(UpdateDogEvent event, Emitter<DogState> emit) async {
     try {
       var resp = await patch(
-        url: '${ApiEndPoints.updateDog}${event.user.id}',
+        url: '${ApiEndPoints.updateDog}${event.dog.id}',
         body: {
-          //"squareProfileImage": event.squareProfileImage,
+          "squareProfileImage": event.squareProfileImage,
           "circleProfileImage": event.circleProfileImage
         },
       );
+      print('222222222222222');
+      print('${ApiEndPoints.updateDog}${event.dog.id}');
+      print(event.circleProfileImage);
       if (resp != null) {
         if (resp.statusCode == 200) {
           print(resp.statusCode);

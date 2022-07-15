@@ -228,20 +228,30 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
     //for dog
     else {
       Dog dog = BlocProvider.of<DogBloc>(context).state.dog as Dog;
-
+      print(dog.squareProfileImage?.map((e) => e.id).runtimeType);
+      dog.squareProfileImage?.map((e) {
+        print(e.id);
+        print('666');
+        return Text('dfsd');
+      });
+      print(user?.id);
+      print(addSquareProfileImage?.id);
+      print('66666666666666');
       BlocProvider.of<ImageUploadBloc>(context).add(
         UploadImage(
           image: circleImageFile!,
           onSuccess: (SquareProfileImage value) {
             BlocProvider.of<DogBloc>(context).add(
               UpdateDogEvent(
-                user: user!,
-                // squareProfileImage: [
-                //   ...?dog.squareProfileImage,
-                //   addSquareProfileImage!
-                // ],
+                dog: dog,
+                squareProfileImage: [addSquareProfileImage!.id!],
                 circleProfileImage: value.id!,
                 success: (value) {
+                  user = user?.copyWith(dog: [...?user?.dog, dog]);
+                  BlocProvider.of<UserBloc>(context).add(SetUser(user: user!));
+                  print(dog);
+                  print(user?.dog?.first.circleProfileImage);
+                  print(user?.id);
                   print('===$value');
                 },
               ),

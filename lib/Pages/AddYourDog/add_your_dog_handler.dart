@@ -33,8 +33,11 @@ mixin AddYourDogHandlers<T extends StatefulWidget> on State<T> {
         size: selectedDogSize,
         lookingFor: myDogLookingFor,
         id: user!.id!,
-        onSuccess: (e) {
-          print(e);
+        onSuccess: (dog) {
+          print('DOG -> $dog');
+          user = user?.copyWith(dog: [...?user?.dog, dog]);
+          BlocProvider.of<UserBloc>(context).add(SetUser(user: user!));
+          print(user?.dog?.length);
           Navigator.pushNamed(context, "/ChooseDogPicture");
         },
       ),
