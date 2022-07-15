@@ -5,6 +5,12 @@ abstract class UserEvent extends Equatable {
   const UserEvent();
 }
 
+class SetUserInitial extends UserEvent {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+
 class UpdateUserEvent extends UserEvent {
   final User user;
   final Function(String) success;

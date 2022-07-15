@@ -13,6 +13,10 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
     on<UserEvent>((event, emit) {});
     on<UpdateUserEvent>(_onUpdateUserEvent);
     on<SetUser>(_onSetUser);
+    on<SetUserInitial>(_serUserInitial);
+  }
+  _serUserInitial(SetUserInitial event, Emitter<UserState> emit) {
+    emit(state.copyWith(status: UserStatus.initial));
   }
 
   _onUpdateUserEvent(UpdateUserEvent event, Emitter<UserState> emit) async {

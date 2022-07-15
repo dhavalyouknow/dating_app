@@ -19,6 +19,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     on<LoginRequest>(_onLoginRequest);
     on<DuplicateEvent>(_onDuplicateEvent);
     on<SessionRequest>(_onSessionRequest);
+    on<SetLoginInitial>(_onLoginInitial);
+  }
+
+  Future<void> _onLoginInitial(
+    SetLoginInitial event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        status: AuthStatus.initial,
+      ),
+    );
   }
 
   Future<void> _onDuplicateEvent(

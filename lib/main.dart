@@ -15,7 +15,7 @@ void main() async {
   var token = prefs.getString('auth_token');
   print('token ===> $token');
   runApp(MyApp(
-    token: token!,
+    token: token,
   ));
 }
 

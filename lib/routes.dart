@@ -65,4 +65,7 @@ Map<String, WidgetBuilder> routes = {
   '/EditPersonProfile': (ctx) => const EditPersonProfile(),
   '/DogPublicProfile': (ctx) => const DogPublicProfile(),
   '/PersonPublicProfile': (ctx) => const PersonPublicProfile(),
+  LoginPage.routeName: (ctx) => const LoginPage(
+        key: Key('/LoginPage'),
+      ),
 };

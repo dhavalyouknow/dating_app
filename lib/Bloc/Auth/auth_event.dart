@@ -4,6 +4,14 @@ abstract class AuthEvent extends Equatable {
   const AuthEvent();
 }
 
+class SetLoginInitial extends AuthEvent {
+  const SetLoginInitial() : super();
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+
 class DuplicateEvent extends AuthEvent {
   final String email;
   final VoidCallback onSuccess;

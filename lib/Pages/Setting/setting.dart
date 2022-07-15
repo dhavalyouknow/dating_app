@@ -1,11 +1,14 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
+import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/Login/login_page.dart';
 import 'package:dating_app/Pages/Setting/setting_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -118,9 +121,7 @@ class _SettingsState extends State<Settings> with SettingHandlers {
               ),
               const Divider(),
               ListTile(
-                onTap: () {
-                  Navigator.pushNamed(context, "/");
-                },
+                onTap: _logOut,
                 leading: Image.asset(
                   "assets/icons/LogoutIcon.png",
                   height: 20.h,
@@ -136,6 +137,20 @@ class _SettingsState extends State<Settings> with SettingHandlers {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> _logOut() async {
+    BlocProvider.of<AuthBloc>(context).add(const SetLoginInitial());
+    BlocProvider.of<UserBloc>(context).add(SetUserInitial());
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+    Future.delayed(
+      Duration.zero,
+      () {
+        Navigator.pushNamedAndRemoveUntil(
+            context, LoginPage.routeName, (Route<dynamic> route) => false);
+      },
     );
   }
 }
