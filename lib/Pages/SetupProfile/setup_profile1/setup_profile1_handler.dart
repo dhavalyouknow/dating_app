@@ -3,6 +3,7 @@ import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
   final TextEditingController lengthController =
@@ -49,6 +50,8 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
                 ),
                 success: (value) {
                   Navigator.pushNamed(context, "/SetupProfile2");
+                  Fluttertoast.showToast(
+                      msg: 'Your Profile Setup Successfully');
                 },
               ),
             );

@@ -5,6 +5,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/BottomBar/bottom_bar.dart';
 import 'package:dating_app/Pages/Home/home_page_handler.dart';
+import 'package:dating_app/Pages/MyPage/my_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,13 +23,19 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final pages = [
+      const MyPage(),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 10.w),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, "/Settings");
+              },
               icon: Icon(
                 size: 30.h,
                 Icons.settings,
@@ -119,7 +126,7 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                                   child: Image.asset(
                                     "assets/intro/Intro3Background.png",
                                     fit: BoxFit.cover,
-                                    height: size.height / 2,
+                                    height: size.height,
                                   ),
                                 ),
                                 Positioned(
@@ -146,7 +153,14 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                                             : "",
                                         errorWidget:
                                             (BuildContext context, url, data) {
-                                          return const Icon(Icons.person);
+                                          return Container(
+                                            color: AppStyles.greyColor,
+                                            child: Icon(
+                                              Icons.person,
+                                              size: 90.sp,
+                                              color: AppStyles.whiteColor,
+                                            ),
+                                          );
                                         },
                                       ),
                                       // child: Image.asset(
@@ -165,8 +179,9 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                                 bottomRight: Radius.circular(20.r),
                               ),
                             ),
-                            margin: EdgeInsets.symmetric(horizontal: 17.w),
-                            padding: EdgeInsets.symmetric(horizontal: 10.r),
+                            margin: EdgeInsets.symmetric(horizontal: 33.w),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10.r, vertical: 10.h),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -211,7 +226,6 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                                     )
                                   ],
                                 ),
-                                const SizedBox(height: 9.0),
                               ],
                             ),
                           ),
@@ -231,22 +245,26 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                   ),
                 ),
                 // SizedBox(height: 5.0),
-                GestureDetector(
-                  onTap: () {
-                    swipeController.next(
-                      swipeDirection: SwipeDirection.right,
-                    );
-                  },
-                  child: Container(
-                    color: Colors.red,
-                    height: 50,
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: () {
+                //     swipeController.next(
+                //       swipeDirection: SwipeDirection.right,
+                //     );
+                //   },
+                //   child: Container(
+                //     color: Colors.red,
+                //     height: 50,
+                //   ),
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        swipeController.next(
+                          swipeDirection: SwipeDirection.left,
+                        );
+                      },
                       child: Container(
                         padding: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
@@ -266,7 +284,11 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                     ),
                     SizedBox(width: 15.w),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        swipeController.next(
+                          swipeDirection: SwipeDirection.right,
+                        );
+                      },
                       child: Container(
                         height: 70.h,
                         width: 70.w,
