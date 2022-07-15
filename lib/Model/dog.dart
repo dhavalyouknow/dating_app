@@ -52,7 +52,9 @@ class Dog {
         "dogName": dogName,
         "gender": gender,
         "size": size,
-        "circleProfileImage": circleProfileImage,
+        "squareProfileImage":
+            List.from(squareProfileImage!.map((x) => x.id)).toList(),
+        "circleProfileImage": circleProfileImage?.id,
         "userId": userId,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),

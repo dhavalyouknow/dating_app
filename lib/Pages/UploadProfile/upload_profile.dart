@@ -120,22 +120,56 @@ class _UploadProfileState extends State<UploadProfile>
                                   ),
                                 ],
                               )
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(
-                                    Icons.close,
-                                    color: AppStyles.crimsonPinkColor,
-                                  ),
-                                  SizedBox(width: 10.w),
-                                  AppText(
-                                    color: AppStyles.crimsonPinkColor,
-                                    text: "Remove Picture",
-                                    fontFamily: GoogleFonts.raleway(
-                                            fontWeight: FontWeight.bold)
-                                        .fontFamily,
-                                  ),
-                                ],
+                            : Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 40.w),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        removeImage();
+                                      },
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.close,
+                                            color: AppStyles.crimsonPinkColor,
+                                          ),
+                                          SizedBox(width: 5.w),
+                                          AppText(
+                                            color: AppStyles.crimsonPinkColor,
+                                            text: "Remove",
+                                            fontFamily: GoogleFonts.raleway(
+                                                    fontWeight: FontWeight.bold)
+                                                .fontFamily,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        editImage(type: "person");
+                                      },
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.camera_alt_outlined,
+                                            color: AppStyles.blackColor,
+                                          ),
+                                          SizedBox(width: 5.w),
+                                          AppText(
+                                            color: AppStyles.blackColor,
+                                            text: "Replace",
+                                            fontFamily: GoogleFonts.raleway(
+                                                    fontWeight: FontWeight.bold)
+                                                .fontFamily,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               )
                       ],
                     ),
@@ -171,5 +205,10 @@ class _UploadProfileState extends State<UploadProfile>
         ),
       ),
     );
+  }
+
+  removeImage() {
+    imageFile = null;
+    setState(() {});
   }
 }

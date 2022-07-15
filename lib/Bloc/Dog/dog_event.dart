@@ -1,7 +1,22 @@
 part of 'dog_bloc.dart';
 
-abstract class DogEvent extends Equatable {
+class DogEvent extends Equatable {
   const DogEvent();
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+
+class SetDog extends DogEvent {
+  final Dog dog;
+
+  const SetDog({
+    required this.dog,
+  });
+
+  @override
+  List<Object?> get props => [dog];
 }
 
 class AddDogEvent extends DogEvent {
@@ -23,4 +38,22 @@ class AddDogEvent extends DogEvent {
   @override
   // TODO: implement props
   List<Object?> get props => [dogName, gender, size, lookingFor, onSuccess, id];
+}
+
+class UpdateDogEvent extends DogEvent {
+  final User user;
+  final Function(String) success;
+  //final List<SquareProfileImage> squareProfileImage;
+  final String circleProfileImage;
+
+  const UpdateDogEvent({
+    required this.user,
+    required this.success,
+    // required this.squareProfileImage,
+    required this.circleProfileImage,
+  });
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [user, success, circleProfileImage];
 }

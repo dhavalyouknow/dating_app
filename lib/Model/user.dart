@@ -156,9 +156,9 @@ class User {
         "dob": dob?.toIso8601String(),
         "city": city,
         "searchingFor": List<dynamic>.from(searchingFor!.map((x) => x)),
-        "squareProfileImage": List<SquareProfileImage>.from(
-            squareProfileImage!.map((x) => x.toJson())),
-        "circleProfileImage": circleProfileImage,
+        "squareProfileImage":
+            List.from(squareProfileImage!.map((x) => x.id)).toList(),
+        "circleProfileImage": circleProfileImage?.id,
         "userType": userType,
         "haveDog": haveDog,
         "relationshipStatus": relationshipStatus,

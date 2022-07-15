@@ -44,5 +44,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
     }
   }
 
-  _onSetUser(SetUser event, Emitter<UserState> emit) async {}
+  _onSetUser(SetUser event, Emitter<UserState> emit) async {
+    emit(state.copyWith(status: UserStatus.success, user: event.user));
+  }
 }

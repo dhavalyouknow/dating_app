@@ -20,6 +20,7 @@ class DogState extends Equatable {
     DogStatus? status,
     Dog? dog,
   }) {
+    print('dog===>$dog');
     return DogState(status: status ?? this.status, dog: dog ?? this.dog);
   }
 

@@ -1,4 +1,5 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
+import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -64,6 +65,7 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
             if (kDebugMode) {
               print('******success****');
             }
+            BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
             Navigator.pushNamed(context, "/ChoosePartner");
           },
         ),

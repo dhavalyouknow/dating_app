@@ -13,34 +13,31 @@ mixin AddYourDogHandlers<T extends StatefulWidget> on State<T> {
 
   User? user;
 
-  // @override
-  // initState() {
-  //   super.initState();
-  // }
+  @override
+  initState() {
+    super.initState();
+    BlocProvider.of<AuthBloc>(context).add(SessionRequest(onSuccess: (user) {
+      this.user = user;
+    }));
+    if (mounted) {
+      setState(() {});
+    }
+  }
 
   onSubmitDog() {
-    if (user == null) {
-      BlocProvider.of<AuthBloc>(context).add(
-        SessionRequest(
-          onSuccess: (User user) {
-            print('object');
-            print(user.id);
-            BlocProvider.of<DogBloc>(context).add(
-              AddDogEvent(
-                dogName: dogNameController.text,
-                gender: selectedDogGender,
-                size: selectedDogSize,
-                lookingFor: myDogLookingFor,
-                id: user.id!,
-                onSuccess: (e) {
-                  print(e);
-                  Navigator.pushNamed(context, "/ChooseDogPicture");
-                },
-              ),
-            );
-          },
-        ),
-      );
-    }
+    print(selectedDogSize);
+    BlocProvider.of<DogBloc>(context).add(
+      AddDogEvent(
+        dogName: dogNameController.text,
+        gender: selectedDogGender,
+        size: selectedDogSize,
+        lookingFor: myDogLookingFor,
+        id: user!.id!,
+        onSuccess: (e) {
+          print(e);
+          Navigator.pushNamed(context, "/ChooseDogPicture");
+        },
+      ),
+    );
   }
 }

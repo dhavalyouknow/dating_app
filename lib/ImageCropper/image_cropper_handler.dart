@@ -1,4 +1,5 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
+import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
 import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Model/dog.dart';
@@ -7,6 +8,7 @@ import 'package:dating_app/Model/user.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -19,7 +21,9 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
   ImageSource? source;
   String updateType = '';
   User? user;
-  Dog? dog;
+  File? squareImageFile;
+  File? circleImageFile;
+  SquareProfileImage? addSquareProfileImage;
 
   @override
   initState() {
@@ -106,22 +110,17 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
       final XFile? image;
       if (source == ImageSource.gallery) {
         image = await _picker.pickImage(source: ImageSource.gallery);
-        print('image picked from gallery-----');
       } else {
         image = await _picker.pickImage(
             source: ImageSource.camera, imageQuality: 50);
-        print('image picked-----');
       }
       if (image != null) {
-        setState(() {
-          imageFile = File(image!.path);
-
-          isLoading = true;
-
-          cropImage(
-              style: CropStyle.circle,
-              aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 10));
-        });
+        imageFile = File(image.path);
+        isLoading = true;
+        cropImage(
+            style: CropStyle.rectangle,
+            aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 10));
+        setState(() {});
       }
     }
   }
@@ -169,35 +168,111 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
             title: 'Cropper',
           ),
         ]);
+
     if (croppedFile != null) {
-      imageFile = File(croppedFile.path);
-      setState(() {
-        onImageUpdate();
+      if (style == CropStyle.rectangle) {
+        squareImageFile = File(croppedFile.path);
+        cropImage(
+            style: CropStyle.circle,
+            aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 10));
+        onSquareImageUpdate();
+      } else {
+        circleImageFile = File(croppedFile.path);
         isLoading = true;
-      });
+        onCircleImageUpdate();
+      }
+
+      setState(() {});
     }
   }
 
-  onImageUpdate() {
+  onSquareImageUpdate() {
+    BlocProvider.of<ImageUploadBloc>(context).add(
+      UploadImage(
+        image: squareImageFile!,
+        onSuccess: (SquareProfileImage value) {
+          addSquareProfileImage = value;
+          print(addSquareProfileImage);
+          setState(() {});
+        },
+      ),
+    );
+  }
+
+  onCircleImageUpdate() {
     if (updateType == 'person') {
       BlocProvider.of<ImageUploadBloc>(context).add(
         UploadImage(
-          image: imageFile!,
+          image: circleImageFile!,
           onSuccess: (SquareProfileImage value) {
             user = user?.copyWith(
               circleProfileImage: value,
+              squareProfileImage: [
+                ...?user?.squareProfileImage,
+                addSquareProfileImage!
+              ],
             );
-            BlocProvider.of<UserBloc>(context).add(
-              UpdateUserEvent(
+          },
+        ),
+      );
+      BlocProvider.of<UserBloc>(context).add(
+        UpdateUserEvent(
+          user: user!,
+          success: (value) {
+            Fluttertoast.showToast(
+                msg: 'Your Profile Picture is added successfully');
+            Navigator.pushNamed(context, "/SetupProfile3");
+          },
+        ),
+      );
+    }
+    //for dog
+    else {
+      Dog dog = BlocProvider.of<DogBloc>(context).state.dog as Dog;
+
+      BlocProvider.of<ImageUploadBloc>(context).add(
+        UploadImage(
+          image: circleImageFile!,
+          onSuccess: (SquareProfileImage value) {
+            BlocProvider.of<DogBloc>(context).add(
+              UpdateDogEvent(
                 user: user!,
+                // squareProfileImage: [
+                //   ...?dog.squareProfileImage,
+                //   addSquareProfileImage!
+                // ],
+                circleProfileImage: value.id!,
                 success: (value) {
-                  // Navigator.pushNamed(context, "/SetupProfile3");
+                  print('===$value');
                 },
               ),
             );
           },
         ),
       );
+    }
+  }
+
+  onImageUpdate() {
+    if (updateType == 'person') {
+      // BlocProvider.of<ImageUploadBloc>(context).add(
+      //   UploadImage(
+      //     image: imageFile!,
+      //     onSuccess: (SquareProfileImage value) {
+      //       user = user?.copyWith(
+      //         circleProfileImage: value,
+      //       );
+      //       BlocProvider.of<UserBloc>(context).add(
+      //         UpdateUserEvent(
+      //           user: user!,
+      //           success: (value) {
+      //             // Navigator.pushNamed(context, "/SetupProfile3");
+      //           },
+      //         ),
+      //       );
+      //     },
+      //   ),
+      // );
     }
 
     // else if (updateType == "dog") {
