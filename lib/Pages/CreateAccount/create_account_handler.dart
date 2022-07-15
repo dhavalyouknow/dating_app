@@ -11,6 +11,7 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController genderController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
   String selectedGender = '';
+  bool tapped = false;
   // Icon selectedIcon;
 
   final formKey = GlobalKey<FormState>();
@@ -31,8 +32,11 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   }
 
   String? emailValidator(dynamic email) {
+    RegExp regex = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$');
     if (email.isEmpty) {
       return 'Enter email';
+    } else if (!regex.hasMatch(email)) {
+      return 'Enter Valid Password';
     }
     return null;
   }

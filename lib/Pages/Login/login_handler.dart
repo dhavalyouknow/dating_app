@@ -22,10 +22,12 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   }
 
   String? passwordValidator(dynamic password) {
+    RegExp regex =
+        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
     if (password.isEmpty) {
       return 'Enter password';
-    } else if (password.length < 6) {
-      return 'Password must be contain 6 character';
+    } else if (!regex.hasMatch(password)) {
+      return 'Enter Valid Password';
     }
     return null;
   }

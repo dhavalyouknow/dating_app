@@ -63,7 +63,7 @@ class _EyeColorWidgetState extends State<EyeColorWidget> with EyeColorHandlers {
                               width: selectedEyeColor.contains(eyeColor[index])
                                   ? 3.r
                                   : 1.r,
-                              color: Colors.grey,
+                              color: AppStyles.pinkColor,
                             ),
                             borderRadius: BorderRadius.circular(22),
                           ),

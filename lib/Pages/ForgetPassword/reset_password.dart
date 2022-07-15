@@ -71,7 +71,10 @@ class _ResetPasswordState extends State<ResetPassword> {
                     ),
                     TextFormFieldWidget(
                       borderRadius: 10,
-                      backIcon: const Icon(CupertinoIcons.eye_slash),
+                      backIcon: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(CupertinoIcons.eye_slash),
+                      ),
                       height: size.height / 16,
                       txt: "New Password",
                       obscureText: true,

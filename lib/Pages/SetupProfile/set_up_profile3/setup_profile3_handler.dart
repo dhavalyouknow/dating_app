@@ -16,6 +16,13 @@ mixin SetupProfile3Handlers<T extends StatefulWidget> on State<T> {
     super.initState();
   }
 
+  String? descriptionValidator(dynamic lastName) {
+    if (lastName.isEmpty) {
+      return 'Enter lastname';
+    }
+    return null;
+  }
+
   onSubmitProfile3() {
     if (user == null) {
       BlocProvider.of<AuthBloc>(context).add(

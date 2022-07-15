@@ -99,16 +99,12 @@ class _SetupProfile2State extends State<SetupProfile2>
                         .fontFamily,
                     text: "Interests",
                   ),
-                  DefaultAppBtn(
-                    width: 100.w,
-                    onTap: () {},
-                    borderRadius: 20.r,
-                    height: size.height / 25,
-                    border: 1.r,
-                    borderColor: AppStyles.greyColor,
-                    txt: "Add More",
-                    txtColor: AppStyles.greyColor,
-                  ),
+                  interestedName.isNotEmpty
+                      ? IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.edit),
+                        )
+                      : Container()
                 ],
               ),
               SizedBox(height: 10.h),
@@ -125,15 +121,15 @@ class _SetupProfile2State extends State<SetupProfile2>
                                   interestedName = value;
                                   setState(() {});
                                 },
-                               // selectedList: interestedName,
+                                // selectedList: interestedName,
                               );
                             },
                           );
                         },
                         borderRadius: 20.r,
                         height: size.height / 16,
-                        border: 1.r,
-                        borderColor: AppStyles.greyColor,
+                        border: 2.r,
+                        borderColor: AppStyles.pinkColor,
                         txt: "Add Interests",
                         txtColor: AppStyles.greyColor,
                       ),
@@ -158,16 +154,12 @@ class _SetupProfile2State extends State<SetupProfile2>
                         .fontFamily,
                     text: "Favourite Night",
                   ),
-                  DefaultAppBtn(
-                    width: 100.w,
-                    onTap: () {},
-                    borderRadius: 20.r,
-                    height: size.height / 25,
-                    border: 1.r,
-                    borderColor: AppStyles.greyColor,
-                    txt: "Add More",
-                    txtColor: AppStyles.greyColor,
-                  ),
+                  favNights.isNotEmpty
+                      ? IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.edit),
+                        )
+                      : Container()
                 ],
               ),
               SizedBox(height: 10.h),
@@ -190,8 +182,8 @@ class _SetupProfile2State extends State<SetupProfile2>
                         },
                         borderRadius: 20.r,
                         height: size.height / 16,
-                        border: 1.r,
-                        borderColor: AppStyles.greyColor,
+                        border: 2.r,
+                        borderColor: AppStyles.pinkColor,
                         txt: "Add Favourite Night",
                         txtColor: AppStyles.greyColor,
                       ),
@@ -216,16 +208,12 @@ class _SetupProfile2State extends State<SetupProfile2>
                         .fontFamily,
                     text: "Activities",
                   ),
-                  DefaultAppBtn(
-                    width: 100.w,
-                    onTap: () {},
-                    borderRadius: 20.r,
-                    height: size.height / 25,
-                    border: 1.r,
-                    borderColor: AppStyles.greyColor,
-                    txt: "Add More",
-                    txtColor: AppStyles.greyColor,
-                  ),
+                  activities.isNotEmpty
+                      ? IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.edit),
+                        )
+                      : Container()
                 ],
               ),
               SizedBox(height: 10.h),
@@ -242,16 +230,16 @@ class _SetupProfile2State extends State<SetupProfile2>
                                   activities = value;
                                   setState(() {});
                                 },
-                             //   selectedList: activities,
+                                //   selectedList: activities,
                               );
                             },
                           );
                         },
                         borderRadius: 20.r,
                         height: size.height / 16,
-                        border: 1.r,
-                        borderColor: AppStyles.greyColor,
-                        txt: "Add Favourite",
+                        border: 2.r,
+                        borderColor: AppStyles.pinkColor,
+                        txt: "Add Activities",
                         txtColor: AppStyles.greyColor,
                       ),
                     )
@@ -278,7 +266,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                             .toList()
                       ],
                     ),
-              SizedBox(height: 250.h),
+              SizedBox(height: 200.h),
               GradientBtn(
                 height: size.height / 14,
                 txt: "Next",

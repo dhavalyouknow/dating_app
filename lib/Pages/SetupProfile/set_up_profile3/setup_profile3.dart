@@ -95,13 +95,14 @@ class _SetupProfile3State extends State<SetupProfile3>
               ),
               SizedBox(height: 10.h),
               DescriptionWidget(
+                validator: descriptionValidator,
                 textEditingController: aboutSelfController,
                 borderRadius: 40,
                 height: size.width / 3,
                 txt: "Description",
                 obscureText: false,
-                border: 1,
-                borderColor: AppStyles.textColor,
+                border: 2.r,
+                borderColor: AppStyles.pinkColor,
               ),
               SizedBox(height: 300.h),
               GradientBtn(

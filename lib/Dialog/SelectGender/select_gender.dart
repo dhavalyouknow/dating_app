@@ -27,7 +27,7 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 10.w),
           padding: EdgeInsets.symmetric(horizontal: 20.w),
-          height: size.height / 2,
+          height: size.height / 2.2,
           decoration: BoxDecoration(
             color: AppStyles.whiteColor,
             borderRadius: BorderRadius.circular(20),
@@ -78,16 +78,14 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: AppText(
-                      size: 21.sp,
-                      fontFamily:
-                          GoogleFonts.raleway(fontWeight: FontWeight.bold)
-                              .fontFamily,
-                      text: "Cancel",
+                  SizedBox(
+                    width: size.width / 4,
+                    child: GradientBtn(
+                      height: size.height / 18,
+                      txt: "Cancel",
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   ),
                   SizedBox(

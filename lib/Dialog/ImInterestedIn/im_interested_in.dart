@@ -49,7 +49,7 @@ class _ImInterestedInState extends State<ImInterestedIn>
                       height: size.height / 14,
                       border: e.selected ? 3.r : 1.r,
                       borderRadius: 20,
-                      borderColor: AppStyles.greyColor,
+                      borderColor: AppStyles.pinkColor,
                       txt: e.interest,
                       txtColor: AppStyles.greyColor,
                       onTap: () {

@@ -93,8 +93,8 @@ class _CreateAccountState extends State<CreateAccount>
                   height: size.height / 14,
                   txt: "Name",
                   obscureText: false,
-                  border: 1,
-                  borderColor: AppStyles.greyColor,
+                  border: nameController.text.isEmpty ? 1 : 2,
+                  borderColor: AppStyles.pinkColor,
                 ),
                 TextFormFieldWidget(
                   textEditingController: surnameController,
@@ -107,8 +107,8 @@ class _CreateAccountState extends State<CreateAccount>
                   height: size.height / 14,
                   txt: "Surname",
                   obscureText: false,
-                  border: 1,
-                  borderColor: AppStyles.greyColor,
+                  border: surnameController.text.isEmpty ? 1 : 2,
+                  borderColor: AppStyles.pinkColor,
                 ),
                 TextFormFieldWidget(
                   textEditingController: emailController,
@@ -121,8 +121,8 @@ class _CreateAccountState extends State<CreateAccount>
                   height: size.height / 14,
                   txt: "Email",
                   obscureText: false,
-                  border: 1,
-                  borderColor: AppStyles.greyColor,
+                  border: emailController.text.isEmpty ? 1 : 2,
+                  borderColor: AppStyles.pinkColor,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -138,7 +138,7 @@ class _CreateAccountState extends State<CreateAccount>
                           txt: selectedGender.isEmpty
                               ? "Select Gender"
                               : selectedGender,
-                          border: 1.r,
+                          border: selectedGender.isEmpty ? 1.r : 2.r,
                           onTap: () {
                             showDialog(
                               context: context,
@@ -153,8 +153,8 @@ class _CreateAccountState extends State<CreateAccount>
                             );
                           },
                           borderRadius: 10.r,
-                          borderColor: AppStyles.greyColor,
-                          txtColor: AppStyles.greyColor,
+                          borderColor: AppStyles.pinkColor,
+                          txtColor: AppStyles.blackColor,
                         ),
                       ),
                     ),
@@ -163,6 +163,7 @@ class _CreateAccountState extends State<CreateAccount>
                       child: GestureDetector(
                         onTap: () {
                           selectDate(context);
+                          tapped = true;
                         },
                         child: Container(
                           height: size.height / 14,
@@ -173,8 +174,8 @@ class _CreateAccountState extends State<CreateAccount>
                             color: AppStyles.whiteColor,
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
-                              color: AppStyles.greyColor,
-                              width: 1,
+                              color: AppStyles.pinkColor,
+                              width: tapped ? 2 : 1,
                             ),
                           ),
                           child: Row(
@@ -185,7 +186,7 @@ class _CreateAccountState extends State<CreateAccount>
                               ),
                               SizedBox(width: 10.w),
                               Text(
-                                DateFormat('yyyy-MM-dd').format(
+                                DateFormat('MM-dd-yyyy').format(
                                   DateTime.parse('$selectedDate'),
                                 ),
                                 style: TextStyle(
@@ -213,8 +214,8 @@ class _CreateAccountState extends State<CreateAccount>
                   height: size.height / 14,
                   txt: "City",
                   obscureText: false,
-                  border: 1,
-                  borderColor: AppStyles.greyColor,
+                  border: locationController.text.isEmpty ? 1 : 2,
+                  borderColor: AppStyles.pinkColor,
                 ),
                 SizedBox(height: 110.h),
                 GradientBtn(

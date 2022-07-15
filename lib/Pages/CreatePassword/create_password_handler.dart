@@ -6,12 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
+  bool signUpPwd = true;
   Map<String, dynamic>? detailList;
   final formKey = GlobalKey<FormState>();
   final TextEditingController passwordController =
-      TextEditingController(text: '111111');
+      TextEditingController(text: 'Dp1@3110');
   final TextEditingController rePasswordController =
-      TextEditingController(text: '111111');
+      TextEditingController(text: 'Dp1@3110');
 
   @override
   void initState() {
@@ -32,10 +33,12 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
   }
 
   String? passwordValidator(dynamic password) {
+    RegExp regex =
+        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
     if (password.isEmpty) {
       return 'Enter password';
-    } else if (password.length < 6) {
-      return 'Password must be contain 6 character';
+    } else if (!regex.hasMatch(password)) {
+      return 'Enter Valid Password';
     }
     return null;
   }

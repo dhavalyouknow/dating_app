@@ -50,7 +50,7 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                       height: size.height / 14,
                       border: e.selected ? 3.r : 1.r,
                       borderRadius: 20,
-                      borderColor: AppStyles.greyColor,
+                      borderColor: AppStyles.pinkColor,
                       txt: e.status,
                       txtColor: AppStyles.greyColor,
                       onTap: () {

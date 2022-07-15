@@ -10,7 +10,7 @@ class TextFormFieldWidget extends StatefulWidget {
   final String txt;
   final IconButton? icon;
   bool? obSecure;
-  final Icon? backIcon;
+  final IconButton? backIcon;
   final bool obscureText;
   final double border;
   final double borderRadius;
@@ -18,6 +18,7 @@ class TextFormFieldWidget extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final TextEditingController? textEditingController;
   VoidCallback? onTap;
+
   // TextAlign? textAlign;
 
   TextFormFieldWidget({
@@ -68,8 +69,11 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
             suffixIcon: widget.backIcon,
             icon: widget.obSecure == true ? widget.icon : widget.icon,
             hintText: widget.txt,
+
             hintStyle: TextStyle(
-              fontFamily: GoogleFonts.raleway(fontSize: 15.sp).fontFamily,
+              fontFamily: GoogleFonts.raleway(
+                fontSize: 15.sp,
+              ).fontFamily,
               color: AppStyles.textColor,
             ),
             border: InputBorder.none,

@@ -12,8 +12,9 @@ class DefaultAppBtn extends StatefulWidget {
   final Color txtColor;
   final String txt;
   final VoidCallback onTap;
+  FontWeight? fontWeight;
 
-  const DefaultAppBtn({
+  DefaultAppBtn({
     Key? key,
     required this.height,
     this.width,
@@ -23,6 +24,7 @@ class DefaultAppBtn extends StatefulWidget {
     required this.txt,
     required this.txtColor,
     required this.onTap,
+    this.fontWeight,
   }) : super(key: key);
 
   @override
@@ -51,7 +53,8 @@ class _DefaultAppBtnState extends State<DefaultAppBtn> {
         child: Text(
           widget.txt,
           style: TextStyle(
-            fontFamily: GoogleFonts.raleway().fontFamily,
+            fontFamily:
+                GoogleFonts.raleway(fontWeight: widget.fontWeight).fontFamily,
             color: widget.txtColor,
           ),
         ),

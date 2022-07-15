@@ -36,19 +36,19 @@ class _ChoosePartnerState extends State<ChoosePartner>
             ),
           ),
         ],
-        leading: Padding(
-          padding: EdgeInsets.only(left: 10.w),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              size: 30.h,
-              Icons.arrow_back_ios,
-              color: AppStyles.greyColor,
-            ),
-          ),
-        ),
+        // leading: Padding(
+        //   padding: EdgeInsets.only(left: 10.w),
+        //   child: IconButton(
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //     icon: Icon(
+        //       size: 30.h,
+        //       Icons.arrow_back_ios,
+        //       color: AppStyles.greyColor,
+        //     ),
+        //   ),
+        // ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
@@ -111,7 +111,7 @@ class _ChoosePartnerState extends State<ChoosePartner>
                           color: AppStyles.whiteColor,
                           borderRadius: BorderRadius.circular(25.r),
                           border: Border.all(
-                            color: AppStyles.greyColor,
+                            color: AppStyles.pinkColor,
                             width: imSearchingFor.contains(e.name) ? 3.r : 1.r,
                           ),
                         ),

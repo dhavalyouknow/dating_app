@@ -60,7 +60,7 @@ class _OccupationWidgetState extends State<OccupationWidget>
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.grey,
+                            color: AppStyles.pinkColor,
                             width:
                                 selectedOccupation.contains(occupation[index])
                                     ? 3.r

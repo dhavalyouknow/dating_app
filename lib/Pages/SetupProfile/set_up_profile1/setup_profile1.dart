@@ -105,10 +105,12 @@ class _SetupProfile1State extends State<SetupProfile1>
                     (e) {
                       return Expanded(
                         child: DefaultAppBtn(
+                          fontWeight:
+                              e.selected ? FontWeight.w700 : FontWeight.normal,
                           height: size.height / 16,
                           border: e.selected ? 3.r : 1.r,
                           borderRadius: 20.r,
-                          borderColor: AppStyles.greyColor,
+                          borderColor: AppStyles.pinkColor,
                           txt: e.name,
                           txtColor: AppStyles.blackColor,
                           onTap: () {
@@ -150,13 +152,16 @@ class _SetupProfile1State extends State<SetupProfile1>
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: selectedStatus.isEmpty ? 1.r : 3.r,
-                borderColor: AppStyles.greyColor,
+                borderColor: AppStyles.pinkColor,
                 txt: selectedStatus.isEmpty
                     ? "Select An Option"
                     : selectedStatus,
                 txtColor: selectedStatus.isEmpty
                     ? AppStyles.greyColor
                     : AppStyles.blackColor,
+                fontWeight: selectedStatus.isEmpty
+                    ? FontWeight.normal
+                    : FontWeight.w700,
               ),
               SizedBox(height: 10.h),
               AppText(
@@ -180,10 +185,13 @@ class _SetupProfile1State extends State<SetupProfile1>
                     },
                   );
                 },
+                fontWeight: selectedInterestedIn.isEmpty
+                    ? FontWeight.normal
+                    : FontWeight.w700,
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: selectedInterestedIn.isEmpty ? 1.r : 3.r,
-                borderColor: AppStyles.greyColor,
+                borderColor: AppStyles.pinkColor,
                 txt: selectedInterestedIn.isEmpty
                     ? "Select An Option"
                     : selectedInterestedIn,
@@ -204,10 +212,12 @@ class _SetupProfile1State extends State<SetupProfile1>
                     (e) {
                       return Expanded(
                         child: DefaultAppBtn(
+                          fontWeight:
+                              e.selected ? FontWeight.w700 : FontWeight.normal,
                           height: size.height / 16,
                           border: e.selected ? 3.r : 1.r,
                           borderRadius: 20.r,
-                          borderColor: AppStyles.greyColor,
+                          borderColor: AppStyles.pinkColor,
                           txt: e.name,
                           txtColor: AppStyles.blackColor,
                           onTap: () {
@@ -246,10 +256,13 @@ class _SetupProfile1State extends State<SetupProfile1>
                     },
                   );
                 },
+                fontWeight: selectedOccupation.isEmpty
+                    ? FontWeight.normal
+                    : FontWeight.w700,
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: selectedOccupation.isEmpty ? 1.r : 3.r,
-                borderColor: AppStyles.greyColor,
+                borderColor: AppStyles.pinkColor,
                 txt: selectedOccupation.isEmpty
                     ? "Select An Option"
                     : selectedOccupation,
@@ -279,10 +292,13 @@ class _SetupProfile1State extends State<SetupProfile1>
                     },
                   );
                 },
+                fontWeight: selectedEyeColor.isEmpty
+                    ? FontWeight.normal
+                    : FontWeight.w700,
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: selectedEyeColor.isEmpty ? 1.r : 3.r,
-                borderColor: AppStyles.greyColor,
+                borderColor: AppStyles.pinkColor,
                 txt: selectedEyeColor.isEmpty
                     ? "Select An Option"
                     : selectedEyeColor,
@@ -298,11 +314,11 @@ class _SetupProfile1State extends State<SetupProfile1>
               ),
               // SizedBox(height: 10.h),
               TextFormFieldWidget(
-                height: size.height / 14,
+                height: size.height / 16,
                 txt: "Enter your lenght (cm)",
                 obscureText: false,
-                border: 1.r,
-                borderColor: AppStyles.greyColor,
+                border: lengthController.text.isEmpty ? 1.r : 2.r,
+                borderColor: AppStyles.pinkColor,
                 borderRadius: 20.r,
                 textEditingController: lengthController,
               ),

@@ -3,7 +3,6 @@ import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/CreatePassword/create_password_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,19 +36,6 @@ class _CreatePasswordState extends State<CreatePassword>
             ),
           ),
         ],
-        // leading: Padding(
-        //   padding: EdgeInsets.only(left: 10.w),
-        //   child: IconButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     icon: Icon(
-        //       size: 30.h,
-        //       Icons.arrow_back_ios,
-        //       color: AppStyles.greyColor,
-        //     ),
-        //   ),
-        // ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
@@ -85,15 +71,31 @@ class _CreatePasswordState extends State<CreatePassword>
                       "Password must be at least 8 characters, contain\nletters, numbers and one special character.",
                 ),
                 TextFormFieldWidget(
-                  validator: passwordValidator,
+                  obSecure: signUpPwd,
                   textEditingController: passwordController,
+                  validator: passwordValidator,
                   borderRadius: 10,
-                  backIcon: const Icon(CupertinoIcons.eye_slash),
                   height: size.height / 14,
                   txt: "Password",
-                  obscureText: true,
-                  border: 1,
-                  borderColor: AppStyles.greyColor,
+                  backIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        signUpPwd = !signUpPwd;
+                      });
+                    },
+                    icon: signUpPwd
+                        ? const Icon(
+                            Icons.lock_outlined,
+                            color: AppStyles.textColor,
+                          )
+                        : const Icon(
+                            Icons.lock_open,
+                            color: AppStyles.textColor,
+                          ),
+                  ),
+                  obscureText: signUpPwd,
+                  border: passwordController.text.isEmpty ? 1 : 2,
+                  borderColor: AppStyles.pinkColor,
                 ),
                 TextFormFieldWidget(
                   validator: repeatpwdValidator,
@@ -101,9 +103,9 @@ class _CreatePasswordState extends State<CreatePassword>
                   borderRadius: 10,
                   height: size.height / 14,
                   txt: "Confirm Password",
-                  obscureText: true,
-                  border: 1,
-                  borderColor: AppStyles.greyColor,
+                  obscureText: signUpPwd,
+                  border: rePasswordController.text.isEmpty ? 1 : 2,
+                  borderColor: AppStyles.pinkColor,
                 ),
                 SizedBox(height: 20.h),
                 GradientBtn(
