@@ -2,6 +2,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/SetupProfile/set_up_profile3/setup_profile3_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
+import 'package:dating_app/widget/TextformfieldWidget/descriptionWidget.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -93,7 +94,7 @@ class _SetupProfile3State extends State<SetupProfile3>
                 text: "Tell us a bit about yourself",
               ),
               SizedBox(height: 10.h),
-              TextFormFieldWidget(
+              DescriptionWidget(
                 textEditingController: aboutSelfController,
                 borderRadius: 40,
                 height: size.width / 3,

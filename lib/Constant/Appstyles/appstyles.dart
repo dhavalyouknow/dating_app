@@ -227,6 +227,19 @@ List<MaleFemale> selectGender = [
   ),
 ];
 
+List<MaleFemale> selectDogGender = [
+  MaleFemale(
+    name: "Male",
+    selected: false,
+    icon: const Icon(Icons.male),
+  ),
+  MaleFemale(
+    name: "Female",
+    selected: false,
+    icon: const Icon(Icons.female),
+  ),
+];
+
 // For Dog Size
 
 class DogSize {

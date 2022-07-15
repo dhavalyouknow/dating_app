@@ -5,43 +5,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TextFormFieldWidget extends StatefulWidget {
+class DogNameWidget extends StatefulWidget {
   final double height;
   final String txt;
-  final IconButton? icon;
-  bool? obSecure;
-  final Icon? backIcon;
+  final ImageIcon dogIcon;
   final bool obscureText;
   final double border;
   final double borderRadius;
   final Color borderColor;
   final FormFieldValidator<String>? validator;
   final TextEditingController? textEditingController;
-  VoidCallback? onTap;
-  // TextAlign? textAlign;
 
-  TextFormFieldWidget({
+  const DogNameWidget({
     Key? key,
     required this.height,
     required this.txt,
-    this.icon,
-    this.obSecure,
-    this.backIcon,
     required this.obscureText,
     required this.border,
     required this.borderColor,
     required this.borderRadius,
     this.validator,
     this.textEditingController,
-    this.onTap,
-    // this.textAlign,
+    required this.dogIcon,
   }) : super(key: key);
 
   @override
-  State<TextFormFieldWidget> createState() => _TextFormFieldWidgetState();
+  State<DogNameWidget> createState() => _DogNameWidgetState();
 }
 
-class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
+class _DogNameWidgetState extends State<DogNameWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -58,22 +50,26 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
             width: widget.border,
           ),
         ),
-        child: TextFormField(
-          onTap: widget.onTap,
-          controller: widget.textEditingController,
-          validator: widget.validator,
-          obscureText: widget.obscureText,
-          decoration: InputDecoration(
-            // contentPadding: EdgeInsets.only(left: 10.w, bottom: 30.h),
-            suffixIcon: widget.backIcon,
-            icon: widget.obSecure == true ? widget.icon : widget.icon,
-            hintText: widget.txt,
-            hintStyle: TextStyle(
-              fontFamily: GoogleFonts.raleway(fontSize: 15.sp).fontFamily,
-              color: AppStyles.textColor,
+        child: Row(
+          children: [
+            Flexible(child: widget.dogIcon),
+            SizedBox(width: 10.w),
+            Flexible(
+              child: TextFormField(
+                controller: widget.textEditingController,
+                validator: widget.validator,
+                obscureText: widget.obscureText,
+                decoration: InputDecoration(
+                  hintText: widget.txt,
+                  hintStyle: TextStyle(
+                    fontFamily: GoogleFonts.raleway(fontSize: 15.sp).fontFamily,
+                    color: AppStyles.textColor,
+                  ),
+                  border: InputBorder.none,
+                ),
+              ),
             ),
-            border: InputBorder.none,
-          ),
+          ],
         ),
       ),
     );

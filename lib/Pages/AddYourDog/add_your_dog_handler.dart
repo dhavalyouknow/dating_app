@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 mixin AddYourDogHandlers<T extends StatefulWidget> on State<T> {
-  TextEditingController dogNameController =
-      TextEditingController(text: "Puppy");
+  TextEditingController dogNameController = TextEditingController();
   String selectedDogSize = "";
   String selectedDogGender = "";
   List<String> myDogLookingFor = [];

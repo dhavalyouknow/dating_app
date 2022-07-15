@@ -14,17 +14,27 @@ class SelectedChipWidget extends StatefulWidget {
 class _SelectedChipWidgetState extends State<SelectedChipWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4.r, vertical: 4.r),
-      padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 7.h),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: AppStyles.pinkColor,
-          width: 3.r,
+    return Stack(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 4.r, vertical: 4.r),
+          padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 7.h),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: AppStyles.pinkColor,
+              width: 3.r,
+            ),
+            borderRadius: BorderRadius.circular(22),
+          ),
+          child: Text(widget.interestsName),
         ),
-        borderRadius: BorderRadius.circular(22),
-      ),
-      child: Text(widget.interestsName),
+        Positioned(
+          child: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.close),
+          ),
+        )
+      ],
     );
   }
 }

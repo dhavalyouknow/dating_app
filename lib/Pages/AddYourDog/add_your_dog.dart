@@ -5,6 +5,7 @@ import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:dating_app/widget/Button/gender_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/TextformfieldWidget/add_your_dog.dart';
+import 'package:dating_app/widget/TextformfieldWidget/dog_name_textformfield.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:dating_app/widget/dog_size_chip_widget.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,6 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 10.h),
               Center(
                 child: AppText(
                   size: 21.sp,
@@ -62,18 +62,20 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                 ),
               ),
               SizedBox(
-                height: size.height / 14,
+                height: 10.h,
               ),
-              TextFormFieldWidget(
+              DogNameWidget(
                 textEditingController: dogNameController,
                 height: size.height / 14,
-                txt: "Dog Name",
+                txt: "Your dog name",
                 obscureText: false,
-                border: dogNameController.text.isEmpty ? 1.r : 3.r,
-                borderColor: dogNameController.text.isEmpty
-                    ? AppStyles.greyColor
-                    : AppStyles.pinkColor,
-                borderRadius: 25.r,
+                border: 1,
+                borderColor: AppStyles.greyColor,
+                borderRadius: 25,
+                dogIcon: const ImageIcon(
+                  AssetImage("assets/Dog.png"),
+                  color: AppStyles.greyColor,
+                ),
               ),
               SizedBox(height: 15.h),
               AppText(
@@ -85,31 +87,34 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
               SizedBox(height: 15.h),
               Row(
                 children: [
-                  ...selectGender.map(
+                  ...selectDogGender.map(
                     (e) {
                       return Flexible(
-                        child: GenderBtn(
-                          height: size.height / 14,
-                          border: e.selected ? 3.r : 1.r,
-                          borderRadius: 25,
-                          borderColor: e.selected
-                              ? AppStyles.pinkColor
-                              : AppStyles.greyColor,
-                          txt: e.name,
-                          txtColor: AppStyles.greyColor,
-                          onTap: () {
-                            for (var tapped in selectGender) {
-                              tapped.selected = false;
-                            }
-                            e.selected = true;
-                            selectedDogGender = e.name;
-                            setState(() {});
-                          },
-                          icon: Icon(
-                            e.icon.icon,
-                            color: e.selected
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 5.w),
+                          child: GenderBtn(
+                            height: size.height / 14,
+                            border: e.selected ? 3.r : 1.r,
+                            borderRadius: 25,
+                            borderColor: e.selected
                                 ? AppStyles.pinkColor
                                 : AppStyles.greyColor,
+                            txt: e.name,
+                            txtColor: AppStyles.greyColor,
+                            onTap: () {
+                              for (var tapped in selectDogGender) {
+                                tapped.selected = false;
+                              }
+                              e.selected = true;
+                              selectedDogGender = e.name;
+                              setState(() {});
+                            },
+                            icon: Icon(
+                              e.icon.icon,
+                              color: e.selected
+                                  ? AppStyles.pinkColor
+                                  : AppStyles.greyColor,
+                            ),
                           ),
                         ),
                       );

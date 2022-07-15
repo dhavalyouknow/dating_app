@@ -3,6 +3,7 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/AddYourDog/add_your_dog_dialog.dart';
+import 'package:dating_app/Pages/SetupProfile/setup_profile-dialog.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -147,7 +148,7 @@ class _ThirdIntroPageState extends State<ThirdIntroPage> {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return const AddYourDogNow();
+                          return const SetUpProfileNow();
                         },
                       );
                     },

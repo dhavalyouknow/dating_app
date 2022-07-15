@@ -4,7 +4,7 @@ import 'package:dating_app/Dialog/ImInterestedIn/im_interested_in.dart';
 import 'package:dating_app/Dialog/RelationshipStatus/relationship_status.dart';
 import 'package:dating_app/Dialog/eyecolor/eyecolor_widget.dart';
 import 'package:dating_app/Dialog/occuption/occuptionWidget.dart';
-import 'package:dating_app/Pages/SetupProfile/setup_profile1/setup_profile1_handler.dart';
+import 'package:dating_app/Pages/SetupProfile/set_up_profile1/setup_profile1_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';

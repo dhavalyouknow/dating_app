@@ -91,10 +91,25 @@ class _SetupProfile2State extends State<SetupProfile2>
                 ],
               ),
               SizedBox(height: 10.h),
-              AppText(
-                fontFamily:
-                    GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
-                text: "Interests",
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppText(
+                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                        .fontFamily,
+                    text: "Interests",
+                  ),
+                  DefaultAppBtn(
+                    width: 100.w,
+                    onTap: () {},
+                    borderRadius: 20.r,
+                    height: size.height / 25,
+                    border: 1.r,
+                    borderColor: AppStyles.greyColor,
+                    txt: "Add More",
+                    txtColor: AppStyles.greyColor,
+                  ),
+                ],
               ),
               SizedBox(height: 10.h),
               interestedName.isEmpty
@@ -134,10 +149,25 @@ class _SetupProfile2State extends State<SetupProfile2>
                       ],
                     ),
               SizedBox(height: 10.h),
-              AppText(
-                fontFamily:
-                    GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
-                text: "Favourite Night",
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppText(
+                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                        .fontFamily,
+                    text: "Favourite Night",
+                  ),
+                  DefaultAppBtn(
+                    width: 100.w,
+                    onTap: () {},
+                    borderRadius: 20.r,
+                    height: size.height / 25,
+                    border: 1.r,
+                    borderColor: AppStyles.greyColor,
+                    txt: "Add More",
+                    txtColor: AppStyles.greyColor,
+                  ),
+                ],
               ),
               SizedBox(height: 10.h),
               favNights.isEmpty
@@ -177,10 +207,25 @@ class _SetupProfile2State extends State<SetupProfile2>
                       ],
                     ),
               SizedBox(height: 10.h),
-              AppText(
-                fontFamily:
-                    GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
-                text: "Activities",
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppText(
+                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                        .fontFamily,
+                    text: "Activities",
+                  ),
+                  DefaultAppBtn(
+                    width: 100.w,
+                    onTap: () {},
+                    borderRadius: 20.r,
+                    height: size.height / 25,
+                    border: 1.r,
+                    borderColor: AppStyles.greyColor,
+                    txt: "Add More",
+                    txtColor: AppStyles.greyColor,
+                  ),
+                ],
               ),
               SizedBox(height: 10.h),
               activities.isEmpty

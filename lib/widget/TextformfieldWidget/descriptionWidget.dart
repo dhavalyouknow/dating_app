@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TextFormFieldWidget extends StatefulWidget {
+class DescriptionWidget extends StatefulWidget {
   final double height;
   final String txt;
   final IconButton? icon;
@@ -20,7 +20,7 @@ class TextFormFieldWidget extends StatefulWidget {
   VoidCallback? onTap;
   // TextAlign? textAlign;
 
-  TextFormFieldWidget({
+  DescriptionWidget({
     Key? key,
     required this.height,
     required this.txt,
@@ -38,10 +38,10 @@ class TextFormFieldWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<TextFormFieldWidget> createState() => _TextFormFieldWidgetState();
+  State<DescriptionWidget> createState() => _DescriptionWidgetState();
 }
 
-class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
+class _DescriptionWidgetState extends State<DescriptionWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -64,7 +64,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
           validator: widget.validator,
           obscureText: widget.obscureText,
           decoration: InputDecoration(
-            // contentPadding: EdgeInsets.only(left: 10.w, bottom: 30.h),
+            contentPadding: EdgeInsets.only(left: 10.w, bottom: 60.h),
             suffixIcon: widget.backIcon,
             icon: widget.obSecure == true ? widget.icon : widget.icon,
             hintText: widget.txt,

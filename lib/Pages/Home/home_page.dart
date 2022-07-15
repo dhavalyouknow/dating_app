@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                     controller: swipeController,
                     itemCount: swipeState.swipe.length,
                     swipeAssistDuration: const Duration(milliseconds: 10),
-                    allowVerticalSwipe: true,
+                    allowVerticalSwipe: false,
                     horizontalSwipeThreshold: 0.8,
                     verticalSwipeThreshold: 0.8,
                     cancelAnimationCurve: Curves.easeIn,
@@ -117,12 +117,6 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                                     topLeft: Radius.circular(20.r),
                                     topRight: Radius.circular(20.r),
                                   ),
-                                  // child: CachedNetworkImage(
-                                  //   imageUrl: swipeState.swipe[itemIndex]
-                                  //       .squareProfileImage!.first.url
-                                  //       .toString(),
-                                  // ),
-
                                   child: Image.asset(
                                     "assets/intro/Intro3Background.png",
                                     fit: BoxFit.cover,
@@ -135,14 +129,14 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                                   child: Container(
                                     height: size.height / 6,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15.r),
+                                      borderRadius: BorderRadius.circular(10.r),
                                       border: Border.all(
                                         width: 5.r,
                                         color: AppStyles.primaryColor,
                                       ),
                                     ),
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15.r),
+                                      borderRadius: BorderRadius.circular(5.r),
                                       child: CachedNetworkImage(
                                         imageUrl: swipeState.swipe[itemIndex]
                                                     .circleProfileImage !=
@@ -154,17 +148,16 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                                         errorWidget:
                                             (BuildContext context, url, data) {
                                           return Container(
+                                            width: size.height / 7.5,
                                             color: AppStyles.greyColor,
                                             child: Icon(
                                               Icons.person,
-                                              size: 90.sp,
+                                              size: 80.sp,
                                               color: AppStyles.whiteColor,
                                             ),
                                           );
                                         },
                                       ),
-                                      // child: Image.asset(
-                                      //     "assets/intro/Person.png"),
                                     ),
                                   ),
                                 )
@@ -229,13 +222,6 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                               ],
                             ),
                           ),
-                          // Container(
-                          //   margin: EdgeInsets.symmetric(horizontal: 40.w),
-                          //   height: 10.h,
-                          //   decoration: BoxDecoration(
-                          //     color: AppStyles.whiteColor,
-                          //   ),
-                          // )
                         ],
                       );
                     },

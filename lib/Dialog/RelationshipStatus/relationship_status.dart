@@ -1,7 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Dialog/RelationshipStatus/relationship_status_handler.dart';
-import 'package:dating_app/Pages/SetupProfile/setup_profile1/setup_profile1_handler.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';

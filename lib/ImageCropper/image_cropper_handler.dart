@@ -1,6 +1,7 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
+import 'package:dating_app/Model/dog.dart';
 import 'package:dating_app/Model/squareprofileimage.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
   ImageSource? source;
   String updateType = '';
   User? user;
+  Dog? dog;
 
   @override
   initState() {
@@ -202,17 +204,17 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
     //   BlocProvider.of<ImageUploadBloc>(context).add(
     //     UploadImage(
     //       image: imageFile!,
-    //       onSuccess: (imageModel.Image value) {
-    //         UserAccount account = BlocProvider.of<AccountBloc>(context)
-    //             .state
-    //             .account as UserAccount;
-    //         account = account.copyWith(
-    //           logo: value,
+    //       onSuccess: (SquareProfileImage value) {
+    //
+    //         user = user?.copyWith(
+    //             squareProfileImage: value;
     //         );
-    //         BlocProvider.of<AccountBloc>(context).add(
-    //           UpdateAccount(
-    //             account: account,
-    //             success: onSuccessImageUpdate,
+    //         BlocProvider.of<UserBloc>(context).add(
+    //           UpdateUserEvent(
+    //             user: user!,
+    //             success: (value){
+    //               onSuccessImageUpdate();
+    //             },
     //           ),
     //         );
     //       },

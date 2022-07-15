@@ -1,5 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/SwipeSettings/swipe_settings_handler.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ class SwipeSetting extends StatefulWidget {
   State<SwipeSetting> createState() => _SwipeSettingState();
 }
 
-class _SwipeSettingState extends State<SwipeSetting> {
+class _SwipeSettingState extends State<SwipeSetting>
+    with SwipeSettingsHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
