@@ -25,16 +25,29 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      // extendBodyBehindAppBar: true,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 30),
+        child: GradientBtn(
+          height: size.height / 14,
+          txt: "Next",
+          onTap: () {
+            onSubmitDog();
+          },
+        ),
+      ),
       appBar: AppBar(
         leading: Padding(
-          padding: EdgeInsets.only(left: 10.w),
-          child: Icon(
-            size: 30.h,
-            Icons.arrow_back_ios,
-            color: AppStyles.greyColor,
-          ),
-        ),
+            padding: EdgeInsets.only(left: 10.w),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                size: 30.h,
+                color: AppStyles.greyColor,
+              ),
+            )),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
@@ -69,8 +82,10 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                 height: size.height / 14,
                 txt: "Your dog name",
                 obscureText: false,
-                border: 1,
-                borderColor: AppStyles.greyColor,
+                border: dogNameController.text.isEmpty ? 1.r : 2.r,
+                borderColor: dogNameController.text.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.pinkColor,
                 borderRadius: 25,
                 dogIcon: const ImageIcon(
                   AssetImage("assets/Dog.png"),
@@ -93,6 +108,9 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                         child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5.w),
                           child: GenderBtn(
+                            fontWeight: e.selected
+                                ? FontWeight.w700
+                                : FontWeight.normal,
                             height: size.height / 14,
                             border: e.selected ? 3.r : 1.r,
                             borderRadius: 25,
@@ -100,7 +118,9 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                                 ? AppStyles.pinkColor
                                 : AppStyles.greyColor,
                             txt: e.name,
-                            txtColor: AppStyles.greyColor,
+                            txtColor: e.selected
+                                ? AppStyles.pinkColor
+                                : AppStyles.greyColor,
                             onTap: () {
                               for (var tapped in selectDogGender) {
                                 tapped.selected = false;
@@ -136,6 +156,8 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                   ...sizeOfDog.map(
                     (e) {
                       return DefaultAppBtn(
+                        fontWeight:
+                            e.selected ? FontWeight.w700 : FontWeight.normal,
                         height: size.height / 14,
                         width: size.width / 4,
                         border: e.selected ? 3.r : 1.r,
@@ -144,7 +166,9 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                             ? AppStyles.pinkColor
                             : AppStyles.greyColor,
                         txt: e.name,
-                        txtColor: AppStyles.greyColor,
+                        txtColor: e.selected
+                            ? AppStyles.pinkColor
+                            : AppStyles.greyColor,
                         onTap: () {
                           for (var tapped in sizeOfDog) {
                             tapped.selected = false;
@@ -169,12 +193,12 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
               Wrap(
                 runSpacing: 10.w,
                 spacing: 10.w,
-                // direction: Axis,
-
                 children: [
                   ...dogLookingFor.map(
                     (e) {
                       return DefaultAppBtn(
+                        fontWeight:
+                            e.selected ? FontWeight.w700 : FontWeight.normal,
                         height: size.height / 14,
                         width: size.width / 2.6,
                         border: myDogLookingFor.contains(e.name) ? 3.r : 1.r,
@@ -183,7 +207,9 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                             ? AppStyles.pinkColor
                             : AppStyles.greyColor,
                         txt: e.name,
-                        txtColor: AppStyles.greyColor,
+                        txtColor: e.selected
+                            ? AppStyles.pinkColor
+                            : AppStyles.greyColor,
                         onTap: () {
                           if (myDogLookingFor.contains(e.name)) {
                             myDogLookingFor.remove(e.name);
@@ -201,13 +227,13 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                   ),
                 ],
               ),
-              SizedBox(height: 15.h),
-              GradientBtn(
-                height: size.height / 14,
-                txt: "Next",
-                onTap: onSubmitDog,
-              ),
-              SizedBox(height: 15.h),
+              // SizedBox(height: 15.h),
+              // GradientBtn(
+              //   height: size.height / 14,
+              //   txt: "Next",
+              //   onTap: onSubmitDog,
+              // ),
+              // SizedBox(height: 15.h),
             ],
           ),
         ),

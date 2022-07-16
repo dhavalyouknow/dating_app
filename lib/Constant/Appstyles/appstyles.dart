@@ -21,6 +21,11 @@ class AppStyles {
     const Color(0xffB6E4FA),
   ];
 
+  static List<Color> myPageGradientColor = [
+    const Color(0xffEDDCC0),
+    const Color(0xffF7BFAE),
+  ];
+
   static List<Color> forgotPassGradientColor = [
     const Color(0xffFFFFFF),
     const Color(0xffFFFFFF),

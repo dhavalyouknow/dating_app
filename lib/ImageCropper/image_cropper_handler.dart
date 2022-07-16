@@ -24,6 +24,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
   File? squareImageFile;
   File? circleImageFile;
   SquareProfileImage? addSquareProfileImage;
+  bool isDone = false;
 
   @override
   initState() {
@@ -251,7 +252,8 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                   print(user?.dog?.first.circleProfileImage);
                   print(user?.id);
                   print('===$value');
-                  Navigator.pushReplacementNamed(context, '/MyPage');
+                  isDone = true;
+                  setState(() {});
                 },
               ),
             );
@@ -259,51 +261,6 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
         ),
       );
     }
-  }
-
-  onImageUpdate() {
-    if (updateType == 'person') {
-      // BlocProvider.of<ImageUploadBloc>(context).add(
-      //   UploadImage(
-      //     image: imageFile!,
-      //     onSuccess: (SquareProfileImage value) {
-      //       user = user?.copyWith(
-      //         circleProfileImage: value,
-      //       );
-      //       BlocProvider.of<UserBloc>(context).add(
-      //         UpdateUserEvent(
-      //           user: user!,
-      //           success: (value) {
-      //             // Navigator.pushNamed(context, "/SetupProfile3");
-      //           },
-      //         ),
-      //       );
-      //     },
-      //   ),
-      // );
-    }
-
-    // else if (updateType == "dog") {
-    //   BlocProvider.of<ImageUploadBloc>(context).add(
-    //     UploadImage(
-    //       image: imageFile!,
-    //       onSuccess: (SquareProfileImage value) {
-    //
-    //         user = user?.copyWith(
-    //             squareProfileImage: value;
-    //         );
-    //         BlocProvider.of<UserBloc>(context).add(
-    //           UpdateUserEvent(
-    //             user: user!,
-    //             success: (value){
-    //               onSuccessImageUpdate();
-    //             },
-    //           ),
-    //         );
-    //       },
-    //     ),
-    //   );
-    // }
   }
 
   void onSuccessImageUpdate() {

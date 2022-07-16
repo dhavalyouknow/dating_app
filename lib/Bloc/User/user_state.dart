@@ -9,9 +9,9 @@ enum UserStatus {
 
 class UserState extends Equatable {
   final UserStatus? status;
-  final User? user;
+  User? user;
 
-  const UserState({
+  UserState({
     this.status,
     this.user,
   });
@@ -31,5 +31,5 @@ class UserState extends Equatable {
 }
 
 class UserInitial extends UserState {
-  const UserInitial() : super(status: UserStatus.initial);
+  UserInitial() : super(status: UserStatus.initial);
 }

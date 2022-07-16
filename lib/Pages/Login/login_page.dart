@@ -48,7 +48,10 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                   height: size.height / 14,
                   txt: "Email",
                   icon: IconButton(
-                    icon: const Icon(Icons.person_outline),
+                    icon: const Icon(
+                      Icons.person_outline,
+                      color: AppStyles.pinkColor,
+                    ),
                     onPressed: () {},
                   ),
                   obscureText: false,
@@ -101,6 +104,22 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                   height: size.height / 14,
                   txt: "Login",
                   onTap: onLogin,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.h),
+                  child: GradientBtn(
+                    height: size.height / 14,
+                    txt: "Sign in with Google",
+                    onTap: signInWithGoogle,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.h),
+                  child: GradientBtn(
+                    height: size.height / 14,
+                    txt: "Slog out",
+                    onTap: logOut,
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -9,7 +9,7 @@ part 'user_event.dart';
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
-  UserBloc() : super(const UserInitial()) {
+  UserBloc() : super(UserInitial()) {
     on<UserEvent>((event, emit) {});
     on<UpdateUserEvent>(_onUpdateUserEvent);
     on<SetUser>(_onSetUser);

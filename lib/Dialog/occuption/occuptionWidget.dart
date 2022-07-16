@@ -69,8 +69,14 @@ class _OccupationWidgetState extends State<OccupationWidget>
                           borderRadius: BorderRadius.circular(22),
                         ),
                         child: Center(
-                          child: Text(
-                            occupation[index],
+                          child: AppText(
+                            text: occupation[index],
+                            fontFamily: GoogleFonts.raleway(
+                                    fontWeight: selectedOccupation
+                                            .contains(occupation[index])
+                                        ? FontWeight.w700
+                                        : FontWeight.normal)
+                                .fontFamily,
                           ),
                         ),
                       ),

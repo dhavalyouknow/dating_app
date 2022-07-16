@@ -15,7 +15,9 @@ class SetLoginInitial extends AuthEvent {
 class DuplicateEvent extends AuthEvent {
   final String email;
   final VoidCallback onSuccess;
+
   const DuplicateEvent({required this.email, required this.onSuccess});
+
   @override
   List<Object?> get props => [];
 }
@@ -86,4 +88,23 @@ class SessionRequest extends AuthEvent {
 
   @override
   List<Object?> get props => [onSuccess];
+}
+
+class LoginWithGoogle extends AuthEvent {
+  final String email;
+  final String googleId;
+  final String pushToken;
+  final UserBloc userBloc;
+  final Function(User) onSuccess;
+  const LoginWithGoogle({
+    required this.email,
+    required this.googleId,
+    required this.pushToken,
+    required this.userBloc,
+    required this.onSuccess,
+  });
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
 }

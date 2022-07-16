@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Core/base/api_end_point.dart';
 import 'package:dating_app/Core/base/base_http_service.dart';
 import 'package:dating_app/Model/user.dart';
@@ -10,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 part 'auth_event.dart';
+
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
@@ -20,6 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     on<DuplicateEvent>(_onDuplicateEvent);
     on<SessionRequest>(_onSessionRequest);
     on<SetLoginInitial>(_onLoginInitial);
+    on<LoginWithGoogle>(_onLoginWithGoogle);
   }
 
   Future<void> _onLoginInitial(
@@ -242,6 +245,41 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           status: AuthStatus.loginFailure,
         ),
       );
+    }
+  }
+
+  Future<void> _onLoginWithGoogle(
+      LoginWithGoogle event, Emitter<AuthState> emit) async {
+    try {
+      var resp = await post(
+        url: ApiEndPoints.loginWithGoogle,
+        body: {
+          "email": event.email,
+          "googleId": event.googleId,
+          "pushToken": event.pushToken,
+        },
+        customHeader: {
+          "Google-Id-Token": event.pushToken,
+        },
+      );
+      if (resp != null) {
+        if (resp.statusCode == 200) {
+          var _token = resp.headers["x-auth-token"];
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('auth_token', _token!);
+          Map<String, dynamic> data = jsonDecode(resp.body);
+          User user = User.fromJson(data);
+          event.onSuccess(user);
+          print(resp.statusCode);
+          print(resp.body);
+        } else {
+          print(resp.body);
+          print(resp.statusCode);
+        }
+      } else {}
+    } catch (e) {
+      print(e);
+      print('-----login with google');
     }
   }
 }

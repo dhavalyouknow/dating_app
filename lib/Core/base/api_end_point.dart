@@ -9,4 +9,5 @@ class ApiEndPoints {
   static const String addDog = '$baseUrl/dog';
   static const String uploadImage = '$baseUrl/image';
   static const String swipe = '$baseUrl/user/swiper';
+  static const String loginWithGoogle = '$baseUrl/auth/login_with_google';
 }

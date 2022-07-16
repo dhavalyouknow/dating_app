@@ -21,20 +21,19 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 30),
+        child: GradientBtn(
+          height: size.height / 14,
+          txt: "Next",
+          onTap: () {
+            if (imageFile != null) {
+              Navigator.pushReplacementNamed(context, '/MyPage');
+            }
+          },
+        ),
+      ),
       appBar: AppBar(
-        // leading: Padding(
-        //   padding: EdgeInsets.only(left: 10.w),
-        //   child: IconButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     icon: Icon(
-        //       size: 30.h,
-        //       Icons.arrow_back_ios,
-        //       color: AppStyles.greyColor,
-        //     ),
-        //   ),
-        // ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
@@ -169,16 +168,31 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
                             ],
                           ),
                         ),
+<<<<<<< Updated upstream
+                  // SizedBox(height: 200.h),
+                  // GradientBtn(
+                  //   height: size.height / 14,
+                  //   txt: "Next",
+                  //   onTap: () {
+                  //     if (imageFile != null) {
+                  //       Navigator.pushReplacementNamed(context, '/MyPage');
+                  //     }
+                  //   },
+                  // )
+=======
                   SizedBox(height: 200.h),
                   GradientBtn(
                     height: size.height / 14,
                     txt: "Next",
                     onTap: () {
+                      print('*****');
+                      print(isDone);
                       if (imageFile != null) {
                         Navigator.pushReplacementNamed(context, '/MyPage');
                       }
                     },
                   )
+>>>>>>> Stashed changes
                 ],
               ),
             ),

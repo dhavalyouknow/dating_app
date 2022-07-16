@@ -46,6 +46,7 @@ class _ThirdIntroPageState extends State<ThirdIntroPage> {
                           image: DecorationImage(
                             image:
                                 AssetImage("assets/intro/Intro3Background.png"),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       );

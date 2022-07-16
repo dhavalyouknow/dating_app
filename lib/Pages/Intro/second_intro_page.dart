@@ -21,7 +21,7 @@ class _SecondIntroPageState extends State<SecondIntroPage> {
     final size = MediaQuery.of(context).size;
     final controller = PageController(viewportFraction: 1, keepPage: true);
     // PageController? pageController;
-    int currentIndex = 0;   
+    int currentIndex = 0;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -44,57 +44,12 @@ class _SecondIntroPageState extends State<SecondIntroPage> {
                           image: DecorationImage(
                             image:
                                 AssetImage("assets/intro/Intro2Background.png"),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       );
                     },
                   ),
-                  // Positioned(
-                  //   left: size.width / 4 + 10.w,
-                  //   bottom: 15.h,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [
-                  //       GestureDetector(
-                  //         onTap: () {},
-                  //         child: Container(
-                  //           height: 70.h,
-                  //           width: 70.w,
-                  //           decoration: BoxDecoration(
-                  //             border: Border.all(
-                  //               color: AppStyles.whiteColor,
-                  //               width: 3.w,
-                  //             ),
-                  //             color: AppStyles.btnColor,
-                  //             shape: BoxShape.circle,
-                  //           ),
-                  //           child: Icon(
-                  //             Icons.close_rounded,
-                  //             size: 35.sp,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       SizedBox(width: 15.w),
-                  //       Container(
-                  //         height: 70.h,
-                  //         width: 70.w,
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(
-                  //             color: AppStyles.whiteColor,
-                  //             width: 3.w,
-                  //           ),
-                  //           color: AppStyles.btnColor,
-                  //           shape: BoxShape.circle,
-                  //         ),
-                  //         child: Icon(
-                  //           Icons.favorite,
-                  //           size: 35.sp,
-                  //           color: AppStyles.redColor,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -137,7 +92,7 @@ class _SecondIntroPageState extends State<SecondIntroPage> {
                     text: "Meet friends and dog lovers",
                     size: 15.sp,
                   ),
-                  SizedBox(height: 50.h),
+                  SizedBox(height: 20.h),
                   GradientBtn(
                     height: size.height / 14,
                     txt: "Next",

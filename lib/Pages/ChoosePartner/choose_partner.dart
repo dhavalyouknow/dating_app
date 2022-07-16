@@ -111,14 +111,19 @@ class _ChoosePartnerState extends State<ChoosePartner>
                           color: AppStyles.whiteColor,
                           borderRadius: BorderRadius.circular(25.r),
                           border: Border.all(
-                            color: AppStyles.pinkColor,
+                            color: imSearchingFor.contains(e.name)
+                                ? AppStyles.pinkColor
+                                : AppStyles.greyColor,
                             width: imSearchingFor.contains(e.name) ? 3.r : 1.r,
                           ),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(height: 18.h, child: (e.image)),
+                            SizedBox(
+                              height: 18.h,
+                              child: (e.image),
+                            ),
                             SizedBox(width: 10.w),
                             AppText(
                               color: imSearchingFor.contains(e.name)
@@ -126,8 +131,10 @@ class _ChoosePartnerState extends State<ChoosePartner>
                                   : AppStyles.greyColor,
                               text: e.name,
                               fontFamily: GoogleFonts.raleway(
-                                      fontWeight: FontWeight.w500)
-                                  .fontFamily,
+                                fontWeight: e.selected
+                                    ? FontWeight.bold
+                                    : FontWeight.w500,
+                              ).fontFamily,
                             )
                           ],
                         ),

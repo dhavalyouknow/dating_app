@@ -12,9 +12,10 @@ class GenderBtn extends StatefulWidget {
   final String txt;
   final VoidCallback onTap;
   final Icon icon;
+  FontWeight? fontWeight;
   // String? fontFamily;
 
-  const GenderBtn({
+  GenderBtn({
     Key? key,
     required this.height,
     required this.border,
@@ -24,6 +25,7 @@ class GenderBtn extends StatefulWidget {
     required this.txtColor,
     required this.onTap,
     required this.icon,
+    this.fontWeight,
     // this.fontFamily,
   }) : super(key: key);
 
@@ -58,7 +60,8 @@ class _GenderBtnState extends State<GenderBtn> {
             Text(
               widget.txt,
               style: TextStyle(
-                fontFamily: GoogleFonts.raleway().fontFamily,
+                fontFamily: GoogleFonts.raleway(fontWeight: widget.fontWeight)
+                    .fontFamily,
                 color: widget.txtColor,
               ),
             ),
