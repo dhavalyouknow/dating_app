@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "473209005427",
+    "project_id": "testing-analyti",
+    "storage_bucket": "testing-analyti.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473209005427:android:995952d55472d4e46c1106",
+        "android_client_info": {
+          "package_name": "com.example.datingApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "473209005427-dnrcbcaq05acis17pg2stpq85r9mm8sj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBv2_KArLuBoGMMKzqeI4YpKpeC6SUUlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "473209005427-dnrcbcaq05acis17pg2stpq85r9mm8sj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "473209005427-cvicuobtmr1rvppi5tb43oh20ata7hc8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.datingApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

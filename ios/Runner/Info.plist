@@ -8,6 +8,19 @@
 	<string>Required permission for select photo from gallery</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Required permission for take photo from camera</string>
+	<key>CFBundleURLTypes</key>
+    <array>
+    	<dict>
+    		<key>CFBundleTypeRole</key>
+    		<string>Editor</string>
+    		<key>CFBundleURLSchemes</key>
+    		<array>
+    			<!-- TODO Replace this value: -->
+    			<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+    			<string>com.googleusercontent.apps.473209005427-cvicuobtmr1rvppi5tb43oh20ata7hc8</string>
+    		</array>
+    	</dict>
+    </array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
