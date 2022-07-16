@@ -68,8 +68,14 @@ class _EyeColorWidgetState extends State<EyeColorWidget> with EyeColorHandlers {
                             borderRadius: BorderRadius.circular(22),
                           ),
                           child: Center(
-                            child: Text(
-                              eyeColor[index],
+                            child: AppText(
+                              text: eyeColor[index],
+                              fontFamily: GoogleFonts.raleway(
+                                fontWeight:
+                                    selectedEyeColor.contains(eyeColor[index])
+                                        ? FontWeight.w700
+                                        : FontWeight.normal,
+                              ).fontFamily,
                             ),
                           ),
                         ),

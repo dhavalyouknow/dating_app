@@ -24,6 +24,16 @@ class _SetupProfile2State extends State<SetupProfile2>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 30),
+        child: GradientBtn(
+          height: size.height / 14,
+          txt: "Next",
+          onTap: () {
+            onSubmitProfile2();
+          },
+        ),
+      ),
       appBar: AppBar(
         actions: [
           Padding(
@@ -128,7 +138,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                         },
                         borderRadius: 20.r,
                         height: size.height / 16,
-                        border: 2.r,
+                        border: 1.r,
                         borderColor: AppStyles.pinkColor,
                         txt: "Add Interests",
                         txtColor: AppStyles.greyColor,
@@ -182,7 +192,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                         },
                         borderRadius: 20.r,
                         height: size.height / 16,
-                        border: 2.r,
+                        border: 1.r,
                         borderColor: AppStyles.pinkColor,
                         txt: "Add Favourite Night",
                         txtColor: AppStyles.greyColor,
@@ -237,7 +247,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                         },
                         borderRadius: 20.r,
                         height: size.height / 16,
-                        border: 2.r,
+                        border: 1.r,
                         borderColor: AppStyles.pinkColor,
                         txt: "Add Activities",
                         txtColor: AppStyles.greyColor,
@@ -266,15 +276,15 @@ class _SetupProfile2State extends State<SetupProfile2>
                             .toList()
                       ],
                     ),
-              SizedBox(height: 200.h),
-              GradientBtn(
-                height: size.height / 14,
-                txt: "Next",
-                onTap: () {
-                  onSubmitProfile2();
-                },
-              ),
-              SizedBox(height: 60.h),
+              // SizedBox(height: 200.h),
+              // GradientBtn(
+              //   height: size.height / 14,
+              //   txt: "Next",
+              //   onTap: () {
+              //     onSubmitProfile2();
+              //   },
+              // ),
+              // SizedBox(height: 60.h),
             ],
           ),
         ),

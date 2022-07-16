@@ -6,8 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
-  final TextEditingController lengthController =
-      TextEditingController(text: '2');
+  final TextEditingController lengthController = TextEditingController();
   String selectedStatus = '';
   String selectedInterestedIn = '';
   String selectedOccupation = '';

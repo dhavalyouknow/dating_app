@@ -1,4 +1,4 @@
-import 'package:country_state_city_picker/country_state_city_picker.dart';
+import 'package:csc_picker/csc_picker.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Dialog/SelectGender/select_gender.dart';
@@ -44,19 +44,6 @@ class _CreateAccountState extends State<CreateAccount>
             ),
           ),
         ],
-        // leading: Padding(
-        //   padding: EdgeInsets.only(left: 10.w),
-        //   child: IconButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     icon: Icon(
-        //       size: 30.h,
-        //       Icons.arrow_back_ios,
-        //       color: AppStyles.greyColor,
-        //     ),
-        //   ),
-        // ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
@@ -77,7 +64,7 @@ class _CreateAccountState extends State<CreateAccount>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 40.h),
+                SizedBox(height: 10.h),
                 Center(
                   child: AppText(
                     size: 21.sp,
@@ -91,42 +78,63 @@ class _CreateAccountState extends State<CreateAccount>
                   validator: nameValidator,
                   borderRadius: 10,
                   icon: IconButton(
-                    icon: const Icon(Icons.person_outline),
+                    icon: Icon(
+                      Icons.person_outline,
+                      color: nameController.text.isEmpty
+                          ? AppStyles.greyColor
+                          : AppStyles.pinkColor,
+                    ),
                     onPressed: () {},
                   ),
                   height: size.height / 14,
                   txt: "Name",
                   obscureText: false,
                   border: nameController.text.isEmpty ? 1 : 2,
-                  borderColor: AppStyles.pinkColor,
+                  borderColor: nameController.text.isEmpty
+                      ? AppStyles.greyColor
+                      : AppStyles.pinkColor,
                 ),
                 TextFormFieldWidget(
                   textEditingController: surnameController,
                   validator: surnameValidator,
                   borderRadius: 10,
                   icon: IconButton(
-                    icon: const Icon(Icons.person_outline),
+                    icon: Icon(
+                      Icons.person_outline,
+                      color: surnameController.text.isEmpty
+                          ? AppStyles.greyColor
+                          : AppStyles.pinkColor,
+                    ),
                     onPressed: () {},
                   ),
                   height: size.height / 14,
                   txt: "Surname",
                   obscureText: false,
                   border: surnameController.text.isEmpty ? 1 : 2,
-                  borderColor: AppStyles.pinkColor,
+                  borderColor: surnameController.text.isEmpty
+                      ? AppStyles.greyColor
+                      : AppStyles.pinkColor,
                 ),
                 TextFormFieldWidget(
                   textEditingController: emailController,
                   validator: emailValidator,
                   borderRadius: 10,
                   icon: IconButton(
-                    icon: const Icon(Icons.email_outlined),
+                    icon: Icon(
+                      Icons.email_outlined,
+                      color: emailController.text.isEmpty
+                          ? AppStyles.greyColor
+                          : AppStyles.pinkColor,
+                    ),
                     onPressed: () {},
                   ),
                   height: size.height / 14,
                   txt: "Email",
                   obscureText: false,
                   border: emailController.text.isEmpty ? 1 : 2,
-                  borderColor: AppStyles.pinkColor,
+                  borderColor: emailController.text.isEmpty
+                      ? AppStyles.greyColor
+                      : AppStyles.pinkColor,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -137,8 +145,12 @@ class _CreateAccountState extends State<CreateAccount>
                         child: GenderBtn(
                           height: size.height / 14,
                           icon: selectedGender.isEmpty
-                              ? const Icon(Icons.male)
-                              : const Icon(Icons.female),
+                              ? const Icon(
+                                  Icons.male,
+                                  color: AppStyles.pinkColor,
+                                )
+                              : const Icon(Icons.female,
+                                  color: AppStyles.pinkColor),
                           txt: selectedGender.isEmpty
                               ? "Select Gender"
                               : selectedGender,
@@ -156,9 +168,16 @@ class _CreateAccountState extends State<CreateAccount>
                               },
                             );
                           },
+                          fontWeight: selectedGender.isEmpty
+                              ? FontWeight.normal
+                              : FontWeight.w600,
                           borderRadius: 10.r,
-                          borderColor: AppStyles.pinkColor,
-                          txtColor: AppStyles.blackColor,
+                          borderColor: selectedGender.isEmpty
+                              ? AppStyles.greyColor
+                              : AppStyles.pinkColor,
+                          txtColor: selectedGender.isEmpty
+                              ? AppStyles.greyColor
+                              : AppStyles.blackColor,
                         ),
                       ),
                     ),
@@ -167,6 +186,7 @@ class _CreateAccountState extends State<CreateAccount>
                       child: GestureDetector(
                         onTap: () {
                           selectDate(context);
+
                           tapped = true;
                         },
                         child: Container(
@@ -178,7 +198,9 @@ class _CreateAccountState extends State<CreateAccount>
                             color: AppStyles.whiteColor,
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
-                              color: AppStyles.pinkColor,
+                              color: tapped
+                                  ? AppStyles.pinkColor
+                                  : AppStyles.greyColor,
                               width: tapped ? 2 : 1,
                             ),
                           ),
@@ -186,7 +208,7 @@ class _CreateAccountState extends State<CreateAccount>
                             children: [
                               const Icon(
                                 Icons.cake_outlined,
-                                color: AppStyles.greyColor,
+                                color: AppStyles.pinkColor,
                               ),
                               SizedBox(width: 10.w),
                               Text(
@@ -194,9 +216,12 @@ class _CreateAccountState extends State<CreateAccount>
                                   DateTime.parse('$selectedDate'),
                                 ),
                                 style: TextStyle(
-                                  fontFamily:
-                                      GoogleFonts.raleway(fontSize: 15.sp)
-                                          .fontFamily,
+                                  fontFamily: GoogleFonts.raleway(
+                                    fontSize: 15.sp,
+                                    fontWeight: selectedDate == DateTime.now()
+                                        ? FontWeight.normal
+                                        : FontWeight.w600,
+                                  ).fontFamily,
                                   color: AppStyles.blackColor,
                                 ),
                               ),
@@ -209,31 +234,64 @@ class _CreateAccountState extends State<CreateAccount>
                 ),
                 Column(
                   children: [
-                    SelectState(
-                      onCountryChanged: (value) {
-                        setState(() {
-                          countryValue = value;
-                        });
-                      },
-                      onStateChanged: (value) {
-                        setState(() {
-                          stateValue = value;
-                        });
-                      },
-                      onCityChanged: (value) {
-                        setState(() {
-                          cityValue = value;
-                        });
-                      },
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      child: CSCPicker(
+                        showStates: true,
+                        showCities: true,
+                        flagState: CountryFlag.DISABLE,
+                        dropdownDecoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          color: Colors.white,
+                          border:
+                              Border.all(color: Colors.grey.shade300, width: 1),
+                        ),
+                        disabledDropdownDecoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          color: Colors.white,
+                          border:
+                              Border.all(color: Colors.grey.shade300, width: 1),
+                        ),
+                        countrySearchPlaceholder: "Country",
+                        stateSearchPlaceholder: "State",
+                        citySearchPlaceholder: "City",
+                        countryDropdownLabel: "Select Country",
+                        stateDropdownLabel: "Select State",
+                        cityDropdownLabel: "Select City",
+                        selectedItemStyle: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                        ),
+                        dropdownHeadingStyle: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        dropdownItemStyle: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                        ),
+                        dropdownDialogRadius: 20.0,
+                        searchBarRadius: 20.0,
+                        onCountryChanged: (value) {
+                          setState(() {
+                            countryValue = value;
+                          });
+                        },
+                        onStateChanged: (value) {
+                          setState(() {
+                            stateValue = value!;
+                          });
+                        },
+                        onCityChanged: (value) {
+                          setState(() {
+                            cityValue = value!;
+                          });
+                        },
+                      ),
                     ),
-                    // InkWell(
-                    //   onTap:(){
-                    //     print('country selected is $countryValue');
-                    //     print('country selected is $stateValue');
-                    //     print('country selected is $cityValue');
-                    //   },
-                    //   child: Text(' Check')
-                    // )
                   ],
                 ),
                 Padding(

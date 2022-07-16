@@ -29,8 +29,7 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                 children: [
                   PageView.builder(
                     onPageChanged: (index) {
-                      setState(() {
-                      });
+                      setState(() {});
                     },
                     controller: controller,
                     itemCount: 3,
@@ -40,12 +39,12 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                           image: DecorationImage(
                             image:
                                 AssetImage("assets/intro/Intro1Background.png"),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       );
                     },
                   ),
-
                   Align(
                     alignment: Alignment.center,
                     child: SizedBox(
@@ -56,52 +55,6 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                       ),
                     ),
                   ),
-                  // Positioned(
-                  //   left: size.width / 4 + 10.w,
-                  //   bottom: 15.h,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [
-                  //       GestureDetector(
-                  //         onTap: () {},
-                  //         child: Container(
-                  //           height: 70.h,
-                  //           width: 70.w,
-                  //           decoration: BoxDecoration(
-                  //             border: Border.all(
-                  //               color: AppStyles.whiteColor,
-                  //               width: 3.w,
-                  //             ),
-                  //             color: AppStyles.btnColor,
-                  //             shape: BoxShape.circle,
-                  //           ),
-                  //           child: Icon(
-                  //             Icons.close_rounded,
-                  //             size: 35.sp,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       SizedBox(width: 15.w),
-                  //       Container(
-                  //         height: 70.h,
-                  //         width: 70.w,
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(
-                  //             color: AppStyles.whiteColor,
-                  //             width: 3.w,
-                  //           ),
-                  //           color: AppStyles.btnColor,
-                  //           shape: BoxShape.circle,
-                  //         ),
-                  //         child: Icon(
-                  //           Icons.favorite,
-                  //           size: 35.sp,
-                  //           color: AppStyles.redColor,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ],
               ),
             ),

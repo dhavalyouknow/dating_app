@@ -47,12 +47,16 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     child: DefaultAppBtn(
+                      fontWeight:
+                          e.selected ? FontWeight.w700 : FontWeight.normal,
                       height: size.height / 14,
                       border: e.selected ? 3.r : 1.r,
                       borderRadius: 20,
                       borderColor: AppStyles.pinkColor,
                       txt: e.status,
-                      txtColor: AppStyles.greyColor,
+                      txtColor: e.selected
+                          ? AppStyles.blackColor
+                          : AppStyles.pinkColor,
                       onTap: () {
                         setState(() {
                           selectedStatus = e.status;
@@ -70,16 +74,14 @@ class _RelationshipStatusState extends State<RelationshipStatus>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: AppText(
-                      size: 21.sp,
-                      fontFamily:
-                          GoogleFonts.raleway(fontWeight: FontWeight.bold)
-                              .fontFamily,
-                      text: "Cancel",
+                  SizedBox(
+                    width: size.width / 4,
+                    child: GradientBtn(
+                      height: size.height / 18,
+                      txt: "Cancel",
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   ),
                   SizedBox(

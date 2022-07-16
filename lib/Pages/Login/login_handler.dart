@@ -9,7 +9,7 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController emailController =
       TextEditingController(text: 'dp@gmail.com');
   final TextEditingController passwordController =
-      TextEditingController(text: '111111');
+      TextEditingController(text: 'Dp1@3110');
   int index = 0;
   bool signUpPwd = true;
   final formKey = GlobalKey<FormState>();

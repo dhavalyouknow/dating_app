@@ -21,6 +21,16 @@ class _SetupProfile3State extends State<SetupProfile3>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 30),
+        child: GradientBtn(
+          height: size.height / 14,
+          txt: "Next",
+          onTap: () {
+            onSubmitProfile3();
+          },
+        ),
+      ),
       appBar: AppBar(
         actions: [
           Padding(
@@ -104,15 +114,15 @@ class _SetupProfile3State extends State<SetupProfile3>
                 border: 2.r,
                 borderColor: AppStyles.pinkColor,
               ),
-              SizedBox(height: 300.h),
-              GradientBtn(
-                height: size.height / 14,
-                txt: "Next",
-                onTap: () {
-                  onSubmitProfile3();
-                },
-              ),
-              SizedBox(height: 60.h),
+              // SizedBox(height: 300.h),
+              // GradientBtn(
+              //   height: size.height / 14,
+              //   txt: "Next",
+              //   onTap: () {
+              //     onSubmitProfile3();
+              //   },
+              // ),
+              // SizedBox(height: 60.h),
             ],
           ),
         ),

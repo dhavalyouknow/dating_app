@@ -48,7 +48,10 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                   height: size.height / 14,
                   txt: "Email",
                   icon: IconButton(
-                    icon: const Icon(Icons.person_outline),
+                    icon: const Icon(
+                      Icons.person_outline,
+                      color: AppStyles.pinkColor,
+                    ),
                     onPressed: () {},
                   ),
                   obscureText: false,

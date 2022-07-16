@@ -26,6 +26,16 @@ class _SetupProfile1State extends State<SetupProfile1>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 30),
+        child: GradientBtn(
+          height: size.height / 14,
+          txt: "Next",
+          onTap: () {
+            onSubmitProfile1();
+          },
+        ),
+      ),
       appBar: AppBar(
         actions: [
           Padding(
@@ -110,7 +120,9 @@ class _SetupProfile1State extends State<SetupProfile1>
                           height: size.height / 16,
                           border: e.selected ? 3.r : 1.r,
                           borderRadius: 20.r,
-                          borderColor: AppStyles.pinkColor,
+                          borderColor: e.selected
+                              ? AppStyles.pinkColor
+                              : AppStyles.greyColor,
                           txt: e.name,
                           txtColor: AppStyles.blackColor,
                           onTap: () {
@@ -152,7 +164,9 @@ class _SetupProfile1State extends State<SetupProfile1>
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: selectedStatus.isEmpty ? 1.r : 3.r,
-                borderColor: AppStyles.pinkColor,
+                borderColor: selectedStatus.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.pinkColor,
                 txt: selectedStatus.isEmpty
                     ? "Select An Option"
                     : selectedStatus,
@@ -191,7 +205,9 @@ class _SetupProfile1State extends State<SetupProfile1>
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: selectedInterestedIn.isEmpty ? 1.r : 3.r,
-                borderColor: AppStyles.pinkColor,
+                borderColor: selectedInterestedIn.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.pinkColor,
                 txt: selectedInterestedIn.isEmpty
                     ? "Select An Option"
                     : selectedInterestedIn,
@@ -217,9 +233,13 @@ class _SetupProfile1State extends State<SetupProfile1>
                           height: size.height / 16,
                           border: e.selected ? 3.r : 1.r,
                           borderRadius: 20.r,
-                          borderColor: AppStyles.pinkColor,
+                          borderColor: e.selected
+                              ? AppStyles.pinkColor
+                              : AppStyles.greyColor,
                           txt: e.name,
-                          txtColor: AppStyles.blackColor,
+                          txtColor: e.selected
+                              ? AppStyles.blackColor
+                              : AppStyles.greyColor,
                           onTap: () {
                             onKidSubmit(e.name);
                             for (var tapped in isHaveKids) {
@@ -262,7 +282,9 @@ class _SetupProfile1State extends State<SetupProfile1>
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: selectedOccupation.isEmpty ? 1.r : 3.r,
-                borderColor: AppStyles.pinkColor,
+                borderColor: selectedOccupation.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.pinkColor,
                 txt: selectedOccupation.isEmpty
                     ? "Select An Option"
                     : selectedOccupation,
@@ -298,7 +320,9 @@ class _SetupProfile1State extends State<SetupProfile1>
                 borderRadius: 20.r,
                 height: size.height / 16,
                 border: selectedEyeColor.isEmpty ? 1.r : 3.r,
-                borderColor: AppStyles.pinkColor,
+                borderColor: selectedEyeColor.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.pinkColor,
                 txt: selectedEyeColor.isEmpty
                     ? "Select An Option"
                     : selectedEyeColor,
@@ -317,20 +341,22 @@ class _SetupProfile1State extends State<SetupProfile1>
                 height: size.height / 16,
                 txt: "Enter your lenght (cm)",
                 obscureText: false,
-                border: lengthController.text.isEmpty ? 1.r : 2.r,
-                borderColor: AppStyles.pinkColor,
+                border: lengthController.text.isEmpty ? 1.r : 3.r,
+                borderColor: lengthController.text.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.pinkColor,
                 borderRadius: 20.r,
                 textEditingController: lengthController,
               ),
-              SizedBox(height: 20.h),
-              GradientBtn(
-                height: size.height / 14,
-                txt: "Next",
-                onTap: () {
-                  onSubmitProfile1();
-                },
-              ),
-              SizedBox(height: 60.h),
+              SizedBox(height: 80.h),
+              // GradientBtn(
+              //   height: size.height / 14,
+              //   txt: "Next",
+              //   onTap: () {
+              //     onSubmitProfile1();
+              //   },
+              // ),
+              // SizedBox(height: 60.h),
             ],
           ),
         ),

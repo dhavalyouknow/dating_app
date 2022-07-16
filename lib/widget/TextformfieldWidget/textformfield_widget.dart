@@ -68,6 +68,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
             // contentPadding: EdgeInsets.only(left: 10.w, bottom: 30.h),
             suffixIcon: widget.backIcon,
             icon: widget.obSecure == true ? widget.icon : widget.icon,
+
             hintText: widget.txt,
 
             hintStyle: TextStyle(
