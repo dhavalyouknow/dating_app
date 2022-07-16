@@ -3,19 +3,41 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:google_place/google_place.dart';
 
 mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController surnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
-  final TextEditingController locationController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
   String selectedGender = '';
   bool tapped = false;
   // Icon selectedIcon;
 
   final formKey = GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
+  GooglePlace? googlePlace;
+  List<AutocompletePrediction> predictions = [];
+
+  @override
+  initState() {
+    super.initState();
+
+    googlePlace = GooglePlace('AIzaSyBMwCqpZMz7b-kN5Uz_UeYPNuN2lPyg1GM');
+  }
+
+  void autoCompleteSearch(String value) async {
+    print('**********');
+
+    var result = await googlePlace?.autocomplete.get(value);
+    print(result?.predictions);
+    if (result != null && result.predictions != null && mounted) {
+      setState(() {
+        predictions = result.predictions!;
+      });
+    }
+  }
 
   String? nameValidator(dynamic firstName) {
     if (firstName.isEmpty) {

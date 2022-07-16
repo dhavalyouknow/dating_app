@@ -231,12 +231,10 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
       print(dog.squareProfileImage?.map((e) => e.id).runtimeType);
       dog.squareProfileImage?.map((e) {
         print(e.id);
-        print('666');
+        print('121212121221');
         return Text('dfsd');
       });
-      print(user?.id);
-      print(addSquareProfileImage?.id);
-      print('66666666666666');
+
       BlocProvider.of<ImageUploadBloc>(context).add(
         UploadImage(
           image: circleImageFile!,
@@ -253,6 +251,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                   print(user?.dog?.first.circleProfileImage);
                   print(user?.id);
                   print('===$value');
+                  Navigator.pushReplacementNamed(context, '/MyPage');
                 },
               ),
             );

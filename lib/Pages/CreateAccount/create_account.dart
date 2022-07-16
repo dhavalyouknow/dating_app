@@ -1,3 +1,4 @@
+import 'package:country_state_city_picker/country_state_city_picker.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Dialog/SelectGender/select_gender.dart';
@@ -23,6 +24,9 @@ class _CreateAccountState extends State<CreateAccount>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    String countryValue;
+    String stateValue;
+    String cityValue;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -203,19 +207,124 @@ class _CreateAccountState extends State<CreateAccount>
                     )
                   ],
                 ),
-                TextFormFieldWidget(
-                  textEditingController: locationController,
-                  validator: locationValidator,
-                  borderRadius: 10,
-                  icon: IconButton(
-                    icon: const Icon(Icons.location_on_outlined),
-                    onPressed: () {},
+                Column(
+                  children: [
+                    SelectState(
+                      onCountryChanged: (value) {
+                        setState(() {
+                          countryValue = value;
+                        });
+                      },
+                      onStateChanged: (value) {
+                        setState(() {
+                          stateValue = value;
+                        });
+                      },
+                      onCityChanged: (value) {
+                        setState(() {
+                          cityValue = value;
+                        });
+                      },
+                    ),
+                    // InkWell(
+                    //   onTap:(){
+                    //     print('country selected is $countryValue');
+                    //     print('country selected is $stateValue');
+                    //     print('country selected is $cityValue');
+                    //   },
+                    //   child: Text(' Check')
+                    // )
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 18.h),
+                  child: Container(
+                    height: size.height / 14,
+                    padding: EdgeInsets.only(left: 10.w),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: AppStyles.whiteColor,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: AppStyles.pinkColor,
+                        width: locationController.text.isEmpty ? 1 : 2,
+                      ),
+                    ),
+                    child: TextFormField(
+                      onTap: () {},
+                      controller: locationController,
+                      validator: locationValidator,
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        // contentPadding: EdgeInsets.only(left: 10.w, bottom: 30.h),
+
+                        icon: IconButton(
+                          icon: const Icon(Icons.location_on_outlined),
+                          onPressed: () {},
+                        ),
+                        hintText: 'City',
+
+                        hintStyle: TextStyle(
+                          fontFamily: GoogleFonts.raleway(
+                            fontSize: 15.sp,
+                          ).fontFamily,
+                          color: AppStyles.textColor,
+                        ),
+                        border: InputBorder.none,
+                      ),
+                      onChanged: (value) {
+                        print(value);
+                        if (value.isNotEmpty) {
+                          autoCompleteSearch(value);
+                        } else {
+                          if (predictions.isNotEmpty && mounted) {
+                            setState(() {
+                              predictions = [];
+                              locationController.clear();
+                            });
+                          }
+                        }
+                      },
+                    ),
                   ),
-                  height: size.height / 14,
-                  txt: "City",
-                  obscureText: false,
-                  border: locationController.text.isEmpty ? 1 : 2,
-                  borderColor: AppStyles.pinkColor,
+                ),
+                ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.only(top: 10.r, left: 10.r, right: 10.r),
+                  shrinkWrap: true,
+                  itemCount: predictions.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      decoration: const BoxDecoration(
+                        color: AppStyles.whiteColor,
+                      ),
+                      child: ListTile(
+                        onTap: () {
+                          setState(() {
+                            locationController = TextEditingController(
+                              text: predictions[index].description,
+                            );
+                          });
+                        },
+                        leading: CircleAvatar(
+                          maxRadius: 15,
+                          minRadius: 15,
+                          backgroundColor: AppStyles.textColor,
+                          child: Icon(
+                            Icons.pin_drop,
+                            size: 15.sp,
+                            color: AppStyles.whiteColor,
+                          ),
+                        ),
+                        title: Text(
+                          predictions[index].description!,
+                          style: const TextStyle(
+                            color: AppStyles.blackColor,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(height: 110.h),
                 GradientBtn(
