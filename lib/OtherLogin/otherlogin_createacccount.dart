@@ -310,6 +310,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                               setState(
                                 () {
                                   cityValue = value;
+                                  locationController.text = cityValue!;
                                 },
                               );
                             },
@@ -317,97 +318,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 18.h),
-                      child: Container(
-                        height: size.height / 14,
-                        padding: EdgeInsets.only(left: 10.w),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: AppStyles.whiteColor,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            color: AppStyles.pinkColor,
-                            width: locationController.text.isEmpty ? 1 : 2,
-                          ),
-                        ),
-                        child: TextFormField(
-                          onTap: () {},
-                          controller: locationController,
-                          validator: locationValidator,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            // contentPadding: EdgeInsets.only(left: 10.w, bottom: 30.h),
-
-                            icon: IconButton(
-                              icon: const Icon(Icons.location_on_outlined),
-                              onPressed: () {},
-                            ),
-                            hintText: 'City',
-
-                            hintStyle: TextStyle(
-                              fontFamily: GoogleFonts.raleway(
-                                fontSize: 15.sp,
-                              ).fontFamily,
-                              color: AppStyles.textColor,
-                            ),
-                            border: InputBorder.none,
-                          ),
-                          onChanged: (value) {
-                            if (value.isNotEmpty) {
-                              autoCompleteSearch(value);
-                            } else {
-                              if (predictions.isNotEmpty && mounted) {
-                                setState(() {
-                                  predictions = [];
-                                  locationController.clear();
-                                });
-                              }
-                            }
-                          },
-                        ),
-                      ),
-                    ),
-                    ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      padding:
-                          EdgeInsets.only(top: 10.r, left: 10.r, right: 10.r),
-                      shrinkWrap: true,
-                      itemCount: predictions.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          decoration: const BoxDecoration(
-                            color: AppStyles.whiteColor,
-                          ),
-                          child: ListTile(
-                            onTap: () {
-                              setState(() {
-                                locationController = TextEditingController(
-                                  text: predictions[index].description,
-                                );
-                              });
-                            },
-                            leading: CircleAvatar(
-                              maxRadius: 15,
-                              minRadius: 15,
-                              backgroundColor: AppStyles.textColor,
-                              child: Icon(
-                                Icons.pin_drop,
-                                size: 15.sp,
-                                color: AppStyles.whiteColor,
-                              ),
-                            ),
-                            title: Text(
-                              predictions[index].description!,
-                              style: const TextStyle(
-                                color: AppStyles.blackColor,
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    SizedBox(height: 110.h),
+                    SizedBox(height: 20.h),
                     GradientBtn(
                       height: size.height / 14,
                       txt: "Next",

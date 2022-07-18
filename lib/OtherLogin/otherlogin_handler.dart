@@ -4,7 +4,6 @@ import 'package:dating_app/Model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:google_place/google_place.dart';
 
 mixin OtherLoginHandlers<T extends StatefulWidget> on State<T> {
   TextEditingController nameController = TextEditingController();
@@ -16,30 +15,12 @@ mixin OtherLoginHandlers<T extends StatefulWidget> on State<T> {
   bool tapped = false;
   final formKey = GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
-  GooglePlace? googlePlace;
-  List<AutocompletePrediction> predictions = [];
   User? user;
   String countryValue = '';
   String? stateValue;
   String? cityValue;
 
-  @override
-  initState() {
-    super.initState();
-    googlePlace = GooglePlace('AIzaSyBMwCqpZMz7b-kN5Uz_UeYPNuN2lPyg1GM');
-  }
 
-  void autoCompleteSearch(String value) async {
-    print('**********');
-
-    var result = await googlePlace?.autocomplete.get(value);
-    print(result?.predictions);
-    if (result != null && result.predictions != null && mounted) {
-      setState(() {
-        predictions = result.predictions!;
-      });
-    }
-  }
 
   String? nameValidator(dynamic firstName) {
     if (firstName.isEmpty) {

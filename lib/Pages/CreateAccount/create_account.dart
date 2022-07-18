@@ -1,10 +1,9 @@
-import 'package:country_state_city_picker/country_state_city_picker.dart';
+
 import 'package:csc_picker/csc_picker.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Dialog/SelectGender/select_gender.dart';
 import 'package:dating_app/Pages/CreateAccount/create_account_handler.dart';
-import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:dating_app/widget/Button/gender_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
