@@ -155,10 +155,14 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
     String? fcmToken = await FirebaseMessaging.instance.getToken();
     print('fcmToken ==> $fcmToken');
 
+    print('00000000000');
+
     final res = await fbLogin.logIn(permissions: [
       FacebookPermission.publicProfile,
       FacebookPermission.email,
     ]);
+    print(res.status);
+    print('111111111111111');
     switch (res.status) {
       case FacebookLoginStatus.success:
         // Logged in
@@ -192,10 +196,13 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
       case FacebookLoginStatus.cancel:
         // User cancel log in
         Fluttertoast.showToast(msg: '${FacebookLoginStatus.cancel}');
+        print('*****4444444444444444');
         break;
       case FacebookLoginStatus.error:
         // Log in failed
         Fluttertoast.showToast(msg: '${res.error}');
+        print(res.error);
+        print('*******************');
         break;
     }
   }

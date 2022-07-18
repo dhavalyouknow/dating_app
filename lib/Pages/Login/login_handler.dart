@@ -92,7 +92,9 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
     final res = await fbLogin.logIn(permissions: [
       FacebookPermission.publicProfile,
       FacebookPermission.email,
+      FacebookPermission.userFriends
     ]);
+    print(res.status);
     switch (res.status) {
       case FacebookLoginStatus.success:
         // Logged in
@@ -129,6 +131,8 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
         break;
       case FacebookLoginStatus.error:
         // Log in failed
+        print(res.error);
+        print('***********************');
         Fluttertoast.showToast(msg: '${res.error}');
         break;
     }
