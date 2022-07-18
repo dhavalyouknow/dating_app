@@ -1,6 +1,5 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Pages/Login/login_handler.dart';
-import 'package:dating_app/widget/Button/google_btn.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
@@ -23,7 +22,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
     return Scaffold(
       backgroundColor: AppStyles.primaryColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 0.h),
         child: SingleChildScrollView(
           child: Form(
             key: formKey,
@@ -32,7 +31,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                    top: 100.h,
+                    top: 50.h,
                     left: 40.w,
                     right: 40.w,
                     bottom: 30.h,
@@ -117,8 +116,8 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                   padding: EdgeInsets.only(top: 8.h),
                   child: GradientBtn(
                     height: size.height / 14,
-                    txt: "Slog out",
-                    onTap: logOut,
+                    txt: "Sign in with Facebook",
+                    onTap: signInWithFacebook,
                   ),
                 ),
                 Row(

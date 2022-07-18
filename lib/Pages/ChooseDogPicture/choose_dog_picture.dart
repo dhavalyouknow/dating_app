@@ -168,18 +168,6 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
                             ],
                           ),
                         ),
-<<<<<<< Updated upstream
-                  // SizedBox(height: 200.h),
-                  // GradientBtn(
-                  //   height: size.height / 14,
-                  //   txt: "Next",
-                  //   onTap: () {
-                  //     if (imageFile != null) {
-                  //       Navigator.pushReplacementNamed(context, '/MyPage');
-                  //     }
-                  //   },
-                  // )
-=======
                   SizedBox(height: 200.h),
                   GradientBtn(
                     height: size.height / 14,
@@ -192,7 +180,6 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
                       }
                     },
                   )
->>>>>>> Stashed changes
                 ],
               ),
             ),

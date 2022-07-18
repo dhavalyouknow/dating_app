@@ -94,17 +94,45 @@ class LoginWithGoogle extends AuthEvent {
   final String email;
   final String googleId;
   final String pushToken;
-  final UserBloc userBloc;
+
+  //headertoken
+  final String fcmtoken;
   final Function(User) onSuccess;
+
   const LoginWithGoogle({
     required this.email,
     required this.googleId,
     required this.pushToken,
-    required this.userBloc,
+    required this.fcmtoken,
     required this.onSuccess,
   });
 
   @override
   // TODO: implement props
   List<Object?> get props => [];
+}
+
+class LoginWithFacebook extends AuthEvent {
+  final String email;
+  final String facebookId;
+  final String pushToken;
+  final String headerToken;
+  final Function(User) onSuccess;
+
+  const LoginWithFacebook({
+    required this.email,
+    required this.facebookId,
+    required this.pushToken,
+    required this.headerToken,
+    required this.onSuccess,
+  });
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+        email,
+        facebookId,
+        pushToken,
+        headerToken,
+      ];
 }

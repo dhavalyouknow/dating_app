@@ -10,4 +10,5 @@ class ApiEndPoints {
   static const String uploadImage = '$baseUrl/image';
   static const String swipe = '$baseUrl/user/swiper';
   static const String loginWithGoogle = '$baseUrl/auth/login_with_google';
+  static const String loginWithFacebook = '$baseUrl/auth/login_with_fb';
 }

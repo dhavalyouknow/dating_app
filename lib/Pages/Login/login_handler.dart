@@ -1,11 +1,12 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Model/user.dart';
-import 'package:flutter/foundation.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 
 mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController emailController =
@@ -15,6 +16,7 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   int index = 0;
   bool signUpPwd = true;
   final formKey = GlobalKey<FormState>();
+  final fbLogin = FacebookLogin();
 
   String? emailValidator(dynamic email) {
     if (email.isEmpty) {
@@ -42,9 +44,6 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
           password: passwordController.text,
           pushToken: '222222',
           success: (User user) {
-            if (kDebugMode) {
-              print('**************success********');
-            }
             BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
             Navigator.pushNamed(context, "/MyPage");
           },
@@ -54,40 +53,89 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   }
 
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
-  // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   signInWithGoogle() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var pushToken = prefs.getString('pushToken');
-    print('********');
-    print(pushToken);
-    bool isLoggedIn = await _googleSignIn.isSignedIn().catchError((error) {
-      print("error in getting flag");
-      print(error);
-      return true;
-    });
+    String? fcmToken = await FirebaseMessaging.instance.getToken();
+    print('fcmToken ==> $fcmToken');
     GoogleSignInAccount? value = await _googleSignIn.signIn();
     if (value != null) {
       var val = await value.authentication;
-      print(value.id);
-      print(value.authHeaders);
+
       Future.delayed(
         const Duration(seconds: 0),
         () {
-          print('11111');
           BlocProvider.of<AuthBloc>(context).add(
             LoginWithGoogle(
-                email: value.email,
-                googleId: value.id,
-                pushToken: val.idToken!,
-                userBloc: BlocProvider.of<UserBloc>(context),
-                onSuccess: (User user) {
-                  print('**************$user');
-                }),
+              email: value.email,
+              googleId: value.id,
+              pushToken: fcmToken!,
+              //for header
+              fcmtoken: val.idToken!,
+              onSuccess: (User user) {
+                BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+                Navigator.pushReplacementNamed(
+                  context,
+                  '/MyPage',
+                );
+              },
+            ),
           );
         },
       );
     }
+  }
+
+  Future signInWithFacebook() async {
+    String? fcmToken = await FirebaseMessaging.instance.getToken();
+    print('fcmToken ==> $fcmToken');
+
+    final res = await fbLogin.logIn(permissions: [
+      FacebookPermission.publicProfile,
+      FacebookPermission.email,
+    ]);
+    switch (res.status) {
+      case FacebookLoginStatus.success:
+        // Logged in
+        // Send access token to server for validation and auth
+        final FacebookAccessToken? accessToken = res.accessToken;
+        final profile = await fbLogin.getUserProfile();
+        final email = await fbLogin.getUserEmail();
+        Future.delayed(
+          const Duration(seconds: 0),
+          () {
+            BlocProvider.of<AuthBloc>(context).add(
+              LoginWithFacebook(
+                email: email!,
+                facebookId: profile!.userId,
+                pushToken: fcmToken!,
+                headerToken: accessToken!.token,
+                onSuccess: (User user) {
+                  print('*****$user****');
+                  BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/MyPage',
+                  );
+                },
+              ),
+            );
+          },
+        );
+
+        break;
+      case FacebookLoginStatus.cancel:
+        // User cancel log in
+        Fluttertoast.showToast(msg: '${FacebookLoginStatus.cancel}');
+        break;
+      case FacebookLoginStatus.error:
+        // Log in failed
+        Fluttertoast.showToast(msg: '${res.error}');
+        break;
+    }
+  }
+
+  signOutFacebook() async {
+    fbLogin.logOut();
   }
 
   logOut() async {

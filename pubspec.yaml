@@ -52,10 +52,11 @@ dependencies:
   cached_network_image: ^3.2.1
   google_place: ^0.4.7
   country_state_city_picker: ^1.2.8
-  firebase_core: ^1.19.2
-  firebase_auth: ^3.4.2
+  csc_picker: ^0.2.6
   google_sign_in: ^5.4.0
   firebase_messaging: ^12.0.0
+  firebase_core: ^1.19.2
+  flutter_login_facebook: ^1.5.0+1
 
 dev_dependencies:
   flutter_test:

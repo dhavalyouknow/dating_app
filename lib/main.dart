@@ -20,9 +20,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  String? fcmToken = await FirebaseMessaging.instance.getToken();
-  print('fcmToken ==> $fcmToken');
-  prefs.setString('pushToken', fcmToken!);
+
   runApp(MyApp(
     token: token,
   ));

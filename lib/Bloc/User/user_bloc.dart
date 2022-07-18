@@ -6,6 +6,7 @@ import 'package:dating_app/Model/user.dart';
 import 'package:equatable/equatable.dart';
 
 part 'user_event.dart';
+
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
@@ -15,16 +16,25 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
     on<SetUser>(_onSetUser);
     on<SetUserInitial>(_serUserInitial);
   }
+
   _serUserInitial(SetUserInitial event, Emitter<UserState> emit) {
     emit(state.copyWith(status: UserStatus.initial));
   }
 
   _onUpdateUserEvent(UpdateUserEvent event, Emitter<UserState> emit) async {
     try {
-      print('object');
       Map<String, dynamic> payload = event.user.toJson();
       payload.removeWhere((key, value) =>
-          value == null || key == "_id" || key == "email" || key == "userType");
+          value == null ||
+          key == "_id" ||
+          key == "email" ||
+          key == "userType" ||
+          key == "googleId" ||
+          key == "googleLogin" ||
+          key == "facebookId" ||
+          key == "facebookLogin" ||
+          key == "appleId" ||
+          key == "appleLogin");
       var resp = await patch(
           url: '${ApiEndPoints.updateUser}${event.user.id}', body: payload);
       print('payload ===> $payload');

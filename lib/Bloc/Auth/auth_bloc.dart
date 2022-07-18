@@ -23,6 +23,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     on<SessionRequest>(_onSessionRequest);
     on<SetLoginInitial>(_onLoginInitial);
     on<LoginWithGoogle>(_onLoginWithGoogle);
+    on<LoginWithFacebook>(_onLoginWithFacebook);
   }
 
   Future<void> _onLoginInitial(
@@ -202,7 +203,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
   }
 
   Future<void> _onSessionRequest(
-      SessionRequest event, Emitter<AuthState> emit) async {
+    SessionRequest event,
+    Emitter<AuthState> emit,
+  ) async {
     try {
       var res = await get(url: ApiEndPoints.getUser);
       print(ApiEndPoints.getUser);
@@ -251,6 +254,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
   Future<void> _onLoginWithGoogle(
       LoginWithGoogle event, Emitter<AuthState> emit) async {
     try {
+      emit(state.copyWith(status: AuthStatus.loading));
       var resp = await post(
         url: ApiEndPoints.loginWithGoogle,
         body: {
@@ -259,7 +263,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           "pushToken": event.pushToken,
         },
         customHeader: {
-          "Google-Id-Token": event.pushToken,
+          "Google-Id-Token": event.fcmtoken,
         },
       );
       if (resp != null) {
@@ -272,14 +276,62 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           event.onSuccess(user);
           print(resp.statusCode);
           print(resp.body);
+          emit(state.copyWith(
+              status: AuthStatus.loginSuccess, user: User.fromJson(data)));
         } else {
           print(resp.body);
           print(resp.statusCode);
+          emit(state.copyWith(status: AuthStatus.loginFailure));
         }
-      } else {}
+      } else {
+        emit(state.copyWith(status: AuthStatus.loginFailure));
+      }
     } catch (e) {
       print(e);
       print('-----login with google');
+      emit(state.copyWith(status: AuthStatus.loginFailure));
+    }
+  }
+
+  Future<void> _onLoginWithFacebook(
+      LoginWithFacebook event, Emitter<AuthState> emit) async {
+    try {
+      emit(state.copyWith(status: AuthStatus.loading));
+      var resp = await post(
+        url: ApiEndPoints.loginWithFacebook,
+        body: {
+          "email": event.email,
+          "facebookId": event.facebookId,
+          "pushToken": event.pushToken,
+        },
+        customHeader: {
+          "fb-id-token": event.headerToken,
+        },
+      );
+      if (resp != null) {
+        if (resp.statusCode == 200) {
+          var _token = resp.headers["x-auth-token"];
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('auth_token', _token!);
+          Map<String, dynamic> data = jsonDecode(resp.body);
+          User user = User.fromJson(data);
+          event.onSuccess(user);
+          print(resp.body);
+          print(resp.statusCode);
+          emit(state.copyWith(
+              status: AuthStatus.loginSuccess, user: User.fromJson(data)));
+        } else {
+          print(resp.body);
+          print(resp.statusCode);
+          emit(state.copyWith(status: AuthStatus.loginFailure));
+        }
+      } else {
+        emit(state.copyWith(status: AuthStatus.loginFailure));
+      }
+    } catch (e) {
+      print(e);
+      print('login-with-facebook');
+      emit(state.copyWith(status: AuthStatus.loginFailure));
     }
   }
 }

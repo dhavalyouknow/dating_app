@@ -1,6 +1,7 @@
 import 'package:dating_app/Dialog/ImInterestedIn/im_interested_in.dart';
 import 'package:dating_app/Dialog/Match/matching.dart';
 import 'package:dating_app/Dialog/UpgradeToPremium/upgrade_to_premium.dart';
+import 'package:dating_app/OtherLogin/otherlogin_createacccount.dart';
 import 'package:dating_app/Pages/About/about.dart';
 import 'package:dating_app/Pages/AddYourDog/add_your_dog.dart';
 import 'package:dating_app/Pages/AddYourDog/add_your_dog_dialog.dart';
@@ -65,6 +66,7 @@ Map<String, WidgetBuilder> routes = {
   '/EditPersonProfile': (ctx) => const EditPersonProfile(),
   '/DogPublicProfile': (ctx) => const DogPublicProfile(),
   '/PersonPublicProfile': (ctx) => const PersonPublicProfile(),
+  '/OtherLoginCreateAccount': (ctx) => const OtherLoginCreateAccount(),
   LoginPage.routeName: (ctx) => const LoginPage(
         key: Key('/LoginPage'),
       ),

@@ -28,6 +28,16 @@ class User {
     this.activity,
     this.aboutSelf,
     this.dog,
+    this.googleId,
+    this.googleLogin,
+    this.facebookId,
+    this.facebookLogin,
+    this.appleId,
+    this.appleLogin,
+    this.lat,
+    this.long,
+    this.searchDistance,
+    this.searchDistanceType,
   });
 
   String? id;
@@ -55,6 +65,16 @@ class User {
   List<dynamic>? activity;
   String? aboutSelf;
   List<Dog>? dog;
+  String? googleId;
+  bool? googleLogin;
+  String? facebookId;
+  bool? facebookLogin;
+  String? appleId;
+  bool? appleLogin;
+  int? lat;
+  int? long;
+  int? searchDistance;
+  String? searchDistanceType;
 
   User copyWith({
     String? id,
@@ -82,6 +102,16 @@ class User {
     List<dynamic>? activity,
     String? aboutSelf,
     List<Dog>? dog,
+    String? googleId,
+    bool? googleLogin,
+    String? facebookId,
+    bool? facebookLogin,
+    String? appleId,
+    bool? appleLogin,
+    int? lat,
+    int? long,
+    int? searchDistance,
+    String? searchDistanceType,
   }) {
     return User(
       id: id ?? this.id,
@@ -109,6 +139,16 @@ class User {
       aboutSelf: aboutSelf ?? this.aboutSelf,
       dog: dog ?? this.dog,
       haveKids: haveKids ?? this.haveKids,
+      googleId: googleId ?? this.googleId,
+      googleLogin: googleLogin ?? this.googleLogin,
+      facebookId: facebookId ?? this.facebookId,
+      facebookLogin: facebookLogin ?? this.facebookLogin,
+      appleId: appleId ?? this.appleId,
+      appleLogin: appleLogin ?? this.appleLogin,
+      lat: lat ?? this.lat,
+      long: long ?? this.long,
+      searchDistance: searchDistance ?? this.searchDistance,
+      searchDistanceType: searchDistanceType ?? this.searchDistanceType,
     );
   }
 
@@ -121,7 +161,7 @@ class User {
       isPro: json["isPro"] ?? false,
       isEmailVerified: json["isEmailVerified"] ?? false,
       gender: json["gender"] ?? "",
-      dob: DateTime.parse(json["dob"]),
+      dob: json["dob"] != null ? DateTime.parse(json["dob"]) : null,
       city: json["city"] ?? "",
       searchingFor: List<dynamic>.from(json["searchingFor"].map((x) => x)),
       squareProfileImage: List<SquareProfileImage>.from(
@@ -136,13 +176,23 @@ class User {
       interestedIn: json["interestedIn"] ?? "",
       occupation: json["occupation"] ?? "",
       eyeColor: json["eyeColor"] ?? "",
-      length: json["length"] ?? "",
+      length: json["length"],
       haveKids: json["haveKids"] ?? false,
       interests: List<dynamic>.from(json["interests"].map((x) => x)),
       favouriteNight: List<dynamic>.from(json["favouriteNight"].map((x) => x)),
       activity: List<dynamic>.from(json["activity"].map((x) => x)),
       aboutSelf: json["aboutSelf"] ?? "",
       dog: List<Dog>.from(json["dog"].map((x) => Dog.fromJson(x))),
+      googleId: json["googleId"] ?? "",
+      googleLogin: json["googleLogin"] ?? false,
+      facebookId: json["facebookId"] ?? "",
+      facebookLogin: json["facebookLogin"] ?? false,
+      appleId: json["appleId"] ?? "",
+      appleLogin: json["appleLogin"] ?? false,
+      lat: json["last"],
+      long: json["long"],
+      searchDistance: json["searchDistance"],
+      searchDistanceType: json["searchDistanceType"] ?? "",
     );
   }
 
@@ -172,5 +222,15 @@ class User {
         "aboutSelf": aboutSelf,
         "haveKids": haveKids,
         "dog": List<Dog>.from(dog!.map((x) => x.toJson())),
+        "googleId": googleId,
+        "googleLogin": googleLogin,
+        "facebookId": facebookId,
+        "facebookLogin": facebookLogin,
+        "appleId": appleId,
+        "appleLogin": appleLogin,
+        "lat": lat,
+        "long": long,
+        "searchDistance": searchDistance,
+        "searchDistanceType": searchDistanceType,
       };
 }
