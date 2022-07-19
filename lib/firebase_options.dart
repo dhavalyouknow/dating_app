@@ -48,7 +48,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDBv2_KArLuBoGMMKzqeI4YpKpeC6SUUlw',
-    appId: '1:473209005427:android:995952d55472d4e46c1106',
+    appId: '1:473209005427:android:24127f35a6aee9dc6c1106',
     messagingSenderId: '473209005427',
     projectId: 'testing-analyti',
     storageBucket: 'testing-analyti.appspot.com',
@@ -56,21 +56,23 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyADY6onS5MIZn5rAANmhHgRDP2f_wCzDB0',
-    appId: '1:473209005427:ios:474a1edc5ae869986c1106',
+    appId: '1:473209005427:ios:94baf2f37e1331096c1106',
     messagingSenderId: '473209005427',
     projectId: 'testing-analyti',
     storageBucket: 'testing-analyti.appspot.com',
-    iosClientId: '473209005427-cvicuobtmr1rvppi5tb43oh20ata7hc8.apps.googleusercontent.com',
-    iosBundleId: 'com.example.datingApp',
+    androidClientId: '473209005427-5nqqeeg5c7r7ce8gjiq2csff4373iu7q.apps.googleusercontent.com',
+    iosClientId: '473209005427-9u1anrmp1ld4e2583mn6a5q29aksn38b.apps.googleusercontent.com',
+    iosBundleId: 'com.example.datingApp1111',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyADY6onS5MIZn5rAANmhHgRDP2f_wCzDB0',
-    appId: '1:473209005427:ios:474a1edc5ae869986c1106',
+    appId: '1:473209005427:ios:9f15cf2b3bbdff576c1106',
     messagingSenderId: '473209005427',
     projectId: 'testing-analyti',
     storageBucket: 'testing-analyti.appspot.com',
-    iosClientId: '473209005427-cvicuobtmr1rvppi5tb43oh20ata7hc8.apps.googleusercontent.com',
-    iosBundleId: 'com.example.datingApp',
+    androidClientId: '473209005427-5nqqeeg5c7r7ce8gjiq2csff4373iu7q.apps.googleusercontent.com',
+    iosClientId: '473209005427-adn0o22jctc03f407s8gb6q44uggqjsu.apps.googleusercontent.com',
+    iosBundleId: 'com.example.datingApp11',
   );
 }

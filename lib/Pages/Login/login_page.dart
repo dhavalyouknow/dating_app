@@ -4,6 +4,7 @@ import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart'
 import 'package:flutter/material.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/LoginPage';
@@ -120,6 +121,25 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                     onTap: signInWithFacebook,
                   ),
                 ),
+                SignInWithAppleButton(
+                  onPressed: () async {
+                    final credential =
+                        await SignInWithApple.getAppleIDCredential(
+                      scopes: [
+                        AppleIDAuthorizationScopes.email,
+                        AppleIDAuthorizationScopes.fullName,
+                      ],
+                    );
+                    print(credential);
+                    print('***********');
+                  },
+                ),
+                // SignInWithAppleButton(
+                //   onPressed: () async {
+                //     final credential = await SignInWithApple.print(credential);
+                //     print('***********');
+                //   },
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

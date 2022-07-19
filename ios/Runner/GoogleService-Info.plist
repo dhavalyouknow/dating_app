@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>473209005427-cvicuobtmr1rvppi5tb43oh20ata7hc8.apps.googleusercontent.com</string>
+	<string>473209005427-adn0o22jctc03f407s8gb6q44uggqjsu.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.473209005427-cvicuobtmr1rvppi5tb43oh20ata7hc8</string>
+	<string>com.googleusercontent.apps.473209005427-adn0o22jctc03f407s8gb6q44uggqjsu</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>473209005427-5nqqeeg5c7r7ce8gjiq2csff4373iu7q.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyADY6onS5MIZn5rAANmhHgRDP2f_wCzDB0</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.datingApp</string>
+	<string>com.example.datingApp11</string>
 	<key>PROJECT_ID</key>
 	<string>testing-analyti</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:473209005427:ios:474a1edc5ae869986c1106</string>
+	<string>1:473209005427:ios:9f15cf2b3bbdff576c1106</string>
 </dict>
 </plist>

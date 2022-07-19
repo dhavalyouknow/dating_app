@@ -138,6 +138,8 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
     }
   }
 
+  Future signInWithApple() async {}
+
   signOutFacebook() async {
     fbLogin.logOut();
   }
