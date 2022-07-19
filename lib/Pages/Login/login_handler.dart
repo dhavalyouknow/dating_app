@@ -92,8 +92,8 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
     final res = await fbLogin.logIn(permissions: [
       FacebookPermission.publicProfile,
       FacebookPermission.email,
-      FacebookPermission.userFriends
     ]);
+    print('00000000');
     print(res.status);
     switch (res.status) {
       case FacebookLoginStatus.success:
