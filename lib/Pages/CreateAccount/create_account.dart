@@ -1,4 +1,3 @@
-
 import 'package:csc_picker/csc_picker.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
@@ -290,7 +289,7 @@ class _CreateAccountState extends State<CreateAccount>
                         onCityChanged: (value) {
                           setState(() {
                             cityValue = value;
-                            locationController.text = cityValue!;
+                            locationController.text = cityValue.toString();
                           });
                         },
                       ),
