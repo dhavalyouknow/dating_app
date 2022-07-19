@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "473209005427-q2ti57mhq21ca790lh63j68r6vtck16c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.datingApp",
+            "certificate_hash": "66e1748480c07f09ba653d71dac4b6efb5f810fe"
+          }
+        },
+        {
           "client_id": "473209005427-dnrcbcaq05acis17pg2stpq85r9mm8sj.apps.googleusercontent.com",
           "client_type": 3
         }
