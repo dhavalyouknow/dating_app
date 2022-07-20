@@ -136,3 +136,28 @@ class LoginWithFacebook extends AuthEvent {
         headerToken,
       ];
 }
+
+class LoginWithApple extends AuthEvent {
+  final String email;
+  final String appleId;
+  final String pushToken;
+  final String headerToken;
+  final Function(User) onSuccess;
+
+  const LoginWithApple({
+    required this.email,
+    required this.appleId,
+    required this.pushToken,
+    required this.headerToken,
+    required this.onSuccess,
+  });
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+        email,
+        appleId,
+        pushToken,
+        headerToken,
+      ];
+}

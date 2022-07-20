@@ -11,4 +11,5 @@ class ApiEndPoints {
   static const String swipe = '$baseUrl/user/swiper';
   static const String loginWithGoogle = '$baseUrl/auth/login_with_google';
   static const String loginWithFacebook = '$baseUrl/auth/login_with_fb';
+  static const String loginWithApple = '$baseUrl/auth/login_with_apple';
 }

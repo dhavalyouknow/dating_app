@@ -24,6 +24,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     on<SetLoginInitial>(_onLoginInitial);
     on<LoginWithGoogle>(_onLoginWithGoogle);
     on<LoginWithFacebook>(_onLoginWithFacebook);
+    on<LoginWithApple>(_onLoginWithApple);
   }
 
   Future<void> _onLoginInitial(
@@ -91,15 +92,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           Map<String, dynamic> data = jsonDecode(resp.body);
           var token = resp.headers["x-auth-token"];
           var id = data["_id"];
-
-          if (kDebugMode) {
-            print('=1=1=1=1=1=1=1');
-            print(token);
-            print(resp.headers["x-auth-token"]);
-            print(id);
-            print('=1=1=1=1=1=1=1');
-          }
-
           SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setString('auth_token', token!);
           prefs.setString('user_id', id);
@@ -167,7 +159,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           prefs.setString('user_id', id);
 
           User user = User.fromJson(data);
-          print('Bloc.Auth.user ===> $user');
           event.success(user);
           Fluttertoast.showToast(msg: 'Login Successfully');
           emit(
@@ -332,6 +323,39 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
       print(e);
       print('login-with-facebook');
       emit(state.copyWith(status: AuthStatus.loginFailure));
+    }
+  }
+
+  Future<void> _onLoginWithApple(
+      LoginWithApple event, Emitter<AuthState> emit) async {
+    try {
+      var resp = await post(
+        url: ApiEndPoints.loginWithApple,
+        body: {
+          "email": event.email,
+          "appleId": event.appleId,
+          "pushToken": event.pushToken
+        },
+        customHeader: {
+          "apple-id-token": event.headerToken,
+        },
+      );
+      if (resp != null) {
+        if (resp.statusCode == 200) {
+          print(resp.body);
+          print(resp.statusCode);
+        } else {
+          if (resp.statusCode == 500) {
+            Fluttertoast.showToast(
+                msg: "Something happened wrong try again after sometime.");
+          }
+          print(resp.body);
+          print(resp.statusCode);
+        }
+      } else {}
+    } catch (e) {
+      print(e);
+      print('-----login-with-apple-----');
     }
   }
 }

@@ -121,25 +121,12 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                     onTap: signInWithFacebook,
                   ),
                 ),
-                SignInWithAppleButton(
-                  onPressed: () async {
-                    final credential =
-                        await SignInWithApple.getAppleIDCredential(
-                      scopes: [
-                        AppleIDAuthorizationScopes.email,
-                        AppleIDAuthorizationScopes.fullName,
-                      ],
-                    );
-                    print(credential);
-                    print('***********');
-                  },
+                Padding(
+                  padding: EdgeInsets.only(top: 8.h),
+                  child: SignInWithAppleButton(
+                    onPressed: signInWithApple,
+                  ),
                 ),
-                // SignInWithAppleButton(
-                //   onPressed: () async {
-                //     final credential = await SignInWithApple.print(credential);
-                //     print('***********');
-                //   },
-                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

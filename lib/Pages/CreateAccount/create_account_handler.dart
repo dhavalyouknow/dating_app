@@ -9,6 +9,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController nameController = TextEditingController();
@@ -122,7 +123,6 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
 
   signInWithGoogle() async {
     String? fcmToken = await FirebaseMessaging.instance.getToken();
-    print('fcmToken ==> $fcmToken');
     GoogleSignInAccount? value = await _googleSignIn.signIn();
     if (value != null) {
       var val = await value.authentication;
@@ -137,13 +137,7 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
               pushToken: fcmToken!,
               //for header
               fcmtoken: val.idToken!,
-              onSuccess: (User user) {
-                BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-                Navigator.pushReplacementNamed(
-                  context,
-                  '/OtherLoginCreateAccount',
-                );
-              },
+              onSuccess: onSignUpSuccess,
             ),
           );
         },
@@ -153,16 +147,10 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
 
   Future signInWithFacebook() async {
     String? fcmToken = await FirebaseMessaging.instance.getToken();
-    print('fcmToken ==> $fcmToken');
-
-    print('00000000000');
-
     final res = await fbLogin.logIn(permissions: [
       FacebookPermission.publicProfile,
       FacebookPermission.email,
     ]);
-    print(res.status);
-    print('111111111111111');
     switch (res.status) {
       case FacebookLoginStatus.success:
         // Logged in
@@ -179,14 +167,7 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
                 facebookId: profile!.userId,
                 pushToken: fcmToken!,
                 headerToken: accessToken!.token,
-                onSuccess: (User user) {
-                  print('*****$user****');
-                  BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-                  Navigator.pushReplacementNamed(
-                    context,
-                    '/OtherLoginCreateAccount',
-                  );
-                },
+                onSuccess: onSignUpSuccess,
               ),
             );
           },
@@ -196,14 +177,45 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
       case FacebookLoginStatus.cancel:
         // User cancel log in
         Fluttertoast.showToast(msg: '${FacebookLoginStatus.cancel}');
-        print('*****4444444444444444');
         break;
       case FacebookLoginStatus.error:
         // Log in failed
         Fluttertoast.showToast(msg: '${res.error}');
-        print(res.error);
-        print('*******************');
         break;
     }
+  }
+
+  Future signInWithApple() async {
+    String? fcmToken = await FirebaseMessaging.instance.getToken();
+
+    final credential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+    );
+
+    Future.delayed(
+      const Duration(seconds: 0),
+      () {
+        BlocProvider.of<AuthBloc>(context).add(
+          LoginWithApple(
+            email: credential.email ?? "",
+            appleId: credential.authorizationCode,
+            pushToken: fcmToken!,
+            headerToken: credential.identityToken!,
+            onSuccess: onSignUpSuccess,
+          ),
+        );
+      },
+    );
+  }
+
+  onSignUpSuccess(User user) {
+    BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+    Navigator.pushReplacementNamed(
+      context,
+      '/OtherLoginCreateAccount',
+    );
   }
 }

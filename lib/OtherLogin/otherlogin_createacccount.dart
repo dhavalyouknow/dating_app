@@ -7,6 +7,7 @@ import 'package:dating_app/OtherLogin/otherlogin_handler.dart';
 import 'package:dating_app/widget/Button/gender_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
+import 'package:dating_app/widget/locationPicker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -246,77 +247,17 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                         )
                       ],
                     ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 15),
-                          child: CSCPicker(
-                            showStates: true,
-                            showCities: true,
-                            flagState: CountryFlag.ENABLE,
-                            dropdownDecoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                              color: Colors.white,
-                              border: Border.all(
-                                color: Colors.grey.shade300,
-                                width: 1,
-                              ),
-                            ),
-                            disabledDropdownDecoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                              color: Colors.white,
-                              border: Border.all(
-                                color: Colors.grey.shade300,
-                                width: 1,
-                              ),
-                            ),
-                            countrySearchPlaceholder: "Country",
-                            stateSearchPlaceholder: "State",
-                            citySearchPlaceholder: "City",
-                            countryDropdownLabel: countryValue.isNotEmpty
-                                ? countryValue
-                                : "Select Country",
-                            stateDropdownLabel: "Select State",
-                            cityDropdownLabel: "Select City",
-                            selectedItemStyle: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                            ),
-                            dropdownHeadingStyle: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            dropdownItemStyle: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                            ),
-                            dropdownDialogRadius: 20.0,
-                            searchBarRadius: 20.0,
-                            onCountryChanged: (value) {
-                              setState(() {
-                                countryValue = value;
-                              });
-                            },
-                            onStateChanged: (value) {
-                              setState(() {
-                                stateValue = value;
-                              });
-                            },
-                            onCityChanged: (value) {
-                              setState(
-                                () {
-                                  cityValue = value;
-                                  locationController.text = cityValue!;
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                      ],
+                    LocationPicker(
+                      countryCallback: (countryName) {
+                        countryValue = countryName;
+                      },
+                      stateCallback: (stateName) {
+                        stateValue = stateName;
+                      },
+                      cityCallback: (cityName) {
+                        cityValue = cityName;
+                        locationController.text = cityName;
+                      },
                     ),
                     SizedBox(height: 20.h),
                     GradientBtn(
