@@ -1,4 +1,5 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
+import 'package:dating_app/Bloc/ChangePassword/change_password_bloc.dart';
 import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
 import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
@@ -28,7 +29,9 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final String? token;
+
   const MyApp({Key? key, required this.token}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -51,6 +54,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<SwipeBloc>(
           create: (BuildContext context) => SwipeBloc(),
+          lazy: true,
+        ),
+        BlocProvider<ChangePasswordBloc>(
+          create: (BuildContext context) => ChangePasswordBloc(),
           lazy: true,
         ),
       ],

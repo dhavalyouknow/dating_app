@@ -75,6 +75,9 @@ class _SettingsState extends State<Settings> with SettingHandlers {
               ),
               const Divider(),
               ListTile(
+                onTap: () {
+                  Navigator.pushNamed(context, '/ResetPassword');
+                },
                 leading: const Icon(
                   Icons.lock_outline,
                   color: AppStyles.greyColor,

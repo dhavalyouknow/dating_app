@@ -265,7 +265,10 @@ class _CreateAccountState extends State<CreateAccount>
                     FaceBookBtnWidget(
                       onPressed: signInWithFacebook,
                       title: 'Sign in with Facebook',
-                      image: Image.asset('assets/icons/google.png'),
+                      image: Image.asset(
+                        'assets/icons/facebook.png',
+                        height: 18.h,
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 8.h),

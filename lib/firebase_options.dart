@@ -60,9 +60,11 @@ class DefaultFirebaseOptions {
     messagingSenderId: '473209005427',
     projectId: 'testing-analyti',
     storageBucket: 'testing-analyti.appspot.com',
-    androidClientId: '473209005427-5nqqeeg5c7r7ce8gjiq2csff4373iu7q.apps.googleusercontent.com',
-    iosClientId: '473209005427-9u1anrmp1ld4e2583mn6a5q29aksn38b.apps.googleusercontent.com',
-    iosBundleId: 'com.example.datingApp1111',
+    androidClientId:
+        '473209005427-5nqqeeg5c7r7ce8gjiq2csff4373iu7q.apps.googleusercontent.com',
+    iosClientId:
+        '473209005427-9u1anrmp1ld4e2583mn6a5q29aksn38b.apps.googleusercontent.com',
+    iosBundleId: 'com.thedogtrick.com',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -71,8 +73,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '473209005427',
     projectId: 'testing-analyti',
     storageBucket: 'testing-analyti.appspot.com',
-    androidClientId: '473209005427-5nqqeeg5c7r7ce8gjiq2csff4373iu7q.apps.googleusercontent.com',
-    iosClientId: '473209005427-adn0o22jctc03f407s8gb6q44uggqjsu.apps.googleusercontent.com',
-    iosBundleId: 'com.example.datingApp11',
+    androidClientId:
+        '473209005427-5nqqeeg5c7r7ce8gjiq2csff4373iu7q.apps.googleusercontent.com',
+    iosClientId:
+        '473209005427-adn0o22jctc03f407s8gb6q44uggqjsu.apps.googleusercontent.com',
+    iosBundleId: 'com.thedogtrick.com',
   );
 }

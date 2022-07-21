@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:473209005427:android:24127f35a6aee9dc6c1106",
         "android_client_info": {
-          "package_name": "com.example.datingApp11"
+          "package_name": "com.thedogtrick.com"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "473209005427-5nqqeeg5c7r7ce8gjiq2csff4373iu7q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.datingApp11",
+            "package_name": "com.thedogtrick.com",
             "certificate_hash": "66e1748480c07f09ba653d71dac4b6efb5f810fe"
           }
         },
@@ -42,7 +42,7 @@
               "client_id": "473209005427-adn0o22jctc03f407s8gb6q44uggqjsu.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.datingApp11"
+                "bundle_id": "com.thedogtrick.com"
               }
             }
           ]

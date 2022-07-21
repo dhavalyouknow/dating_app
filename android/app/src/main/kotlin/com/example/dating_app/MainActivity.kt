@@ -1,4 +1,4 @@
-package com.example.datingApp11
+package com.thedogtrick.com
 
 import io.flutter.embedding.android.FlutterActivity
 
