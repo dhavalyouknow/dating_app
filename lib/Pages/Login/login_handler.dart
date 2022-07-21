@@ -18,6 +18,7 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   bool signUpPwd = true;
   final formKey = GlobalKey<FormState>();
   final fbLogin = FacebookLogin();
+  bool isLoading = false;
 
   String? emailValidator(dynamic email) {
     if (email.isEmpty) {
@@ -55,28 +56,46 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
 
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
 
+  //loginWithGoogle
+
   signInWithGoogle() async {
     String? fcmToken = await FirebaseMessaging.instance.getToken();
     GoogleSignInAccount? value = await _googleSignIn.signIn();
     if (value != null) {
       var val = await value.authentication;
 
+      setState(() {
+        isLoading = true;
+      });
+
       Future.delayed(
         const Duration(seconds: 0),
         () {
           BlocProvider.of<AuthBloc>(context).add(
             LoginWithGoogle(
-                email: value.email,
-                googleId: value.id,
-                pushToken: fcmToken!,
-                //for header
-                fcmtoken: val.idToken!,
-                onSuccess: onLoginSuccess),
+              email: value.email,
+              googleId: value.id,
+              pushToken: fcmToken!,
+              //for header
+              fcmtoken: val.idToken!,
+              onSuccess: (User user) {
+                BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+                Navigator.pushReplacementNamed(
+                  context,
+                  '/MyPage',
+                );
+                setState(() {
+                  isLoading = false;
+                });
+              },
+            ),
           );
         },
       );
     }
   }
+
+  //loginWithFacebook
 
   Future signInWithFacebook() async {
     String? fcmToken = await FirebaseMessaging.instance.getToken();
@@ -85,7 +104,9 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
       FacebookPermission.publicProfile,
       FacebookPermission.email,
     ]);
-
+    setState(() {
+      isLoading = true;
+    });
     switch (res.status) {
       case FacebookLoginStatus.success:
         // Logged in
@@ -98,11 +119,23 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
           () {
             BlocProvider.of<AuthBloc>(context).add(
               LoginWithFacebook(
-                  email: email!,
-                  facebookId: profile!.userId,
-                  pushToken: fcmToken!,
-                  headerToken: accessToken!.token,
-                  onSuccess: onLoginSuccess),
+                email: email!,
+                facebookId: profile!.userId,
+                pushToken: fcmToken!,
+                headerToken: accessToken!.token,
+                onSuccess: (User user) {
+                  BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/MyPage',
+                  );
+                  setState(
+                    () {
+                      isLoading = false;
+                    },
+                  );
+                },
+              ),
             );
           },
         );
@@ -115,11 +148,12 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
       case FacebookLoginStatus.error:
         // Log in failed
         print(res.error);
-        print('***********************');
         Fluttertoast.showToast(msg: '${res.error}');
         break;
     }
   }
+
+  //loginWithApple
 
   Future signInWithApple() async {
     String? fcmToken = await FirebaseMessaging.instance.getToken();
@@ -140,18 +174,16 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
             appleId: credential.authorizationCode,
             pushToken: fcmToken!,
             headerToken: credential.identityToken!,
-            onSuccess: onLoginSuccess,
+            onSuccess: (User user) {
+              BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+              Navigator.pushReplacementNamed(
+                context,
+                '/MyPage',
+              );
+            },
           ),
         );
       },
-    );
-  }
-
-  onLoginSuccess(User user) {
-    BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-    Navigator.pushReplacementNamed(
-      context,
-      '/MyPage',
     );
   }
 

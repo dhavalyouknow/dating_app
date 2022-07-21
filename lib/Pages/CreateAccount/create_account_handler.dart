@@ -22,6 +22,8 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   String countryValue = '';
   String? stateValue;
   String? cityValue;
+  bool isLoading = false;
+
   // Icon selectedIcon;
 
   final formKey = GlobalKey<FormState>();
@@ -121,11 +123,17 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
     }
   }
 
+  //signupWithGoogle
+
   signInWithGoogle() async {
     String? fcmToken = await FirebaseMessaging.instance.getToken();
     GoogleSignInAccount? value = await _googleSignIn.signIn();
     if (value != null) {
       var val = await value.authentication;
+
+      setState(() {
+        isLoading = true;
+      });
 
       Future.delayed(
         const Duration(seconds: 0),
@@ -137,13 +145,24 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
               pushToken: fcmToken!,
               //for header
               fcmtoken: val.idToken!,
-              onSuccess: onSignUpSuccess,
+              onSuccess: (User user) {
+                BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+                Navigator.pushReplacementNamed(
+                  context,
+                  '/OtherLoginCreateAccount',
+                );
+                setState(() {
+                  isLoading = false;
+                });
+              },
             ),
           );
         },
       );
     }
   }
+
+  //signupWithFacebook
 
   Future signInWithFacebook() async {
     String? fcmToken = await FirebaseMessaging.instance.getToken();
@@ -158,6 +177,9 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
         final FacebookAccessToken? accessToken = res.accessToken;
         final profile = await fbLogin.getUserProfile();
         final email = await fbLogin.getUserEmail();
+        setState(() {
+          isLoading = true;
+        });
         Future.delayed(
           const Duration(seconds: 0),
           () {
@@ -167,7 +189,16 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
                 facebookId: profile!.userId,
                 pushToken: fcmToken!,
                 headerToken: accessToken!.token,
-                onSuccess: onSignUpSuccess,
+                onSuccess: (User user) {
+                  BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/OtherLoginCreateAccount',
+                  );
+                  setState(() {
+                    isLoading = false;
+                  });
+                },
               ),
             );
           },
@@ -184,6 +215,8 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
         break;
     }
   }
+
+  //signupWithFacebook
 
   Future signInWithApple() async {
     String? fcmToken = await FirebaseMessaging.instance.getToken();
@@ -204,18 +237,16 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
             appleId: credential.authorizationCode,
             pushToken: fcmToken!,
             headerToken: credential.identityToken!,
-            onSuccess: onSignUpSuccess,
+            onSuccess: (User user) {
+              BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+              Navigator.pushReplacementNamed(
+                context,
+                '/OtherLoginCreateAccount',
+              );
+            },
           ),
         );
       },
-    );
-  }
-
-  onSignUpSuccess(User user) {
-    BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-    Navigator.pushReplacementNamed(
-      context,
-      '/OtherLoginCreateAccount',
     );
   }
 }
