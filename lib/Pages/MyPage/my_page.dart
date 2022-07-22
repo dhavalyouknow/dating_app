@@ -117,6 +117,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                               errorWidget: (BuildContext context, url, data) {
                                 return const ImageErrorWidget();
                               },
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -168,6 +169,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                                             (BuildContext context, url, data) {
                                           return const ImageErrorWidget();
                                         },
+                                        fit: BoxFit.cover,
                                         height: 28.h,
                                         width: 28.h,
                                       ),
@@ -337,6 +339,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                                               url, data) {
                                             return const ImageErrorWidget();
                                           },
+                                          fit: BoxFit.cover,
                                           height: 18.h,
                                           width: 18.h,
                                         ),

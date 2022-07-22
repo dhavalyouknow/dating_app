@@ -14,4 +14,5 @@ class ApiEndPoints {
   static const String loginWithApple = '$baseUrl/auth/login_with_apple';
   static const String verifyPassword = '$baseUrl/user/password_verification';
   static const String updatePassword = '$baseUrl/user/update_password';
+  static const String forgotPassword = '$baseUrl/user/forget_password';
 }

@@ -9,7 +9,7 @@ class FaceBookBtnWidget extends StatelessWidget {
   final String title;
   final Image image;
 
-  FaceBookBtnWidget({
+  const FaceBookBtnWidget({
     required this.onPressed,
     required this.title,
     required this.image,
@@ -37,6 +37,7 @@ class FaceBookBtnWidget extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 10.w),
                 child: AppText(
+                  size: 16.sp,
                   text: title,
                   color: AppStyles.whiteColor,
                   fontFamily: GoogleFonts.raleway().fontFamily,

@@ -1,10 +1,11 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/ChangePassword/change_password_bloc.dart';
 import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
+import 'package:dating_app/Bloc/ForgotPassword/forgot_password_bloc.dart';
 import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
-import 'package:dating_app/Pages/Login/login_page.dart';
+import 'package:dating_app/Pages/Login/select_login_method.dart';
 import 'package:dating_app/firebase_options.dart';
 import 'package:dating_app/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -61,6 +62,10 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => ChangePasswordBloc(),
           lazy: true,
         ),
+        BlocProvider<ForgotPasswordBloc>(
+          create: (BuildContext context) => ForgotPasswordBloc(),
+          lazy: true,
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 680),
@@ -69,7 +74,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: "Dating App",
             routes: routes,
-            initialRoute: token == null ? LoginPage.routeName : "/MyPage",
+            initialRoute: token == null ? SelectLoginMethod.routeName : "/MyPage",
           );
         },
       ),

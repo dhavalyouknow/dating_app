@@ -1,4 +1,3 @@
-import 'package:dating_app/Dialog/ImInterestedIn/im_interested_in.dart';
 import 'package:dating_app/Dialog/Match/matching.dart';
 import 'package:dating_app/Dialog/UpgradeToPremium/upgrade_to_premium.dart';
 import 'package:dating_app/OtherLogin/otherlogin_createacccount.dart';
@@ -24,10 +23,10 @@ import 'package:dating_app/Pages/Intro/first_intro_page.dart';
 import 'package:dating_app/Pages/Intro/second_intro_page.dart';
 import 'package:dating_app/Pages/Intro/third_intro_page.dart';
 import 'package:dating_app/Pages/Login/login_page.dart';
+import 'package:dating_app/Pages/Login/select_login_method.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
 import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile.dart';
 import 'package:dating_app/Pages/Setting/setting.dart';
-import 'package:dating_app/Dialog/AddInterest/add_interests.dart';
 import 'package:dating_app/Pages/SetupProfile/set_up_profile1/setup_profile1.dart';
 import 'package:dating_app/Pages/SetupProfile/set_up_profile2/setup_profile2.dart';
 import 'package:dating_app/Pages/SetupProfile/set_up_profile3/setup_profile3.dart';
@@ -37,6 +36,7 @@ import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> routes = {
   LoginPage.routeName: (ctx) => const LoginPage(),
+  SelectLoginMethod.routeName: (ctx) => const SelectLoginMethod(),
   AccountRecovery.routeName: (ctx) => const AccountRecovery(),
   CheckEmail.routeName: (ctx) => const CheckEmail(),
   ResetPassword.routeName: (ctx) => const ResetPassword(),
