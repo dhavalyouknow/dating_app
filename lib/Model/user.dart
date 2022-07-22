@@ -27,7 +27,7 @@ class User {
     this.favouriteNight,
     this.activity,
     this.aboutSelf,
-    this.dog,
+    required this.dog,
     this.googleId,
     this.googleLogin,
     this.facebookId,
@@ -64,7 +64,7 @@ class User {
   List<dynamic>? favouriteNight;
   List<dynamic>? activity;
   String? aboutSelf;
-  List<Dog>? dog;
+  List<Dog> dog;
   String? googleId;
   bool? googleLogin;
   String? facebookId;
@@ -221,7 +221,7 @@ class User {
         "activity": List<dynamic>.from(activity!.map((x) => x)),
         "aboutSelf": aboutSelf,
         "haveKids": haveKids,
-        "dog": List<Dog>.from(dog!.map((x) => x.toJson())),
+        //  "dog": List<Dog>.from(dog.map((x) => x.toJson())),
         "googleId": googleId,
         "googleLogin": googleLogin,
         "facebookId": facebookId,

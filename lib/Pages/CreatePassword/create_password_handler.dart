@@ -16,7 +16,6 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -69,7 +68,7 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
               print('******success****');
             }
             BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-            Navigator.pushNamed(context, "/ChoosePartner");
+            Navigator.pushReplacementNamed(context, "/ChoosePartner");
           },
         ),
       );

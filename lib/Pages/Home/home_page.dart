@@ -13,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 
 class HomePage extends StatefulWidget {
+  static const routeName = "/HomePage";
   const HomePage({Key? key}) : super(key: key);
 
   @override

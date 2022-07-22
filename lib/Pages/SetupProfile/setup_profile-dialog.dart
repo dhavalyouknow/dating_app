@@ -1,5 +1,7 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/Home/home_page.dart';
+import 'package:dating_app/Pages/SetupProfile/set_up_profile1/setup_profile1.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,7 +54,8 @@ class _SetUpProfileNowState extends State<SetUpProfileNow> {
                       txt: "Yes",
                       txtColor: AppStyles.blackColor,
                       onTap: () {
-                        Navigator.pushNamed(context, "/SetupProfile1");
+                        Navigator.pushReplacementNamed(
+                            context, SetupProfile1.routeName);
                       },
                     ),
                   ),
@@ -66,7 +69,8 @@ class _SetUpProfileNowState extends State<SetUpProfileNow> {
                       txt: "Later",
                       txtColor: AppStyles.blackColor,
                       onTap: () {
-                        Navigator.pushNamed(context, "/HomePage");
+                        Navigator.pushReplacementNamed(
+                            context, HomePage.routeName);
                       },
                     ),
                   )

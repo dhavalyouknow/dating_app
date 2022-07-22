@@ -1,6 +1,7 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Model/user.dart';
+import 'package:dating_app/Pages/UploadProfile/upload_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +21,8 @@ mixin ChoosePartnerHandlers<T extends StatefulWidget> on State<T> {
                   searchingFor: imSearchingFor,
                 ),
                 success: (value) {
-                  Navigator.pushNamed(context, "/UploadProfile");
+                  Navigator.pushReplacementNamed(
+                      context, UploadProfile.routeName);
                 },
               ),
             );

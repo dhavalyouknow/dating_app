@@ -1,4 +1,5 @@
 import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
+import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/ImageCropper/image_cropper_handler.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChooseDogPicture extends StatefulWidget {
+  static const routeName = "/ChooseDogPicture";
   const ChooseDogPicture({Key? key}) : super(key: key);
 
   @override
@@ -28,8 +30,7 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
           txt: "Next",
           onTap: () {
             if (imageFile != null) {
-              print(user?.dog?.length);
-              Navigator.pushReplacementNamed(context, '/MyPage');
+              Navigator.pushReplacementNamed(context, ('/MyPage'));
             }
           },
         ),
@@ -210,7 +211,6 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
                   //   height: size.height / 14,
                   //   txt: "Next",
                   //   onTap: () {
-                  //     print('*****');
                   //     print(isDone);
                   //     if (imageFile != null) {
                   //       Navigator.pushReplacementNamed(context, '/MyPage');

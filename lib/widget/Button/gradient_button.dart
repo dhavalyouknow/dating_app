@@ -7,6 +7,7 @@ class GradientBtn extends StatefulWidget {
   final double? fontSize;
   final String txt;
   final VoidCallback onTap;
+  final List<BoxShadow>? boxShadow;
 
   const GradientBtn({
     Key? key,
@@ -14,6 +15,7 @@ class GradientBtn extends StatefulWidget {
     required this.txt,
     this.fontSize,
     required this.onTap,
+    this.boxShadow,
   }) : super(key: key);
 
   @override
@@ -27,6 +29,7 @@ class _GradientBtnState extends State<GradientBtn> {
       height: widget.height,
       width: double.infinity,
       decoration: BoxDecoration(
+        boxShadow: widget.boxShadow,
         borderRadius: BorderRadius.circular(10),
         gradient: const LinearGradient(
           begin: Alignment.topRight,
@@ -43,7 +46,8 @@ class _GradientBtnState extends State<GradientBtn> {
         child: Text(
           widget.txt,
           style: TextStyle(
-            fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
+            fontFamily:
+                GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
             fontSize: widget.fontSize,
             color: AppStyles.whiteColor,
           ),

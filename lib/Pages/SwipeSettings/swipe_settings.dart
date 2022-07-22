@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SwipeSetting extends StatefulWidget {
+  static const routeName = "/SwipeSetting";
   const SwipeSetting({Key? key}) : super(key: key);
 
   @override

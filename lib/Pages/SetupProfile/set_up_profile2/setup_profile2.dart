@@ -12,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SetupProfile2 extends StatefulWidget {
+  static const routeName = "/SetupProfile2";
   const SetupProfile2({Key? key}) : super(key: key);
 
   @override
@@ -27,6 +28,14 @@ class _SetupProfile2State extends State<SetupProfile2>
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 30),
         child: GradientBtn(
+          boxShadow: [
+            BoxShadow(
+              color: AppStyles.shadowColor.withOpacity(0.2),
+              spreadRadius: 10,
+              blurRadius: 20,
+              offset: const Offset(5, 5), // changes position of shadow
+            ),
+          ],
           height: size.height / 14,
           txt: "Next",
           onTap: () {
@@ -50,34 +59,21 @@ class _SetupProfile2State extends State<SetupProfile2>
             ),
           ),
         ],
-        // leading: Padding(
-        //   padding: EdgeInsets.only(left: 10.w),
-        //   child: IconButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     icon: Icon(
-        //       size: 30.h,
-        //       Icons.arrow_back_ios,
-        //       color: AppStyles.greyColor,
-        //     ),
-        //   ),
-        // ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
-        height: size.height,
-        width: size.width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: AppStyles.forgotPassGradientColor,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          height: size.height,
+          width: size.width,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: AppStyles.forgotPassGradientColor,
+            ),
           ),
-        ),
-        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -111,7 +107,21 @@ class _SetupProfile2State extends State<SetupProfile2>
                   ),
                   interestedName.isNotEmpty
                       ? IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AddInterests(
+                                  callback: (value) {
+                                    interestedName = value;
+                                    setState(() {});
+                                  },
+                                  alsoSelected: interestedName,
+                                  // selectedList: interestedName,
+                                );
+                              },
+                            );
+                          },
                           icon: const Icon(Icons.edit),
                         )
                       : Container()
@@ -131,7 +141,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                                   interestedName = value;
                                   setState(() {});
                                 },
-                                // selectedList: interestedName,
+                                alsoSelected: interestedName,
                               );
                             },
                           );
@@ -166,7 +176,20 @@ class _SetupProfile2State extends State<SetupProfile2>
                   ),
                   favNights.isNotEmpty
                       ? IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AddNightModule(
+                                  callback: (value) {
+                                    favNights = value;
+                                    setState(() {});
+                                  },
+                                  alsoSelected: favNights,
+                                );
+                              },
+                            );
+                          },
                           icon: const Icon(Icons.edit),
                         )
                       : Container()
@@ -182,6 +205,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                             context: context,
                             builder: (BuildContext context) {
                               return AddNightModule(
+                                alsoSelected: favNights,
                                 callback: (value) {
                                   favNights = value;
                                   setState(() {});
@@ -220,7 +244,21 @@ class _SetupProfile2State extends State<SetupProfile2>
                   ),
                   activities.isNotEmpty
                       ? IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return SelectedActivities(
+                                  callback: (value) {
+                                    activities = value;
+                                    setState(() {});
+                                  },
+                                  alsoSelected: activities,
+                                  //   selectedList: activities,
+                                );
+                              },
+                            );
+                          },
                           icon: const Icon(Icons.edit),
                         )
                       : Container()
@@ -240,6 +278,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                                   activities = value;
                                   setState(() {});
                                 },
+                                alsoSelected: activities,
                                 //   selectedList: activities,
                               );
                             },
@@ -259,14 +298,6 @@ class _SetupProfile2State extends State<SetupProfile2>
                             .map(
                               (e) => Column(
                                 children: [
-                                  // IconButton(
-                                  //   onPressed: () {
-                                  //     activities.remove(e);
-                                  //     setState(() {});
-                                  //   },
-                                  //   icon: const Icon(Icons.close),
-                                  //   color: Colors.red,
-                                  // ),
                                   SelectedChipWidget(
                                     interestsName: e,
                                   ),
@@ -276,15 +307,6 @@ class _SetupProfile2State extends State<SetupProfile2>
                             .toList()
                       ],
                     ),
-              // SizedBox(height: 200.h),
-              // GradientBtn(
-              //   height: size.height / 14,
-              //   txt: "Next",
-              //   onTap: () {
-              //     onSubmitProfile2();
-              //   },
-              // ),
-              // SizedBox(height: 60.h),
             ],
           ),
         ),

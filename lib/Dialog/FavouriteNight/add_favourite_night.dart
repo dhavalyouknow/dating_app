@@ -11,7 +11,10 @@ import '../../widget/selected_inerests_widget.dart';
 
 class AddNightModule extends StatefulWidget {
   final Function(List<String>) callback;
-  const AddNightModule({Key? key, required this.callback}) : super(key: key);
+  final List<String> alsoSelected;
+  const AddNightModule(
+      {Key? key, required this.callback, required this.alsoSelected})
+      : super(key: key);
 
   @override
   State<AddNightModule> createState() => _AddNightModuleState();
@@ -22,6 +25,8 @@ class _AddNightModuleState extends State<AddNightModule>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    int length = widget.alsoSelected.length;
+
     return Scaffold(
       backgroundColor: AppStyles.trasnparentColor,
       body: Container(
@@ -85,7 +90,7 @@ class _AddNightModuleState extends State<AddNightModule>
                 ),
                 AppText(
                   size: 15.sp,
-                  text: "3/6",
+                  text: "$length /6",
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
                       .fontFamily,
                 ),
@@ -95,8 +100,9 @@ class _AddNightModuleState extends State<AddNightModule>
               padding: EdgeInsets.symmetric(vertical: 20.h),
               child: Wrap(
                 children: [
-                  ...favouriteNight.map(
-                    (e) => ListOfChipWidget(
+                  ...favouriteNight.map((e) {
+                    selectedNights = widget.alsoSelected;
+                    return ListOfChipWidget(
                       interestsName: e,
                       onTap: () {
                         if (selectedNights.contains(e)) {
@@ -106,9 +112,10 @@ class _AddNightModuleState extends State<AddNightModule>
                         }
                         setState(() {});
                       },
-                      isSelected: selectedNights.contains(e),
-                    ),
-                  ),
+                      isSelected: selectedNights.contains(e) ||
+                          widget.alsoSelected.contains(e),
+                    );
+                  }),
                 ],
               ),
             ),

@@ -18,6 +18,7 @@ class TextFormFieldWidget extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final TextEditingController? textEditingController;
   VoidCallback? onTap;
+  final TextInputType? keyboardType;
 
   // TextAlign? textAlign;
 
@@ -35,6 +36,7 @@ class TextFormFieldWidget extends StatefulWidget {
     this.validator,
     this.textEditingController,
     this.onTap,
+    this.keyboardType,
     // this.textAlign,
   }) : super(key: key);
 
@@ -45,40 +47,39 @@ class TextFormFieldWidget extends StatefulWidget {
 class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 18.h),
-      child: Container(
-        height: widget.height,
-        padding: EdgeInsets.only(left: 10.w),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: AppStyles.whiteColor,
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          border: Border.all(
-            color: widget.borderColor,
-            width: widget.border,
-          ),
+    return Container(
+      height: widget.height,
+      padding: EdgeInsets.only(left: 10.w),
+      margin: EdgeInsets.only(top: 18.h),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: AppStyles.whiteColor,
+        borderRadius: BorderRadius.circular(widget.borderRadius),
+        border: Border.all(
+          color: widget.borderColor,
+          width: widget.border,
         ),
-        child: TextFormField(
-          onTap: widget.onTap,
-          controller: widget.textEditingController,
-          validator: widget.validator,
-          obscureText: widget.obscureText,
-          decoration: InputDecoration(
-            // contentPadding: EdgeInsets.only(left: 10.w, bottom: 30.h),
-            suffixIcon: widget.backIcon,
-            icon: widget.obSecure == true ? widget.icon : widget.icon,
+      ),
+      child: TextFormField(
+        keyboardType: widget.keyboardType,
+        onTap: widget.onTap,
+        controller: widget.textEditingController,
+        validator: widget.validator,
+        obscureText: widget.obscureText,
+        decoration: InputDecoration(
+          // contentPadding: EdgeInsets.only(left: 10.w, bottom: 30.h),
+          suffixIcon: widget.backIcon,
+          icon: widget.obSecure == true ? widget.icon : widget.icon,
 
-            hintText: widget.txt,
+          hintText: widget.txt,
 
-            hintStyle: TextStyle(
-              fontFamily: GoogleFonts.raleway(
-                fontSize: 15.sp,
-              ).fontFamily,
-              color: AppStyles.textColor,
-            ),
-            border: InputBorder.none,
+          hintStyle: TextStyle(
+            fontFamily: GoogleFonts.raleway(
+              fontSize: 15.sp,
+            ).fontFamily,
+            color: AppStyles.textColor,
           ),
+          border: InputBorder.none,
         ),
       ),
     );

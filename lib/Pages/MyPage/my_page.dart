@@ -52,7 +52,8 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
       ),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, userState) {
-          print(userState.user?.dog?.length);
+          print(userState.user?.dog.length);
+          print(userState.user?.dog.first.squareProfileImage?.first.url);
 
           if (userState.user == null) {
             BlocProvider.of<AuthBloc>(context).add(
@@ -140,7 +141,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                           SizedBox(height: 5.h),
                           Row(
                             children: [
-                              ...userState.user!.dog!.map((e) {
+                              ...userState.user!.dog.map((e) {
                                 print(e.dogName);
                                 return Container(
                                   decoration: BoxDecoration(
@@ -249,7 +250,9 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                         .fontFamily,
                   ),
                   SizedBox(height: 15.h),
-                  ...userState.user!.dog!.map((e) {
+                  ...userState.user!.dog.map((e) {
+                    print('*************************');
+                    print(e.squareProfileImage);
                     return Padding(
                       padding: EdgeInsets.only(bottom: 10.h),
                       child: Row(

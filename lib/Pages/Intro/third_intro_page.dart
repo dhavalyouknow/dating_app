@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ThirdIntroPage extends StatefulWidget {
+  static const routeName = "/ThirdIntroPage";
   const ThirdIntroPage({Key? key}) : super(key: key);
 
   @override

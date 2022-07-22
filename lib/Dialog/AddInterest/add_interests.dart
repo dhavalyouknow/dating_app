@@ -9,7 +9,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AddInterests extends StatefulWidget {
   final Function(List<String>) callback;
-  const AddInterests({Key? key, required this.callback}) : super(key: key);
+  final List<String> alsoSelected;
+  const AddInterests(
+      {Key? key, required this.callback, required this.alsoSelected})
+      : super(key: key);
 
   @override
   State<AddInterests> createState() => _AddInterestsState();
@@ -19,6 +22,8 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    int length = widget.alsoSelected.length;
+
     return Scaffold(
       backgroundColor: AppStyles.trasnparentColor,
       body: Container(
@@ -82,7 +87,7 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
                 ),
                 AppText(
                   size: 15.sp,
-                  text: "3/6",
+                  text: '$length/6',
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
                       .fontFamily,
                 ),
@@ -92,8 +97,9 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
               padding: EdgeInsets.symmetric(vertical: 10.h),
               child: Wrap(
                 children: [
-                  ...interestList.map(
-                    (e) => ListOfChipWidget(
+                  ...interestList.map((e) {
+                    selectedInterestsName = widget.alsoSelected;
+                    return ListOfChipWidget(
                       interestsName: e,
                       onTap: () {
                         if (selectedInterestsName.contains(e)) {
@@ -103,9 +109,10 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
                         }
                         setState(() {});
                       },
-                      isSelected: selectedInterestsName.contains(e),
-                    ),
-                  ),
+                      isSelected: selectedInterestsName.contains(e) ||
+                          widget.alsoSelected.contains(e),
+                    );
+                  }),
                 ],
               ),
             ),

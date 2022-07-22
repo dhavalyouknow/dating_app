@@ -55,7 +55,7 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
     if (email.isEmpty) {
       return 'Enter email';
     } else if (!regex.hasMatch(email)) {
-      return 'Enter Valid Password';
+      return 'Enter Valid Email';
     }
     return null;
   }
@@ -105,7 +105,7 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
         DuplicateEvent(
           email: emailController.text,
           onSuccess: () {
-            Navigator.pushNamed(
+            Navigator.pushReplacementNamed(
               context,
               "/CreatePassword",
               arguments: {

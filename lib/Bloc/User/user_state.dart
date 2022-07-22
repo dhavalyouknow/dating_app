@@ -8,11 +8,11 @@ enum UserStatus {
 }
 
 class UserState extends Equatable {
-  final UserStatus? status;
+  final UserStatus status;
   User? user;
 
   UserState({
-    this.status,
+    required this.status,
     this.user,
   });
 
@@ -21,7 +21,6 @@ class UserState extends Equatable {
     User? user,
   }) {
     print(user);
-    print('****');
     return UserState(status: status ?? this.status, user: user ?? this.user);
   }
 

@@ -8,11 +8,13 @@ class GoogleBtnWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final String title;
   final Image image;
+  final Color color;
 
   GoogleBtnWidget({
     required this.onPressed,
     required this.title,
     required this.image,
+    required this.color,
     Key? key,
   });
 
@@ -27,7 +29,7 @@ class GoogleBtnWidget extends StatelessWidget {
           height: size.height / 14,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: AppStyles.whiteColor,
+            color: color,
             borderRadius: BorderRadius.circular(10.r),
           ),
           child: Row(
@@ -38,7 +40,7 @@ class GoogleBtnWidget extends StatelessWidget {
                 padding: EdgeInsets.only(left: 10.w),
                 child: AppText(
                   text: title,
-                  color: AppStyles.greyColor,
+                  color: AppStyles.blackColor,
                   fontFamily: GoogleFonts.raleway().fontFamily,
                 ),
               ),

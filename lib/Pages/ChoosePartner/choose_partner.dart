@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChoosePartner extends StatefulWidget {
+  static const routeName = "/ChoosePartner";
   const ChoosePartner({Key? key}) : super(key: key);
 
   @override
@@ -122,7 +123,12 @@ class _ChoosePartnerState extends State<ChoosePartner>
                           children: [
                             SizedBox(
                               height: 18.h,
-                              child: (e.image),
+                              child: ImageIcon(
+                                (e.image).image,
+                                color: imSearchingFor.contains(e.name)
+                                    ? AppStyles.greyColor
+                                    : AppStyles.pinkColor,
+                              ),
                             ),
                             SizedBox(width: 10.w),
                             AppText(
@@ -133,7 +139,7 @@ class _ChoosePartnerState extends State<ChoosePartner>
                               fontFamily: GoogleFonts.raleway(
                                 fontWeight: e.selected
                                     ? FontWeight.bold
-                                    : FontWeight.w500,
+                                    : FontWeight.w600,
                               ).fontFamily,
                             )
                           ],

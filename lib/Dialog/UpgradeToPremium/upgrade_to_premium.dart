@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UpgradeToPremium extends StatefulWidget {
+  static const routeName = "/UpgradeToPremium";
   const UpgradeToPremium({Key? key}) : super(key: key);
 
   @override

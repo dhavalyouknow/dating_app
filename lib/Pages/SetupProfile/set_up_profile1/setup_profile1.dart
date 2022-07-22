@@ -14,6 +14,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SetupProfile1 extends StatefulWidget {
+  static const routeName = "/SetupProfile1";
   const SetupProfile1({Key? key}) : super(key: key);
 
   @override
@@ -34,6 +35,14 @@ class _SetupProfile1State extends State<SetupProfile1>
           onTap: () {
             onSubmitProfile1();
           },
+          boxShadow: [
+            BoxShadow(
+              color: AppStyles.shadowColor.withOpacity(0.2),
+              spreadRadius: 10,
+              blurRadius: 20,
+              offset: const Offset(5, 5), // changes position of shadow
+            ),
+          ],
         ),
       ),
       appBar: AppBar(
@@ -338,6 +347,7 @@ class _SetupProfile1State extends State<SetupProfile1>
               ),
               // SizedBox(height: 10.h),
               TextFormFieldWidget(
+                keyboardType: TextInputType.number,
                 height: size.height / 16,
                 txt: "Enter your lenght (cm)",
                 obscureText: false,

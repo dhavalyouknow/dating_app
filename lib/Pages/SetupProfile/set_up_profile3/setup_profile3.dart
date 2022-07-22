@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SetupProfile3 extends StatefulWidget {
+  static const routeName = "/SetupProfile3";
   const SetupProfile3({Key? key}) : super(key: key);
 
   @override
@@ -29,6 +30,14 @@ class _SetupProfile3State extends State<SetupProfile3>
           onTap: () {
             onSubmitProfile3();
           },
+          boxShadow: [
+            BoxShadow(
+              color: AppStyles.shadowColor.withOpacity(0.2),
+              spreadRadius: 10,
+              blurRadius: 20,
+              offset: const Offset(5, 5), // changes position of shadow
+            ),
+          ],
         ),
       ),
       appBar: AppBar(
@@ -47,19 +56,6 @@ class _SetupProfile3State extends State<SetupProfile3>
             ),
           ),
         ],
-        // leading: Padding(
-        //   padding: EdgeInsets.only(left: 10.w),
-        //   child: IconButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     icon: Icon(
-        //       size: 30.h,
-        //       Icons.arrow_back_ios,
-        //       color: AppStyles.greyColor,
-        //     ),
-        //   ),
-        // ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),

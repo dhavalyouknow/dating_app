@@ -11,7 +11,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController emailController =
-      TextEditingController(text: 'dp@gmail.com');
+      TextEditingController(text: 'dp2@gmail.com');
   final TextEditingController passwordController =
       TextEditingController(text: 'Dp1@3110');
   int index = 0;
@@ -47,7 +47,7 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
           pushToken: '222222',
           success: (User user) {
             BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-            Navigator.pushNamed(context, "/MyPage");
+            Navigator.pushReplacementNamed(context, "/MyPage");
           },
         ),
       );

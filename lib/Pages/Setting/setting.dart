@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Settings extends StatefulWidget {
+  static const routeName = "/Settings";
   const Settings({Key? key}) : super(key: key);
 
   @override

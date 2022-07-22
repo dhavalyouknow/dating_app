@@ -111,6 +111,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       onTap: onLogin,
                     ),
                     GoogleBtnWidget(
+                      color: AppStyles.whiteColor,
                       onPressed: signInWithGoogle,
                       title: 'Sign in with Google',
                       image: Image.asset('assets/icons/google.png'),

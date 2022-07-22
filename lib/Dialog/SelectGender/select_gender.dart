@@ -54,7 +54,11 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
                           ? AppStyles.pinkColor
                           : AppStyles.greyColor,
                       txt: e.name,
-                      txtColor: AppStyles.greyColor,
+                      txtColor: e.selected
+                          ? AppStyles.blackColor
+                          : AppStyles.pinkColor,
+                      fontWeight:
+                          e.selected ? FontWeight.w600 : FontWeight.normal,
                       onTap: () {
                         for (var tapped in selectGender) {
                           tapped.selected = false;
@@ -67,8 +71,8 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
                       icon: Icon(
                         e.icon.icon,
                         color: e.selected
-                            ? AppStyles.pinkColor
-                            : AppStyles.greyColor,
+                            ? AppStyles.greyColor
+                            : AppStyles.pinkColor,
                       ),
                     ),
                   );

@@ -9,8 +9,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SelectedActivities extends StatefulWidget {
   final Function(List<String>) callback;
-  const SelectedActivities({Key? key, required this.callback})
-      : super(key: key);
+  final List<String> alsoSelected;
+  const SelectedActivities({
+    Key? key,
+    required this.callback,
+    required this.alsoSelected,
+  }) : super(key: key);
 
   @override
   State<SelectedActivities> createState() => _SelectedActivitiesState();
@@ -21,6 +25,9 @@ class _SelectedActivitiesState extends State<SelectedActivities>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    int length = widget.alsoSelected.length;
+    print(length);
+
     return Scaffold(
       backgroundColor: AppStyles.trasnparentColor,
       body: Container(
@@ -40,7 +47,9 @@ class _SelectedActivitiesState extends State<SelectedActivities>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: AppText(
                     size: 15.sp,
                     text: "Cancel",
@@ -50,12 +59,17 @@ class _SelectedActivitiesState extends State<SelectedActivities>
                 ),
                 AppText(
                   size: 18.sp,
-                  text: "Interests",
+                  text: "Add Activities",
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      widget.callback(selectedActivities);
+                    });
+                    Navigator.pop(context);
+                  },
                   child: AppText(
                     size: 15.sp,
                     text: "Done",
@@ -80,7 +94,7 @@ class _SelectedActivitiesState extends State<SelectedActivities>
                 ),
                 AppText(
                   size: 15.sp,
-                  text: "3/6",
+                  text: "$length/6",
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
                       .fontFamily,
                 ),
@@ -90,8 +104,9 @@ class _SelectedActivitiesState extends State<SelectedActivities>
               padding: EdgeInsets.symmetric(vertical: 20.h),
               child: Wrap(
                 children: [
-                  ...interestList.map(
-                    (e) => ListOfChipWidget(
+                  ...interestList.map((e) {
+                    selectedActivities = widget.alsoSelected;
+                    return ListOfChipWidget(
                       interestsName: e,
                       onTap: () {
                         if (selectedActivities.contains(e)) {
@@ -101,9 +116,10 @@ class _SelectedActivitiesState extends State<SelectedActivities>
                         }
                         setState(() {});
                       },
-                      isSelected: selectedActivities.contains(e),
-                    ),
-                  ),
+                      isSelected: selectedActivities.contains(e) ||
+                          widget.alsoSelected.contains(e),
+                    );
+                  }),
                 ],
               ),
             ),

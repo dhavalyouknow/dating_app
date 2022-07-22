@@ -7,7 +7,6 @@ abstract class UserEvent extends Equatable {
 
 class SetUserInitial extends UserEvent {
   @override
-  // TODO: implement props
   List<Object?> get props => [];
 }
 
@@ -20,7 +19,6 @@ class UpdateUserEvent extends UserEvent {
     required this.success,
   });
   @override
-  // TODO: implement props
   List<Object?> get props => [user, success];
 }
 

@@ -11,6 +11,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UploadProfile extends StatefulWidget {
+  static const routeName = "/UploadProfile";
+
   const UploadProfile({Key? key}) : super(key: key);
 
   @override
@@ -71,18 +73,27 @@ class _UploadProfileState extends State<UploadProfile>
                       onTap: () {
                         editImage(type: 'person');
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.camera_alt_outlined),
-                          SizedBox(width: 10.w),
-                          AppText(
-                            text: "Upload picture",
-                            fontFamily:
-                                GoogleFonts.raleway(fontWeight: FontWeight.bold)
-                                    .fontFamily,
-                          ),
-                        ],
+                      child: Container(
+                        height: 200.h,
+                        width: 200.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0xffFAC7D1),
+                              blurRadius: 20.sp,
+                              offset: const Offset(-1, -4),
+                            ),
+                          ],
+                        ),
+                        child: CircleAvatar(
+                            backgroundColor: AppStyles.rosyWhiteColor,
+                            radius: 300.r,
+                            child: Icon(
+                              Icons.camera_alt_outlined,
+                              size: 100.h,
+                              color: const Color(0xffFAC7D1),
+                            )),
                       ),
                     )
                   : Row(

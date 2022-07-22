@@ -15,6 +15,8 @@ class AppStyles {
   static const Color lightPinkColor = Color(0xffFFE5EA);
   static const Color crimsonPinkColor = Color(0xffFF4C6F);
   static const Color trasnparentColor = Colors.transparent;
+  static const Color shadowColor = Color(0xffC71585);
+  static const Color placeholder = Color(0xff9B9B9B);
 
   static List<Color> premiumPageGradientColor = [
     const Color(0xff47B3E7),
@@ -267,4 +269,6 @@ List<DogSize> dogLookingFor = [
   DogSize(name: "Nanny", selected: false),
   DogSize(name: "Love", selected: false),
   DogSize(name: "Bonus Husse", selected: false),
+  DogSize(name: "Bonus Father", selected: false),
+  DogSize(name: "Bonus Mother", selected: false),
 ];

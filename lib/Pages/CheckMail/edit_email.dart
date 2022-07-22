@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditEmail extends StatefulWidget {
+  static const routeName = "/EditEmail";
   const EditEmail({Key? key}) : super(key: key);
 
   @override
@@ -71,7 +72,7 @@ class _EditEmailState extends State<EditEmail> {
               ),
               TextButton(
                 onPressed: () {
-                    Navigator.pushNamed(context, "/SetupProfile1");
+                  Navigator.pushNamed(context, "/SetupProfile1");
                 },
                 child: AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)

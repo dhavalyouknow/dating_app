@@ -1,7 +1,9 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
+import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Model/user.dart';
+import 'package:dating_app/Pages/ChooseDogPicture/choose_dog_picture.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,8 +39,14 @@ mixin AddYourDogHandlers<T extends StatefulWidget> on State<T> {
           print('DOG -> $dog');
           user = user?.copyWith(dog: [...?user?.dog, dog]);
           BlocProvider.of<UserBloc>(context).add(SetUser(user: user!));
-          print(user?.dog?.length);
-          Navigator.pushNamed(context, "/ChooseDogPicture");
+          print(user?.dog.length);
+          Navigator.pushReplacementNamed(context, ChooseDogPicture.routeName);
+          for (var tapped in sizeOfDog) {
+            tapped.selected = false;
+          }
+          for (var tapped in selectDogGender) {
+            tapped.selected = false;
+          }
         },
       ),
     );

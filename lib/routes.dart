@@ -17,6 +17,7 @@ import 'package:dating_app/Pages/AccountRecovery/account_recovery.dart';
 import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile.dart';
 import 'package:dating_app/Pages/EditDogProfile/edit_dog_profile.dart';
 import 'package:dating_app/Pages/EditPersonProfile/edit_person_profile.dart';
+//import 'package:dating_app/Pages/EditPersonProfile/edit_person_profile.dart';
 import 'package:dating_app/Pages/ForgetPassword/reset_password.dart';
 import 'package:dating_app/Pages/Home/home_page.dart';
 import 'package:dating_app/Pages/Intro/first_intro_page.dart';
@@ -35,16 +36,16 @@ import 'package:dating_app/Pages/UploadProfile/upload_profile.dart';
 import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> routes = {
-  '/': (ctx) => const LoginPage(),
-  '/ForgetPassword': (ctx) => const AccountRecovery(),
-  '/CheckEmail': (ctx) => const CheckEmail(),
-  '/ResetPassword': (ctx) => const ResetPassword(),
-  '/CreateAccount': (ctx) => const CreateAccount(),
-  '/ChoosePartner': (ctx) => const ChoosePartner(),
-  '/UploadProfile': (ctx) => const UploadProfile(),
-  '/CreatePassword': (ctx) => const CreatePassword(),
-  '/EditEmail': (ctx) => const EditEmail(),
-  '/FirstIntroPage': (ctx) => const FirstIntroPage(),
+  LoginPage.routeName: (ctx) => const LoginPage(),
+  AccountRecovery.routeName: (ctx) => const AccountRecovery(),
+  CheckEmail.routeName: (ctx) => const CheckEmail(),
+  ResetPassword.routeName: (ctx) => const ResetPassword(),
+  CreateAccount.routeName: (ctx) => const CreateAccount(),
+  ChoosePartner.routeName: (ctx) => const ChoosePartner(),
+  UploadProfile.routeName: (ctx) => const UploadProfile(),
+  CreatePassword.routeName: (ctx) => const CreatePassword(),
+  EditEmail.routeName: (ctx) => const EditEmail(),
+  FirstIntroPage.routeName: (ctx) => const FirstIntroPage(),
   '/SecondIntroPage': (ctx) => const SecondIntroPage(),
   '/ThirdIntroPage': (ctx) => const ThirdIntroPage(),
   '/SetupProfile1': (ctx) => const SetupProfile1(),
@@ -62,10 +63,10 @@ Map<String, WidgetBuilder> routes = {
   '/Matching': (ctx) => const Matching(),
   '/SwipeSetting': (ctx) => const SwipeSetting(),
   '/BecomePremium': (ctx) => const BecomePremium(),
-  '/EditDogProfile': (ctx) => const EditDogProfile(),
-  '/EditPersonProfile': (ctx) => const EditPersonProfile(),
+  EditDogProfile.routeName: (ctx) => const EditDogProfile(),
+  EditPersonProfile.routeName: (ctx) => const EditPersonProfile(),
   '/DogPublicProfile': (ctx) => const DogPublicProfile(),
-  '/PersonPublicProfile': (ctx) => const PersonPublicProfile(),
+  PersonPublicProfile.routeName: (ctx) => const PersonPublicProfile(),
   '/OtherLoginCreateAccount': (ctx) => const OtherLoginCreateAccount(),
   LoginPage.routeName: (ctx) => const LoginPage(
         key: Key('/LoginPage'),

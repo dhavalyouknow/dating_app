@@ -1,11 +1,14 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/AddYourDog/add_your_dog.dart';
+import 'package:dating_app/Pages/Home/home_page.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddYourDogNow extends StatefulWidget {
+  static const routeName = "/AddYourDogNow";
   const AddYourDogNow({Key? key}) : super(key: key);
 
   @override
@@ -52,7 +55,8 @@ class _AddYourDogNowState extends State<AddYourDogNow> {
                       txt: "Yes",
                       txtColor: AppStyles.blackColor,
                       onTap: () {
-                        Navigator.pushNamed(context, "/AddYourDog");
+                        Navigator.pushReplacementNamed(
+                            context, AddYourDog.routeName);
                       },
                     ),
                   ),
@@ -66,7 +70,8 @@ class _AddYourDogNowState extends State<AddYourDogNow> {
                       txt: "Later",
                       txtColor: AppStyles.blackColor,
                       onTap: () {
-                        Navigator.pushNamed(context, "/HomePage");
+                        Navigator.pushReplacementNamed(
+                            context, HomePage.routeName);
                       },
                     ),
                   )

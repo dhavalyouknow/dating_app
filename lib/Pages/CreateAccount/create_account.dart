@@ -6,6 +6,7 @@ import 'package:dating_app/widget/Button/facebook_btn.dart';
 import 'package:dating_app/widget/Button/gender_btn.dart';
 import 'package:dating_app/widget/Button/google_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
+import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:dating_app/widget/locationPicker.dart';
@@ -16,6 +17,7 @@ import 'package:intl/intl.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class CreateAccount extends StatefulWidget {
+  static const routeName = "/CreateAccount";
   const CreateAccount({Key? key}) : super(key: key);
 
   @override
@@ -77,27 +79,43 @@ class _CreateAccountState extends State<CreateAccount>
                         text: "Create account",
                       ),
                     ),
-                    TextFormFieldWidget(
-                      textEditingController: nameController,
-                      validator: nameValidator,
-                      borderRadius: 10,
+                    FormFieldWidget(
+                      // height: size.height / 14,
                       icon: IconButton(
-                        icon: Icon(
-                          Icons.person_outline,
-                          color: nameController.text.isEmpty
-                              ? AppStyles.greyColor
-                              : AppStyles.pinkColor,
-                        ),
+                        icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      height: size.height / 14,
-                      txt: "Name",
-                      obscureText: false,
-                      border: nameController.text.isEmpty ? 1 : 2,
+                      hintText: 'Name',
+                      textEditingController: nameController,
+                      validator: nameValidator,
+                      obSecure: false,
+                      border: nameController.text.isEmpty ? 1.r : 2.r,
                       borderColor: nameController.text.isEmpty
                           ? AppStyles.greyColor
                           : AppStyles.pinkColor,
+                      borderRadius: 10.r,
                     ),
+                    // TextFormFieldWidget(
+                    //   textEditingController: nameController,
+                    //   validator: nameValidator,
+                    //   borderRadius: 10,
+                    //   icon: IconButton(
+                    //     icon: Icon(
+                    //       Icons.person_outline,
+                    //       color: nameController.text.isEmpty
+                    //           ? AppStyles.greyColor
+                    //           : AppStyles.pinkColor,
+                    //     ),
+                    //     onPressed: () {},
+                    //   ),
+                    //   height: size.height / 14,
+                    //   txt: "Name",
+                    //   obscureText: false,
+                    //   border: nameController.text.isEmpty ? 1 : 2,
+                    //   borderColor: nameController.text.isEmpty
+                    //       ? AppStyles.greyColor
+                    //       : AppStyles.pinkColor,
+                    // ),
                     TextFormFieldWidget(
                       textEditingController: surnameController,
                       validator: surnameValidator,
@@ -218,9 +236,11 @@ class _CreateAccountState extends State<CreateAccount>
                                   ),
                                   SizedBox(width: 10.w),
                                   Text(
-                                    DateFormat('MM-dd-yyyy').format(
-                                      DateTime.parse('$selectedDate'),
-                                    ),
+                                    tapped && selectedDate != DateTime.now()
+                                        ? DateFormat('MM-dd-yyyy').format(
+                                            DateTime.parse('$selectedDate'),
+                                          )
+                                        : "Birthday",
                                     style: TextStyle(
                                       fontFamily: GoogleFonts.raleway(
                                         fontSize: 15.sp,
@@ -229,7 +249,9 @@ class _CreateAccountState extends State<CreateAccount>
                                                 ? FontWeight.normal
                                                 : FontWeight.w600,
                                       ).fontFamily,
-                                      color: AppStyles.blackColor,
+                                      color: tapped
+                                          ? AppStyles.blackColor
+                                          : AppStyles.greyColor,
                                     ),
                                   ),
                                 ],
@@ -258,6 +280,7 @@ class _CreateAccountState extends State<CreateAccount>
                       onTap: onSubmit,
                     ),
                     GoogleBtnWidget(
+                      color: Colors.grey,
                       onPressed: signInWithGoogle,
                       title: 'Sign in with Google',
                       image: Image.asset('assets/icons/google.png'),

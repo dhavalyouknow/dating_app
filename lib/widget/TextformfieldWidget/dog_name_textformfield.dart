@@ -38,38 +38,43 @@ class _DogNameWidgetState extends State<DogNameWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 18.h),
-      child: Container(
-        height: widget.height,
-        padding: EdgeInsets.only(left: 10.w),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: AppStyles.whiteColor,
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          border: Border.all(
-            color: widget.borderColor,
-            width: widget.border,
+      child: GestureDetector(
+        child: Container(
+          height: widget.height,
+          width: double.infinity,
+          padding: EdgeInsets.only(left: 10.w),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: AppStyles.whiteColor,
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            border: Border.all(
+              color: widget.borderColor,
+              width: widget.border,
+            ),
           ),
-        ),
-        child: Row(
-          children: [
-            Flexible(child: widget.dogIcon),
-            SizedBox(width: 10.w),
-            Flexible(
-              child: TextFormField(
-                controller: widget.textEditingController,
-                validator: widget.validator,
-                obscureText: widget.obscureText,
-                decoration: InputDecoration(
-                  hintText: widget.txt,
-                  hintStyle: TextStyle(
-                    fontFamily: GoogleFonts.raleway(fontSize: 15.sp).fontFamily,
-                    color: AppStyles.textColor,
+          child: Row(
+            children: [
+              Flexible(child: widget.dogIcon),
+              SizedBox(width: 10.w),
+              Flexible(
+                flex: 5,
+                child: TextFormField(
+                  controller: widget.textEditingController,
+                  validator: widget.validator,
+                  obscureText: widget.obscureText,
+                  decoration: InputDecoration(
+                    hintText: widget.txt,
+                    hintStyle: TextStyle(
+                      fontFamily:
+                          GoogleFonts.raleway(fontSize: 15.sp).fontFamily,
+                      color: AppStyles.textColor,
+                    ),
+                    border: InputBorder.none,
                   ),
-                  border: InputBorder.none,
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
