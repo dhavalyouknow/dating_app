@@ -232,6 +232,13 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
           success: (value) {
             Fluttertoast.showToast(
                 msg: 'Your Profile Picture is added successfully');
+            BlocProvider.of<AuthBloc>(context).add(
+              SessionRequest(
+                onSuccess: (User user) {
+                  BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+                },
+              ),
+            );
           },
         ),
       );
@@ -239,12 +246,6 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
     //for dog
     else {
       Dog dog = BlocProvider.of<DogBloc>(context).state.dog as Dog;
-      print(dog.squareProfileImage?.map((e) => e.id).runtimeType);
-      dog.squareProfileImage?.map((e) {
-        print(e.id);
-        print('121212121221');
-        return Text('dfsd');
-      });
 
       BlocProvider.of<ImageUploadBloc>(context).add(
         UploadImage(
@@ -257,11 +258,15 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                 circleProfileImage: value.id!,
                 success: (value) {
                   user = user?.copyWith(dog: [...?user?.dog, dog]);
-                  // BlocProvider.of<UserBloc>(context).add(SetUser(user: user!));
-                  print(dog);
-                  print(user?.dog?.first.circleProfileImage);
-                  print(user?.id);
-                  print('===$value');
+                  BlocProvider.of<AuthBloc>(context).add(
+                    SessionRequest(
+                      onSuccess: (User user) {
+                        BlocProvider.of<UserBloc>(context)
+                            .add(SetUser(user: user));
+                      },
+                    ),
+                  );
+
                   isDone = true;
                   setState(() {});
                 },

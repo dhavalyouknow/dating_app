@@ -60,4 +60,30 @@ class Dog {
         "updatedAt": updatedAt?.toIso8601String(),
         "__v": v,
       };
+
+  Dog copyWith(
+      {String? id,
+      String? dogName,
+      String? gender,
+      String? size,
+      List<String>? lookingFor,
+      List<SquareProfileImage>? squareProfileImage,
+      SquareProfileImage? circleProfileImage,
+      String? userId,
+      DateTime? createdAt,
+      DateTime? updatedAt,
+      int? v}) {
+    return Dog(
+        gender: gender ?? this.gender,
+        circleProfileImage: circleProfileImage ?? this.circleProfileImage,
+        id: id ?? this.id,
+        createdAt: createdAt ?? this.createdAt,
+        dogName: dogName ?? this.dogName,
+        lookingFor: lookingFor ?? this.lookingFor,
+        size: size ?? this.size,
+        squareProfileImage: squareProfileImage ?? this.squareProfileImage,
+        updatedAt: updatedAt ?? this.updatedAt,
+        userId: userId ?? this.userId,
+        v: v ?? this.v);
+  }
 }

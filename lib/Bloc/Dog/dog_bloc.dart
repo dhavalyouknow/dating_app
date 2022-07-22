@@ -90,11 +90,25 @@ class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
       print('222222222222222');
       print('${ApiEndPoints.updateDog}${event.dog.id}');
       print(event.circleProfileImage);
+      print(resp?.body);
+      print('222222222222222');
+
       if (resp != null) {
         if (resp.statusCode == 200) {
           print(resp.statusCode);
           print(resp.body);
           event.success('success');
+          //aa profile image che?
+          emit(
+            state.copyWith(
+              status: DogStatus.success,
+              dog: state.dog?.copyWith(
+                circleProfileImage: SquareProfileImage.fromJson(
+                  jsonDecode(resp.body),
+                ),
+              ),
+            ),
+          );
         } else {
           print(resp.statusCode);
           print(resp.body);
