@@ -98,7 +98,6 @@ class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
           print(resp.statusCode);
           print(resp.body);
           event.success('success');
-          //aa profile image che?
           emit(
             state.copyWith(
               status: DogStatus.success,

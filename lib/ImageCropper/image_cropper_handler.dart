@@ -258,15 +258,12 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                 circleProfileImage: value.id!,
                 success: (value) {
                   user = user?.copyWith(dog: [...?user?.dog, dog]);
-                  BlocProvider.of<AuthBloc>(context).add(
-                    SessionRequest(
-                      onSuccess: (User user) {
-                        BlocProvider.of<UserBloc>(context)
-                            .add(SetUser(user: user));
-                      },
-                    ),
-                  );
 
+                  // BlocProvider.of<UserBloc>(context).add(SetUser(user: user!));
+                  BlocProvider.of<AuthBloc>(context)
+                      .add(SessionRequest(onSuccess: (User user) {
+                    BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+                  }));
                   isDone = true;
                   setState(() {});
                 },
