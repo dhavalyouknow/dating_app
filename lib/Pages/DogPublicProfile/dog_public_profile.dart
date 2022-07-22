@@ -34,7 +34,7 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                 await showDialog(
                   context: context,
                   builder: (context) {
-                    return const DogEditPopup();
+                    return DogEditPopup(dog: dog);
                   },
                 );
               },

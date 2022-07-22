@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextFormFieldWidget extends StatefulWidget {
-  final double height;
+  final double? height;
   final String txt;
   final IconButton? icon;
   bool? obSecure;
@@ -24,7 +24,7 @@ class TextFormFieldWidget extends StatefulWidget {
 
   TextFormFieldWidget({
     Key? key,
-    required this.height,
+    this.height,
     required this.txt,
     this.icon,
     this.obSecure,
@@ -67,12 +67,9 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
         validator: widget.validator,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
-          // contentPadding: EdgeInsets.only(left: 10.w, bottom: 30.h),
           suffixIcon: widget.backIcon,
           icon: widget.obSecure == true ? widget.icon : widget.icon,
-
           hintText: widget.txt,
-
           hintStyle: TextStyle(
             fontFamily: GoogleFonts.raleway(
               fontSize: 15.sp,

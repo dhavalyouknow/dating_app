@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/EditDogProfile/edit_dog_handler.dart';
 import 'package:dating_app/widget/TextformfieldWidget/edit_formfield.dart';
+import 'package:dating_app/widget/errorWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -71,17 +73,33 @@ class _EditDogProfileState extends State<EditDogProfile> with EditDogHandlers {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Container(
-              //   decoration:
-              //       const BoxDecoration(color: AppStyles.lightGreyColor),
-              //   height: 300.h,
-              //   child: Center(
-              //     child: Image.asset(
-              //       "assets/Dog.png",
-              //       color: AppStyles.whiteColor,
-              //     ),
-              //   ),
-              // ),
+              SizedBox(
+                height: 350.h,
+                child: PageView.builder(
+                  itemCount: dog!.squareProfileImage!.length,
+                  itemBuilder: (context, index) {
+                    return CachedNetworkImage(
+                      imageUrl: dog?.squareProfileImage != null
+                          ? dog!.squareProfileImage!.first.url.toString()
+                          : "",
+                      fit: BoxFit.cover,
+                      errorWidget: (BuildContext context, url, data) {
+                        return const ImageErrorWidget();
+                      },
+                      placeholder: (context, url) => Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                        color: Colors.grey.withOpacity(0.1),
+                        child: const Center(
+                          child: CircularProgressIndicator(
+                            color: AppStyles.textColor,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Column(

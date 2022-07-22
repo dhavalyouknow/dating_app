@@ -129,7 +129,7 @@ class _CreateAccountState extends State<CreateAccount>
                         ),
                         onPressed: () {},
                       ),
-                      height: size.height / 14,
+                      // height: size.height / 14,
                       txt: "Surname",
                       obscureText: false,
                       border: surnameController.text.isEmpty ? 1 : 2,

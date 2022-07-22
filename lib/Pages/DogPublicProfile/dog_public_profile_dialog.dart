@@ -1,18 +1,22 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Model/dog.dart';
+import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile_handler.dart';
 import 'package:dating_app/Pages/EditDogProfile/edit_dog_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DogEditPopup extends StatefulWidget {
-  const DogEditPopup({Key? key}) : super(key: key);
+  final Dog? dog;
+
+  const DogEditPopup({Key? key, this.dog}) : super(key: key);
 
   @override
   State<DogEditPopup> createState() => _DogEditPopupState();
 }
 
-class _DogEditPopupState extends State<DogEditPopup> {
+class _DogEditPopupState extends State<DogEditPopup> with DogPublicHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -53,7 +57,11 @@ class _DogEditPopupState extends State<DogEditPopup> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, EditDogProfile.routeName);
+                  Navigator.pushReplacementNamed(
+                    context,
+                    EditDogProfile.routeName,
+                    arguments: widget.dog,
+                  );
                 },
                 child: AppText(
                   size: 16.sp,

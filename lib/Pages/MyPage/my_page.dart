@@ -3,7 +3,11 @@ import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/AddYourDog/add_your_dog.dart';
+import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile.dart';
 import 'package:dating_app/Pages/MyPage/my_page_handler.dart';
+import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile.dart';
+import 'package:dating_app/Pages/Setting/setting.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/errorWidget.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
@@ -30,7 +34,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
             padding: EdgeInsets.only(right: 10.w),
             child: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/Settings');
+                Navigator.pushNamed(context, Settings.routeName);
               },
               icon: Icon(
                 size: 30.h,
@@ -94,153 +98,173 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                         .fontFamily,
                   ),
                   SizedBox(height: 15.h),
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 80.h,
-                        width: 80.w,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: CachedNetworkImage(
-                            imageUrl: userState.user?.squareProfileImage == null
-                                ? userState.user!.squareProfileImage!.first.url
-                                    .toString()
-                                : "",
-                            errorWidget: (BuildContext context, url, data) {
-                              return const ImageErrorWidget();
-                            },
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, PersonPublicProfile.routeName);
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 80.h,
+                          width: 80.w,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl:
+                                  userState.user?.squareProfileImage != null
+                                      ? userState
+                                          .user!.squareProfileImage!.first.url
+                                          .toString()
+                                      : "",
+                              errorWidget: (BuildContext context, url, data) {
+                                return const ImageErrorWidget();
+                              },
+                              placeholder: (context, url) => Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                color: Colors.grey.withOpacity(0.1),
+                                child: const Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppStyles.textColor,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 15.w),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AppText(
-                            size: 18.sp,
-                            text:
-                                "${userState.user?.firstName} ${userState.user?.lastName}",
-                            fontFamily:
-                                GoogleFonts.raleway(fontWeight: FontWeight.w600)
-                                    .fontFamily,
-                          ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on_outlined,
-                                size: 16,
-                                color: AppStyles.skyBlueColor,
-                              ),
-                              Text(
-                                '${userState.user?.city}',
-                                style: TextStyle(fontSize: 10.sp),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            children: [
-                              ...userState.user!.dog.map((e) {
-                                print(e.dogName);
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    gradient: LinearGradient(
-                                      colors: AppStyles.myPageGradientColor,
+                        SizedBox(width: 15.w),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AppText(
+                              size: 18.sp,
+                              text:
+                                  "${userState.user?.firstName} ${userState.user?.lastName}",
+                              fontFamily: GoogleFonts.raleway(
+                                      fontWeight: FontWeight.w600)
+                                  .fontFamily,
+                            ),
+                            SizedBox(height: 5.h),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.location_on_outlined,
+                                  size: 16,
+                                  color: AppStyles.skyBlueColor,
+                                ),
+                                Text(
+                                  '${userState.user?.city}',
+                                  style: TextStyle(fontSize: 10.sp),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 5.h),
+                            Row(
+                              children: [
+                                ...userState.user!.dog.map((e) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      gradient: LinearGradient(
+                                        colors: AppStyles.myPageGradientColor,
+                                      ),
                                     ),
-                                  ),
-                                  padding: const EdgeInsets.all(3.0),
-                                  child: ClipOval(
-                                    child: CachedNetworkImage(
-                                      imageUrl: e.circleProfileImage != null
-                                          ? e.circleProfileImage!.url.toString()
-                                          : "",
-                                      errorWidget:
-                                          (BuildContext context, url, data) {
-                                        return const ImageErrorWidget();
-                                      },
-                                      height: 28.h,
-                                      width: 28.h,
+                                    padding: const EdgeInsets.all(3.0),
+                                    child: ClipOval(
+                                      child: CachedNetworkImage(
+                                        fit: BoxFit.cover,
+                                        imageUrl: e.circleProfileImage != null
+                                            ? e.circleProfileImage!.url
+                                                .toString()
+                                            : "",
+                                        errorWidget:
+                                            (BuildContext context, url, data) {
+                                          return const ImageErrorWidget();
+                                        },
+                                        height: 28.h,
+                                        width: 28.h,
+                                      ),
                                     ),
-                                  ),
-                                );
+                                  );
 
-                                ///don't remove
-                                // return Row(
-                                //   children: [
-                                //     SizedBox(
-                                //       width: size.width / 7,
-                                //       child: Stack(
-                                //         children: [
-                                //           // Positioned(
-                                //           //   left: 15.w,
-                                //           //   child: Container(
-                                //           //     decoration: BoxDecoration(
-                                //           //       shape: BoxShape.circle,
-                                //           //       border: Border.all(
-                                //           //         width: 2,
-                                //           //         color: AppStyles.greyColor,
-                                //           //       ),
-                                //           //     ),
-                                //           //     child: CircleAvatar(
-                                //           //       radius: 12.r,
-                                //           //       backgroundImage: const AssetImage(
-                                //           //         "assets/intro/Intro3Background.png",
-                                //           //       ),
-                                //           //     ),
-                                //           //   ),
-                                //           // ),
-                                //           Container(
-                                //             decoration: BoxDecoration(
-                                //               shape: BoxShape.circle,
-                                //               gradient: LinearGradient(
-                                //                 colors: AppStyles
-                                //                     .myPageGradientColor,
-                                //               ),
-                                //             ),
-                                //             padding: const EdgeInsets.all(3.0),
-                                //             child: ClipOval(
-                                //               child: CachedNetworkImage(
-                                //                 imageUrl:
-                                //                     e.circleProfileImage != null
-                                //                         ? e.circleProfileImage!
-                                //                             .url
-                                //                             .toString()
-                                //                         : "",
-                                //                 height: 28.h,
-                                //                 width: 28.h,
-                                //               ),
-                                //             ),
-                                //           ),
-                                //         ],
-                                //       ),
-                                //     ),
-                                //     SizedBox(width: 5.w),
-                                //     AppText(
-                                //       size: 14.sp,
-                                //       text:
-                                //           "${userState.user?.dog?.length} Dogs",
-                                //       fontFamily: GoogleFonts.raleway(
-                                //               fontWeight: FontWeight.w700)
-                                //           .fontFamily,
-                                //     )
-                                //   ],
-                                // );
-                              }).toList(),
-                              SizedBox(width: 5.w),
-                              AppText(
-                                size: 14.sp,
-                                text: "${userState.user?.dog?.length} Dogs",
-                                fontFamily: GoogleFonts.raleway(
-                                        fontWeight: FontWeight.w700)
-                                    .fontFamily,
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                                  ///don't remove
+                                  // return Row(
+                                  //   children: [
+                                  //     SizedBox(
+                                  //       width: size.width / 7,
+                                  //       child: Stack(
+                                  //         children: [
+                                  //           // Positioned(
+                                  //           //   left: 15.w,
+                                  //           //   child: Container(
+                                  //           //     decoration: BoxDecoration(
+                                  //           //       shape: BoxShape.circle,
+                                  //           //       border: Border.all(
+                                  //           //         width: 2,
+                                  //           //         color: AppStyles.greyColor,
+                                  //           //       ),
+                                  //           //     ),
+                                  //           //     child: CircleAvatar(
+                                  //           //       radius: 12.r,
+                                  //           //       backgroundImage: const AssetImage(
+                                  //           //         "assets/intro/Intro3Background.png",
+                                  //           //       ),
+                                  //           //     ),
+                                  //           //   ),
+                                  //           // ),
+                                  //           Container(
+                                  //             decoration: BoxDecoration(
+                                  //               shape: BoxShape.circle,
+                                  //               gradient: LinearGradient(
+                                  //                 colors: AppStyles
+                                  //                     .myPageGradientColor,
+                                  //               ),
+                                  //             ),
+                                  //             padding: const EdgeInsets.all(3.0),
+                                  //             child: ClipOval(
+                                  //               child: CachedNetworkImage(
+                                  //                 imageUrl:
+                                  //                     e.circleProfileImage != null
+                                  //                         ? e.circleProfileImage!
+                                  //                             .url
+                                  //                             .toString()
+                                  //                         : "",
+                                  //                 height: 28.h,
+                                  //                 width: 28.h,
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //         ],
+                                  //       ),
+                                  //     ),
+                                  //     SizedBox(width: 5.w),
+                                  //     AppText(
+                                  //       size: 14.sp,
+                                  //       text:
+                                  //           "${userState.user?.dog?.length} Dogs",
+                                  //       fontFamily: GoogleFonts.raleway(
+                                  //               fontWeight: FontWeight.w700)
+                                  //           .fontFamily,
+                                  //     )
+                                  //   ],
+                                  // );
+                                }).toList(),
+                                SizedBox(width: 5.w),
+                                AppText(
+                                  size: 14.sp,
+                                  text: "${userState.user?.dog?.length} Dogs",
+                                  fontFamily: GoogleFonts.raleway(
+                                          fontWeight: FontWeight.w700)
+                                      .fontFamily,
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 20.h),
                   AppText(
@@ -251,96 +275,116 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                   ),
                   SizedBox(height: 15.h),
                   ...userState.user!.dog.map((e) {
-                    print('*************************');
-                    print(e.squareProfileImage);
-                    return Padding(
-                      padding: EdgeInsets.only(bottom: 10.h),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            height: 70.h,
-                            width: 70.w,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: CachedNetworkImage(
-                                imageUrl: e.squareProfileImage!.isNotEmpty
-                                    ? e.squareProfileImage!.first.url.toString()
-                                    : "",
-                                fit: BoxFit.cover,
-                                errorWidget: (BuildContext context, url, data) {
-                                  return const ImageErrorWidget();
-                                },
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 15.w),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AppText(
-                                size: 18.sp,
-                                text: '${e.dogName}',
-                                fontFamily: GoogleFonts.raleway(
-                                        fontWeight: FontWeight.w600)
-                                    .fontFamily,
-                              ),
-                              SizedBox(height: 5.h),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.location_on_outlined,
-                                    size: 16,
-                                    color: AppStyles.skyBlueColor,
-                                  ),
-                                  AppText(
-                                    size: 10.sp,
-                                    text: '${userState.user?.city}',
-                                    fontFamily:
-                                        GoogleFonts.raleway().fontFamily,
-                                  )
-                                ],
-                              ),
-                              SizedBox(height: 5.h),
-                              Row(
-                                children: [
-                                  Container(
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: AppStyles.skyBlueColor,
-                                    ),
-                                    padding: const EdgeInsets.all(3.0),
-                                    child: ClipOval(
-                                      child: CachedNetworkImage(
-                                        imageUrl: userState
-                                                    .user?.circleProfileImage !=
-                                                null
-                                            ? userState
-                                                .user!.circleProfileImage!.url
-                                                .toString()
-                                            : "",
-                                        errorWidget:
-                                            (BuildContext context, url, data) {
-                                          return const ImageErrorWidget();
-                                        },
-                                        height: 18.h,
-                                        width: 18.h,
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          DogPublicProfile.routeName,
+                          arguments: e,
+                        );
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 10.h),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              height: 70.h,
+                              width: 70.w,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: CachedNetworkImage(
+                                  imageUrl: e.squareProfileImage!.isNotEmpty
+                                      ? e.squareProfileImage!.first.url
+                                          .toString()
+                                      : "",
+                                  fit: BoxFit.cover,
+                                  errorWidget:
+                                      (BuildContext context, url, data) {
+                                    return const ImageErrorWidget();
+                                  },
+                                  placeholder: (context, url) => Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height,
+                                    color: Colors.grey.withOpacity(0.1),
+                                    child: const Center(
+                                      child: CircularProgressIndicator(
+                                        color: AppStyles.textColor,
                                       ),
                                     ),
                                   ),
-                                  SizedBox(width: 5.w),
-                                  AppText(
-                                    size: 14.sp,
-                                    text:
-                                        '${userState.user?.firstName} ${userState.user?.lastName}',
-                                    fontFamily: GoogleFonts.raleway(
-                                            fontWeight: FontWeight.w700)
-                                        .fontFamily,
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 15.w),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                AppText(
+                                  size: 18.sp,
+                                  text: '${e.dogName}',
+                                  fontFamily: GoogleFonts.raleway(
+                                          fontWeight: FontWeight.w600)
+                                      .fontFamily,
+                                ),
+                                SizedBox(height: 5.h),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on_outlined,
+                                      size: 16,
+                                      color: AppStyles.skyBlueColor,
+                                    ),
+                                    AppText(
+                                      size: 10.sp,
+                                      text: '${userState.user?.city}',
+                                      fontFamily:
+                                          GoogleFonts.raleway().fontFamily,
+                                    )
+                                  ],
+                                ),
+                                SizedBox(height: 5.h),
+                                Row(
+                                  children: [
+                                    Container(
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: AppStyles.skyBlueColor,
+                                      ),
+                                      padding: const EdgeInsets.all(3.0),
+                                      child: ClipOval(
+                                        child: CachedNetworkImage(
+                                          imageUrl: userState.user
+                                                      ?.circleProfileImage !=
+                                                  null
+                                              ? userState
+                                                  .user!.circleProfileImage!.url
+                                                  .toString()
+                                              : "",
+                                          errorWidget: (BuildContext context,
+                                              url, data) {
+                                            return const ImageErrorWidget();
+                                          },
+                                          height: 18.h,
+                                          width: 18.h,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 5.w),
+                                    AppText(
+                                      size: 14.sp,
+                                      text:
+                                          '${userState.user?.firstName} ${userState.user?.lastName}',
+                                      fontFamily: GoogleFonts.raleway(
+                                              fontWeight: FontWeight.w700)
+                                          .fontFamily,
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   }).toList(),
@@ -351,7 +395,8 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                       height: size.height / 18,
                       txt: "Add Dog",
                       onTap: () {
-                        Navigator.pushNamed(context, '/AddYourDog');
+                        Navigator.pushReplacementNamed(
+                            context, AddYourDog.routeName);
                       },
                     ),
                   )
