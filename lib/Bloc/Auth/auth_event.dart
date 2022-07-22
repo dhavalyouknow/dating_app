@@ -98,6 +98,8 @@ class LoginWithGoogle extends AuthEvent {
   //headertoken
   final String fcmtoken;
   final Function(User) onSuccess;
+  final Function(bool) isRegistered;
+  final VoidCallback onError;
 
   const LoginWithGoogle({
     required this.email,
@@ -105,6 +107,8 @@ class LoginWithGoogle extends AuthEvent {
     required this.pushToken,
     required this.fcmtoken,
     required this.onSuccess,
+    required this.isRegistered,
+    required this.onError,
   });
 
   @override
@@ -118,14 +122,15 @@ class LoginWithFacebook extends AuthEvent {
   final String pushToken;
   final String headerToken;
   final Function(User) onSuccess;
+  final Function(bool) isRegistered;
 
-  const LoginWithFacebook({
-    required this.email,
-    required this.facebookId,
-    required this.pushToken,
-    required this.headerToken,
-    required this.onSuccess,
-  });
+  const LoginWithFacebook(
+      {required this.email,
+      required this.facebookId,
+      required this.pushToken,
+      required this.headerToken,
+      required this.onSuccess,
+      required this.isRegistered});
 
   @override
   // TODO: implement props

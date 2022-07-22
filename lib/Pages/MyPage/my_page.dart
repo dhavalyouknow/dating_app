@@ -40,17 +40,6 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
             ),
           ),
         ],
-        leading: Padding(
-          padding: EdgeInsets.only(left: 10.w),
-          child: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: AppStyles.greyColor,
-              size: 30.h,
-            ),
-          ),
-        ),
         backgroundColor: AppStyles.trasnparentColor,
         elevation: 0,
         centerTitle: true,
@@ -63,7 +52,8 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
       ),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, userState) {
-          print(userState);
+          print(userState.user?.dog?.length);
+
           if (userState.user == null) {
             BlocProvider.of<AuthBloc>(context).add(
               SessionRequest(
@@ -151,6 +141,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                           Row(
                             children: [
                               ...userState.user!.dog!.map((e) {
+                                print(e.dogName);
                                 return Container(
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -251,27 +242,11 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                     ],
                   ),
                   SizedBox(height: 20.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppText(
-                        size: 18.sp,
-                        text: "My Dogs",
-                        fontFamily:
-                            GoogleFonts.raleway(fontWeight: FontWeight.bold)
-                                .fontFamily,
-                      ),
-                      SizedBox(
-                        width: size.width / 4,
-                        child: GradientBtn(
-                          height: size.height / 18,
-                          txt: "Add Dog",
-                          onTap: () {
-                            Navigator.pushNamed(context, '/AddYourDog');
-                          },
-                        ),
-                      )
-                    ],
+                  AppText(
+                    size: 18.sp,
+                    text: "My Dogs",
+                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
+                        .fontFamily,
                   ),
                   SizedBox(height: 15.h),
                   ...userState.user!.dog!.map((e) {
@@ -285,9 +260,13 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: CachedNetworkImage(
-                                imageUrl:
-                                    'https://images.unsplash.com/photo-1657895116418-b70a43670985?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
+                                imageUrl: e.squareProfileImage!.isNotEmpty
+                                    ? e.squareProfileImage!.first.url.toString()
+                                    : "",
                                 fit: BoxFit.cover,
+                                errorWidget: (BuildContext context, url, data) {
+                                  return const ImageErrorWidget();
+                                },
                               ),
                             ),
                           ),
@@ -363,6 +342,16 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                     );
                   }).toList(),
                   SizedBox(height: 15.h),
+                  SizedBox(
+                    width: size.width / 4,
+                    child: GradientBtn(
+                      height: size.height / 18,
+                      txt: "Add Dog",
+                      onTap: () {
+                        Navigator.pushNamed(context, '/AddYourDog');
+                      },
+                    ),
+                  )
                 ],
               ),
             ),

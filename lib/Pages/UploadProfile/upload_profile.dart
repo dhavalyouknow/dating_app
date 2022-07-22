@@ -64,119 +64,135 @@ class _UploadProfileState extends State<UploadProfile>
                 text: "Upload Profile Picture",
               ),
               SizedBox(height: 20.h),
-              BlocBuilder<UserBloc, UserState>(
-                builder: (context, state) {
-                  return GestureDetector(
-                    onTap: () {
-                      editImage(type: "person");
-                    },
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 200.h,
-                          width: 200.w,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: const Color(0xffFAC7D1),
-                                blurRadius: 20.sp,
-                                offset: const Offset(-1, -4),
-                              ),
-                            ],
+              imageFile == null ||
+                      circleImageFile == null ||
+                      squareImageFile == null
+                  ? GestureDetector(
+                      onTap: () {
+                        editImage(type: 'person');
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.camera_alt_outlined),
+                          SizedBox(width: 10.w),
+                          AppText(
+                            text: "Upload picture",
+                            fontFamily:
+                                GoogleFonts.raleway(fontWeight: FontWeight.bold)
+                                    .fontFamily,
                           ),
-                          child: CircleAvatar(
-                            backgroundColor: AppStyles.rosyWhiteColor,
-                            radius: 300.r,
-                            child: imageFile == null
-                                ? Icon(
-                                    Icons.person,
-                                    size: 100.sp,
-                                    color: AppStyles.greyColor,
-                                  )
-                                : Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: FileImage(imageFile!),
-                                      ),
-                                    ),
-                                  ),
+                        ],
+                      ),
+                    )
+                  : Row(
+                      children: [
+                        Flexible(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            height: 200.h,
+                            width: 200.w,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12.0),
+                              child: Image.file(
+                                squareImageFile!,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
-                        SizedBox(height: 20.h),
-                        imageFile == null
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Icon(Icons.camera_alt_outlined),
-                                  SizedBox(width: 10.w),
-                                  AppText(
-                                    text: "Upload picture",
-                                    fontFamily: GoogleFonts.raleway(
-                                            fontWeight: FontWeight.bold)
-                                        .fontFamily,
-                                  ),
-                                ],
-                              )
-                            : Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 40.w),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        removeImage();
-                                      },
-                                      child: Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.close,
-                                            color: AppStyles.crimsonPinkColor,
-                                          ),
-                                          SizedBox(width: 5.w),
-                                          AppText(
-                                            color: AppStyles.crimsonPinkColor,
-                                            text: "Remove",
-                                            fontFamily: GoogleFonts.raleway(
-                                                    fontWeight: FontWeight.bold)
-                                                .fontFamily,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        editImage(type: "person");
-                                      },
-                                      child: Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.camera_alt_outlined,
-                                            color: AppStyles.blackColor,
-                                          ),
-                                          SizedBox(width: 5.w),
-                                          AppText(
-                                            color: AppStyles.blackColor,
-                                            text: "Replace",
-                                            fontFamily: GoogleFonts.raleway(
-                                                    fontWeight: FontWeight.bold)
-                                                .fontFamily,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
+                        Flexible(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 5.w),
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.red,
+                            ),
+                            height: 250.h,
+                            width: 200.w,
+                            child: CircleAvatar(
+                              backgroundImage: FileImage(
+                                circleImageFile!,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                  );
-                },
+              SizedBox(height: 20.h),
+              imageFile == null
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.camera_alt_outlined),
+                        SizedBox(width: 10.w),
+                        AppText(
+                          text: "Upload picture",
+                          fontFamily:
+                              GoogleFonts.raleway(fontWeight: FontWeight.bold)
+                                  .fontFamily,
+                        ),
+                      ],
+                    )
+                  : Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              removeImage();
+                            },
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.close,
+                                  color: AppStyles.crimsonPinkColor,
+                                ),
+                                SizedBox(width: 5.w),
+                                AppText(
+                                  color: AppStyles.crimsonPinkColor,
+                                  text: "Remove",
+                                  fontFamily: GoogleFonts.raleway(
+                                          fontWeight: FontWeight.bold)
+                                      .fontFamily,
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              editImage(type: "person");
+                              imageFile = null;
+                              circleImageFile = null;
+                              squareImageFile = null;
+                              setState(() {});
+                            },
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.camera_alt_outlined,
+                                  color: AppStyles.blackColor,
+                                ),
+                                SizedBox(width: 5.w),
+                                AppText(
+                                  color: AppStyles.blackColor,
+                                  text: "Replace",
+                                  fontFamily: GoogleFonts.raleway(
+                                          fontWeight: FontWeight.bold)
+                                      .fontFamily,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+              SizedBox(
+                height: 140.h,
               ),
-              SizedBox(height: 180.h),
               imageFile == null
                   ? GradientBtn(
                       height: size.height / 14,

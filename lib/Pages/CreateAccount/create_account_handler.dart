@@ -145,12 +145,28 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
               pushToken: fcmToken!,
               //for header
               fcmtoken: val.idToken!,
+              isRegistered: (value) {
+                if (value == false) {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/OtherLoginCreateAccount',
+                  );
+                } else {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/MyPage',
+                  );
+                }
+              },
               onSuccess: (User user) {
                 BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-                Navigator.pushReplacementNamed(
-                  context,
-                  '/OtherLoginCreateAccount',
-                );
+                setState(() {
+                  isLoading = false;
+                });
+              },
+              onError: () {
+                Fluttertoast.showToast(
+                    msg: 'Something happened wrong try again after sometime.');
                 setState(() {
                   isLoading = false;
                 });
@@ -189,15 +205,26 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
                 facebookId: profile!.userId,
                 pushToken: fcmToken!,
                 headerToken: accessToken!.token,
+                isRegistered: (value) {
+                  if (value == false) {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/OtherLoginCreateAccount',
+                    );
+                  } else {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/MyPage',
+                    );
+                  }
+                },
                 onSuccess: (User user) {
                   BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-                  Navigator.pushReplacementNamed(
-                    context,
-                    '/OtherLoginCreateAccount',
+                  setState(
+                    () {
+                      isLoading = false;
+                    },
                   );
-                  setState(() {
-                    isLoading = false;
-                  });
                 },
               ),
             );

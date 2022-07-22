@@ -29,9 +29,13 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
   @override
   initState() {
     super.initState();
-    BlocProvider.of<AuthBloc>(context).add(SessionRequest(onSuccess: (user) {
-      this.user = user;
-    }));
+    BlocProvider.of<AuthBloc>(context).add(
+      SessionRequest(
+        onSuccess: (user) {
+          this.user = user;
+        },
+      ),
+    );
     if (mounted) {
       setState(() {});
     }
@@ -115,12 +119,16 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
         image = await _picker.pickImage(
             source: ImageSource.camera, imageQuality: 50);
       }
+
       if (image != null) {
         imageFile = File(image.path);
         isLoading = true;
+
         cropImage(
-            style: CropStyle.rectangle,
-            aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 10));
+          style: CropStyle.rectangle,
+          aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 10),
+        );
+
         setState(() {});
       }
     }
@@ -129,46 +137,48 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
   Future<void> cropImage(
       {required CropStyle style, required CropAspectRatio aspectRatio}) async {
     final croppedFile = await ImageCropper().cropImage(
-        sourcePath: imageFile!.path,
-        aspectRatio: aspectRatio,
-        cropStyle: style,
-        aspectRatioPresets: Platform.isAndroid
-            ? [
-                CropAspectRatioPreset.square,
-                CropAspectRatioPreset.ratio3x2,
-                CropAspectRatioPreset.original,
-                CropAspectRatioPreset.ratio4x3,
-                CropAspectRatioPreset.ratio16x9
-              ]
-            : [
-                CropAspectRatioPreset.original,
-                CropAspectRatioPreset.square,
-                CropAspectRatioPreset.ratio3x2,
-                CropAspectRatioPreset.ratio4x3,
-                CropAspectRatioPreset.ratio5x3,
-                CropAspectRatioPreset.ratio5x4,
-                CropAspectRatioPreset.ratio7x5,
-                CropAspectRatioPreset.ratio16x9
-              ],
-        uiSettings: [
-          AndroidUiSettings(
-            backgroundColor: Colors.transparent,
-            dimmedLayerColor: const Color(0xffD5F1EB).withOpacity(0.5),
-            toolbarColor: const Color(0xffD5F1EB).withOpacity(0.5),
-            toolbarWidgetColor: Colors.black,
-            initAspectRatio: CropAspectRatioPreset.original,
-            showCropGrid: false,
-            lockAspectRatio: true,
-            hideBottomControls: true,
-            cropFrameStrokeWidth: 3,
-            cropGridColor: Colors.red,
-            cropGridRowCount: 8,
-            toolbarTitle: 'Crop Image',
-          ),
-          IOSUiSettings(
-            title: 'Cropper',
-          ),
-        ]);
+      sourcePath:
+          squareImageFile == null ? imageFile!.path : squareImageFile!.path,
+      aspectRatio: aspectRatio,
+      cropStyle: style,
+      aspectRatioPresets: Platform.isAndroid
+          ? [
+              CropAspectRatioPreset.square,
+              CropAspectRatioPreset.ratio3x2,
+              CropAspectRatioPreset.original,
+              CropAspectRatioPreset.ratio4x3,
+              CropAspectRatioPreset.ratio16x9
+            ]
+          : [
+              CropAspectRatioPreset.original,
+              CropAspectRatioPreset.square,
+              CropAspectRatioPreset.ratio3x2,
+              CropAspectRatioPreset.ratio4x3,
+              CropAspectRatioPreset.ratio5x3,
+              CropAspectRatioPreset.ratio5x4,
+              CropAspectRatioPreset.ratio7x5,
+              CropAspectRatioPreset.ratio16x9
+            ],
+      uiSettings: [
+        AndroidUiSettings(
+          backgroundColor: Colors.transparent,
+          dimmedLayerColor: const Color(0xffD5F1EB).withOpacity(0.5),
+          toolbarColor: const Color(0xffD5F1EB).withOpacity(0.5),
+          toolbarWidgetColor: Colors.black,
+          initAspectRatio: CropAspectRatioPreset.original,
+          showCropGrid: false,
+          lockAspectRatio: true,
+          hideBottomControls: true,
+          cropFrameStrokeWidth: 3,
+          cropGridColor: Colors.red,
+          cropGridRowCount: 8,
+          toolbarTitle: 'Crop Image',
+        ),
+        IOSUiSettings(
+          title: 'Cropper',
+        ),
+      ],
+    );
 
     if (croppedFile != null) {
       if (style == CropStyle.rectangle) {
@@ -247,7 +257,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                 circleProfileImage: value.id!,
                 success: (value) {
                   user = user?.copyWith(dog: [...?user?.dog, dog]);
-                  BlocProvider.of<UserBloc>(context).add(SetUser(user: user!));
+                  // BlocProvider.of<UserBloc>(context).add(SetUser(user: user!));
                   print(dog);
                   print(user?.dog?.first.circleProfileImage);
                   print(user?.id);

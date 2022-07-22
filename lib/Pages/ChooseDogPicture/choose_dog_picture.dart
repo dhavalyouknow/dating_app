@@ -28,6 +28,7 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
           txt: "Next",
           onTap: () {
             if (imageFile != null) {
+              print(user?.dog?.length);
               Navigator.pushReplacementNamed(context, '/MyPage');
             }
           },
@@ -65,44 +66,76 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
                     ),
                   ),
                   SizedBox(height: 20.h),
-                  Container(
-                    height: 200.h,
-                    width: 200.w,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0xffFAC7D1),
-                          blurRadius: 20.sp,
-                          offset: const Offset(-1, -4),
-                        ),
-                      ],
-                    ),
-                    child: GestureDetector(
-                      onTap: () {
-                        editImage(type: "dog");
-                      },
-                      child: CircleAvatar(
-                        backgroundColor: AppStyles.rosyWhiteColor,
-                        radius: 300.r,
-                        child: imageFile == null
-                            ? ImageIcon(
-                                const AssetImage("assets/Add_Dog_Profile.png"),
+
+                  imageFile == null ||
+                          circleImageFile == null ||
+                          squareImageFile == null
+                      ? GestureDetector(
+                          onTap: () {
+                            editImage(type: 'dog');
+                          },
+                          child: Container(
+                            height: 200.h,
+                            width: 200.w,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xffFAC7D1),
+                                  blurRadius: 20.sp,
+                                  offset: const Offset(-1, -4),
+                                ),
+                              ],
+                            ),
+                            child: CircleAvatar(
+                              backgroundColor: AppStyles.rosyWhiteColor,
+                              radius: 300.r,
+                              child: ImageIcon(
+                                const AssetImage(
+                                  "assets/Add_Dog_Profile.png",
+                                ),
                                 size: 100.h,
                                 color: const Color(0xffFAC7D1),
-                              )
-                            : Container(
+                              ),
+                            ),
+                          ),
+                        )
+                      : Row(
+                          children: [
+                            Flexible(
+                              child: Container(
                                 decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                height: 200.h,
+                                width: 200.w,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  child: Image.file(
+                                    squareImageFile!,
                                     fit: BoxFit.cover,
-                                    image: FileImage(imageFile!),
                                   ),
                                 ),
                               ),
-                      ),
-                    ),
-                  ),
+                            ),
+                            Flexible(
+                              child: Container(
+                                margin: EdgeInsets.only(left: 5.w),
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.red,
+                                ),
+                                height: 250.h,
+                                width: 200.w,
+                                child: CircleAvatar(
+                                  backgroundImage: FileImage(
+                                    circleImageFile!,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                   SizedBox(height: 20.h),
                   imageFile == null
                       ? Row(
@@ -147,6 +180,10 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
                               GestureDetector(
                                 onTap: () {
                                   editImage(type: "dog");
+                                  imageFile = null;
+                                  circleImageFile = null;
+                                  squareImageFile = null;
+                                  setState(() {});
                                 },
                                 child: Row(
                                   children: [
@@ -169,17 +206,17 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
                           ),
                         ),
                   SizedBox(height: 200.h),
-                  GradientBtn(
-                    height: size.height / 14,
-                    txt: "Next",
-                    onTap: () {
-                      print('*****');
-                      print(isDone);
-                      if (imageFile != null) {
-                        Navigator.pushReplacementNamed(context, '/MyPage');
-                      }
-                    },
-                  )
+                  // GradientBtn(
+                  //   height: size.height / 14,
+                  //   txt: "Next",
+                  //   onTap: () {
+                  //     print('*****');
+                  //     print(isDone);
+                  //     if (imageFile != null) {
+                  //       Navigator.pushReplacementNamed(context, '/MyPage');
+                  //     }
+                  //   },
+                  // )
                 ],
               ),
             ),

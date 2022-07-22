@@ -78,12 +78,28 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
               pushToken: fcmToken!,
               //for header
               fcmtoken: val.idToken!,
+              isRegistered: (value) {
+                if (value == false) {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/OtherLoginCreateAccount',
+                  );
+                } else {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/MyPage',
+                  );
+                }
+              },
               onSuccess: (User user) {
                 BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-                Navigator.pushReplacementNamed(
-                  context,
-                  '/MyPage',
-                );
+                setState(() {
+                  isLoading = false;
+                });
+              },
+              onError: () {
+                Fluttertoast.showToast(
+                    msg: 'Something happened wrong try again after sometime.');
                 setState(() {
                   isLoading = false;
                 });
@@ -123,12 +139,21 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
                 facebookId: profile!.userId,
                 pushToken: fcmToken!,
                 headerToken: accessToken!.token,
+                isRegistered: (value) {
+                  if (value == false) {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/OtherLoginCreateAccount',
+                    );
+                  } else {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/MyPage',
+                    );
+                  }
+                },
                 onSuccess: (User user) {
                   BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-                  Navigator.pushReplacementNamed(
-                    context,
-                    '/MyPage',
-                  );
                   setState(
                     () {
                       isLoading = false;
@@ -144,11 +169,21 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
       case FacebookLoginStatus.cancel:
         // User cancel log in
         Fluttertoast.showToast(msg: '${FacebookLoginStatus.cancel}');
+        setState(
+          () {
+            isLoading = false;
+          },
+        );
         break;
       case FacebookLoginStatus.error:
         // Log in failed
         print(res.error);
         Fluttertoast.showToast(msg: '${res.error}');
+        setState(
+          () {
+            isLoading = false;
+          },
+        );
         break;
     }
   }

@@ -264,6 +264,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           prefs.setString('auth_token', _token!);
           Map<String, dynamic> data = jsonDecode(resp.body);
           User user = User.fromJson(data);
+          event.isRegistered(data["isRegistered"]);
           event.onSuccess(user);
           print(resp.statusCode);
           print(resp.body);
@@ -272,6 +273,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
         } else {
           print(resp.body);
           print(resp.statusCode);
+          event.onError();
           emit(state.copyWith(status: AuthStatus.loginFailure));
         }
       } else {
@@ -307,6 +309,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           Map<String, dynamic> data = jsonDecode(resp.body);
           User user = User.fromJson(data);
           event.onSuccess(user);
+          event.isRegistered(data["isRegistered"]);
           print(resp.body);
           print(resp.statusCode);
           emit(state.copyWith(
