@@ -5,6 +5,7 @@ import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile_dialog.dart';
 import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile_handler.dart';
 import 'package:dating_app/widget/errorWidget.dart';
+import 'package:dating_app/widget/showDogProfileWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +27,6 @@ class _PersonPublicProfileState extends State<PersonPublicProfile>
     final size = MediaQuery.of(context).size;
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, userState) {
-        print(userState);
         return Scaffold(
           appBar: AppBar(
             actions: [
@@ -140,19 +140,20 @@ class _PersonPublicProfileState extends State<PersonPublicProfile>
                                   fontWeight: FontWeight.w500,
                                 ).fontFamily,
                               ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.location_on_outlined,
-                                    color: AppStyles.whiteColor,
-                                  ),
-                                  SizedBox(width: 5.w),
-                                  AppText(
-                                    text: userState.user!.city.toString(),
-                                    color: AppStyles.whiteColor,
-                                  ),
-                                ],
-                              )
+                              if (userState.user!.city!.isNotEmpty)
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on_outlined,
+                                      color: AppStyles.whiteColor,
+                                    ),
+                                    SizedBox(width: 5.w),
+                                    AppText(
+                                      text: userState.user!.city.toString(),
+                                      color: AppStyles.whiteColor,
+                                    ),
+                                  ],
+                                )
                             ],
                           ),
                         )
@@ -213,92 +214,10 @@ class _PersonPublicProfileState extends State<PersonPublicProfile>
                         ),
                         SizedBox(height: 20.h),
                         ...userState.user!.dog.map((e) {
-                          return Padding(
-                            padding: EdgeInsets.only(bottom: 10.h),
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  height: 70.h,
-                                  width: 70.w,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: CachedNetworkImage(
-                                      imageUrl:
-                                          'https://images.unsplash.com/photo-1657895116418-b70a43670985?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 15.w),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    AppText(
-                                      size: 18.sp,
-                                      text: '${e.dogName}',
-                                      fontFamily: GoogleFonts.raleway(
-                                              fontWeight: FontWeight.w600)
-                                          .fontFamily,
-                                    ),
-                                    SizedBox(height: 5.h),
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.location_on_outlined,
-                                          size: 16,
-                                          color: AppStyles.skyBlueColor,
-                                        ),
-                                        AppText(
-                                          size: 10.sp,
-                                          text: '${userState.user?.city}',
-                                          fontFamily:
-                                              GoogleFonts.raleway().fontFamily,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(height: 5.h),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: AppStyles.skyBlueColor,
-                                          ),
-                                          padding: const EdgeInsets.all(3.0),
-                                          child: ClipOval(
-                                            child: CachedNetworkImage(
-                                              imageUrl: userState.user
-                                                          ?.circleProfileImage !=
-                                                      null
-                                                  ? userState.user!
-                                                      .circleProfileImage!.url
-                                                      .toString()
-                                                  : "",
-                                              errorWidget:
-                                                  (BuildContext context, url,
-                                                      data) {
-                                                return const ImageErrorWidget();
-                                              },
-                                              height: 18.h,
-                                              width: 18.h,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(width: 5.w),
-                                        AppText(
-                                          size: 14.sp,
-                                          text:
-                                              '${userState.user?.firstName} ${userState.user?.lastName}',
-                                          fontFamily: GoogleFonts.raleway(
-                                                  fontWeight: FontWeight.w700)
-                                              .fontFamily,
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
+                          return ShowDogProfileWidget(
+                            onTap: () {},
+                            user: userState.user,
+                            e: e,
                           );
                         }).toList(),
                       ],

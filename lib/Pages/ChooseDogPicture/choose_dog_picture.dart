@@ -1,5 +1,4 @@
 import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
-import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/ImageCropper/image_cropper_handler.dart';

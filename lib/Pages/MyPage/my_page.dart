@@ -115,8 +115,11 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                   ...userState.user!.dog.map((e) {
                     return ShowDogProfileWidget(
                       onTap: () {
-                        Navigator.pushNamed(context, DogPublicProfile.routeName,
-                            arguments: e);
+                        Navigator.pushNamed(
+                          context,
+                          DogPublicProfile.routeName,
+                          arguments: e,
+                        );
                       },
                       user: userState.user,
                       e: e,
