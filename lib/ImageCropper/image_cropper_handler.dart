@@ -42,9 +42,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
   }
 
   Future<void> editImage({required String type}) async {
-    print('type  ===> $type');
     updateType = type;
-    print('updateType ===> $updateType');
     await showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -203,7 +201,6 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
         image: squareImageFile!,
         onSuccess: (SquareProfileImage value) {
           addSquareProfileImage = value;
-          print(addSquareProfileImage);
           setState(() {});
         },
       ),
@@ -223,19 +220,20 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                 addSquareProfileImage!
               ],
             );
-          },
-        ),
-      );
-      BlocProvider.of<UserBloc>(context).add(
-        UpdateUserEvent(
-          user: user!,
-          success: (value) {
-            Fluttertoast.showToast(
-                msg: 'Your Profile Picture is added successfully');
-            BlocProvider.of<AuthBloc>(context).add(
-              SessionRequest(
-                onSuccess: (User user) {
-                  BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+            BlocProvider.of<UserBloc>(context).add(
+              UpdateUserEvent(
+                user: user!,
+                success: (value) {
+                  Fluttertoast.showToast(
+                      msg: 'Your Profile Picture is added successfully');
+                  BlocProvider.of<AuthBloc>(context).add(
+                    SessionRequest(
+                      onSuccess: (User user) {
+                        BlocProvider.of<UserBloc>(context)
+                            .add(SetUser(user: user));
+                      },
+                    ),
+                  );
                 },
               ),
             );
@@ -251,19 +249,32 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
         UploadImage(
           image: circleImageFile!,
           onSuccess: (SquareProfileImage value) {
+            //dog image update
+            dog = dog.copyWith(squareProfileImage: [
+              ...?dog.squareProfileImage,
+              addSquareProfileImage!
+            ], circleProfileImage: value);
+
+            //dog update
             BlocProvider.of<DogBloc>(context).add(
               UpdateDogEvent(
                 dog: dog,
                 squareProfileImage: [addSquareProfileImage!.id!],
                 circleProfileImage: value.id!,
                 success: (value) {
+                  //user update
                   user = user?.copyWith(dog: [...?user?.dog, dog]);
 
-                  // BlocProvider.of<UserBloc>(context).add(SetUser(user: user!));
-                  BlocProvider.of<AuthBloc>(context)
-                      .add(SessionRequest(onSuccess: (User user) {
-                    BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-                  }));
+                  //set user from our side
+                  BlocProvider.of<AuthBloc>(context).add(
+                    SessionRequest(
+                      onSuccess: (User user) {
+                        BlocProvider.of<UserBloc>(context).add(
+                          SetUser(user: user),
+                        );
+                      },
+                    ),
+                  );
                   isDone = true;
                   setState(() {});
                 },
@@ -273,11 +284,5 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
         ),
       );
     }
-  }
-
-  void onSuccessImageUpdate() {
-    setState(() {
-      isLoading = false;
-    });
   }
 }

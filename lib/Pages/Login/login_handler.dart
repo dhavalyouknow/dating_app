@@ -226,7 +226,5 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
     fbLogin.logOut();
   }
 
-  logOut() async {
-    _googleSignIn.signOut();
-  }
+  logOut() async {}
 }

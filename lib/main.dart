@@ -23,9 +23,11 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(MyApp(
-    token: token,
-  ));
+  runApp(
+    MyApp(
+      token: token,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

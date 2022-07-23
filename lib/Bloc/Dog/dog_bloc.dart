@@ -9,11 +9,10 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'dog_event.dart';
-
 part 'dog_state.dart';
 
 class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
-  DogBloc() : super(DogInitial()) {
+  DogBloc() : super(const DogInitial()) {
     on<DogEvent>((event, emit) {});
     on<AddDogEvent>(_onAddDogEvent);
     on<UpdateDogEvent>(_onUpdateDogEvent);
@@ -43,7 +42,6 @@ class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
         },
       );
 
-      print(ApiEndPoints.addDog);
       if (resp != null) {
         if (resp.statusCode == 200) {
           print(resp.body);
@@ -87,11 +85,6 @@ class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
           "circleProfileImage": event.circleProfileImage
         },
       );
-      print('222222222222222');
-      print('${ApiEndPoints.updateDog}${event.dog.id}');
-      print(event.circleProfileImage);
-      print(resp?.body);
-      print('222222222222222');
 
       if (resp != null) {
         if (resp.statusCode == 200) {

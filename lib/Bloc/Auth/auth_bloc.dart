@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Core/base/api_end_point.dart';
 import 'package:dating_app/Core/base/base_http_service.dart';
 import 'package:dating_app/Model/user.dart';

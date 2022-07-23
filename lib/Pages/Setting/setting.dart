@@ -2,16 +2,20 @@ import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Model/user.dart';
 import 'package:dating_app/Pages/Login/login_page.dart';
 import 'package:dating_app/Pages/Setting/setting_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Settings extends StatefulWidget {
   static const routeName = "/Settings";
+
   const Settings({Key? key}) : super(key: key);
 
   @override
@@ -144,17 +148,49 @@ class _SettingsState extends State<Settings> with SettingHandlers {
     );
   }
 
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
+  final fbLogin = FacebookLogin();
+
   Future<void> _logOut() async {
-    BlocProvider.of<AuthBloc>(context).add(const SetLoginInitial());
-    BlocProvider.of<UserBloc>(context).add(SetUserInitial());
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.clear();
-    Future.delayed(
-      Duration.zero,
-      () {
-        Navigator.pushNamedAndRemoveUntil(
-            context, LoginPage.routeName, (Route<dynamic> route) => false);
-      },
-    );
+    User user = BlocProvider.of<UserBloc>(context).state.user as User;
+    if (user.googleLogin == true) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.clear();
+      _googleSignIn.signOut();
+      Future.delayed(
+        Duration.zero,
+        () {
+          BlocProvider.of<AuthBloc>(context).add(const SetLoginInitial());
+          BlocProvider.of<UserBloc>(context).add(SetUserInitial());
+          Navigator.pushNamedAndRemoveUntil(
+              context, LoginPage.routeName, (Route<dynamic> route) => false);
+        },
+      );
+    } else if (user.facebookLogin == true) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.clear();
+      fbLogin.logOut();
+      Future.delayed(
+        Duration.zero,
+        () {
+          BlocProvider.of<AuthBloc>(context).add(const SetLoginInitial());
+          BlocProvider.of<UserBloc>(context).add(SetUserInitial());
+          Navigator.pushNamedAndRemoveUntil(
+              context, LoginPage.routeName, (Route<dynamic> route) => false);
+        },
+      );
+    } else {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.clear();
+      Future.delayed(
+        Duration.zero,
+        () {
+          BlocProvider.of<AuthBloc>(context).add(const SetLoginInitial());
+          BlocProvider.of<UserBloc>(context).add(SetUserInitial());
+          Navigator.pushNamedAndRemoveUntil(
+              context, LoginPage.routeName, (Route<dynamic> route) => false);
+        },
+      );
+    }
   }
 }

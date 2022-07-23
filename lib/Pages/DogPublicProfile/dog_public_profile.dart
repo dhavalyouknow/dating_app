@@ -13,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class DogPublicProfile extends StatefulWidget {
   static const routeName = "/DogPublicProfile";
+
   const DogPublicProfile({Key? key}) : super(key: key);
 
   @override
@@ -224,8 +225,8 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                                 text:
                                     "${userState.user?.firstName} ${userState.user?.lastName}",
                                 fontFamily: GoogleFonts.raleway(
-                                        fontWeight: FontWeight.w600)
-                                    .fontFamily,
+                                  fontWeight: FontWeight.w600,
+                                ).fontFamily,
                               ),
                               SizedBox(height: 5.h),
                               Row(
@@ -334,7 +335,7 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                                   SizedBox(width: 5.w),
                                   AppText(
                                     size: 14.sp,
-                                    text: "${userState.user?.dog?.length} Dogs",
+                                    text: "${userState.user?.dog.length} Dogs",
                                     fontFamily: GoogleFonts.raleway(
                                             fontWeight: FontWeight.w700)
                                         .fontFamily,
