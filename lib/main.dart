@@ -5,7 +5,8 @@ import 'package:dating_app/Bloc/ForgotPassword/forgot_password_bloc.dart';
 import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
-import 'package:dating_app/Pages/Login/select_login_method.dart';
+import 'package:dating_app/Pages/Login/login_page.dart';
+import 'package:dating_app/Pages/MyPage/my_page.dart';
 import 'package:dating_app/firebase_options.dart';
 import 'package:dating_app/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -74,7 +75,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: "Dating App",
             routes: routes,
-            initialRoute: token == null ? SelectLoginMethod.routeName : "/MyPage",
+            initialRoute:
+                token == null ? LoginPage.routeName : MyPage.routeName,
           );
         },
       ),

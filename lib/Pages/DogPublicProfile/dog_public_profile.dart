@@ -242,105 +242,105 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                                 ],
                               ),
                               SizedBox(height: 5.h),
-                              Row(
-                                children: [
-                                  ...userState.user!.dog.map((e) {
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        gradient: LinearGradient(
-                                          colors: AppStyles.myPageGradientColor,
-                                        ),
-                                      ),
-                                      padding: const EdgeInsets.all(3.0),
-                                      child: ClipOval(
-                                        child: CachedNetworkImage(
-                                          imageUrl: e.circleProfileImage != null
-                                              ? e.circleProfileImage!.url
-                                                  .toString()
-                                              : "",
-                                          errorWidget: (BuildContext context,
-                                              url, data) {
-                                            return const ImageErrorWidget();
-                                          },
-                                          height: 28.h,
-                                          width: 28.h,
-                                        ),
-                                      ),
-                                    );
-
-                                    ///don't remove
-                                    // return Row(
-                                    //   children: [
-                                    //     SizedBox(
-                                    //       width: size.width / 7,
-                                    //       child: Stack(
-                                    //         children: [
-                                    //           // Positioned(
-                                    //           //   left: 15.w,
-                                    //           //   child: Container(
-                                    //           //     decoration: BoxDecoration(
-                                    //           //       shape: BoxShape.circle,
-                                    //           //       border: Border.all(
-                                    //           //         width: 2,
-                                    //           //         color: AppStyles.greyColor,
-                                    //           //       ),
-                                    //           //     ),
-                                    //           //     child: CircleAvatar(
-                                    //           //       radius: 12.r,
-                                    //           //       backgroundImage: const AssetImage(
-                                    //           //         "assets/intro/Intro3Background.png",
-                                    //           //       ),
-                                    //           //     ),
-                                    //           //   ),
-                                    //           // ),
-                                    //           Container(
-                                    //             decoration: BoxDecoration(
-                                    //               shape: BoxShape.circle,
-                                    //               gradient: LinearGradient(
-                                    //                 colors: AppStyles
-                                    //                     .myPageGradientColor,
-                                    //               ),
-                                    //             ),
-                                    //             padding: const EdgeInsets.all(3.0),
-                                    //             child: ClipOval(
-                                    //               child: CachedNetworkImage(
-                                    //                 imageUrl:
-                                    //                     e.circleProfileImage != null
-                                    //                         ? e.circleProfileImage!
-                                    //                             .url
-                                    //                             .toString()
-                                    //                         : "",
-                                    //                 height: 28.h,
-                                    //                 width: 28.h,
-                                    //               ),
-                                    //             ),
-                                    //           ),
-                                    //         ],
-                                    //       ),
-                                    //     ),
-                                    //     SizedBox(width: 5.w),
-                                    //     AppText(
-                                    //       size: 14.sp,
-                                    //       text:
-                                    //           "${userState.user?.dog?.length} Dogs",
-                                    //       fontFamily: GoogleFonts.raleway(
-                                    //               fontWeight: FontWeight.w700)
-                                    //           .fontFamily,
-                                    //     )
-                                    //   ],
-                                    // );
-                                  }).toList(),
-                                  SizedBox(width: 5.w),
-                                  AppText(
-                                    size: 14.sp,
-                                    text: "${userState.user?.dog?.length} Dogs",
-                                    fontFamily: GoogleFonts.raleway(
-                                            fontWeight: FontWeight.w700)
-                                        .fontFamily,
-                                  )
-                                ],
-                              ),
+                              // Row(
+                              //   children: [
+                              //     ...userState.user!.dog.map((e) {
+                              //       return Container(
+                              //         decoration: BoxDecoration(
+                              //           shape: BoxShape.circle,
+                              //           gradient: LinearGradient(
+                              //             colors: AppStyles.myPageGradientColor,
+                              //           ),
+                              //         ),
+                              //         padding: const EdgeInsets.all(3.0),
+                              //         child: ClipOval(
+                              //           child: CachedNetworkImage(
+                              //             imageUrl: e.circleProfileImage != null
+                              //                 ? e.circleProfileImage!.url
+                              //                     .toString()
+                              //                 : "",
+                              //             errorWidget: (BuildContext context,
+                              //                 url, data) {
+                              //               return const ImageErrorWidget();
+                              //             },
+                              //             height: 28.h,
+                              //             width: 28.h,
+                              //           ),
+                              //         ),
+                              //       );
+                              //
+                              //       ///don't remove
+                              //       // return Row(
+                              //       //   children: [
+                              //       //     SizedBox(
+                              //       //       width: size.width / 7,
+                              //       //       child: Stack(
+                              //       //         children: [
+                              //       //           // Positioned(
+                              //       //           //   left: 15.w,
+                              //       //           //   child: Container(
+                              //       //           //     decoration: BoxDecoration(
+                              //       //           //       shape: BoxShape.circle,
+                              //       //           //       border: Border.all(
+                              //       //           //         width: 2,
+                              //       //           //         color: AppStyles.greyColor,
+                              //       //           //       ),
+                              //       //           //     ),
+                              //       //           //     child: CircleAvatar(
+                              //       //           //       radius: 12.r,
+                              //       //           //       backgroundImage: const AssetImage(
+                              //       //           //         "assets/intro/Intro3Background.png",
+                              //       //           //       ),
+                              //       //           //     ),
+                              //       //           //   ),
+                              //       //           // ),
+                              //       //           Container(
+                              //       //             decoration: BoxDecoration(
+                              //       //               shape: BoxShape.circle,
+                              //       //               gradient: LinearGradient(
+                              //       //                 colors: AppStyles
+                              //       //                     .myPageGradientColor,
+                              //       //               ),
+                              //       //             ),
+                              //       //             padding: const EdgeInsets.all(3.0),
+                              //       //             child: ClipOval(
+                              //       //               child: CachedNetworkImage(
+                              //       //                 imageUrl:
+                              //       //                     e.circleProfileImage != null
+                              //       //                         ? e.circleProfileImage!
+                              //       //                             .url
+                              //       //                             .toString()
+                              //       //                         : "",
+                              //       //                 height: 28.h,
+                              //       //                 width: 28.h,
+                              //       //               ),
+                              //       //             ),
+                              //       //           ),
+                              //       //         ],
+                              //       //       ),
+                              //       //     ),
+                              //       //     SizedBox(width: 5.w),
+                              //       //     AppText(
+                              //       //       size: 14.sp,
+                              //       //       text:
+                              //       //           "${userState.user?.dog?.length} Dogs",
+                              //       //       fontFamily: GoogleFonts.raleway(
+                              //       //               fontWeight: FontWeight.w700)
+                              //       //           .fontFamily,
+                              //       //     )
+                              //       //   ],
+                              //       // );
+                              //     }).toList(),
+                              //     SizedBox(width: 5.w),
+                              //     AppText(
+                              //       size: 14.sp,
+                              //       text: "${userState.user?.dog?.length} Dogs",
+                              //       fontFamily: GoogleFonts.raleway(
+                              //               fontWeight: FontWeight.w700)
+                              //           .fontFamily,
+                              //     )
+                              //   ],
+                              // ),
                             ],
                           ),
                         ],

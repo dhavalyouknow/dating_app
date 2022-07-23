@@ -13,7 +13,6 @@ class GenderBtn extends StatefulWidget {
   final VoidCallback onTap;
   final Icon icon;
   FontWeight? fontWeight;
-  // String? fontFamily;
 
   GenderBtn({
     Key? key,
@@ -26,7 +25,6 @@ class GenderBtn extends StatefulWidget {
     required this.onTap,
     required this.icon,
     this.fontWeight,
-    // this.fontFamily,
   }) : super(key: key);
 
   @override
