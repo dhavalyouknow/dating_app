@@ -2,6 +2,7 @@ import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Model/user.dart';
+import 'package:dating_app/Pages/CreatePassword/create_password.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -107,7 +108,7 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
           onSuccess: () {
             Navigator.pushReplacementNamed(
               context,
-              "/CreatePassword",
+              CreatePassword.routeName,
               arguments: {
                 "name": nameController.text,
                 "surname": surnameController.text,

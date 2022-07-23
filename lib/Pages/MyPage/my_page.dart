@@ -15,6 +15,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyPage extends StatefulWidget {
+  static const routeName = "/MyPage";
+
   const MyPage({Key? key}) : super(key: key);
 
   @override

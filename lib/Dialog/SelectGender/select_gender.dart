@@ -1,8 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
-import 'package:dating_app/Dialog/ImInterestedIn/im_interested_in_handler.dart';
 import 'package:dating_app/Dialog/SelectGender/select_gender_handler.dart';
-import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:dating_app/widget/Button/gender_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
@@ -48,15 +46,15 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
                     padding: EdgeInsets.symmetric(vertical: 5.h),
                     child: GenderBtn(
                       height: size.height / 14,
-                      border: e.selected ? 3.r : 1.r,
-                      borderRadius: 25,
+                      border: e.selected ? 2.r : 1.r,
+                      borderRadius: 20.r,
                       borderColor: e.selected
                           ? AppStyles.pinkColor
                           : AppStyles.greyColor,
                       txt: e.name,
                       txtColor: e.selected
                           ? AppStyles.blackColor
-                          : AppStyles.pinkColor,
+                          : AppStyles.greyColor,
                       fontWeight:
                           e.selected ? FontWeight.w600 : FontWeight.normal,
                       onTap: () {

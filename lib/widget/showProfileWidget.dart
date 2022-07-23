@@ -65,17 +65,45 @@ class ShowProfileWidget extends StatelessWidget {
                   ],
                 ),
               SizedBox(height: 5.h),
-              Row(
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: size.width / 7,
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              left: 18.w,
-                              child: Container(
+              if (user!.dog.isNotEmpty)
+                Row(
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: size.width / 7,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                left: 18.w,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: LinearGradient(
+                                      colors: AppStyles.myPageGradientColor,
+                                    ),
+                                  ),
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: ClipOval(
+                                    child: CachedNetworkImage(
+                                      imageUrl: user!
+                                                  .dog[1].circleProfileImage !=
+                                              null
+                                          ? user!.dog[1].circleProfileImage!.url
+                                              .toString()
+                                          : "",
+                                      errorWidget:
+                                          (BuildContext context, url, data) {
+                                        return const ImageErrorWidget();
+                                      },
+                                      height: 20.h,
+                                      width: 20.h,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   gradient: LinearGradient(
@@ -85,9 +113,9 @@ class ShowProfileWidget extends StatelessWidget {
                                 padding: const EdgeInsets.all(3.0),
                                 child: ClipOval(
                                   child: CachedNetworkImage(
-                                    imageUrl: user!.dog[1].circleProfileImage !=
+                                    imageUrl: user!.dog[0].circleProfileImage !=
                                             null
-                                        ? user!.dog[1].circleProfileImage!.url
+                                        ? user!.dog[0].circleProfileImage!.url
                                             .toString()
                                         : "",
                                     errorWidget:
@@ -100,46 +128,21 @@ class ShowProfileWidget extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                gradient: LinearGradient(
-                                  colors: AppStyles.myPageGradientColor,
-                                ),
-                              ),
-                              padding: const EdgeInsets.all(3.0),
-                              child: ClipOval(
-                                child: CachedNetworkImage(
-                                  imageUrl:
-                                      user!.dog[0].circleProfileImage != null
-                                          ? user!.dog[0].circleProfileImage!.url
-                                              .toString()
-                                          : "",
-                                  errorWidget:
-                                      (BuildContext context, url, data) {
-                                    return const ImageErrorWidget();
-                                  },
-                                  height: 20.h,
-                                  width: 20.h,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(width: 5.w),
-                  AppText(
-                    size: 14.sp,
-                    text: "${user!.dog.length} Dogs",
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
-                        .fontFamily,
-                  )
-                ],
-              ),
+                      ],
+                    ),
+                    SizedBox(width: 5.w),
+                    AppText(
+                      size: 14.sp,
+                      text: "${user!.dog.length} Dogs",
+                      fontFamily:
+                          GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                              .fontFamily,
+                    )
+                  ],
+                ),
             ],
           ),
         ],

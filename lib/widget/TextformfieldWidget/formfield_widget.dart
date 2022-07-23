@@ -1,6 +1,7 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FormFieldWidget extends StatefulWidget {
   final hintText;
@@ -13,9 +14,7 @@ class FormFieldWidget extends StatefulWidget {
   final TextInputType? type;
   final int? minLines;
   final int? maxLines;
-  final bool? isEnabled;
   final Function(String)? onSubmit;
-  final double? height;
   final double borderRadius;
   final Color borderColor;
   final double border;
@@ -32,9 +31,7 @@ class FormFieldWidget extends StatefulWidget {
     this.type,
     this.minLines,
     this.maxLines,
-    this.isEnabled,
     this.onSubmit,
-    this.height,
     required this.borderRadius,
     required this.borderColor,
     required this.border,
@@ -50,21 +47,10 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
     return Stack(
       children: [
         Container(
-          height: widget.height,
-          padding: EdgeInsets.only(left: 10.w),
           margin: EdgeInsets.only(top: 18.h),
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: AppStyles.whiteColor,
-            borderRadius: BorderRadius.circular(widget.borderRadius),
-            border: Border.all(
-              color: widget.borderColor,
-              width: widget.border,
-            ),
-          ),
           child: TextFormField(
             onFieldSubmitted: widget.onSubmit,
-            enabled: widget.isEnabled ?? true,
             cursorColor: AppStyles.blackColor,
             keyboardType: widget.type,
             minLines: widget.minLines ?? 1,
@@ -74,55 +60,51 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
             obscureText: widget.obSecure,
             validator: widget.validator,
             controller: widget.textEditingController,
-            style:
-                TextStyle(color: Theme.of(context).hintColor, fontSize: 13.sp),
+            style: TextStyle(
+              color: Theme.of(context).hintColor,
+              fontSize: 14.sp,
+              fontFamily: GoogleFonts.raleway(
+                      fontSize: 20.sp, fontWeight: FontWeight.w500)
+                  .fontFamily,
+            ),
             decoration: InputDecoration(
               prefixIcon: widget.obSecure == true ? widget.icon : widget.icon,
-              filled: true,
-              fillColor: widget.isEnabled == false
-                  ? Colors.grey.shade400.withOpacity(0.5)
-                  : AppStyles.whiteColor,
               border: InputBorder.none,
               disabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                    color: widget.isEnabled == false
-                        ? Colors.grey.shade400.withOpacity(0.5)
-                        : AppStyles.whiteColor,
-                    width: 0.0),
-                borderRadius: BorderRadius.circular(22.0),
+                  color: widget.borderColor,
+                  width: widget.border,
+                ),
+                borderRadius: BorderRadius.circular(10.0),
               ),
               focusedErrorBorder: OutlineInputBorder(
-                borderSide:
-                    const BorderSide(color: AppStyles.whiteColor, width: 0.0),
-                borderRadius: BorderRadius.circular(22.0),
+                borderSide: BorderSide(color: widget.borderColor, width: 2.0),
+                borderRadius: BorderRadius.circular(10.0),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide:
-                    const BorderSide(color: AppStyles.whiteColor, width: 0.0),
-                borderRadius: BorderRadius.circular(22.0),
+                borderSide: BorderSide(color: widget.borderColor, width:widget.border),
+                borderRadius: BorderRadius.circular(10.0),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide:
-                    const BorderSide(color: AppStyles.whiteColor, width: 0.0),
-                borderRadius: BorderRadius.circular(22.0),
+                borderSide: BorderSide(color: widget.borderColor, width:  1.0),
+                borderRadius: BorderRadius.circular(10.0),
               ),
               errorBorder: OutlineInputBorder(
-                borderSide:
-                    const BorderSide(color: AppStyles.whiteColor, width: 0.0),
-                borderRadius: BorderRadius.circular(22.0),
+                borderSide: BorderSide(color: widget.borderColor, width: 1.2),
+                borderRadius: BorderRadius.circular(10.0),
               ),
               contentPadding: EdgeInsets.symmetric(
-                vertical: 10.h,
+                vertical: 15.h,
                 horizontal: 20.w,
               ),
               hintText: widget.hintText,
               hintStyle: TextStyle(
-                  fontSize: 12.sp,
-                  color: widget.isEnabled == false
-                      ? Colors.grey
-                      : AppStyles.placeholder
-                  //color: Theme.of(context).hintColor,
-                  ),
+                fontFamily: GoogleFonts.raleway(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w500,
+                ).fontFamily,
+                color: AppStyles.textColor,
+              ),
             ),
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Model/user.dart';
+import 'package:dating_app/Pages/Home/home_page.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +48,7 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
           pushToken: '222222',
           success: (User user) {
             BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-            Navigator.pushReplacementNamed(context, "/MyPage");
+            Navigator.pushReplacementNamed(context, HomePage.routeName);
           },
         ),
       );

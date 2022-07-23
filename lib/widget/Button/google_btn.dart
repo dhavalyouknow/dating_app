@@ -10,7 +10,7 @@ class GoogleBtnWidget extends StatelessWidget {
   final Image image;
   final Color color;
 
-  GoogleBtnWidget({
+  const GoogleBtnWidget({
     required this.onPressed,
     required this.title,
     required this.image,
@@ -39,6 +39,7 @@ class GoogleBtnWidget extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 10.w),
                 child: AppText(
+                  size: 16.sp,
                   text: title,
                   color: AppStyles.blackColor,
                   fontFamily: GoogleFonts.raleway().fontFamily,

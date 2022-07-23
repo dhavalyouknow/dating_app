@@ -1,26 +1,24 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
-import 'package:dating_app/Pages/AccountRecovery/account_recovery.dart';
 import 'package:dating_app/Pages/CreateAccount/create_account.dart';
 import 'package:dating_app/Pages/Login/login_handler.dart';
 import 'package:dating_app/widget/Button/facebook_btn.dart';
 import 'package:dating_app/widget/Button/google_btn.dart';
-import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
-class LoginPage extends StatefulWidget {
-  static const routeName = '/LoginPage';
+class SelectLoginMethod extends StatefulWidget {
+  static const routeName = '/SelectLoginMethod';
 
-  const LoginPage({Key? key}) : super(key: key);
+  const SelectLoginMethod({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SelectLoginMethod> createState() => _SelectLoginMethodState();
 }
 
-class _LoginPageState extends State<LoginPage> with LoginHandlers {
+class _SelectLoginMethodState extends State<SelectLoginMethod> with LoginHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -37,6 +35,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(height: size.height/10),
                     Padding(
                       padding: EdgeInsets.only(
                         top: 50.h,
@@ -48,93 +47,36 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         image: AssetImage("assets/logo.png"),
                       ),
                     ),
-                    TextFormFieldWidget(
-                      textEditingController: emailController,
-                      validator: emailValidator,
-                      borderRadius: 10,
-                      height: size.height / 14,
-                      txt: "Email",
-                      icon: IconButton(
-                        icon: const Icon(
-                          Icons.person_outline,
-                          color: AppStyles.pinkColor,
-                        ),
-                        onPressed: () {},
-                      ),
-                      obscureText: false,
-                      border: 0,
-                      borderColor: AppStyles.trasnparentColor,
-                    ),
-                    TextFormFieldWidget(
-                      obSecure: signUpPwd,
-                      textEditingController: passwordController,
-                      validator: passwordValidator,
-                      borderRadius: 10,
-                      height: size.height / 14,
-                      txt: "Password",
-                      icon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            signUpPwd = !signUpPwd;
-                          });
-                        },
-                        icon: signUpPwd
-                            ? const Icon(
-                                Icons.lock_outlined,
-                                color: AppStyles.textColor,
-                              )
-                            : const Icon(
-                                Icons.lock_open,
-                                color: AppStyles.textColor,
-                              ),
-                      ),
-                      obscureText: signUpPwd,
-                      border: 0,
-                      borderColor: AppStyles.trasnparentColor,
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            AccountRecovery.routeName,
-                          );
-                        },
-                        child: Text(
-                          "Forgot Password?",
-                          style: TextStyle(
-                            fontSize: 13.sp,
-                            color: AppStyles.blackColor,
-                          ),
-                        ),
-                      ),
-                    ),
                     GradientBtn(
+                      fontSize: 16.sp,
                       height: size.height / 14,
-                      txt: "Login",
+                      txt: "Sign Up Manually",
                       onTap: onLogin,
                     ),
                     GoogleBtnWidget(
                       color: AppStyles.whiteColor,
                       onPressed: signInWithGoogle,
-                      title: 'Sign in with Google',
+                      title: 'Sign Up with Google',
                       image: Image.asset('assets/icons/google.png'),
                     ),
                     FaceBookBtnWidget(
                       onPressed: signInWithFacebook,
-                      title: 'Sign in with Facebook',
+                      title: 'Sign Up with Facebook',
                       image: Image.asset(
                         'assets/icons/facebook.png',
                         height: 18.h,
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 8.h),
+                      padding: EdgeInsets.only(top: 15.h),
                       child: SignInWithAppleButton(
+                        height: size.height/14,
+                        style: SignInWithAppleButtonStyle.black,
+                        
                         onPressed: signInWithApple,
                       ),
                     ),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

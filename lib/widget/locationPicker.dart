@@ -1,16 +1,17 @@
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LocationPicker extends StatefulWidget {
   final Function(String) countryCallback;
   final Function(String) stateCallback;
   final Function(String) cityCallback;
-  const LocationPicker(
-      {Key? key,
-      required this.countryCallback,
-      required this.stateCallback,
-      required this.cityCallback})
-      : super(key: key);
+  const LocationPicker({
+    Key? key,
+    required this.countryCallback,
+    required this.stateCallback,
+    required this.cityCallback,
+  }) : super(key: key);
 
   @override
   State<LocationPicker> createState() => _LocationPickerState();
@@ -47,16 +48,19 @@ class _LocationPickerState extends State<LocationPicker> {
                 countryValue.isNotEmpty ? countryValue : "Select Country",
             stateDropdownLabel: "Select State",
             cityDropdownLabel: "Select City",
-            selectedItemStyle: const TextStyle(
+            selectedItemStyle: TextStyle(
+              fontFamily: GoogleFonts.raleway().fontFamily,
               color: Colors.black,
               fontSize: 14,
             ),
-            dropdownHeadingStyle: const TextStyle(
+            dropdownHeadingStyle: TextStyle(
+              fontFamily: GoogleFonts.raleway().fontFamily,
               color: Colors.black,
               fontSize: 17,
               fontWeight: FontWeight.bold,
             ),
-            dropdownItemStyle: const TextStyle(
+            dropdownItemStyle: TextStyle(
+              fontFamily: GoogleFonts.raleway().fontFamily,
               color: Colors.black,
               fontSize: 14,
             ),
