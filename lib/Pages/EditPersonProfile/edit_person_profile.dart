@@ -93,7 +93,13 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                       itemBuilder: (context, i) {
                         return GestureDetector(
                           onTap: () {
-                            editImage(type: 'person', index: i);
+                            editImage(
+                              type: 'person profile',
+                              index: i,
+                            );
+                            imageFile = null;
+                            circleImageFile = null;
+                            squareImageFile = null;
                             setState(() {
                               index = i;
                             });
@@ -132,10 +138,7 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                           children: [
                             InkWell(
                               onTap: () {
-                                userState.user!.squareProfileImage![index!].url
-                                        .toString() ==
-                                    "";
-                                // imageFile = null;
+                                imageFile = null;
                                 setState(() {});
                               },
                               child: Row(
@@ -162,10 +165,7 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                                 editImage(type: "person profile");
                                 imageFile = null;
                                 circleImageFile = null;
-                                squareImageFile ==
-                                    userState
-                                        .user!.squareProfileImage![index!].url
-                                        .toString() as File?;
+                                squareImageFile == null;
                                 setState(() {});
                               },
                               child: Row(

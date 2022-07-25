@@ -1,6 +1,7 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Pages/CreateAccount/create_account.dart';
 import 'package:dating_app/Pages/Login/login_handler.dart';
+import 'package:dating_app/Pages/Login/login_page.dart';
 import 'package:dating_app/widget/Button/facebook_btn.dart';
 import 'package:dating_app/widget/Button/google_btn.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
@@ -82,7 +83,7 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don’t have an account?",
+                          "Already have an account?",
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: AppStyles.blackColor,
@@ -90,11 +91,10 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, CreateAccount.routeName);
+                            Navigator.pushNamed(context, LoginPage.routeName);
                           },
                           child: Text(
-                            "Sign Up",
+                            "Sign In",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 14.sp,

@@ -42,7 +42,8 @@ class GoogleBtnWidget extends StatelessWidget {
                   size: 16.sp,
                   text: title,
                   color: AppStyles.blackColor,
-                  fontFamily: GoogleFonts.raleway().fontFamily,
+                  fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                      .fontFamily,
                 ),
               ),
             ],

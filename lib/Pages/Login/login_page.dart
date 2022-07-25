@@ -5,6 +5,7 @@ import 'package:dating_app/Pages/Login/login_handler.dart';
 import 'package:dating_app/Pages/Login/select_login_method.dart';
 import 'package:dating_app/widget/Button/facebook_btn.dart';
 import 'package:dating_app/widget/Button/google_btn.dart';
+import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                        top: 125.h,
+                        top: 50.h,
                         left: 40.w,
                         right: 40.w,
                         bottom: 30.h,
@@ -49,6 +50,22 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         image: AssetImage("assets/logo.png"),
                       ),
                     ),
+                    // FormFieldWidget(
+                    //   icon: IconButton(
+                    //     icon: const Icon(Icons.person_outline),
+                    //     onPressed: () {},
+                    //   ),
+                    //   backgroundColor: AppStyles.whiteColor,
+                    //   hintText: 'Dog Name',
+                    //   textEditingController: emailController,
+                    //   validator: emailValidator,
+                    //   obSecure: false,
+                    //   border: emailController.text.isEmpty ? 1.r : 2.r,
+                    //   borderColor: emailController.text.isEmpty
+                    //       ? AppStyles.greyColor
+                    //       : AppStyles.pinkColor,
+                    //   borderRadius: 10.r,
+                    // ),
                     TextFormFieldWidget(
                       textEditingController: emailController,
                       validator: emailValidator,
@@ -116,26 +133,26 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       txt: "Login",
                       onTap: onLogin,
                     ),
-                    // GoogleBtnWidget(
-                    //   color: AppStyles.whiteColor,
-                    //   onPressed: signInWithGoogle,
-                    //   title: 'Sign in with Google',
-                    //   image: Image.asset('assets/icons/google.png'),
-                    // ),
-                    // FaceBookBtnWidget(
-                    //   onPressed: signInWithFacebook,
-                    //   title: 'Sign in with Facebook',
-                    //   image: Image.asset(
-                    //     'assets/icons/facebook.png',
-                    //     height: 18.h,
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: EdgeInsets.only(top: 8.h),
-                    //   child: SignInWithAppleButton(
-                    //     onPressed: signInWithApple,
-                    //   ),
-                    // ),
+                    GoogleBtnWidget(
+                      color: AppStyles.whiteColor,
+                      onPressed: signInWithGoogle,
+                      title: 'Sign in with Google',
+                      image: Image.asset('assets/icons/google.png'),
+                    ),
+                    FaceBookBtnWidget(
+                      onPressed: signInWithFacebook,
+                      title: 'Sign in with Facebook',
+                      image: Image.asset(
+                        'assets/icons/facebook.png',
+                        height: 18.h,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 8.h),
+                      child: SignInWithAppleButton(
+                        onPressed: signInWithApple,
+                      ),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

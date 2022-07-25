@@ -47,7 +47,7 @@ class _GradientBtnState extends State<GradientBtn> {
           widget.txt,
           style: TextStyle(
             fontFamily:
-                GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
+                GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
             fontSize: widget.fontSize,
             color: AppStyles.whiteColor,
           ),

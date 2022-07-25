@@ -71,55 +71,60 @@ class _SetupProfile3State extends State<SetupProfile3>
           ),
         ),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppText(
-                    textAlign: TextAlign.center,
-                    size: 21.sp,
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
-                        .fontFamily,
-                    text: "Setup Profile",
-                  ),
-                  AppText(
-                    color: AppStyles.greyColor,
-                    size: 21.sp,
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
-                        .fontFamily,
-                    text: "(3/3)",
-                  )
-                ],
-              ),
-              SizedBox(height: 10.h),
-              AppText(
-                fontFamily:
-                    GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
-                text: "Tell us a bit about yourself",
-              ),
-              SizedBox(height: 10.h),
-              DescriptionWidget(
-                validator: descriptionValidator,
-                textEditingController: aboutSelfController,
-                borderRadius: 40,
-                height: size.width / 3,
-                txt: "Description",
-                obscureText: false,
-                border: 2.r,
-                borderColor: AppStyles.pinkColor,
-              ),
-              // SizedBox(height: 300.h),
-              // GradientBtn(
-              //   height: size.height / 14,
-              //   txt: "Next",
-              //   onTap: () {
-              //     onSubmitProfile3();
-              //   },
-              // ),
-              // SizedBox(height: 60.h),
-            ],
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AppText(
+                      textAlign: TextAlign.center,
+                      size: 21.sp,
+                      fontFamily:
+                          GoogleFonts.raleway(fontWeight: FontWeight.bold)
+                              .fontFamily,
+                      text: "Setup Profile",
+                    ),
+                    AppText(
+                      color: AppStyles.greyColor,
+                      size: 21.sp,
+                      fontFamily:
+                          GoogleFonts.raleway(fontWeight: FontWeight.bold)
+                              .fontFamily,
+                      text: "(3/3)",
+                    )
+                  ],
+                ),
+                SizedBox(height: 10.h),
+                AppText(
+                  fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                      .fontFamily,
+                  text: "Tell us a bit about yourself",
+                ),
+                SizedBox(height: 10.h),
+                DescriptionWidget(
+                  validator: descriptionValidator,
+                  textEditingController: aboutSelfController,
+                  borderRadius: 40,
+                  height: size.width / 3,
+                  txt: "Description",
+                  obscureText: false,
+                  border: 2.r,
+                  borderColor: AppStyles.pinkColor,
+                ),
+                // SizedBox(height: 300.h),
+                // GradientBtn(
+                //   height: size.height / 14,
+                //   txt: "Next",
+                //   onTap: () {
+                //     onSubmitProfile3();
+                //   },
+                // ),
+                // SizedBox(height: 60.h),
+              ],
+            ),
           ),
         ),
       ),

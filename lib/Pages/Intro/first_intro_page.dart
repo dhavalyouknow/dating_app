@@ -1,5 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/Intro/third_intro_page.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -108,7 +109,9 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                   ),
                   SizedBox(height: 10.h),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, ThirdIntroPage.routeName);
+                    },
                     child: AppText(
                       fontFamily:
                           GoogleFonts.raleway(fontWeight: FontWeight.w500)

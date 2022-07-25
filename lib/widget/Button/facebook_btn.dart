@@ -40,7 +40,8 @@ class FaceBookBtnWidget extends StatelessWidget {
                   size: 16.sp,
                   text: title,
                   color: AppStyles.whiteColor,
-                  fontFamily: GoogleFonts.raleway().fontFamily,
+                  fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                      .fontFamily,
                 ),
               ),
             ],

@@ -17,6 +17,7 @@ class FormFieldWidget extends StatefulWidget {
   final Function(String)? onSubmit;
   final double borderRadius;
   final Color borderColor;
+  final Color? backgroundColor;
   final double border;
 
   FormFieldWidget({
@@ -35,6 +36,7 @@ class FormFieldWidget extends StatefulWidget {
     required this.borderRadius,
     required this.borderColor,
     required this.border,
+    this.backgroundColor,
   }) : super(key: key);
 
   @override
@@ -68,6 +70,7 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
                   .fontFamily,
             ),
             decoration: InputDecoration(
+              fillColor: widget.backgroundColor,
               prefixIcon: widget.obSecure == true ? widget.icon : widget.icon,
               border: InputBorder.none,
               disabledBorder: OutlineInputBorder(
@@ -75,23 +78,24 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
                   color: widget.borderColor,
                   width: widget.border,
                 ),
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(widget.borderRadius),
               ),
               focusedErrorBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: widget.borderColor, width: 2.0),
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(widget.borderRadius),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: widget.borderColor, width:widget.border),
-                borderRadius: BorderRadius.circular(10.0),
+                borderSide:
+                    BorderSide(color: widget.borderColor, width: widget.border),
+                borderRadius: BorderRadius.circular(widget.borderRadius),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: widget.borderColor, width:  1.0),
-                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide(color: widget.borderColor, width: 1.0),
+                borderRadius: BorderRadius.circular(widget.borderRadius),
               ),
               errorBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: widget.borderColor, width: 1.2),
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(widget.borderRadius),
               ),
               contentPadding: EdgeInsets.symmetric(
                 vertical: 15.h,

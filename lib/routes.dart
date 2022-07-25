@@ -5,7 +5,7 @@ import 'package:dating_app/Pages/About/about.dart';
 import 'package:dating_app/Pages/AddYourDog/add_your_dog.dart';
 import 'package:dating_app/Pages/AddYourDog/add_your_dog_dialog.dart';
 import 'package:dating_app/Pages/BecomeAPremium/become_premium.dart';
-import 'package:dating_app/Pages/CheckMail/edit_email.dart';
+import 'package:dating_app/Pages/EditEmail/edit_email.dart';
 import 'package:dating_app/Pages/ChooseDogPicture/choose_dog_picture.dart';
 import 'package:dating_app/Pages/ChooseDogPicture/CropDogPicture/choose_dog_picture2.dart';
 import 'package:dating_app/Pages/ChoosePartner/choose_partner.dart';
@@ -46,29 +46,30 @@ Map<String, WidgetBuilder> routes = {
   CreatePassword.routeName: (ctx) => const CreatePassword(),
   EditEmail.routeName: (ctx) => const EditEmail(),
   FirstIntroPage.routeName: (ctx) => const FirstIntroPage(),
-  '/SecondIntroPage': (ctx) => const SecondIntroPage(),
-  '/ThirdIntroPage': (ctx) => const ThirdIntroPage(),
-  '/SetupProfile1': (ctx) => const SetupProfile1(),
-  '/SetupProfile2': (ctx) => const SetupProfile2(),
-  '/SetupProfile3': (ctx) => const SetupProfile3(),
-  '/AddYourDog': (ctx) => const AddYourDog(),
-  '/AddYourDogNow': (ctx) => const AddYourDogNow(),
-  '/ChooseDogPicture': (ctx) => const ChooseDogPicture(),
-  '/ChooseDogPicture2': (ctx) => const ChooseDogPicture2(),
-  '/HomePage': (ctx) => const HomePage(),
-  '/MyPage': (ctx) => const MyPage(),
-  '/Settings': (ctx) => const Settings(),
+  SecondIntroPage.routeName: (ctx) => const SecondIntroPage(),
+  ThirdIntroPage.routeName: (ctx) => const ThirdIntroPage(),
+  SetupProfile1.routeName: (ctx) => const SetupProfile1(),
+  SetupProfile2.routeName: (ctx) => const SetupProfile2(),
+  SetupProfile3.routeName: (ctx) => const SetupProfile3(),
+  AddYourDog.routeName: (ctx) => const AddYourDog(),
+  AddYourDogNow.routeName: (ctx) => const AddYourDogNow(),
+  ChooseDogPicture.routeName: (ctx) => const ChooseDogPicture(),
+  ChooseDogPicture2.routeName: (ctx) => const ChooseDogPicture2(),
+  HomePage.routeName: (ctx) => const HomePage(),
+  MyPage.routeName: (ctx) => const MyPage(),
+  Settings.routeName: (ctx) => const Settings(),
   About.routeName: (ctx) => const About(),
-  '/UpgradeToPremium': (ctx) => const UpgradeToPremium(),
-  '/Matching': (ctx) => const Matching(),
-  '/SwipeSetting': (ctx) => const SwipeSetting(),
-  '/BecomePremium': (ctx) => const BecomePremium(),
+  UpgradeToPremium.routeName: (ctx) => const UpgradeToPremium(),
+  Matching.routeName: (ctx) => const Matching(),
+  SwipeSetting.routeName: (ctx) => const SwipeSetting(),
+  BecomePremium.routeName: (ctx) => const BecomePremium(),
   EditDogProfile.routeName: (ctx) => const EditDogProfile(),
   EditPersonProfile.routeName: (ctx) => const EditPersonProfile(),
-  '/DogPublicProfile': (ctx) => const DogPublicProfile(),
+  DogPublicProfile.routeName: (ctx) => const DogPublicProfile(),
   PersonPublicProfile.routeName: (ctx) => const PersonPublicProfile(),
-  '/OtherLoginCreateAccount': (ctx) => const OtherLoginCreateAccount(),
+  OtherLoginCreateAccount.routeName: (ctx) => const OtherLoginCreateAccount(),
   LoginPage.routeName: (ctx) => const LoginPage(
         key: Key('/LoginPage'),
       ),
+  OtherLoginCreateAccount.routeName: (ctx) => const OtherLoginCreateAccount(),
 };
