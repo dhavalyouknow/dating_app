@@ -41,7 +41,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
     }
   }
 
-  Future<void> editImage({required String type}) async {
+  Future<void> editImage({required String type, int? index}) async {
     updateType = type;
     await showModalBottomSheet<void>(
       context: context,
@@ -190,7 +190,6 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
         isLoading = true;
         onCircleImageUpdate();
       }
-
       setState(() {});
     }
   }

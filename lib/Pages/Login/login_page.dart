@@ -2,6 +2,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Pages/AccountRecovery/account_recovery.dart';
 import 'package:dating_app/Pages/CreateAccount/create_account.dart';
 import 'package:dating_app/Pages/Login/login_handler.dart';
+import 'package:dating_app/Pages/Login/select_login_method.dart';
 import 'package:dating_app/widget/Button/facebook_btn.dart';
 import 'package:dating_app/widget/Button/google_btn.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
@@ -39,7 +40,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                        top: 50.h,
+                        top: 125.h,
                         left: 40.w,
                         right: 40.w,
                         bottom: 30.h,
@@ -115,26 +116,26 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       txt: "Login",
                       onTap: onLogin,
                     ),
-                    GoogleBtnWidget(
-                      color: AppStyles.whiteColor,
-                      onPressed: signInWithGoogle,
-                      title: 'Sign in with Google',
-                      image: Image.asset('assets/icons/google.png'),
-                    ),
-                    FaceBookBtnWidget(
-                      onPressed: signInWithFacebook,
-                      title: 'Sign in with Facebook',
-                      image: Image.asset(
-                        'assets/icons/facebook.png',
-                        height: 18.h,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 8.h),
-                      child: SignInWithAppleButton(
-                        onPressed: signInWithApple,
-                      ),
-                    ),
+                    // GoogleBtnWidget(
+                    //   color: AppStyles.whiteColor,
+                    //   onPressed: signInWithGoogle,
+                    //   title: 'Sign in with Google',
+                    //   image: Image.asset('assets/icons/google.png'),
+                    // ),
+                    // FaceBookBtnWidget(
+                    //   onPressed: signInWithFacebook,
+                    //   title: 'Sign in with Facebook',
+                    //   image: Image.asset(
+                    //     'assets/icons/facebook.png',
+                    //     height: 18.h,
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: EdgeInsets.only(top: 8.h),
+                    //   child: SignInWithAppleButton(
+                    //     onPressed: signInWithApple,
+                    //   ),
+                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -148,7 +149,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         TextButton(
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, CreateAccount.routeName);
+                                context, SelectLoginMethod.routeName);
                           },
                           child: Text(
                             "Sign Up",

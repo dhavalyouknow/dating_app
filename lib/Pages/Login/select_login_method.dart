@@ -18,7 +18,8 @@ class SelectLoginMethod extends StatefulWidget {
   State<SelectLoginMethod> createState() => _SelectLoginMethodState();
 }
 
-class _SelectLoginMethodState extends State<SelectLoginMethod> with LoginHandlers {
+class _SelectLoginMethodState extends State<SelectLoginMethod>
+    with LoginHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -35,7 +36,7 @@ class _SelectLoginMethodState extends State<SelectLoginMethod> with LoginHandler
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: size.height/10),
+                    SizedBox(height: size.height / 10),
                     Padding(
                       padding: EdgeInsets.only(
                         top: 50.h,
@@ -51,7 +52,9 @@ class _SelectLoginMethodState extends State<SelectLoginMethod> with LoginHandler
                       fontSize: 16.sp,
                       height: size.height / 14,
                       txt: "Sign Up Manually",
-                      onTap: onLogin,
+                      onTap: () {
+                        Navigator.pushNamed(context, CreateAccount.routeName);
+                      },
                     ),
                     GoogleBtnWidget(
                       color: AppStyles.whiteColor,
@@ -70,13 +73,11 @@ class _SelectLoginMethodState extends State<SelectLoginMethod> with LoginHandler
                     Padding(
                       padding: EdgeInsets.only(top: 15.h),
                       child: SignInWithAppleButton(
-                        height: size.height/14,
+                        height: size.height / 14,
                         style: SignInWithAppleButtonStyle.black,
-                        
                         onPressed: signInWithApple,
                       ),
                     ),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

@@ -62,20 +62,7 @@ class _AddNightModuleState extends State<AddNightModule>
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
                 ),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      widget.callback(selectedNights);
-                    });
-                    Navigator.pop(context);
-                  },
-                  child: AppText(
-                    size: 15.sp,
-                    text: "Done",
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
-                        .fontFamily,
-                  ),
-                ),
+                SizedBox(width: 60.w)
               ],
             ),
             SizedBox(height: 10.h),

@@ -63,20 +63,7 @@ class _SelectedActivitiesState extends State<SelectedActivities>
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
                 ),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      widget.callback(selectedActivities);
-                    });
-                    Navigator.pop(context);
-                  },
-                  child: AppText(
-                    size: 15.sp,
-                    text: "Done",
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
-                        .fontFamily,
-                  ),
-                ),
+                SizedBox(width: 60.w)
               ],
             ),
             SizedBox(height: 10.h),

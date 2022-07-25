@@ -54,6 +54,7 @@ class SignUpRequest extends AuthEvent {
   final String repeatPassword;
   final String location;
   final Function(User) success;
+  final VoidCallback onError;
 
   const SignUpRequest({
     required this.name,
@@ -65,6 +66,7 @@ class SignUpRequest extends AuthEvent {
     required this.repeatPassword,
     required this.location,
     required this.success,
+    required this.onError,
   });
 
   @override
@@ -78,6 +80,7 @@ class SignUpRequest extends AuthEvent {
         repeatPassword,
         location,
         success,
+        onError,
       ];
 }
 

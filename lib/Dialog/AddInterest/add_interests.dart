@@ -59,20 +59,7 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
                 ),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      widget.callback(selectedInterestsName);
-                    });
-                    Navigator.pop(context);
-                  },
-                  child: AppText(
-                    size: 15.sp,
-                    text: "Done",
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
-                        .fontFamily,
-                  ),
-                ),
+                SizedBox(width: 60.w)
               ],
             ),
             SizedBox(height: 10.h),

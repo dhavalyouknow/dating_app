@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Core/base/api_end_point.dart';
 import 'package:dating_app/Core/base/base_http_service.dart';
 import 'package:dating_app/Model/user.dart';
@@ -40,8 +41,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
   Future<void> _onDuplicateEvent(
       DuplicateEvent event, Emitter<AuthState> emit) async {
     try {
-      var resp =
-          await post(url: ApiEndPoints.duplicate, body: {"email": event.email});
+      var resp = await post(
+        url: ApiEndPoints.duplicate,
+        body: {"email": event.email},
+      );
       if (resp != null) {
         if (resp.statusCode == 200) {
           print(resp.body);
@@ -110,21 +113,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           User user = User.fromJson(data);
 
           event.success(user);
+          event.onError();
           Fluttertoast.showToast(msg: 'SignUp Successfully');
         } else {
+          Map<String, dynamic> data = jsonDecode(resp.body);
           if (kDebugMode) {
             print(resp.statusCode);
             print(resp.body);
           }
+          emit(state.copyWith(status: AuthStatus.loginFailure));
+          Fluttertoast.showToast(msg: data["message"]);
         }
       } else {
         if (kDebugMode) {
           print(resp?.statusCode);
+          Fluttertoast.showToast(msg: 'Something Went Wrong');
+          emit(state.copyWith(status: AuthStatus.loginFailure));
         }
       }
     } catch (e) {
+      if (e.toString() == "\"email\" must be a valid email") {
+        event.onError();
+      }
       if (kDebugMode) {
         print('-------------sign up error-------------');
+        Fluttertoast.showToast(msg: 'Something Went Wrong');
+        emit(state.copyWith(status: AuthStatus.loginFailure));
         print(e);
       }
     }
@@ -159,6 +173,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
 
           User user = User.fromJson(data);
           event.success(user);
+
           Fluttertoast.showToast(msg: 'Login Successfully');
           emit(
             state.copyWith(
@@ -180,11 +195,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
         }
       } else {
         if (kDebugMode) {
+          Fluttertoast.showToast(msg: 'Something Went Wrong');
+          emit(state.copyWith(status: AuthStatus.loginFailure));
           print(resp?.statusCode);
         }
       }
     } catch (e) {
       if (kDebugMode) {
+        Fluttertoast.showToast(msg: 'Something Went Wrong');
+        emit(state.copyWith(status: AuthStatus.loginFailure));
         print('object');
         print(e);
         print('------------login error---------');

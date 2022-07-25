@@ -2,6 +2,7 @@ import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/AddYourDog/add_your_dog.dart';
 import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile.dart';
 import 'package:dating_app/Pages/MyPage/my_page_handler.dart';
 import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile.dart';
@@ -44,7 +45,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
             ),
           ),
         ],
-        backgroundColor: AppStyles.trasnparentColor,
+        backgroundColor: AppStyles.whiteColor,
         elevation: 0,
         centerTitle: true,
         title: AppText(
@@ -132,10 +133,20 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                       height: size.height / 18,
                       txt: "Add Dog",
                       onTap: () {
-                        Navigator.pushNamed(context, '/AddYourDog');
+                        Navigator.pushNamed(context, AddYourDog.routeName);
                       },
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    width: size.width / 4,
+                    child: GradientBtn(
+                      height: size.height / 18,
+                      txt: "Length",
+                      onTap: () {
+                        // selectLength(context);
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),

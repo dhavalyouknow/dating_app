@@ -5,6 +5,7 @@ import 'package:dating_app/Pages/ChoosePartner/choose_partner.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
   bool signUpPwd = true;
@@ -31,6 +32,14 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
     }
     return;
   }
+
+  // String password = passwordText.getText().toString();
+  // if (password.isEmpty() || password.length() < 6) {  passwordText.setError("Password cannot be less than 6 characters!");
+  // }
+  // else {
+  // passwordText.setError(null);
+  // startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
+  // }
 
   String? passwordValidator(dynamic password) {
     RegExp regex =
@@ -69,7 +78,13 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
               print('******success****');
             }
             BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-            Navigator.pushReplacementNamed(context,ChoosePartner.routeName);
+            Navigator.pushReplacementNamed(context, ChoosePartner.routeName);
+          },
+          onError: () {
+            if (kDebugMode) {
+              print('******Error****');
+            }
+            Fluttertoast.showToast(msg: 'Something Went Wrong');
           },
         ),
       );

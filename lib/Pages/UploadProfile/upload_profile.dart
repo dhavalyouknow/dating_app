@@ -87,13 +87,14 @@ class _UploadProfileState extends State<UploadProfile>
                           ],
                         ),
                         child: CircleAvatar(
-                            backgroundColor: AppStyles.rosyWhiteColor,
-                            radius: 300.r,
-                            child: Icon(
-                              Icons.camera_alt_outlined,
-                              size: 100.h,
-                              color: const Color(0xffFAC7D1),
-                            )),
+                          backgroundColor: AppStyles.rosyWhiteColor,
+                          radius: 300.r,
+                          child: Icon(
+                            Icons.camera_alt_outlined,
+                            size: 100.h,
+                            color: const Color(0xffFAC7D1),
+                          ),
+                        ),
                       ),
                     )
                   : Row(

@@ -3,6 +3,7 @@ import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Model/user.dart';
+import 'package:dating_app/Pages/About/about.dart';
 import 'package:dating_app/Pages/Login/login_page.dart';
 import 'package:dating_app/Pages/Setting/setting_handler.dart';
 import 'package:flutter/material.dart';
@@ -95,6 +96,9 @@ class _SettingsState extends State<Settings> with SettingHandlers {
               ),
               const Divider(),
               ListTile(
+                onTap: () {
+                  Navigator.pushNamed(context, About.routeName);
+                },
                 leading: const Icon(Icons.person_outline_outlined),
                 title: AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)

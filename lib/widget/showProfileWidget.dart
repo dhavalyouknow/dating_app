@@ -30,6 +30,7 @@ class ShowProfileWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: CachedNetworkImage(
+                fit: BoxFit.cover,
                 imageUrl: user!.squareProfileImage!.isNotEmpty
                     ? user!.squareProfileImage!.first.url.toString()
                     : "",

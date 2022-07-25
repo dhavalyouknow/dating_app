@@ -78,6 +78,7 @@ class ShowDogProfileWidget extends StatelessWidget {
                       padding: const EdgeInsets.all(3.0),
                       child: ClipOval(
                         child: CachedNetworkImage(
+                          fit: BoxFit.cover,
                           imageUrl: user?.circleProfileImage != null
                               ? user!.circleProfileImage!.url.toString()
                               : "",
