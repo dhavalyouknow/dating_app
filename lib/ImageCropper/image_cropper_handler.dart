@@ -43,6 +43,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
 
   Future<void> editImage({required String type, int? index}) async {
     updateType = type;
+
     await showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -125,6 +126,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
         cropImage(
           style: CropStyle.rectangle,
           aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 10),
+          index: index,
         );
 
         setState(() {});
@@ -133,7 +135,9 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
   }
 
   Future<void> cropImage(
-      {required CropStyle style, required CropAspectRatio aspectRatio}) async {
+      {int? index,
+      required CropStyle style,
+      required CropAspectRatio aspectRatio}) async {
     final croppedFile = await ImageCropper().cropImage(
       sourcePath:
           squareImageFile == null ? imageFile!.path : squareImageFile!.path,
@@ -182,13 +186,14 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
       if (style == CropStyle.rectangle) {
         squareImageFile = File(croppedFile.path);
         cropImage(
-            style: CropStyle.circle,
-            aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 10));
+          style: CropStyle.circle,
+          aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 10),
+        );
         onSquareImageUpdate();
       } else {
         circleImageFile = File(croppedFile.path);
         isLoading = true;
-        onCircleImageUpdate();
+        onCircleImageUpdate(index);
       }
       setState(() {});
     }
@@ -206,7 +211,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
     );
   }
 
-  onCircleImageUpdate() {
+  onCircleImageUpdate(int? index) {
     if (updateType == 'person') {
       BlocProvider.of<ImageUploadBloc>(context).add(
         UploadImage(
@@ -224,7 +229,41 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                 user: user!,
                 success: (value) {
                   Fluttertoast.showToast(
-                      msg: 'Your Profile Picture is added successfully');
+                    msg: 'Your Profile Picture is added successfully',
+                  );
+                  BlocProvider.of<AuthBloc>(context).add(
+                    SessionRequest(
+                      onSuccess: (User user) {
+                        BlocProvider.of<UserBloc>(context)
+                            .add(SetUser(user: user));
+                      },
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      );
+    } else if (updateType == "person profile") {
+      BlocProvider.of<ImageUploadBloc>(context).add(
+        UploadImage(
+          image: circleImageFile!,
+          onSuccess: (SquareProfileImage value) {
+            user = user?.copyWith(
+              circleProfileImage: value,
+              squareProfileImage: [
+                ...?user?.squareProfileImage,
+                addSquareProfileImage!
+              ],
+            );
+            BlocProvider.of<UserBloc>(context).add(
+              UpdateUserEvent(
+                user: user!,
+                success: (value) {
+                  Fluttertoast.showToast(
+                    msg: 'Your Profile Picture is added successfully',
+                  );
                   BlocProvider.of<AuthBloc>(context).add(
                     SessionRequest(
                       onSuccess: (User user) {

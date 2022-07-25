@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
@@ -92,6 +94,9 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                         return GestureDetector(
                           onTap: () {
                             editImage(type: 'person', index: i);
+                            setState(() {
+                              index = i;
+                            });
                           },
                           child: CachedNetworkImage(
                             imageUrl: userState.user!.squareProfileImage != null
@@ -126,7 +131,13 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                userState.user!.squareProfileImage![index!].url
+                                        .toString() ==
+                                    "";
+                                // imageFile = null;
+                                setState(() {});
+                              },
                               child: Row(
                                 children: [
                                   const Icon(
@@ -147,6 +158,16 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                             ),
                             SizedBox(width: 20.w),
                             InkWell(
+                              onTap: () {
+                                editImage(type: "person profile");
+                                imageFile = null;
+                                circleImageFile = null;
+                                squareImageFile ==
+                                    userState
+                                        .user!.squareProfileImage![index!].url
+                                        .toString() as File?;
+                                setState(() {});
+                              },
                               child: Row(
                                 children: [
                                   const Icon(Icons.camera_alt_outlined),
@@ -163,6 +184,9 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                             ),
                             SizedBox(width: 20.w),
                             InkWell(
+                              onTap: () {
+                                editImage(type: 'person');
+                              },
                               child: Row(
                                 children: [
                                   Icon(

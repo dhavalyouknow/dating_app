@@ -137,16 +137,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                       },
                     ),
                   ),
-                  SizedBox(
-                    width: size.width / 4,
-                    child: GradientBtn(
-                      height: size.height / 18,
-                      txt: "Length",
-                      onTap: () {
-                        // selectLength(context);
-                      },
-                    ),
-                  ),
+                  SizedBox(height: 15.h),
                 ],
               ),
             ),

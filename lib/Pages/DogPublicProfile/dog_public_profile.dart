@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
@@ -26,41 +27,41 @@ class _DogPublicProfileState extends State<DogPublicProfile>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 10.w),
-            child: IconButton(
-              onPressed: () async {
-                await showDialog(
-                  context: context,
-                  builder: (context) {
-                    return DogEditPopup(dog: dog);
+    return BlocBuilder<UserBloc, UserState>(
+      builder: (context, userState) {
+        return Scaffold(
+          appBar: AppBar(
+            actions: [
+              Padding(
+                padding: EdgeInsets.only(right: 10.w),
+                child: IconButton(
+                  onPressed: () async {
+                    await showDialog(
+                      context: context,
+                      builder: (context) {
+                        return DogEditPopup(dog: dog);
+                      },
+                    );
                   },
-                );
-              },
-              icon: Icon(
-                FontAwesomeIcons.ellipsisVertical,
-                size: 25.h,
-                color: AppStyles.greyColor,
+                  icon: Icon(
+                    FontAwesomeIcons.ellipsisVertical,
+                    size: 25.h,
+                    color: AppStyles.greyColor,
+                  ),
+                ),
               ),
+            ],
+            backgroundColor: AppStyles.whiteColor,
+            elevation: 0,
+            centerTitle: true,
+            title: AppText(
+              size: 18.sp,
+              text: "${dog!.dogName}",
+              fontFamily:
+                  GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
             ),
           ),
-        ],
-        backgroundColor: AppStyles.whiteColor,
-        elevation: 0,
-        centerTitle: true,
-        title: AppText(
-          size: 18.sp,
-          text: "${dog!.dogName}",
-          fontFamily:
-              GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
-        ),
-      ),
-      body: BlocBuilder<UserBloc, UserState>(
-        builder: (context, userState) {
-          return Container(
+          body: Container(
             height: size.height,
             width: size.width,
             decoration: BoxDecoration(
@@ -79,11 +80,10 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                       children: [
                         PageView.builder(
                           itemCount: dog!.squareProfileImage!.length,
-                          itemBuilder: (context, index) {
+                          itemBuilder: (context, i) {
                             return CachedNetworkImage(
                               imageUrl: dog?.squareProfileImage != null
-                                  ? dog!.squareProfileImage!.first.url
-                                      .toString()
+                                  ? dog!.squareProfileImage![i].url.toString()
                                   : "",
                               fit: BoxFit.cover,
                               errorWidget: (BuildContext context, url, data) {
@@ -198,9 +198,9 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                 ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

@@ -140,12 +140,14 @@ class _PersonPublicProfileState extends State<PersonPublicProfile>
                                   fontWeight: FontWeight.w500,
                                 ).fontFamily,
                               ),
+                              SizedBox(height: 5.h),
                               if (userState.user!.city!.isNotEmpty)
                                 Row(
                                   children: [
-                                    const Icon(
+                                    Icon(
                                       Icons.location_on_outlined,
                                       color: AppStyles.whiteColor,
+                                      size: 18.sp,
                                     ),
                                     SizedBox(width: 5.w),
                                     AppText(

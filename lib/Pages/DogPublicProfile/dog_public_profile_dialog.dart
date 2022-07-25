@@ -8,9 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DogEditPopup extends StatefulWidget {
-  final Dog? dog;
+  Dog? dog;
 
-  const DogEditPopup({Key? key, this.dog}) : super(key: key);
+  DogEditPopup({Key? key, this.dog}) : super(key: key);
 
   @override
   State<DogEditPopup> createState() => _DogEditPopupState();
