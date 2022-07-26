@@ -1,19 +1,14 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Dialog/ImInterestedIn/im_interested_in.dart';
-import 'package:dating_app/Dialog/Length/enter_length.dart';
 import 'package:dating_app/Dialog/RelationshipStatus/relationship_status.dart';
 import 'package:dating_app/Dialog/eyecolor/eyecolor_widget.dart';
 import 'package:dating_app/Dialog/occuption/occuptionWidget.dart';
-import 'package:dating_app/Pages/SetupProfile/set_up_profile1/select_length_dialog.dart';
 import 'package:dating_app/Pages/SetupProfile/set_up_profile1/setup_profile1_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
-import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
-import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SetupProfile1 extends StatefulWidget {
@@ -377,12 +372,12 @@ class _SetupProfile1State extends State<SetupProfile1>
                                             (e) => GestureDetector(
                                               onTap: () {
                                                 currentLength = e;
-                                                print(currentLength);
                                                 setState(() {});
                                               },
                                               child: Padding(
                                                 padding: EdgeInsets.symmetric(
-                                                    vertical: 5.h),
+                                                  vertical: 5.h,
+                                                ),
                                                 child: Text(e),
                                               ),
                                             ),
@@ -398,14 +393,6 @@ class _SetupProfile1State extends State<SetupProfile1>
                       },
                     );
                   },
-                  // onTap: () {
-                  //   showDialog(
-                  //     context: context,
-                  //     builder: (BuildContext context) {
-                  //       return const EnterLength();
-                  //     },
-                  //   );
-                  // },
                 ),
 
                 SizedBox(height: 80.h),

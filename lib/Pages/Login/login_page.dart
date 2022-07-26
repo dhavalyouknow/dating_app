@@ -139,7 +139,6 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       height: size.height / 14,
                       txt: AppLocalizations.of(context)!.login,
                       onTap: onLogin,
-                      fontSize: 14.sp,
                     ),
                     GoogleBtnWidget(
                       color: AppStyles.whiteColor,
@@ -155,13 +154,14 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         height: 18.h,
                       ),
                     ),
+
                     AppleBtnWidget(
                       onPressed: signInWithApple,
                       title: "Sign In With Apple",
                       image: Image.asset(
                         "assets/icons/AppleIcon.png",
-                        height: 30.h,
-                        color: AppStyles.whiteColor,
+                        height: 23.h,
+                        color: AppStyles.blackColor,
                       ),
                     ),
                     // Padding(

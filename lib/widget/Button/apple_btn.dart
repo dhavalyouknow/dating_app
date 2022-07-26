@@ -23,11 +23,11 @@ class AppleBtnWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: onPressed,
         child: Container(
-          margin: EdgeInsets.only(top: 15.h),
+          margin: EdgeInsets.only(top: 10.h),
           height: size.height / 14,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: AppStyles.blackColor,
+            color: AppStyles.whiteColor,
             borderRadius: BorderRadius.circular(10.r),
           ),
           child: Row(
@@ -39,7 +39,7 @@ class AppleBtnWidget extends StatelessWidget {
                 child: AppText(
                   size: 16.sp,
                   text: title,
-                  color: AppStyles.whiteColor,
+                  color: AppStyles.blackColor,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
                 ),

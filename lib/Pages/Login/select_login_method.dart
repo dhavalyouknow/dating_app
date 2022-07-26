@@ -52,7 +52,7 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                     ),
                     GradientBtn(
                       borderRadius: 10.r,
-                      fontSize: 14.sp,
+                      fontSize: 16.sp,
                       height: size.height / 14,
                       txt: "Sign Up Manually",
                       onTap: () {
@@ -79,8 +79,8 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                       title: "Sign Up With Apple",
                       image: Image.asset(
                         "assets/icons/AppleIcon.png",
-                        height: 30.h,
-                        color: AppStyles.whiteColor,
+                        height: 23.h,
+                        color: AppStyles.blackColor,
                       ),
                     ),
                     // Padding(

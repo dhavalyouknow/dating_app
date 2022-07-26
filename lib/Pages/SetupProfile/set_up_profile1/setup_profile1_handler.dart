@@ -43,34 +43,6 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
     }
   }
 
-  // Future<void> selectDate(BuildContext context) async {
-  //   NumberPicker levelPicker = NumberPicker.integer(
-  //       initialValue: _currentLevel,
-  //       minValue: 0,
-  //       maxValue: 100,
-  //       step: 1,
-  //       onChanged: (num) {
-  //         setState(() {
-  //           _currentLevel = num;
-  //           _saveLevel(num);
-  //         });
-  //       });
-  //
-  //   if (datePicked != null && datePicked != selectedDate) {
-  //     setState(() {
-  //       selectedDate = datePicked;
-  //     });
-  //   }
-  // }
-
-  //
-  //   // if (datePicked != null && datePicked != selectedDate) {
-  //   //   setState(() {
-  //   //     selectedDate = datePicked;
-  //   //   });
-  //   // }
-  // }
-
   onSubmitProfile1() {
     if (formKey.currentState!.validate()) {
       if (user == null) {

@@ -25,7 +25,7 @@ class GoogleBtnWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: onPressed,
         child: Container(
-          margin: EdgeInsets.only(top: 15.h),
+          margin: EdgeInsets.only(top: 10.h),
           height: size.height / 14,
           width: double.infinity,
           decoration: BoxDecoration(
@@ -39,7 +39,7 @@ class GoogleBtnWidget extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 10.w),
                 child: AppText(
-                  size: 14.sp,
+                  size: 16.sp,
                   text: title,
                   color: AppStyles.blackColor,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
