@@ -347,51 +347,7 @@ class _SetupProfile1State extends State<SetupProfile1>
                   txt: currentLength.isEmpty ? "Select Length" : currentLength,
                   txtColor: AppStyles.greyColor,
                   onTap: () {
-                    final items =
-                        List<String>.generate(151, (index) => '$index');
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return SizedBox(
-                          height: 150.h,
-                          child: Column(
-                            children: [
-                              Row(
-                                children: const [
-                                  Text('Cancel'),
-                                  Text('Select Length')
-                                ],
-                              ),
-                              Container(
-                                height: 150,
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    children: [
-                                      ...items
-                                          .map(
-                                            (e) => GestureDetector(
-                                              onTap: () {
-                                                currentLength = e;
-                                                setState(() {});
-                                              },
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                  vertical: 5.h,
-                                                ),
-                                                child: Text(e),
-                                              ),
-                                            ),
-                                          )
-                                          .toList(),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
+                    selectLength(context);
                   },
                 ),
 
