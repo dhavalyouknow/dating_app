@@ -192,7 +192,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
         onSquareImageUpdate();
       } else {
         circleImageFile = File(croppedFile.path);
-        isLoading = true;
+        isLoading = false;
         onCircleImageUpdate(index);
       }
       setState(() {});

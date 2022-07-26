@@ -117,16 +117,15 @@ class _UploadProfileState extends State<UploadProfile>
                         ),
                         Flexible(
                           child: Container(
+                            width: 250,
+                            height: 250,
                             margin: EdgeInsets.only(left: 5.w),
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.red,
-                            ),
-                            height: 250.h,
-                            width: 200.w,
-                            child: CircleAvatar(
-                              backgroundImage: FileImage(
-                                circleImageFile!,
+                              color: Colors.transparent,
+                              image: DecorationImage(
+                                image: FileImage(circleImageFile!),
+                                fit: BoxFit.contain,
                               ),
                             ),
                           ),

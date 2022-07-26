@@ -8,12 +8,17 @@ import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Pages/Login/login_page.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
 import 'package:dating_app/firebase_options.dart';
+import 'package:dating_app/l10n/l10n.dart';
+import 'package:dating_app/language_provider/lannguagePro.dart';
 import 'package:dating_app/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///add release key when app live for facebook login
 void main() async {
@@ -73,12 +78,27 @@ class MyApp extends StatelessWidget {
       child: ScreenUtilInit(
         designSize: const Size(360, 680),
         builder: (context, widget) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: "Dating App",
-            routes: routes,
-            initialRoute:
-                token == null ? LoginPage.routeName : MyPage.routeName,
+          return ChangeNotifierProvider(
+            create: (context) => LocalProvider(),
+            builder: (context, child) {
+              final provider = Provider.of<LocalProvider>(context);
+              print(provider.locale);
+              return MaterialApp(
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: L10n.all,
+                locale: provider.locale,
+                debugShowCheckedModeBanner: false,
+                title: "Dating App",
+                routes: routes,
+                initialRoute:
+                    token == null ? LoginPage.routeName : MyPage.routeName,
+              );
+            },
           );
         },
       ),

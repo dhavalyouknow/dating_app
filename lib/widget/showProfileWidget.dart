@@ -139,7 +139,8 @@ class ShowProfileWidget extends StatelessWidget {
                     SizedBox(width: 5.w),
                     AppText(
                       size: 14.sp,
-                      text: "${user!.dog.length} Dogs",
+                      text:
+                          "${user!.dog.length} ${user!.dog.length == 1 ? 'Dog' : 'Dogs'}",
                       fontFamily:
                           GoogleFonts.raleway(fontWeight: FontWeight.w700)
                               .fontFamily,

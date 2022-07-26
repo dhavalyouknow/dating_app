@@ -50,7 +50,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
         centerTitle: true,
         title: AppText(
           size: 18.sp,
-          text: "My Page",
+          text: 'My Page',
           fontFamily:
               GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
         ),

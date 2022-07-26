@@ -21,6 +21,12 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   final formKey = GlobalKey<FormState>();
   final fbLogin = FacebookLogin();
   bool isLoading = false;
+  String dropdownvalue = 'Sweeden';
+
+  var items = [
+    'Sweeden',
+    'English',
+  ];
 
   String? emailValidator(dynamic email) {
     if (email.isEmpty) {
@@ -201,6 +207,12 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
         AppleIDAuthorizationScopes.fullName,
       ],
     );
+    print('111111111');
+    print(credential);
+    print(credential.identityToken);
+    print(credential.authorizationCode);
+    print(credential.userIdentifier);
+    print('222222222');
 
     Future.delayed(
       const Duration(seconds: 0),
@@ -223,10 +235,4 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
       },
     );
   }
-
-  signOutFacebook() async {
-    fbLogin.logOut();
-  }
-
-  logOut() async {}
 }

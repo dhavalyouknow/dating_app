@@ -13,21 +13,11 @@ PODS:
   - FBSDKCoreKit_Basics (14.0.0)
   - FBSDKLoginKit (14.0.0):
     - FBSDKCoreKit (= 14.0.0)
-  - Firebase/Auth (9.2.0):
-    - Firebase/CoreOnly
-    - FirebaseAuth (~> 9.2.0)
   - Firebase/CoreOnly (9.2.0):
     - FirebaseCore (= 9.2.0)
   - Firebase/Messaging (9.2.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 9.2.0)
-  - firebase_auth (3.4.2):
-    - Firebase/Auth (= 9.2.0)
-    - firebase_core
-    - Flutter
-  - firebase_auth_oauth (0.0.1):
-    - firebase_auth
-    - Flutter
   - firebase_core (1.19.2):
     - Firebase/CoreOnly (= 9.2.0)
     - Flutter
@@ -35,11 +25,6 @@ PODS:
     - Firebase/Messaging (= 9.2.0)
     - firebase_core
     - Flutter
-  - FirebaseAuth (9.2.0):
-    - FirebaseCore (~> 9.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GTMSessionFetcher/Core (< 3.0, >= 1.7)
   - FirebaseCore (9.2.0):
     - FirebaseCoreDiagnostics (~> 9.0)
     - FirebaseCoreInternal (~> 9.0)
@@ -132,8 +117,6 @@ PODS:
   - TOCropViewController (2.6.1)
 
 DEPENDENCIES:
-  - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
-  - firebase_auth_oauth (from `.symlinks/plugins/firebase_auth_oauth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
@@ -155,7 +138,6 @@ SPEC REPOS:
     - FBSDKCoreKit_Basics
     - FBSDKLoginKit
     - Firebase
-    - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreInternal
@@ -173,10 +155,6 @@ SPEC REPOS:
     - TOCropViewController
 
 EXTERNAL SOURCES:
-  firebase_auth:
-    :path: ".symlinks/plugins/firebase_auth/ios"
-  firebase_auth_oauth:
-    :path: ".symlinks/plugins/firebase_auth_oauth/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_messaging:
@@ -209,11 +187,8 @@ SPEC CHECKSUMS:
   FBSDKCoreKit_Basics: 1ff46a12e80f0b66e6c00e1ef32d6a5b5b9008a5
   FBSDKLoginKit: dbe86ef42ab142f3bd0f1c904a21bb33f31c5569
   Firebase: 4ba896cb8e5105d4b9e247e1c1b6222b548df55a
-  firebase_auth: 103ce6040b7f0a67bffb8f317544fc9f877c1cd2
-  firebase_auth_oauth: 2b6873838f5712f414740e98679481bbea640bd3
   firebase_core: ada8be870601fe3c2684dae2356f634189bd598f
   firebase_messaging: ce76a2cce70922525bc8815101504f80a943e280
-  FirebaseAuth: 1c574ab64a051dd86dbe7fd5a3f86b58155b3482
   FirebaseCore: 0e27f2a15d8f7b7ef11e7d93e23b1cbab55d748c
   FirebaseCoreDiagnostics: ad3f6c68b7c5b63b7cf15b0785d7137f05f32268
   FirebaseCoreInternal: cb966328b6985dbd6f535e1461291063e1c4a00f

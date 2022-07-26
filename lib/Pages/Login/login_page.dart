@@ -5,12 +5,14 @@ import 'package:dating_app/Pages/Login/login_handler.dart';
 import 'package:dating_app/Pages/Login/select_login_method.dart';
 import 'package:dating_app/widget/Button/facebook_btn.dart';
 import 'package:dating_app/widget/Button/google_btn.dart';
+import 'package:dating_app/widget/localization/LanguageWidget.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/LoginPage';
@@ -38,9 +40,13 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 90),
+                      child: LanguageWidget(),
+                    ),
                     Padding(
                       padding: EdgeInsets.only(
-                        top: 125.h,
+                        top: 80.h,
                         left: 40.w,
                         right: 40.w,
                         bottom: 30.h,
@@ -103,7 +109,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                           );
                         },
                         child: Text(
-                          "Forgot Password?",
+                          AppLocalizations.of(context)!.forgotPassword,
                           style: TextStyle(
                             fontSize: 13.sp,
                             color: AppStyles.blackColor,
@@ -113,7 +119,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                     ),
                     GradientBtn(
                       height: size.height / 14,
-                      txt: "Login",
+                      txt: AppLocalizations.of(context)!.login,
                       onTap: onLogin,
                     ),
                     // GoogleBtnWidget(
@@ -140,7 +146,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don’t have an account?",
+                          AppLocalizations.of(context)!.account,
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: AppStyles.blackColor,
@@ -152,7 +158,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                                 context, SelectLoginMethod.routeName);
                           },
                           child: Text(
-                            "Sign Up",
+                            AppLocalizations.of(context)!.signUp,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 14.sp,
