@@ -95,7 +95,7 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                         return GestureDetector(
                           onTap: () {
                             editImage(
-                              type: 'person profile',
+                              type: 'person profile update',
                               index: i,
                             );
                             imageFile = null;

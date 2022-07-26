@@ -247,7 +247,36 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
           },
         ),
       );
-    } else if (updateType == "person profile") {
+    } else if (updateType == "person profile update") {
+      BlocProvider.of<ImageUploadBloc>(context).add(
+        UploadImage(
+          image: circleImageFile!,
+          onSuccess: (SquareProfileImage value) {
+            user = user?.copyWith(
+              circleProfileImage: value,
+              squareProfileImage: [],
+            );
+            BlocProvider.of<UserBloc>(context).add(
+              UpdateUserEvent(
+                user: user!,
+                success: (value) {
+                  Fluttertoast.showToast(
+                    msg: 'Your Profile Picture is added successfully',
+                  );
+                  BlocProvider.of<AuthBloc>(context).add(
+                    SessionRequest(
+                      onSuccess: (User user) {
+                        BlocProvider.of<UserBloc>(context)
+                            .add(SetUser(user: user));
+                      },
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      );
       BlocProvider.of<ImageUploadBloc>(context).add(
         UploadImage(
           image: circleImageFile!,
