@@ -107,6 +107,7 @@ class _AddNightModuleState extends State<AddNightModule>
               ),
             ),
             GradientBtn(
+              borderRadius: 10.r,
               height: size.height / 14,
               txt: "Save",
               onTap: () {

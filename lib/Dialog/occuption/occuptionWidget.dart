@@ -85,6 +85,7 @@ class _OccupationWidgetState extends State<OccupationWidget>
                 ),
               ),
               GradientBtn(
+                borderRadius: 10.r,
                 height: size.height / 14,
                 txt: "Save",
                 onTap: () {

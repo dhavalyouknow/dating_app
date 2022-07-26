@@ -28,6 +28,7 @@ class _SetupProfile2State extends State<SetupProfile2>
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 30),
         child: GradientBtn(
+          borderRadius: 10.r,
           boxShadow: [
             BoxShadow(
               color: AppStyles.shadowColor.withOpacity(0.2),

@@ -207,11 +207,13 @@ class _UploadProfileState extends State<UploadProfile>
               ),
               imageFile == null
                   ? GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 14,
                       txt: "Next",
                       onTap: () {},
                     )
                   : GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 14,
                       txt: "Save",
                       onTap: () {

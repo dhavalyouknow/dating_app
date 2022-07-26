@@ -129,6 +129,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       ),
                     ),
                     GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 14,
                       txt: "Login",
                       onTap: onLogin,

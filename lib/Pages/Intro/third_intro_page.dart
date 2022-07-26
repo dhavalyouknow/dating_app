@@ -144,6 +144,7 @@ class _ThirdIntroPageState extends State<ThirdIntroPage> {
                   ),
                   SizedBox(height: 15.h),
                   GradientBtn(
+                    borderRadius: 10.r,
                     height: size.height / 14,
                     txt: "Get Started",
                     onTap: () {

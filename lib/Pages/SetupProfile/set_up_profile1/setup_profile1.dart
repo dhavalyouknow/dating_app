@@ -4,6 +4,7 @@ import 'package:dating_app/Dialog/ImInterestedIn/im_interested_in.dart';
 import 'package:dating_app/Dialog/RelationshipStatus/relationship_status.dart';
 import 'package:dating_app/Dialog/eyecolor/eyecolor_widget.dart';
 import 'package:dating_app/Dialog/occuption/occuptionWidget.dart';
+import 'package:dating_app/Pages/SetupProfile/set_up_profile1/select_length_dialog.dart';
 import 'package:dating_app/Pages/SetupProfile/set_up_profile1/setup_profile1_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
@@ -31,6 +32,7 @@ class _SetupProfile1State extends State<SetupProfile1>
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 30),
         child: GradientBtn(
+          borderRadius: 10.r,
           height: size.height / 14,
           txt: "Next",
           onTap: () {
@@ -352,26 +354,21 @@ class _SetupProfile1State extends State<SetupProfile1>
                       .fontFamily,
                   text: "Length (cm)",
                 ),
-                FormFieldWidget(
-                  hintText: 'Enter your lenght (cm)',
-                  textEditingController: lengthController,
-                  validator: lengthValidator,
-                  obSecure: false,
-                  border: lengthController.text.isEmpty ? 1.r : 2.r,
-                  borderColor: lengthController.text.isEmpty
-                      ? AppStyles.greyColor
-                      : AppStyles.pinkColor,
+                SizedBox(height: 10.h),
+                DefaultAppBtn(
+                  height: size.height / 16,
+                  border: 1.r,
                   borderRadius: 25.r,
-                  type: TextInputType.number,
+                  borderColor: AppStyles.greyColor,
+                  txt: "Select Length",
+                  txtColor: AppStyles.greyColor,
+                  onTap: () {
+                    selectLength();
+                  },
                 ),
+
                 SizedBox(height: 80.h),
-                // GradientBtn(
-                //   height: size.height / 14,
-                //   txt: "Next",
-                //   onTap: () {
-                //     onSubmitProfile1();
-                //   },
-                // ),
+
                 // SizedBox(height: 60.h),
               ],
             ),

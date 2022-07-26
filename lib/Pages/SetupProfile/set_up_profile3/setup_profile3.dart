@@ -25,6 +25,7 @@ class _SetupProfile3State extends State<SetupProfile3>
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 30),
         child: GradientBtn(
+          borderRadius: 10.r,
           height: size.height / 14,
           txt: "Next",
           onTap: () {

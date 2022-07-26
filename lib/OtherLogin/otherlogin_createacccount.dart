@@ -265,6 +265,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                     ),
                     SizedBox(height: 20.h),
                     GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 14,
                       txt: "Next",
                       onTap: onUpdateUser,

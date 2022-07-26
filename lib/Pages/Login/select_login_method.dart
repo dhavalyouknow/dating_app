@@ -50,6 +50,7 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                       ),
                     ),
                     GradientBtn(
+                      borderRadius: 10.r,
                       fontSize: 16.sp,
                       height: size.height / 14,
                       txt: "Sign Up Manually",

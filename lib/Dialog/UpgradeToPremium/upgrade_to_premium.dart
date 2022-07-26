@@ -80,6 +80,7 @@ class _UpgradeToPremiumState extends State<UpgradeToPremium> {
                 child: Column(
                   children: [
                     GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 14,
                       txt: "UNLOCK PREMIUM",
                       onTap: () {},

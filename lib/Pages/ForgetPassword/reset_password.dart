@@ -121,6 +121,7 @@ class _ResetPasswordState extends State<ResetPassword>
                         ),
                       SizedBox(height: 20.h),
                       GradientBtn(
+                        borderRadius: 10.r,
                         height: size.height / 16,
                         txt: isVerifySuccessfull
                             ? "Reset Password"

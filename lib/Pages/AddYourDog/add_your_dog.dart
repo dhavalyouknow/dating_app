@@ -26,6 +26,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 30),
         child: GradientBtn(
+          borderRadius: 10.r,
           height: size.height / 14,
           txt: "Next",
           onTap: () {

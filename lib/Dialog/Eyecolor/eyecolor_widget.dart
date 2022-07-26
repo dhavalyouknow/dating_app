@@ -84,6 +84,7 @@ class _EyeColorWidgetState extends State<EyeColorWidget> with EyeColorHandlers {
                   ),
                 ),
                 GradientBtn(
+                  borderRadius: 10.r,
                   height: size.height / 14,
                   txt: "Save",
                   onTap: () {

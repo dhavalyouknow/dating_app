@@ -91,6 +91,7 @@ class _AboutState extends State<About> with AboutHandlers {
               ),
               SizedBox(height: 50.h),
               GradientBtn(
+                borderRadius: 10.r,
                 height: size.height / 14,
                 txt: "Contact",
                 onTap: () {},

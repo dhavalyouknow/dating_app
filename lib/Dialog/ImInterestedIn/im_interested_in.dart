@@ -87,6 +87,7 @@ class _ImInterestedInState extends State<ImInterestedIn>
                   SizedBox(
                     width: size.width / 4,
                     child: GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 18,
                       txt: "Save",
                       onTap: () {

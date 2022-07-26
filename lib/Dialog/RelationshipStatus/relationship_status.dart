@@ -77,6 +77,7 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                   SizedBox(
                     width: size.width / 4,
                     child: GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 18,
                       txt: "Cancel",
                       onTap: () {
@@ -87,6 +88,7 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                   SizedBox(
                     width: size.width / 4,
                     child: GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 18,
                       txt: "Save",
                       onTap: () {

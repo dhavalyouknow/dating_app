@@ -150,6 +150,7 @@ class _ChoosePartnerState extends State<ChoosePartner>
                   .toList(),
               SizedBox(height: 140.h),
               GradientBtn(
+                borderRadius: 10.r,
                 height: size.height / 14,
                 txt: "Next",
                 onTap: () {

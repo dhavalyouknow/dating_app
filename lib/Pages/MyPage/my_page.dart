@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 class MyPage extends StatefulWidget {
   static const routeName = "/MyPage";
@@ -28,6 +29,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -130,6 +132,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                   SizedBox(
                     width: size.width / 4,
                     child: GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 18,
                       txt: "Add Dog",
                       onTap: () {
@@ -138,16 +141,6 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                     ),
                   ),
                   SizedBox(height: 15.h),
-                  SizedBox(
-                    width: size.width / 4,
-                    child: GradientBtn(
-                      height: size.height / 18,
-                      txt: "Length",
-                      onTap: () {
-                        selectLength(context);
-                      },
-                    ),
-                  ),
                 ],
               ),
             ),

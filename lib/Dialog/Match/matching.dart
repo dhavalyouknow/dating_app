@@ -120,6 +120,7 @@ class _MatchingState extends State<Matching> {
                 child: Column(
                   children: [
                     GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 14,
                       txt: "Send Message",
                       onTap: () {},

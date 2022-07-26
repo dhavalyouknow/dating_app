@@ -101,6 +101,7 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                   ),
                   SizedBox(height: 10.h),
                   GradientBtn(
+                    borderRadius: 10.r,
                     height: size.height / 14,
                     txt: "Next",
                     onTap: () {
