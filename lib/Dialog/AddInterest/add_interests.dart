@@ -104,6 +104,7 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
               ),
             ),
             GradientBtn(
+              borderRadius: 10.r,
               height: size.height / 14,
               txt: "Save",
               onTap: () {

@@ -110,6 +110,7 @@ class _CreatePasswordState extends State<CreatePassword>
                 ),
                 SizedBox(height: 20.h),
                 GradientBtn(
+                  borderRadius: 10.r,
                   fontSize: 15.sp,
                   height: size.height / 14,
                   txt: "Done",

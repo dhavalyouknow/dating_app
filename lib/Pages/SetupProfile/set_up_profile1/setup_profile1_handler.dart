@@ -1,6 +1,7 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Model/user.dart';
+import 'package:dating_app/Pages/SetupProfile/set_up_profile2/setup_profile2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,6 +15,17 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
   User? user;
   bool haveDog = false;
   bool haveKids = false;
+
+  String currentLength = '';
+
+  final formKey = GlobalKey<FormState>();
+
+  String? lengthValidator(dynamic length) {
+    if (length.isEmpty) {
+      return 'Enter Length';
+    }
+    return null;
+  }
 
   onHaveDogSubmit(String dog) {
     if (dog.toLowerCase() == 'yes') {
@@ -31,32 +43,62 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
     }
   }
 
+  // Future<void> selectDate(BuildContext context) async {
+  //   NumberPicker levelPicker = NumberPicker.integer(
+  //       initialValue: _currentLevel,
+  //       minValue: 0,
+  //       maxValue: 100,
+  //       step: 1,
+  //       onChanged: (num) {
+  //         setState(() {
+  //           _currentLevel = num;
+  //           _saveLevel(num);
+  //         });
+  //       });
+  //
+  //   if (datePicked != null && datePicked != selectedDate) {
+  //     setState(() {
+  //       selectedDate = datePicked;
+  //     });
+  //   }
+  // }
+
+  //
+  //   // if (datePicked != null && datePicked != selectedDate) {
+  //   //   setState(() {
+  //   //     selectedDate = datePicked;
+  //   //   });
+  //   // }
+  // }
+
   onSubmitProfile1() {
-    if (user == null) {
-      BlocProvider.of<AuthBloc>(context).add(
-        SessionRequest(
-          onSuccess: (user) {
-            BlocProvider.of<UserBloc>(context).add(
-              UpdateUserEvent(
-                user: user.copyWith(
-                  haveDog: haveDog,
-                  relationshipStatus: selectedStatus,
-                  interestedIn: selectedInterestedIn,
-                  occupation: selectedOccupation,
-                  eyeColor: selectedEyeColor,
-                  haveKids: haveKids,
-                  length: int.parse(lengthController.text),
+    if (formKey.currentState!.validate()) {
+      if (user == null) {
+        BlocProvider.of<AuthBloc>(context).add(
+          SessionRequest(
+            onSuccess: (user) {
+              BlocProvider.of<UserBloc>(context).add(
+                UpdateUserEvent(
+                  user: user.copyWith(
+                    haveDog: haveDog,
+                    relationshipStatus: selectedStatus,
+                    interestedIn: selectedInterestedIn,
+                    occupation: selectedOccupation,
+                    eyeColor: selectedEyeColor,
+                    haveKids: haveKids,
+                    length: int.parse(currentLength),
+                  ),
+                  success: (value) {
+                    Navigator.pushNamed(context, SetupProfile2.routeName);
+                    Fluttertoast.showToast(
+                        msg: 'Your Profile Setup Successfully');
+                  },
                 ),
-                success: (value) {
-                  Navigator.pushNamed(context, "/SetupProfile2");
-                  Fluttertoast.showToast(
-                      msg: 'Your Profile Setup Successfully');
-                },
-              ),
-            );
-          },
-        ),
-      );
+              );
+            },
+          ),
+        );
+      }
     }
   }
 }

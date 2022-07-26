@@ -127,6 +127,7 @@ class _ChooseDogPicture2State extends State<ChooseDogPicture2> {
               ),
               SizedBox(height: 200.h),
               GradientBtn(
+                borderRadius: 10.r,
                 height: size.height / 14,
                 txt: "Next",
                 onTap: () {},

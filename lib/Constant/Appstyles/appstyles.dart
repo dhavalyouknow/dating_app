@@ -268,7 +268,7 @@ List<DogSize> dogLookingFor = [
   DogSize(name: "Friends", selected: false),
   DogSize(name: "Nanny", selected: false),
   DogSize(name: "Love", selected: false),
-  DogSize(name: "Bonus Husse", selected: false),
+  // DogSize(name: "Bonus Husse", selected: false),
   DogSize(name: "Bonus Father", selected: false),
   DogSize(name: "Bonus Mother", selected: false),
 ];

@@ -28,6 +28,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -130,6 +131,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                   SizedBox(
                     width: size.width / 4,
                     child: GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 18,
                       txt: "Add Dog",
                       onTap: () {

@@ -1,6 +1,5 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Pages/AccountRecovery/account_recovery.dart';
-import 'package:dating_app/Pages/CreateAccount/create_account.dart';
 import 'package:dating_app/Pages/Login/login_handler.dart';
 import 'package:dating_app/Pages/Login/select_login_method.dart';
 import 'package:dating_app/widget/Button/facebook_btn.dart';
@@ -41,12 +40,12 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(top: 90),
+                      padding: EdgeInsets.only(top: 50),
                       child: LanguageWidget(),
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                        top: 80.h,
+                        top: 30.h,
                         left: 40.w,
                         right: 40.w,
                         bottom: 30.h,
@@ -55,6 +54,22 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         image: AssetImage("assets/logo.png"),
                       ),
                     ),
+                    // FormFieldWidget(
+                    //   icon: IconButton(
+                    //     icon: const Icon(Icons.person_outline),
+                    //     onPressed: () {},
+                    //   ),
+                    //   backgroundColor: AppStyles.whiteColor,
+                    //   hintText: 'Dog Name',
+                    //   textEditingController: emailController,
+                    //   validator: emailValidator,
+                    //   obSecure: false,
+                    //   border: emailController.text.isEmpty ? 1.r : 2.r,
+                    //   borderColor: emailController.text.isEmpty
+                    //       ? AppStyles.greyColor
+                    //       : AppStyles.pinkColor,
+                    //   borderRadius: 10.r,
+                    // ),
                     TextFormFieldWidget(
                       textEditingController: emailController,
                       validator: emailValidator,
@@ -118,30 +133,32 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       ),
                     ),
                     GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 14,
                       txt: AppLocalizations.of(context)!.login,
                       onTap: onLogin,
+                      fontSize: 14.sp,
                     ),
-                    // GoogleBtnWidget(
-                    //   color: AppStyles.whiteColor,
-                    //   onPressed: signInWithGoogle,
-                    //   title: 'Sign in with Google',
-                    //   image: Image.asset('assets/icons/google.png'),
-                    // ),
-                    // FaceBookBtnWidget(
-                    //   onPressed: signInWithFacebook,
-                    //   title: 'Sign in with Facebook',
-                    //   image: Image.asset(
-                    //     'assets/icons/facebook.png',
-                    //     height: 18.h,
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: EdgeInsets.only(top: 8.h),
-                    //   child: SignInWithAppleButton(
-                    //     onPressed: signInWithApple,
-                    //   ),
-                    // ),
+                    GoogleBtnWidget(
+                      color: AppStyles.whiteColor,
+                      onPressed: signInWithGoogle,
+                      title: 'Sign in with Google',
+                      image: Image.asset('assets/icons/google.png'),
+                    ),
+                    FaceBookBtnWidget(
+                      onPressed: signInWithFacebook,
+                      title: 'Sign in with Facebook',
+                      image: Image.asset(
+                        'assets/icons/facebook.png',
+                        height: 18.h,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 8.h),
+                      child: SignInWithAppleButton(
+                        onPressed: signInWithApple,
+                      ),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

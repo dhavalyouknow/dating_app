@@ -111,6 +111,7 @@ class _SelectedActivitiesState extends State<SelectedActivities>
               ),
             ),
             GradientBtn(
+              borderRadius: 10.r,
               height: size.height / 14,
               txt: "Save",
               onTap: () {

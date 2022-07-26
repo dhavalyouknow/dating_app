@@ -36,12 +36,23 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   }
 
   String? passwordValidator(dynamic password) {
-    RegExp regex =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+    // RegExp regex =
+    //     RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+
+    RegExp upperCase = RegExp('^(?=.*[A-Z])');
+    RegExp lowerCase = RegExp('^(?=.*[a-z])');
+    RegExp specialChar = RegExp("^(?=.*[@#%^&+=])");
+    RegExp minNumber = RegExp('^().{8,}');
     if (password.isEmpty) {
       return 'Enter password';
-    } else if (!regex.hasMatch(password)) {
-      return 'Password contain 8 characters & one special character';
+    } else if (!upperCase.hasMatch(password)) {
+      return 'Please Enter Upper Case Letter';
+    } else if (!lowerCase.hasMatch(password)) {
+      return "Please Enter Lower Case Letter";
+    } else if (!specialChar.hasMatch(password)) {
+      return "Please Enter Special Character";
+    } else if (!minNumber.hasMatch(password)) {
+      return "Password Length min 8 Character";
     }
     return null;
   }

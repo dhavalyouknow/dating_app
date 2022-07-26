@@ -1,5 +1,7 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/EditEmail/enter_email.dart';
+import 'package:dating_app/Pages/Intro/first_intro_page.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,7 +42,7 @@ class _EditEmailState extends State<EditEmail> {
                 alignment: Alignment.centerRight,
                 child: IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    // Navigator.pop(context);
                   },
                   icon: Icon(
                     Icons.close,
@@ -66,13 +68,17 @@ class _EditEmailState extends State<EditEmail> {
               ),
               SizedBox(height: 20.h),
               GradientBtn(
+                borderRadius: 10.r,
                 height: size.height / 14,
-                txt: "Edit email address",
-                onTap: () {},
+                txt: "Email address",
+                onTap: () {
+                  Navigator.pushNamed(context, EditUserEmail.routeName);
+                },
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, "/SetupProfile1");
+                  // Navigator.pushNamed(context, "/SetupProfile1");
+                  Navigator.pushNamed(context, FirstIntroPage.routeName);
                 },
                 child: AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)

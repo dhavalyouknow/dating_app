@@ -39,10 +39,11 @@ class GoogleBtnWidget extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 10.w),
                 child: AppText(
-                  size: 16.sp,
+                  size: 14.sp,
                   text: title,
                   color: AppStyles.blackColor,
-                  fontFamily: GoogleFonts.raleway().fontFamily,
+                  fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                      .fontFamily,
                 ),
               ),
             ],

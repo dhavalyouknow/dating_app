@@ -86,6 +86,7 @@ class _AccountRecoveryState extends State<AccountRecovery>
                 ),
                 SizedBox(height: 20.h),
                 GradientBtn(
+                  borderRadius: 10.r,
                   fontSize: 18.sp,
                   height: size.height / 14,
                   txt: "Send Link",

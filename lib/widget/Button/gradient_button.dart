@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class GradientBtn extends StatefulWidget {
   final double height;
   final double? fontSize;
+  final double borderRadius;
   final String txt;
   final VoidCallback onTap;
   final List<BoxShadow>? boxShadow;
@@ -16,6 +17,7 @@ class GradientBtn extends StatefulWidget {
     this.fontSize,
     required this.onTap,
     this.boxShadow,
+    required this.borderRadius,
   }) : super(key: key);
 
   @override
@@ -30,7 +32,7 @@ class _GradientBtnState extends State<GradientBtn> {
       width: double.infinity,
       decoration: BoxDecoration(
         boxShadow: widget.boxShadow,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(widget.borderRadius),
         gradient: const LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
@@ -47,7 +49,7 @@ class _GradientBtnState extends State<GradientBtn> {
           widget.txt,
           style: TextStyle(
             fontFamily:
-                GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
+                GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
             fontSize: widget.fontSize,
             color: AppStyles.whiteColor,
           ),

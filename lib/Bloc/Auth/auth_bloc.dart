@@ -113,31 +113,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           User user = User.fromJson(data);
 
           event.success(user);
-          event.onError();
           Fluttertoast.showToast(msg: 'SignUp Successfully');
         } else {
-          Map<String, dynamic> data = jsonDecode(resp.body);
           if (kDebugMode) {
             print(resp.statusCode);
             print(resp.body);
           }
+
+          event.onError();
+
           emit(state.copyWith(status: AuthStatus.loginFailure));
-          Fluttertoast.showToast(msg: data["message"]);
         }
       } else {
         if (kDebugMode) {
-          print(resp?.statusCode);
-          Fluttertoast.showToast(msg: 'Something Went Wrong');
           emit(state.copyWith(status: AuthStatus.loginFailure));
         }
       }
     } catch (e) {
-      if (e.toString() == "\"email\" must be a valid email") {
-        event.onError();
-      }
       if (kDebugMode) {
         print('-------------sign up error-------------');
-        Fluttertoast.showToast(msg: 'Something Went Wrong');
         emit(state.copyWith(status: AuthStatus.loginFailure));
         print(e);
       }

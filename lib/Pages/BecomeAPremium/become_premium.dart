@@ -205,6 +205,7 @@ class _BecomePremiumState extends State<BecomePremium>
                     ),
                     SizedBox(height: 20.h),
                     GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 14,
                       txt: "UNLOCK PREMIUM",
                       onTap: () {},

@@ -65,6 +65,7 @@ class _CheckEmailState extends State<CheckEmail> with checkMailHandlers {
               ),
               SizedBox(height: 15.h),
               GradientBtn(
+                borderRadius: 10.r,
                 height: size.height / 16,
                 txt: "Confirm Email Address",
                 onTap: () {

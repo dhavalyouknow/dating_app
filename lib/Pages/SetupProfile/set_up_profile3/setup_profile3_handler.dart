@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 mixin SetupProfile3Handlers<T extends StatefulWidget> on State<T> {
   final TextEditingController aboutSelfController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   User? user;
 
@@ -16,38 +17,40 @@ mixin SetupProfile3Handlers<T extends StatefulWidget> on State<T> {
     super.initState();
   }
 
-  String? descriptionValidator(dynamic lastName) {
-    if (lastName.isEmpty) {
-      return 'Enter lastname';
+  String? descriptionValidator(dynamic description) {
+    if (description.isEmpty) {
+      return 'Enter about yourself';
     }
     return null;
   }
 
   onSubmitProfile3() {
-    if (user == null) {
-      BlocProvider.of<AuthBloc>(context).add(
-        SessionRequest(
-          onSuccess: (user) {
-            BlocProvider.of<UserBloc>(context).add(
-              UpdateUserEvent(
-                user: user.copyWith(
-                  aboutSelf: aboutSelfController.text,
+    if (formKey.currentState!.validate()) {
+      if (user == null) {
+        BlocProvider.of<AuthBloc>(context).add(
+          SessionRequest(
+            onSuccess: (user) {
+              BlocProvider.of<UserBloc>(context).add(
+                UpdateUserEvent(
+                  user: user.copyWith(
+                    aboutSelf: aboutSelfController.text,
+                  ),
+                  success: (value) {
+                    print(value);
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const AddYourDogNow();
+                      },
+                    );
+                    Fluttertoast.showToast(msg: 'SetUp Profile Done');
+                  },
                 ),
-                success: (value) {
-                  print(value);
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return const AddYourDogNow();
-                    },
-                  );
-                  Fluttertoast.showToast(msg: 'SetUp Profile Done');
-                },
-              ),
-            );
-          },
-        ),
-      );
+              );
+            },
+          ),
+        );
+      }
     }
   }
 }

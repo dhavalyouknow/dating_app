@@ -204,7 +204,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                               tapped = true;
                             },
                             child: Container(
-                              height: size.height / 14,
+                              height: size.height / 16,
                               margin: EdgeInsets.only(top: 18.h),
                               padding: EdgeInsets.symmetric(horizontal: 10.w),
                               alignment: Alignment.center,
@@ -215,7 +215,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                                   color: tapped
                                       ? AppStyles.pinkColor
                                       : AppStyles.greyColor,
-                                  width: tapped ? 2 : 1,
+                                  width: tapped ? 1.5 : 1,
                                 ),
                               ),
                               child: Row(
@@ -226,9 +226,11 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                                   ),
                                   SizedBox(width: 10.w),
                                   Text(
-                                    DateFormat('MM-dd-yyyy').format(
-                                      DateTime.parse('$selectedDate'),
-                                    ),
+                                    tapped && selectedDate != DateTime.now()
+                                        ? DateFormat('MM-dd-yyyy').format(
+                                            DateTime.parse('$selectedDate'),
+                                          )
+                                        : "Date Of Birth",
                                     style: TextStyle(
                                       fontFamily: GoogleFonts.raleway(
                                         fontSize: 15.sp,
@@ -237,7 +239,9 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                                                 ? FontWeight.normal
                                                 : FontWeight.w600,
                                       ).fontFamily,
-                                      color: AppStyles.blackColor,
+                                      color: tapped
+                                          ? AppStyles.blackColor
+                                          : AppStyles.greyColor,
                                     ),
                                   ),
                                 ],
@@ -261,6 +265,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                     ),
                     SizedBox(height: 20.h),
                     GradientBtn(
+                      borderRadius: 10.r,
                       height: size.height / 14,
                       txt: "Next",
                       onTap: onUpdateUser,

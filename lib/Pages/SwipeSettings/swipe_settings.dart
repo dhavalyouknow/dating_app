@@ -213,6 +213,7 @@ class _SwipeSettingState extends State<SwipeSetting>
               ),
               SizedBox(height: 60.h),
               GradientBtn(
+                borderRadius: 10.r,
                 height: size.height / 14,
                 txt: "Save Changes",
                 onTap: () {},
