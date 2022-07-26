@@ -215,6 +215,9 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
 
   onCircleImageUpdate(int? index) {
     if (updateType == 'person') {
+      setState(() {
+        isLoading = true;
+      });
       BlocProvider.of<ImageUploadBloc>(context).add(
         UploadImage(
           image: circleImageFile!,
@@ -238,6 +241,9 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                       onSuccess: (User user) {
                         BlocProvider.of<UserBloc>(context)
                             .add(SetUser(user: user));
+                        setState(() {
+                          isLoading = false;
+                        });
                       },
                     ),
                   );
@@ -314,6 +320,10 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
     else {
       Dog dog = BlocProvider.of<DogBloc>(context).state.dog as Dog;
 
+      setState(() {
+        isLoading = true;
+      });
+
       BlocProvider.of<ImageUploadBloc>(context).add(
         UploadImage(
           image: circleImageFile!,
@@ -341,6 +351,9 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                         BlocProvider.of<UserBloc>(context).add(
                           SetUser(user: user),
                         );
+                        setState(() {
+                          isLoading = false;
+                        });
                       },
                     ),
                   );
