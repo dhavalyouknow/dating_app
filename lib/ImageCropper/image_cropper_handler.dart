@@ -20,6 +20,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
   bool isLoading = false;
   ImageSource? source;
   String updateType = '';
+  int? i;
   User? user;
   File? squareImageFile;
   File? circleImageFile;
@@ -43,6 +44,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
 
   Future<void> editImage({required String type, int? index}) async {
     updateType = type;
+    i = index;
 
     await showModalBottomSheet<void>(
       context: context,

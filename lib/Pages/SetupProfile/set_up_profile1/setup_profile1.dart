@@ -1,6 +1,7 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Dialog/ImInterestedIn/im_interested_in.dart';
+import 'package:dating_app/Dialog/Length/enter_length.dart';
 import 'package:dating_app/Dialog/RelationshipStatus/relationship_status.dart';
 import 'package:dating_app/Dialog/eyecolor/eyecolor_widget.dart';
 import 'package:dating_app/Dialog/occuption/occuptionWidget.dart';
@@ -14,9 +15,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 class SetupProfile1 extends StatefulWidget {
   static const routeName = "/SetupProfile1";
+
   const SetupProfile1({Key? key}) : super(key: key);
 
   @override
@@ -363,7 +366,12 @@ class _SetupProfile1State extends State<SetupProfile1>
                   txt: "Select Length",
                   txtColor: AppStyles.greyColor,
                   onTap: () {
-                    selectLength();
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const EnterLength();
+                      },
+                    );
                   },
                 ),
 

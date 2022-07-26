@@ -21,78 +21,10 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
   User? user;
   bool haveDog = false;
   bool haveKids = false;
-  int _currentIntValue = 10;
-  int _currentHorizontalIntValue = 10;
+
+  int currentLength = 0;
 
   final formKey = GlobalKey<FormState>();
-
-  Future<void> selectLength() async {
-    await showModalBottomSheet<void>(
-      backgroundColor: AppStyles.trasnparentColor,
-      context: context,
-      builder: (BuildContext context) {
-        final size = MediaQuery.of(context).size;
-        return Container(
-          decoration: BoxDecoration(
-            color: AppStyles.whiteColor,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.r),
-              topRight: Radius.circular(20.r),
-            ),
-          ),
-          height: 300.h,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                AppText(
-                  textAlign: TextAlign.center,
-                  size: 21.sp,
-                  fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
-                      .fontFamily,
-                  text: "Select Length",
-                ),
-                SizedBox(height: 20.h),
-                NumberPicker(
-                  value: _currentHorizontalIntValue,
-                  minValue: 0,
-                  maxValue: 100,
-                  step: 1,
-                  itemHeight: 40,
-                  axis: Axis.vertical,
-                  onChanged: (value) =>
-                      setState(() => _currentHorizontalIntValue = value),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.black26),
-                  ),
-                ),
-                SizedBox(height: 20.h),
-                GradientBtn(
-                  borderRadius: 10.r,
-                  height: size.height / 14,
-                  txt: "Save",
-                  onTap: () {
-                    onSubmitProfile1();
-                  },
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppStyles.shadowColor.withOpacity(0.2),
-                      spreadRadius: 10,
-                      blurRadius: 20,
-                      offset: const Offset(5, 5), // changes position of shadow
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
 
   String? lengthValidator(dynamic length) {
     if (length.isEmpty) {
@@ -116,6 +48,26 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
       haveKids = false;
     }
   }
+
+  // Future<void> selectDate(BuildContext context) async {
+  //   NumberPicker levelPicker = NumberPicker.integer(
+  //       initialValue: _currentLevel,
+  //       minValue: 0,
+  //       maxValue: 100,
+  //       step: 1,
+  //       onChanged: (num) {
+  //         setState(() {
+  //           _currentLevel = num;
+  //           _saveLevel(num);
+  //         });
+  //       });
+  //
+  //   if (datePicked != null && datePicked != selectedDate) {
+  //     setState(() {
+  //       selectedDate = datePicked;
+  //     });
+  //   }
+  // }
 
   //
   //   // if (datePicked != null && datePicked != selectedDate) {
