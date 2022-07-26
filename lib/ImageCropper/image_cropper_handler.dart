@@ -241,9 +241,13 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                       onSuccess: (User user) {
                         BlocProvider.of<UserBloc>(context)
                             .add(SetUser(user: user));
+<<<<<<< HEAD
                         setState(() {
                           isLoading = false;
                         });
+=======
+                        print('=====$user====');
+>>>>>>> a18b00e (Evening Changes)
                       },
                     ),
                   );

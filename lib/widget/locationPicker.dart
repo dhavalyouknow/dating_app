@@ -1,5 +1,7 @@
 import 'package:csc_picker/csc_picker.dart';
+import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LocationPicker extends StatefulWidget {
@@ -21,6 +23,60 @@ class _LocationPickerState extends State<LocationPicker> {
   String countryValue = '';
   String? stateValue;
   String? cityValue;
+
+  List<String> countryHasNoState = [
+    "AX",
+    "AS",
+    "AI",
+    "AQ",
+    "AW",
+    "BV",
+    "IO",
+    "KY",
+    "CX",
+    "CC",
+    "CK",
+    "CW",
+    "FK",
+    "FO",
+    "GF",
+    "PF",
+    "TF",
+    "GI",
+    "GL",
+    "GP",
+    "GU",
+    "GG",
+    "HM",
+    "JE",
+    "MO",
+    "IM",
+    "MQ",
+    "YT",
+    "MS",
+    "NC",
+    "NU",
+    "NF",
+    "MP",
+    "PS",
+    "PN",
+    "RE",
+    "SH",
+    "PM",
+    "BL",
+    "MF",
+    "SX",
+    "GS",
+    "SJ",
+    "TK",
+    "TC",
+    "UM",
+    "VA",
+    "VG",
+    "WF",
+    "EH",
+    "American Samoa",
+  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,18 +84,25 @@ class _LocationPickerState extends State<LocationPicker> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: CSCPicker(
+            // disableCountry: true,
             showStates: true,
             showCities: true,
             flagState: CountryFlag.ENABLE,
             dropdownDecoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               color: Colors.white,
-              border: Border.all(color: Colors.grey.shade300, width: 1),
+              border: Border.all(
+                color: AppStyles.greyColor,
+                width: 1,
+              ),
             ),
             disabledDropdownDecoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               color: Colors.white,
-              border: Border.all(color: Colors.grey.shade300, width: 1),
+              border: Border.all(
+                color: AppStyles.greyColor,
+                width: 1,
+              ),
             ),
             countrySearchPlaceholder: "Country",
             stateSearchPlaceholder: "State",
@@ -50,7 +113,7 @@ class _LocationPickerState extends State<LocationPicker> {
             cityDropdownLabel: "Select City",
             selectedItemStyle: TextStyle(
               fontFamily: GoogleFonts.raleway().fontFamily,
-              color: Colors.black,
+              color: AppStyles.greyColor,
               fontSize: 14,
             ),
             dropdownHeadingStyle: TextStyle(
@@ -69,8 +132,13 @@ class _LocationPickerState extends State<LocationPicker> {
             onCountryChanged: (value) {
               setState(() {
                 countryValue = value;
+                print(value);
                 widget.countryCallback(value);
               });
+              if (countryHasNoState.contains(value.toString())) {
+                Fluttertoast.showToast(
+                    msg: 'Selected Country have not any state and city');
+              }
             },
             onStateChanged: (value) {
               setState(() {
@@ -79,6 +147,10 @@ class _LocationPickerState extends State<LocationPicker> {
               });
             },
             onCityChanged: (value) {
+              // if (value!.isEmpty) {
+              //   Fluttertoast.showToast(
+              //       msg: 'Selected Country have not any state and city');
+              // }
               setState(() {
                 cityValue = value;
                 widget.cityCallback(value.toString());
