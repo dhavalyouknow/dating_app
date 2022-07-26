@@ -2,6 +2,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Pages/CreateAccount/create_account.dart';
 import 'package:dating_app/Pages/Login/login_handler.dart';
 import 'package:dating_app/Pages/Login/login_page.dart';
+import 'package:dating_app/widget/Button/apple_btn.dart';
 import 'package:dating_app/widget/Button/facebook_btn.dart';
 import 'package:dating_app/widget/Button/google_btn.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
@@ -72,14 +73,24 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                         height: 18.h,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 15.h),
-                      child: SignInWithAppleButton(
-                        height: size.height / 14,
-                        style: SignInWithAppleButtonStyle.black,
-                        onPressed: signInWithApple,
+
+                    AppleBtnWidget(
+                      onPressed: signInWithApple,
+                      title: "Sign Up With Apple",
+                      image: Image.asset(
+                        "assets/icons/AppleIcon.png",
+                        height: 30.h,
+                        color: AppStyles.whiteColor,
                       ),
                     ),
+                    // Padding(
+                    //   padding: EdgeInsets.only(top: 15.h),
+                    //   child: SignInWithAppleButton(
+                    //     height: size.height / 14,
+                    //     style: SignInWithAppleButtonStyle.black,
+                    //     onPressed: signInWithApple,
+                    //   ),
+                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

@@ -2,6 +2,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Pages/AccountRecovery/account_recovery.dart';
 import 'package:dating_app/Pages/Login/login_handler.dart';
 import 'package:dating_app/Pages/Login/select_login_method.dart';
+import 'package:dating_app/widget/Button/apple_btn.dart';
 import 'package:dating_app/widget/Button/facebook_btn.dart';
 import 'package:dating_app/widget/Button/google_btn.dart';
 import 'package:dating_app/widget/localization/LanguageWidget.dart';
@@ -133,6 +134,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       ),
                     ),
                     GradientBtn(
+                      fontSize: 16.sp,
                       borderRadius: 10.r,
                       height: size.height / 14,
                       txt: AppLocalizations.of(context)!.login,
@@ -153,12 +155,21 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         height: 18.h,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 8.h),
-                      child: SignInWithAppleButton(
-                        onPressed: signInWithApple,
+                    AppleBtnWidget(
+                      onPressed: signInWithApple,
+                      title: "Sign In With Apple",
+                      image: Image.asset(
+                        "assets/icons/AppleIcon.png",
+                        height: 30.h,
+                        color: AppStyles.whiteColor,
                       ),
                     ),
+                    // Padding(
+                    //   padding: EdgeInsets.only(top: 8.h),
+                    //   child: SignInWithAppleButton(
+                    //     onPressed: signInWithApple,
+                    //   ),
+                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
