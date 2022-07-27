@@ -10,6 +10,7 @@ import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 class SetupProfile1 extends StatefulWidget {
   static const routeName = "/SetupProfile1";
