@@ -1,5 +1,7 @@
 import 'package:csc_picker/csc_picker.dart';
+import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LocationPicker extends StatefulWidget {
@@ -21,6 +23,58 @@ class _LocationPickerState extends State<LocationPicker> {
   String countryValue = '';
   String? stateValue;
   String? cityValue;
+
+  List<String> countryHasNoState = [
+    "🇦🇽    Aland Islands",
+    "🇦🇸    American Samoa",
+    "🇦🇮    Anguilla",
+    "🇦🇶    Antarctica",
+    "🇦🇼    Aruba",
+    "🇧🇻    Bouvet Island",
+    "🇮🇴    British Indian Ocean Territory",
+    "🇰🇾    Cayman Islands",
+    "🇨🇽    Christmas Island",
+    "🇨🇨    Cocos (Keeling) Islands",
+    "🇨🇰    Cook Islands",
+    "🇨🇼    Curaçao",
+    "🇫🇰    Falkland Islands",
+    "🇫🇴    Faroe Islands",
+    "🇬🇫    French Guiana",
+    "🇵🇫    French Polynesia",
+    "🇹🇫    French Southern Territories",
+    "🇬🇮    Gibraltar",
+    "🇬🇱    Greenland",
+    "🇬🇵    Guadeloupe",
+    "🇬🇺    Guam",
+    "🇬🇬    Guernsey and Alderney",
+    "🇭🇲    Heard Island and McDonald Islands",
+    "🇯🇪    Jersey",
+    "🇲🇴    Macau S.A.R.",
+    "🇮🇲    Man (Isle of)",
+    "🇲🇶    Martinique",
+    "🇾🇹    Mayotte",
+    "🇲🇸    Montserrat",
+    "🇳🇨    New Caledonia",
+    "🇳🇺    Niue",
+    "🇳🇫    Norfolk Island",
+    "🇲🇵    Northern Mariana Islands",
+    "🇵🇸    Palestinian Territory Occupied",
+    "🇵🇳    Pitcairn Island",
+    "🇷🇪    Reunion",
+    "🇵🇲    Saint Pierre and Miquelon",
+    "🇧🇱    Saint-Barthelemy",
+    "🇲🇫    Saint-Martin (French part)",
+    "🇸🇽    Sint Maarten (Dutch part)",
+    "🇬🇸    South Georgia",
+    "🇸🇯    Svalbard And Jan Mayen Islands",
+    "🇹🇰     Tokelau",
+    "🇹🇨    Turks And Caicos Islands",
+    "🇺🇲    United States Minor Outlying Islands",
+    "🇻🇦    Vatican City State (Holy See)",
+    "🇻🇬    Virgin Islands (British)",
+    "🇼🇫    Wallis And Futuna Islands",
+    "🇪🇭    Western Sahara",
+  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,18 +82,25 @@ class _LocationPickerState extends State<LocationPicker> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 15),
           child: CSCPicker(
+            // disableCountry: true,
             showStates: true,
             showCities: true,
             flagState: CountryFlag.ENABLE,
             dropdownDecoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               color: Colors.white,
-              border: Border.all(color: Colors.grey.shade300, width: 1),
+              border: Border.all(
+                color: AppStyles.greyColor,
+                width: 1,
+              ),
             ),
             disabledDropdownDecoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               color: Colors.white,
-              border: Border.all(color: Colors.grey.shade300, width: 1),
+              border: Border.all(
+                color: AppStyles.greyColor,
+                width: 1,
+              ),
             ),
             countrySearchPlaceholder: "Country",
             stateSearchPlaceholder: "State",
@@ -50,7 +111,7 @@ class _LocationPickerState extends State<LocationPicker> {
             cityDropdownLabel: "Select City",
             selectedItemStyle: TextStyle(
               fontFamily: GoogleFonts.raleway().fontFamily,
-              color: Colors.black,
+              color: AppStyles.greyColor,
               fontSize: 14,
             ),
             dropdownHeadingStyle: TextStyle(
@@ -70,6 +131,10 @@ class _LocationPickerState extends State<LocationPicker> {
               setState(() {
                 countryValue = value;
                 widget.countryCallback(value);
+                if (countryHasNoState.contains(countryValue)) {
+                  Fluttertoast.showToast(
+                      msg: 'Selected Country have not any state and city');
+                }
               });
             },
             onStateChanged: (value) {
@@ -80,6 +145,10 @@ class _LocationPickerState extends State<LocationPicker> {
               });
             },
             onCityChanged: (value) {
+              // if (value!.isEmpty) {
+              //   Fluttertoast.showToast(
+              //       msg: 'Selected Country have not any state and city');
+              // }
               setState(() {
                 cityValue = value;
                 widget.cityCallback(value.toString());

@@ -9,36 +9,35 @@ class LanguagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          ...L10n.all.map((e) {
-            final flag = L10n.getFlag(e.languageCode);
-            return GestureDetector(
-              onTap: () {
-                final provider =
-                    Provider.of<LocalProvider>(context, listen: false);
-                provider.setLocal(e);
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    flag,
-                    style: TextStyle(fontSize: 30.sp),
-                  ),
-                  if (e.languageCode == 'en')
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5.w),
-                      child: const Text('vs'),
-                    )
-                ],
-              ),
-            );
-          }).toList(),
-        ],
-      ),
+    var items = [...L10n.all.toList()];
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        ...L10n.all.map((e) {
+          final flag = L10n.getFlag(e.languageCode);
+          return GestureDetector(
+            onTap: () {
+              final provider =
+                  Provider.of<LocalProvider>(context, listen: false);
+              provider.setLocal(e);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  flag,
+                  style: TextStyle(fontSize: 30.sp),
+                ),
+                if (e.languageCode == 'en')
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5.w),
+                    child: const Text('vs'),
+                  )
+              ],
+            ),
+          );
+        }).toList(),
+      ],
     );
   }
 }

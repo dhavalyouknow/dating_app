@@ -244,6 +244,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                         setState(() {
                           isLoading = false;
                         });
+                        print('=====$user====');
                       },
                     ),
                   );

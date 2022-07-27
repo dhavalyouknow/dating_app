@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                        top: 30.h,
+                        top: 10.h,
                         left: 40.w,
                         right: 40.w,
                         bottom: 30.h,
