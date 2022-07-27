@@ -33,7 +33,9 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> with BaseHttpService {
           print(resp.body);
           print(resp.statusCode);
         }
-      } else {}
+      } else {
+        print(resp!.statusCode);
+      }
     } catch (e) {
       print(e);
       print('--get--swiper---');

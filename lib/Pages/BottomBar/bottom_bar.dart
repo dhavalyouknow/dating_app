@@ -1,4 +1,7 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
+import 'package:dating_app/Pages/Home/home_page.dart';
+import 'package:dating_app/Pages/MyPage/my_page.dart';
+import 'package:dating_app/Pages/UpcomingEvents/upcoming_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -36,6 +39,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             IconButton(
               onPressed: () {
                 updateTabSelection(0, "My Page");
+                Navigator.pushNamed(context, MyPage.routeName);
               },
               icon: Icon(
                 size: 27.sp,
@@ -48,6 +52,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             IconButton(
               onPressed: () {
                 updateTabSelection(1, "Like");
+                Navigator.pushNamed(context, HomePage.routeName);
               },
               icon: Icon(
                 size: 27.sp,
@@ -60,6 +65,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             IconButton(
               onPressed: () {
                 updateTabSelection(2, "Events");
+                Navigator.pushNamed(context, UpComingEvents.routeName);
               },
               icon: Icon(
                 size: 24.sp,

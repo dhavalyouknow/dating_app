@@ -1,6 +1,7 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/ChangePassword/change_password_bloc.dart';
 import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
+import 'package:dating_app/Bloc/Event/event_bloc.dart';
 import 'package:dating_app/Bloc/ForgotPassword/forgot_password_bloc.dart';
 import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
@@ -73,6 +74,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ForgotPasswordBloc>(
           create: (BuildContext context) => ForgotPasswordBloc(),
+          lazy: true,
+        ),
+        BlocProvider<EventBloc>(
+          create: (BuildContext context) => EventBloc(),
           lazy: true,
         ),
       ],

@@ -4,6 +4,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Dialog/completeProfile.dart';
 import 'package:dating_app/Pages/AddYourDog/add_your_dog.dart';
+import 'package:dating_app/Pages/BottomBar/bottom_bar.dart';
 import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile.dart';
 import 'package:dating_app/Pages/MyPage/my_page_handler.dart';
 import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile.dart';
@@ -31,6 +32,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      bottomNavigationBar: BottomNavBar(),
       appBar: AppBar(
         actions: [
           Padding(
