@@ -11,6 +11,7 @@ import 'package:dating_app/firebase_options.dart';
 import 'package:dating_app/l10n/l10n.dart';
 import 'package:dating_app/language_provider/lannguagePro.dart';
 import 'package:dating_app/routes.dart';
+import 'package:dating_app/widget/spalsh.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -95,8 +96,7 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 title: "Dating App",
                 routes: routes,
-                initialRoute:
-                    token == null ? LoginPage.routeName : MyPage.routeName,
+                initialRoute: SpalshScreen.routeName,
               );
             },
           );

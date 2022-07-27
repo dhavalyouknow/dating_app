@@ -15,9 +15,9 @@ mixin UploadProfileHandlers<T extends StatefulWidget> on State<T> {
     print(pageName);
   }
 
-  onProfileSave() {
+  onProfileSave({required bool isVerify}) {
     print(routeName);
-    if (routeName.isEmpty) {
+    if (routeName.isEmpty && !isVerify) {
       Navigator.pushReplacementNamed(context, EditEmail.routeName);
     } else {
       Navigator.pushReplacementNamed(context, '/MyPage');

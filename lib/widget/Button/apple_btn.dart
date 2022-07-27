@@ -27,7 +27,7 @@ class AppleBtnWidget extends StatelessWidget {
           height: size.height / 14,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: AppStyles.whiteColor,
+            color: AppStyles.blackColor,
             borderRadius: BorderRadius.circular(10.r),
           ),
           child: Row(
@@ -39,7 +39,7 @@ class AppleBtnWidget extends StatelessWidget {
                 child: AppText(
                   size: 14.sp,
                   text: title,
-                  color: AppStyles.blackColor,
+                  color: AppStyles.whiteColor,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
                 ),

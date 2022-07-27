@@ -54,7 +54,8 @@ class _PersonEditPopupState extends State<PersonEditPopup> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, EditPersonProfile.routeName);
+                  Navigator.pushReplacementNamed(
+                      context, EditPersonProfile.routeName);
                 },
                 child: AppText(
                   size: 16.sp,

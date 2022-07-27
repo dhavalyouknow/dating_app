@@ -11,7 +11,7 @@ mixin EditPersonHandlers<T extends StatefulWidget> on State<T> {
   TextEditingController editAgeController = TextEditingController();
   TextEditingController editAboutSelfController = TextEditingController();
   User? user;
-  int? index;
+  int index = 0;
 
   onSaveUserProfile() {
     User user = BlocProvider.of<UserBloc>(context).state.user as User;

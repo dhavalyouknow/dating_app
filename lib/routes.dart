@@ -32,6 +32,7 @@ import 'package:dating_app/Pages/SetupProfile/set_up_profile2/setup_profile2.dar
 import 'package:dating_app/Pages/SetupProfile/set_up_profile3/setup_profile3.dart';
 import 'package:dating_app/Pages/SwipeSettings/swipe_settings.dart';
 import 'package:dating_app/Pages/UploadProfile/upload_profile.dart';
+import 'package:dating_app/widget/spalsh.dart';
 import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> routes = {
@@ -68,6 +69,7 @@ Map<String, WidgetBuilder> routes = {
   DogPublicProfile.routeName: (ctx) => const DogPublicProfile(),
   PersonPublicProfile.routeName: (ctx) => const PersonPublicProfile(),
   OtherLoginCreateAccount.routeName: (ctx) => const OtherLoginCreateAccount(),
+  SpalshScreen.routeName: (ctx) => const SpalshScreen(),
   LoginPage.routeName: (ctx) => const LoginPage(
         key: Key('/LoginPage'),
       ),

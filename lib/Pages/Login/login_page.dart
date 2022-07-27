@@ -161,15 +161,9 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       image: Image.asset(
                         "assets/icons/AppleIcon.png",
                         height: 23.h,
-                        color: AppStyles.blackColor,
+                        color: AppStyles.whiteColor,
                       ),
                     ),
-                    // Padding(
-                    //   padding: EdgeInsets.only(top: 8.h),
-                    //   child: SignInWithAppleButton(
-                    //     onPressed: signInWithApple,
-                    //   ),
-                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

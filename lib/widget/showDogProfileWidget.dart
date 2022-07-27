@@ -46,7 +46,7 @@ class ShowDogProfileWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppText(
-                  size: 18.sp,
+                  size: 16.sp,
                   text: '${e.dogName}',
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w600)
                       .fontFamily,

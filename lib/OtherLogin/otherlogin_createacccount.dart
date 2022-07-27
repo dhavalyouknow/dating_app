@@ -15,7 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class OtherLoginCreateAccount extends StatefulWidget {
-  static const routeName = 'OtherLoginCreateAccount';
+  static const routeName = '/OtherLoginCreateAccount';
 
   const OtherLoginCreateAccount({Key? key}) : super(key: key);
 

@@ -73,6 +73,7 @@ class _LocationPickerState extends State<LocationPicker> {
               });
             },
             onStateChanged: (value) {
+              print(value);
               setState(() {
                 stateValue = value;
                 widget.stateCallback(value.toString());

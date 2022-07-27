@@ -1,10 +1,5 @@
-import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
-import 'package:dating_app/Model/user.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_material_pickers/helpers/show_number_picker.dart';
 
 mixin MyPageHandlers<T extends StatefulWidget> on State<T> {
   Future<void> selectLength(BuildContext context) async {

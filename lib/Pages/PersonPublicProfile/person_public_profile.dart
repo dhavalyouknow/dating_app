@@ -4,6 +4,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile_dialog.dart';
 import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile_handler.dart';
+import 'package:dating_app/widget/allDataFieldWidget.dart';
 import 'package:dating_app/widget/errorWidget.dart';
 import 'package:dating_app/widget/showDogProfileWidget.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PersonPublicProfile extends StatefulWidget {
   static const routeName = '/PersonPublicProfile';
+
   const PersonPublicProfile({Key? key}) : super(key: key);
 
   @override
@@ -115,14 +117,6 @@ class _PersonPublicProfileState extends State<PersonPublicProfile>
                                 ),
                               ),
                             );
-
-                            //   Container(
-                            //   child: Image.network(
-                            //     userState.user!.squareProfileImage![index].url
-                            //         .toString(),
-                            //     fit: BoxFit.cover,
-                            //   ),
-                            // );
                           },
                         ),
                         Positioned(
@@ -192,7 +186,7 @@ class _PersonPublicProfileState extends State<PersonPublicProfile>
                         ),
                         SizedBox(height: 10.h),
                         AppText(
-                          size: 21.sp,
+                          size: 18.sp,
                           text: "About",
                           fontFamily:
                               GoogleFonts.raleway(fontWeight: FontWeight.w700)
@@ -200,7 +194,7 @@ class _PersonPublicProfileState extends State<PersonPublicProfile>
                         ),
                         SizedBox(height: 5.h),
                         AppText(
-                          size: 15.sp,
+                          size: 13.sp,
                           text: userState.user!.aboutSelf.toString(),
                           fontFamily:
                               GoogleFonts.raleway(fontWeight: FontWeight.w500)
@@ -208,13 +202,13 @@ class _PersonPublicProfileState extends State<PersonPublicProfile>
                         ),
                         SizedBox(height: 20.h),
                         AppText(
-                          size: 21.sp,
+                          size: 18.sp,
                           text: "${userState.user!.firstName}'s Dogs",
                           fontFamily:
                               GoogleFonts.raleway(fontWeight: FontWeight.w700)
                                   .fontFamily,
                         ),
-                        SizedBox(height: 20.h),
+                        SizedBox(height: 13.h),
                         ...userState.user!.dog.map((e) {
                           return ShowDogProfileWidget(
                             onTap: () {},
@@ -222,6 +216,7 @@ class _PersonPublicProfileState extends State<PersonPublicProfile>
                             e: e,
                           );
                         }).toList(),
+                        AllDataFieldWidget(user: userState.user),
                       ],
                     ),
                   )

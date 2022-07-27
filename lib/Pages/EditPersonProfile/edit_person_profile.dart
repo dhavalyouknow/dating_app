@@ -8,6 +8,8 @@ import 'package:dating_app/ImageCropper/image_cropper_handler.dart';
 import 'package:dating_app/Pages/EditPersonProfile/edit_person_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/TextformfieldWidget/edit_formfield.dart';
+import 'package:dating_app/widget/allDataFieldWidget.dart';
+import 'package:dating_app/widget/editWidget.dart';
 import 'package:dating_app/widget/errorWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class EditPersonProfile extends StatefulWidget {
   static const routeName = "/EditPersonProfile";
+
   const EditPersonProfile({Key? key}) : super(key: key);
 
   @override
@@ -86,6 +89,7 @@ class _EditPersonProfileState extends State<EditPersonProfile>
             ),
             child: SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
                     height: 350.h,
@@ -135,175 +139,142 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                       children: [
                         SizedBox(height: 10.h),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            InkWell(
-                              onTap: () {
-                                imageFile = null;
-                                setState(() {});
-                              },
-                              child: Row(
-                                children: [
-                                  const Icon(
-                                    Icons.close,
-                                    color: AppStyles.crimsonPinkColor,
-                                  ),
-                                  SizedBox(width: 5.w),
-                                  AppText(
-                                    color: AppStyles.crimsonPinkColor,
-                                    size: 18.sp,
-                                    fontFamily: GoogleFonts.raleway(
-                                            fontWeight: FontWeight.w700)
-                                        .fontFamily,
-                                    text: "Remove",
-                                  ),
-                                ],
+                            EditWidget(
+                              icon: Icon(
+                                Icons.close,
+                                color: index == 0
+                                    ? AppStyles.pinkColor
+                                    : AppStyles.blackColor,
                               ),
+                              name: 'Remove',
+                              isSelected: index == 0,
+                              onTap: () {
+                                setState(() {
+                                  index = 0;
+                                });
+                              },
                             ),
-                            SizedBox(width: 20.w),
-                            InkWell(
-                              onTap: () {
-                                editImage(type: "person profile");
-                                imageFile = null;
-                                circleImageFile = null;
-                                squareImageFile == null;
-                                setState(() {});
-                              },
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.camera_alt_outlined),
-                                  SizedBox(width: 5.w),
-                                  AppText(
-                                    size: 18.sp,
-                                    fontFamily: GoogleFonts.raleway(
-                                            fontWeight: FontWeight.w700)
-                                        .fontFamily,
-                                    text: "Replace",
-                                  ),
-                                ],
+                            EditWidget(
+                              icon: Icon(
+                                Icons.camera_alt_outlined,
+                                color: index == 1
+                                    ? AppStyles.pinkColor
+                                    : AppStyles.blackColor,
                               ),
+                              name: 'Replace',
+                              isSelected: index == 1,
+                              onTap: () {
+                                setState(() {
+                                  index = 1;
+                                });
+                              },
                             ),
-                            SizedBox(width: 20.w),
-                            InkWell(
-                              onTap: () {
-                                editImage(type: 'person');
-                              },
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    FontAwesomeIcons.penToSquare,
-                                    size: 16.sp,
-                                  ),
-                                  SizedBox(width: 5.w),
-                                  AppText(
-                                    size: 18.sp,
-                                    fontFamily: GoogleFonts.raleway(
-                                            fontWeight: FontWeight.w700)
-                                        .fontFamily,
-                                    text: "Edit",
-                                  ),
-                                ],
+                            EditWidget(
+                              icon: Icon(
+                                Icons.edit_calendar_outlined,
+                                color: index == 2
+                                    ? AppStyles.pinkColor
+                                    : AppStyles.blackColor,
                               ),
-                            )
+                              name: 'Edit',
+                              isSelected: index == 2,
+                              onTap: () {
+                                setState(() {
+                                  index = 2;
+                                });
+                              },
+                            ),
                           ],
                         ),
                         SizedBox(height: 20.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AppText(
-                                  size: 18.sp,
-                                  fontFamily: GoogleFonts.raleway(
-                                          fontWeight: FontWeight.w700)
-                                      .fontFamily,
-                                  text: "Name",
-                                ),
-                                SizedBox(height: 5.h),
-                                EditFormField(
-                                  height: size.height / 16,
-                                  width: size.width / 1.5,
-                                  textEditingController:
-                                      editFirstNameController,
-                                  hintTxt: "Enter Person First Name",
-                                ),
-                                EditFormField(
-                                  height: size.height / 16,
-                                  width: size.width / 1.5,
-                                  textEditingController: editLastNameController,
-                                  hintTxt: "Enter Person Last Name",
-                                )
-                              ],
-                            ),
-                            const Icon(Icons.edit),
-                          ],
-                        ),
-                        SizedBox(height: 20.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AppText(
-                                  size: 18.sp,
-                                  fontFamily: GoogleFonts.raleway(
-                                          fontWeight: FontWeight.w700)
-                                      .fontFamily,
-                                  text: "About",
-                                ),
-                                SizedBox(height: 5.h),
-                                EditFormField(
-                                  height: size.height / 16,
-                                  width: size.width / 1.5,
-                                  textEditingController:
-                                      editAboutSelfController,
-                                  hintTxt: "Enter About Yourself",
-                                ),
-                              ],
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.edit),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 20.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AppText(
-                                  size: 18.sp,
-                                  fontFamily: GoogleFonts.raleway(
-                                          fontWeight: FontWeight.w700)
-                                      .fontFamily,
-                                  text: "Age",
-                                ),
-                                SizedBox(height: 5.h),
-                                AppText(
-                                  size: 14.sp,
-                                  fontFamily: GoogleFonts.raleway(
-                                          fontWeight: FontWeight.w500)
-                                      .fontFamily,
-                                  text: "36 y/o",
-                                ),
-                              ],
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.edit),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 80.h)
                       ],
                     ),
-                  )
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AppText(
+                            size: 18.sp,
+                            fontFamily:
+                                GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                                    .fontFamily,
+                            text: "Name",
+                          ),
+                          EditFormField(
+                            width: size.width / 1.5,
+                            textEditingController: editFirstNameController,
+                            hintTxt: "Enter Person First Name",
+                          ),
+                          EditFormField(
+                            width: size.width / 1.5,
+                            textEditingController: editLastNameController,
+                            hintTxt: "Enter Person Last Name",
+                          )
+                        ],
+                      ),
+                      const Icon(Icons.edit),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AppText(
+                            size: 18.sp,
+                            fontFamily:
+                                GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                                    .fontFamily,
+                            text: "About",
+                          ),
+                          EditFormField(
+                            width: size.width / 1.5,
+                            textEditingController: editAboutSelfController,
+                            hintTxt: "Enter About Yourself",
+                          ),
+                        ],
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.edit),
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AppText(
+                            size: 18.sp,
+                            fontFamily:
+                                GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                                    .fontFamily,
+                            text: "Age",
+                          ),
+                          AppText(
+                            size: 14.sp,
+                            fontFamily:
+                                GoogleFonts.raleway(fontWeight: FontWeight.w500)
+                                    .fontFamily,
+                            text: "36 y/o",
+                          ),
+                        ],
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.edit),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 80.h)
                 ],
               ),
             ),

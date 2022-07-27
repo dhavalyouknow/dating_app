@@ -80,7 +80,7 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                       image: Image.asset(
                         "assets/icons/AppleIcon.png",
                         height: 23.h,
-                        color: AppStyles.blackColor,
+                        color: AppStyles.whiteColor,
                       ),
                     ),
                     // Padding(

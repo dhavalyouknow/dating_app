@@ -220,7 +220,7 @@ class _UploadProfileState extends State<UploadProfile>
                           txt: "Save",
                           onTap: () {
                             if (imageFile != null) {
-                              onProfileSave();
+                              onProfileSave(isVerify: user!.isEmailVerified!);
                             }
                           },
                         ),

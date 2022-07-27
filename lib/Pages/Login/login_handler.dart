@@ -104,6 +104,7 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
                     '/OtherLoginCreateAccount',
                   );
                 } else {
+                  print('else---');
                   Navigator.pushReplacementNamed(
                     context,
                     '/MyPage',
