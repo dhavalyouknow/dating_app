@@ -14,6 +14,7 @@ import 'package:swipable_stack/swipable_stack.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = "/HomePage";
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -101,128 +102,223 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                     verticalSwipeThreshold: 0.8,
                     cancelAnimationCurve: Curves.easeIn,
                     builder: (c, p) {
-                      final itemIndex = p.index % swipeState.swipe.length;
-                      print('itemIndex ==> $itemIndex');
-                      print(
-                          swipeState.swipe[itemIndex].circleProfileImage?.url);
+                      final itemIndex = p.index % swiper.length;
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const SizedBox(height: 16.0),
-                          SizedBox(
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 20.w),
                             height: size.height / 2.1,
+                            width: size.width * 2,
+                            decoration: BoxDecoration(
+                              color: AppStyles.whiteColor,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                             child: Stack(
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20.r),
-                                    topRight: Radius.circular(20.r),
-                                  ),
-                                  child: Image.asset(
-                                    "assets/intro/Intro3Background.png",
-                                    fit: BoxFit.cover,
-                                    height: size.height,
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 15.w,
-                                  bottom: 15.h,
-                                  child: Container(
-                                    height: size.height / 6,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.r),
-                                      border: Border.all(
-                                        width: 5.r,
-                                        color: AppStyles.primaryColor,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: size.width * 2,
+                                      height: size.height * 0.4,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
                                       ),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(5.r),
-                                      child: CachedNetworkImage(
-                                        imageUrl: swipeState.swipe[itemIndex]
-                                                    .circleProfileImage !=
-                                                null
-                                            ? swipeState.swipe[itemIndex]
-                                                .circleProfileImage!.url
-                                                .toString()
-                                            : "",
-                                        errorWidget:
-                                            (BuildContext context, url, data) {
-                                          return Container(
-                                            width: size.height / 7.5,
-                                            color: AppStyles.greyColor,
-                                            child: Icon(
-                                              Icons.person,
-                                              size: 80.sp,
-                                              color: AppStyles.whiteColor,
+                                      child: ListView.builder(
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return ClipRRect(
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20),
+                                            ),
+                                            child: CachedNetworkImage(
+                                              imageUrl: swipeState
+                                                  .swipe[itemIndex]
+                                                  .squareProfileImage[index]
+                                                  .url
+                                                  .toString(),
+                                              width: size.width * 0.9,
+                                              fit: BoxFit.fitHeight,
                                             ),
                                           );
                                         },
+                                        shrinkWrap: true,
+                                        itemCount: swipeState.swipe[itemIndex]
+                                            .squareProfileImage.length,
+                                        scrollDirection: Axis.horizontal,
                                       ),
                                     ),
-                                  ),
+                                    // Row(
+                                    //   children: [
+                                    //     ...swipeState
+                                    //         .swipe[itemIndex].squareProfileImage
+                                    //         .map(
+                                    //           (e) => CachedNetworkImage(
+                                    //             imageUrl: e.url.toString(),
+                                    //             height: 100,
+                                    //             width: 200,
+                                    //           ),
+                                    //         )
+                                    //         .toList(),
+                                    //   ],
+                                    // ),
+                                    Text(
+                                        '${swipeState.swipe[itemIndex].firstName} ${swipeState.swipe[itemIndex].lastName}'),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          size: 15.sp,
+                                          Icons.location_on_outlined,
+                                          color: AppStyles.greyColor,
+                                        ),
+                                        AppText(
+                                          size: 14.sp,
+                                          text:
+                                              swipeState.swipe[itemIndex].city,
+                                          color: AppStyles.greyColor,
+                                        )
+                                      ],
+                                    ),
+                                    if (swipeState
+                                        .swipe[itemIndex].dog.isNotEmpty)
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            size: 15.sp,
+                                            Icons.favorite_border,
+                                            color: AppStyles.greyColor,
+                                          ),
+                                          ...swipeState.swipe[itemIndex].dog
+                                              .first.lookingFor!
+                                              .map((e) => AppText(text: e))
+                                              .toList()
+                                        ],
+                                      ),
+                                  ],
                                 )
                               ],
                             ),
+                            // child: Stack(
+                            //   children: [
+                            //     ClipRRect(
+                            //       borderRadius: BorderRadius.only(
+                            //         topLeft: Radius.circular(20.r),
+                            //         topRight: Radius.circular(20.r),
+                            //       ),
+                            //       child: CachedNetworkImage(
+                            //         imageUrl: swipeState.swipe[itemIndex]
+                            //             .squareProfileImage.first.url
+                            //             .toString(),
+                            //         fit: BoxFit.fitHeight,
+                            //       ),
+                            //     ),
+                            //     if (swipeState.swipe[itemIndex].dog.isNotEmpty)
+                            //       Positioned(
+                            //         left: 15.w,
+                            //         bottom: 15.h,
+                            //         child: Container(
+                            //           height: size.height / 6,
+                            //           decoration: BoxDecoration(
+                            //             borderRadius:
+                            //                 BorderRadius.circular(10.r),
+                            //             border: Border.all(
+                            //               width: 5.r,
+                            //               color: AppStyles.primaryColor,
+                            //             ),
+                            //           ),
+                            //           child: ClipRRect(
+                            //             borderRadius:
+                            //                 BorderRadius.circular(5.r),
+                            //             child: CachedNetworkImage(
+                            //               imageUrl: swipeState
+                            //                   .swipe[itemIndex]
+                            //                   .dog
+                            //                   .first
+                            //                   .squareProfileImage!
+                            //                   .first
+                            //                   .url
+                            //                   .toString(),
+                            //               errorWidget: (BuildContext context,
+                            //                   url, data) {
+                            //                 return Container(
+                            //                   width: size.height / 7.5,
+                            //                   color: AppStyles.greyColor,
+                            //                   child: Icon(
+                            //                     Icons.person,
+                            //                     size: 80.sp,
+                            //                     color: AppStyles.whiteColor,
+                            //                   ),
+                            //                 );
+                            //               },
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       )
+                            //   ],
+                            // ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: AppStyles.whiteColor,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(20.r),
-                                bottomRight: Radius.circular(20.r),
-                              ),
-                            ),
-                            margin: EdgeInsets.symmetric(horizontal: 33.w),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10.r, vertical: 10.h),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 10.h),
-                                AppText(
-                                  size: 21.sp,
-                                  fontFamily: GoogleFonts.raleway(
-                                          fontWeight: FontWeight.bold)
-                                      .fontFamily,
-                                  text:
-                                      '${swipeState.swipe[itemIndex].firstName} ${swipeState.swipe[itemIndex].lastName}',
-                                ),
-                                SizedBox(height: 10.h),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      size: 15.sp,
-                                      Icons.location_on_outlined,
-                                      color: AppStyles.greyColor,
-                                    ),
-                                    AppText(
-                                      size: 14.sp,
-                                      text: "3 kilometers away",
-                                      color: AppStyles.greyColor,
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 10.h),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      size: 15.sp,
-                                      Icons.favorite_border,
-                                      color: AppStyles.greyColor,
-                                    ),
-                                    AppText(
-                                      size: 14.sp,
-                                      text:
-                                          "Friends, Parents, Nanny, Bonus Matte",
-                                      color: AppStyles.greyColor,
-                                      textOverflow: TextOverflow.fade,
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                          // Container(
+                          //   decoration: BoxDecoration(
+                          //     color: AppStyles.whiteColor,
+                          //     borderRadius: BorderRadius.only(
+                          //       bottomLeft: Radius.circular(20.r),
+                          //       bottomRight: Radius.circular(20.r),
+                          //     ),
+                          //   ),
+                          //   margin: EdgeInsets.symmetric(horizontal: 33.w),
+                          //   padding: EdgeInsets.symmetric(
+                          //     horizontal: 10.r,
+                          //     vertical: 10.h,
+                          //   ),
+                          //   child: Column(
+                          //     crossAxisAlignment: CrossAxisAlignment.start,
+                          //     children: [
+                          //       SizedBox(height: 10.h),
+                          //       AppText(
+                          //         size: 21.sp,
+                          //         fontFamily: GoogleFonts.raleway(
+                          //                 fontWeight: FontWeight.bold)
+                          //             .fontFamily,
+                          //         text:
+                          //             '${swipeState.swipe[itemIndex].firstName} ${swipeState.swipe[itemIndex].lastName}',
+                          //       ),
+                          //       SizedBox(height: 10.h),
+                          //       Row(
+                          //         children: [
+                          //           Icon(
+                          //             size: 15.sp,
+                          //             Icons.location_on_outlined,
+                          //             color: AppStyles.greyColor,
+                          //           ),
+                          //           AppText(
+                          //             size: 14.sp,
+                          //             text: swipeState.swipe[itemIndex].city,
+                          //             color: AppStyles.greyColor,
+                          //           )
+                          //         ],
+                          //       ),
+                          //       SizedBox(height: 10.h),
+                          //       if (swipeState.swipe[itemIndex].dog.isNotEmpty)
+                          //         Row(
+                          //           children: [
+                          //             Icon(
+                          //               size: 15.sp,
+                          //               Icons.favorite_border,
+                          //               color: AppStyles.greyColor,
+                          //             ),
+                          //             ...swipeState.swipe[itemIndex].dog.first
+                          //                 .lookingFor!
+                          //                 .map((e) => AppText(text: e))
+                          //                 .toList()
+                          //           ],
+                          //         ),
+                          //     ],
+                          //   ),
+                          // ),
                         ],
                       );
                     },

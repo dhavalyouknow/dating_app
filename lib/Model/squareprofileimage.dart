@@ -17,16 +17,17 @@ class SquareProfileImage {
   DateTime? updatedAt;
   int? v;
 
-  factory SquareProfileImage.fromJson(Map<String, dynamic> json) =>
-      SquareProfileImage(
-        id: json["_id"],
-        description: json["description"],
-        title: json["title"],
-        url: json["url"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        v: json["__v"],
-      );
+  factory SquareProfileImage.fromJson(Map<String, dynamic> json) {
+    return SquareProfileImage(
+      id: json["_id"] ?? "",
+      description: json["description"] ?? "",
+      title: json["title"] ?? "",
+      url: json["url"] ?? "",
+      createdAt: DateTime.parse(json["createdAt"]),
+      updatedAt: DateTime.parse(json["updatedAt"]),
+      v: json["__v"],
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "_id": id,

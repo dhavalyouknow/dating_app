@@ -29,10 +29,10 @@ class Dog {
 
   factory Dog.fromJson(Map<String, dynamic> json) {
     return Dog(
-      id: json["_id"],
-      dogName: json["dogName"],
-      gender: json["gender"],
-      size: json["size"],
+      id: json["_id"] ?? "",
+      dogName: json["dogName"] ?? "",
+      gender: json["gender"] ?? "",
+      size: json["size"] ?? "",
       lookingFor: List<String>.from(json["lookingFor"].map((x) => x)),
       squareProfileImage: List<SquareProfileImage>.from(
           json["squareProfileImage"]
@@ -40,7 +40,7 @@ class Dog {
       circleProfileImage: json["circleProfileImage"] != null
           ? SquareProfileImage.fromJson(json["circleProfileImage"])
           : null,
-      userId: json["userId"],
+      userId: json["userId"] ?? "",
       createdAt: DateTime.parse(json["createdAt"]),
       updatedAt: DateTime.parse(json["updatedAt"]),
       v: json["__v"],

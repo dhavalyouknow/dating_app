@@ -39,6 +39,9 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
           emit(state.copyWith(status: ForgotStatus.success));
           event.onSuccess();
         } else {
+          print(resp.body);
+          print(resp.statusCode);
+          print('2222222');
           Map<String, dynamic> data = jsonDecode(resp.body);
           Fluttertoast.showToast(msg: data["message"]);
           emit(state.copyWith(status: ForgotStatus.failure));

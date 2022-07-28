@@ -50,7 +50,7 @@ class _LikeAndSwipeState extends State<LikeAndSwipe> {
                   builder: (c, p) {
                     final itemIndex = p.index % swipeState.swipe.length;
                     print('itemIndex ==> $itemIndex');
-                    print(swipeState.swipe[itemIndex].circleProfileImage?.url);
+                    // print(swipeState.swipe[itemIndex].circleProfileImage?.url);
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -76,38 +76,38 @@ class _LikeAndSwipeState extends State<LikeAndSwipe> {
                                   height: size.height / 2,
                                 ),
                               ),
-                              Positioned(
-                                left: 15.w,
-                                bottom: 15.h,
-                                child: Container(
-                                  height: size.height / 6,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.r),
-                                    border: Border.all(
-                                      width: 5.r,
-                                      color: AppStyles.primaryColor,
-                                    ),
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(15.r),
-                                    child: CachedNetworkImage(
-                                      imageUrl: swipeState.swipe[itemIndex]
-                                                  .circleProfileImage !=
-                                              null
-                                          ? swipeState.swipe[itemIndex]
-                                              .circleProfileImage!.url
-                                              .toString()
-                                          : "",
-                                      errorWidget:
-                                          (BuildContext context, url, data) {
-                                        return const Icon(Icons.person);
-                                      },
-                                    ),
-                                    // child: Image.asset(
-                                    //     "assets/intro/Person.png"),
-                                  ),
-                                ),
-                              )
+                              // Positioned(
+                              //   left: 15.w,
+                              //   bottom: 15.h,
+                              //   child: Container(
+                              //     height: size.height / 6,
+                              //     decoration: BoxDecoration(
+                              //       borderRadius: BorderRadius.circular(15.r),
+                              //       border: Border.all(
+                              //         width: 5.r,
+                              //         color: AppStyles.primaryColor,
+                              //       ),
+                              //     ),
+                              //     child: ClipRRect(
+                              //       borderRadius: BorderRadius.circular(15.r),
+                              //       child: CachedNetworkImage(
+                              //         imageUrl: swipeState.swipe[itemIndex]
+                              //                     .circleProfileImage !=
+                              //                 null
+                              //             ? swipeState.swipe[itemIndex]
+                              //                 .circleProfileImage!.url
+                              //                 .toString()
+                              //             : "",
+                              //         errorWidget:
+                              //             (BuildContext context, url, data) {
+                              //           return const Icon(Icons.person);
+                              //         },
+                              //       ),
+                              //       // child: Image.asset(
+                              //       //     "assets/intro/Person.png"),
+                              //     ),
+                              //   ),
+                              // )
                             ],
                           ),
                         ),

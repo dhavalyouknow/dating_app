@@ -39,7 +39,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             IconButton(
               onPressed: () {
                 updateTabSelection(0, "My Page");
-                Navigator.pushNamed(context, MyPage.routeName);
+                Navigator.pushReplacementNamed(context, MyPage.routeName);
               },
               icon: Icon(
                 size: 27.sp,
@@ -52,7 +52,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             IconButton(
               onPressed: () {
                 updateTabSelection(1, "Like");
-                Navigator.pushNamed(context, HomePage.routeName);
+                Navigator.pushReplacementNamed(context, HomePage.routeName);
               },
               icon: Icon(
                 size: 27.sp,
@@ -65,7 +65,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             IconButton(
               onPressed: () {
                 updateTabSelection(2, "Events");
-                Navigator.pushNamed(context, UpComingEvents.routeName);
+                Navigator.pushReplacementNamed(
+                    context, UpComingEvents.routeName);
               },
               icon: Icon(
                 size: 24.sp,

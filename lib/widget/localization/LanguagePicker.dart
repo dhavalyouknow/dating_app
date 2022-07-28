@@ -1,8 +1,6 @@
-import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/l10n/l10n.dart';
 import 'package:dating_app/language_provider/lannguagePro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class LanguagePicker extends StatelessWidget {
@@ -28,7 +26,6 @@ class LanguagePicker extends StatelessWidget {
                   onTap: () {
                     final provider =
                         Provider.of<LocalProvider>(context, listen: false);
-
                     provider.setLocal(locale);
                   },
                   child: Center(
