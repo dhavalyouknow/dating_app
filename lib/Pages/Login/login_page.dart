@@ -5,13 +5,13 @@ import 'package:dating_app/Pages/Login/select_login_method.dart';
 import 'package:dating_app/widget/Button/apple_btn.dart';
 import 'package:dating_app/widget/Button/facebook_btn.dart';
 import 'package:dating_app/widget/Button/google_btn.dart';
+import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:dating_app/widget/localization/LanguageWidget.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
@@ -55,30 +55,30 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         image: AssetImage("assets/logo.png"),
                       ),
                     ),
+<<<<<<< Updated upstream
                     TextFormFieldWidget(
                       textEditingController: emailController,
                       validator: emailValidator,
                       borderRadius: 10,
                       height: size.height / 14,
                       txt: "Email",
+=======
+                    FormFieldWidget(
+>>>>>>> Stashed changes
                       icon: IconButton(
-                        icon: const Icon(
-                          Icons.person_outline,
-                          color: AppStyles.pinkColor,
-                        ),
+                        icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      obscureText: false,
-                      border: 0,
+                      backgroundColor: AppStyles.whiteColor,
+                      hintText: 'Dog Name',
+                      textEditingController: emailController,
+                      validator: emailValidator,
+                      obSecure: false,
+                      border: 0.r,
                       borderColor: AppStyles.trasnparentColor,
+                      borderRadius: 10.r,
                     ),
-                    TextFormFieldWidget(
-                      obSecure: signUpPwd,
-                      textEditingController: passwordController,
-                      validator: passwordValidator,
-                      borderRadius: 10,
-                      height: size.height / 14,
-                      txt: "Password",
+                    FormFieldWidget(
                       icon: IconButton(
                         onPressed: () {
                           setState(() {
@@ -95,9 +95,14 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                                 color: AppStyles.textColor,
                               ),
                       ),
-                      obscureText: signUpPwd,
-                      border: 0,
+                      backgroundColor: AppStyles.whiteColor,
+                      hintText: 'Password',
+                      textEditingController: passwordController,
+                      validator: passwordValidator,
+                      obSecure: signUpPwd,
+                      border: 0.r,
                       borderColor: AppStyles.trasnparentColor,
+                      borderRadius: 10.r,
                     ),
                     Align(
                       alignment: Alignment.centerRight,

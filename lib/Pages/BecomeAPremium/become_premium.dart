@@ -77,11 +77,12 @@ class _BecomePremiumState extends State<BecomePremium>
               SizedBox(height: 50.h),
               Container(
                 decoration: const BoxDecoration(
-                    color: AppStyles.whiteColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    )),
+                  color: AppStyles.whiteColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.w),
                 child: Column(
                   children: [

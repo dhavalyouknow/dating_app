@@ -32,6 +32,7 @@ import 'package:dating_app/Pages/SetupProfile/set_up_profile2/setup_profile2.dar
 import 'package:dating_app/Pages/SetupProfile/set_up_profile3/setup_profile3.dart';
 import 'package:dating_app/Pages/SwipeSettings/swipe_settings.dart';
 import 'package:dating_app/Pages/UpcomingEvents/upcoming_events.dart';
+import 'package:dating_app/Pages/UpcomingEvents/upcoming_events_detail.dart';
 import 'package:dating_app/Pages/UploadProfile/upload_profile.dart';
 import 'package:dating_app/widget/spalsh.dart';
 import 'package:flutter/material.dart';
@@ -76,4 +77,5 @@ Map<String, WidgetBuilder> routes = {
       ),
   OtherLoginCreateAccount.routeName: (ctx) => const OtherLoginCreateAccount(),
   UpComingEvents.routeName: (ctx) => const UpComingEvents(),
+  UpComingEventsDetail.routeName: (ctx) => const UpComingEventsDetail(),
 };

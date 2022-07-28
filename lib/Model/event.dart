@@ -3,6 +3,7 @@ class Event {
     this.id,
     this.title,
     this.subTitle,
+    this.location,
     this.desc,
     this.eventDate,
     this.time,
@@ -19,6 +20,7 @@ class Event {
   String? id;
   String? title;
   String? subTitle;
+  String? location;
   String? desc;
   DateTime? eventDate;
   String? time;
@@ -35,6 +37,7 @@ class Event {
     String? id,
     String? title,
     String? subTitle,
+    String? location,
     String? desc,
     DateTime? eventDate,
     String? time,
@@ -51,6 +54,7 @@ class Event {
         id: id ?? this.id,
         title: title ?? this.title,
         subTitle: subTitle ?? this.subTitle,
+        location: location ?? this.location,
         desc: desc ?? this.desc,
         eventDate: eventDate ?? this.eventDate,
         time: time ?? this.time,
@@ -68,6 +72,7 @@ class Event {
         id: json["_id"],
         title: json["title"],
         subTitle: json["subTitle"],
+        location: json["location"],
         desc: json["desc"],
         eventDate: DateTime.parse(json["eventDate"]),
         time: json["time"],
@@ -86,6 +91,7 @@ class Event {
         "_id": id,
         "title": title,
         "subTitle": subTitle,
+        "location": location,
         "desc": desc,
         "eventDate": eventDate?.toIso8601String(),
         "time": time,

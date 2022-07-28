@@ -63,6 +63,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
           emit(state.copyWith(status: UserStatus.failure));
         }
       } else {
+        print(resp?.statusCode);
         emit(state.copyWith(status: UserStatus.failure));
       }
     } catch (e) {

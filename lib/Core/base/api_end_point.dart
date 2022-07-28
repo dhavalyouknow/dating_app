@@ -16,4 +16,5 @@ class ApiEndPoints {
   static const String updatePassword = '$baseUrl/user/update_password';
   static const String forgotPassword = '$baseUrl/user/forget_password';
   static const String upComingEvent = '$baseUrl/event/upcoming';
+  static const String reportUser = '$baseUrl/report';
 }

@@ -1,5 +1,7 @@
+import 'package:dating_app/Bloc/Event/event_bloc.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 mixin MyPageHandlers<T extends StatefulWidget> on State<T> {
   Future<void> selectLength(BuildContext context) async {
@@ -23,8 +25,14 @@ mixin MyPageHandlers<T extends StatefulWidget> on State<T> {
   }
 
   @override
-  void initState() {
-    // TODO: implement initState
+  initState() {
     super.initState();
+
+    BlocProvider.of<EventBloc>(context).add(GetEventList());
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

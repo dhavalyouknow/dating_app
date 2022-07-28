@@ -41,6 +41,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
   Future<void> _onDuplicateEvent(
       DuplicateEvent event, Emitter<AuthState> emit) async {
     try {
+      emit(state.copyWith(status: AuthStatus.loading));
       var resp = await post(
         url: ApiEndPoints.duplicate,
         body: {"email": event.email},
@@ -50,12 +51,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           print(resp.body);
           print(resp.statusCode);
           event.onSuccess();
+          emit(state.copyWith(status: AuthStatus.loginSuccess));
           Fluttertoast.showToast(msg: 'Valid Email');
         } else {
           print(resp.body);
           print(resp.statusCode);
+          emit(state.copyWith(status: AuthStatus.loginFailure));
         }
-      } else {}
+      } else {
+        emit(state.copyWith(status: AuthStatus.loginFailure));
+        print(resp?.statusCode);
+      }
     } catch (e) {
       print(e);
     }
@@ -76,6 +82,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
       if (kDebugMode) {
         print('==================');
       }
+      emit(state.copyWith(status: AuthStatus.loading));
       var resp = await post(
         url: ApiEndPoints.signUp,
         body: {
@@ -111,7 +118,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           }
 
           User user = User.fromJson(data);
-
+          emit(state.copyWith(status: AuthStatus.loginSuccess));
           event.success(user);
           Fluttertoast.showToast(msg: 'SignUp Successfully');
         } else {
@@ -145,6 +152,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     Emitter<AuthState> emit,
   ) async {
     try {
+      emit(state.copyWith(status: AuthStatus.loading));
       var resp = await post(
         url: ApiEndPoints.login,
         body: {
@@ -167,7 +175,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
 
           User user = User.fromJson(data);
           event.success(user);
-
+          emit(state.copyWith(status: AuthStatus.loginSuccess));
           Fluttertoast.showToast(msg: 'Login Successfully');
           emit(
             state.copyWith(
@@ -210,6 +218,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     Emitter<AuthState> emit,
   ) async {
     try {
+      emit(state.copyWith(status: AuthStatus.loading));
       var res = await get(url: ApiEndPoints.getUser);
       print(ApiEndPoints.getUser);
       if (res != null) {
@@ -221,6 +230,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           String token = prefs.getString('auth_token') as String;
           event.onSuccess(user);
+
           emit(
             state.copyWith(
               status: AuthStatus.loginSuccess,
@@ -344,6 +354,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
   Future<void> _onLoginWithApple(
       LoginWithApple event, Emitter<AuthState> emit) async {
     try {
+      emit(state.copyWith(status: AuthStatus.loading));
       var resp = await post(
         url: ApiEndPoints.loginWithApple,
         body: {
@@ -364,10 +375,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
             Fluttertoast.showToast(
                 msg: "Something happened wrong try again after sometime.");
           }
+          emit(state.copyWith(status: AuthStatus.loginFailure));
           print(resp.body);
           print(resp.statusCode);
         }
-      } else {}
+      } else {
+        emit(state.copyWith(status: AuthStatus.loginFailure));
+      }
     } catch (e) {
       print(e);
       print('-----login-with-apple-----');

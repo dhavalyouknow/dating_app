@@ -89,6 +89,7 @@ class _CreateAccountState extends State<CreateAccount>
                           ? AppStyles.greyColor
                           : AppStyles.pinkColor,
                       borderRadius: 10.r,
+                      backgroundColor: AppStyles.trasnparentColor,
                     ),
                     FormFieldWidget(
                       icon: IconButton(
@@ -104,6 +105,7 @@ class _CreateAccountState extends State<CreateAccount>
                           ? AppStyles.greyColor
                           : AppStyles.pinkColor,
                       borderRadius: 10.r,
+                      backgroundColor: AppStyles.trasnparentColor,
                     ),
                     FormFieldWidget(
                       icon: IconButton(
@@ -119,6 +121,7 @@ class _CreateAccountState extends State<CreateAccount>
                           ? AppStyles.greyColor
                           : AppStyles.pinkColor,
                       borderRadius: 10.r,
+                      backgroundColor: AppStyles.trasnparentColor,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

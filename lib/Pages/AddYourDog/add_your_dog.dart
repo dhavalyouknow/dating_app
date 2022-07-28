@@ -103,6 +103,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                       ? AppStyles.greyColor
                       : AppStyles.pinkColor,
                   borderRadius: 25.r,
+                  backgroundColor: AppStyles.trasnparentColor,
                 ),
                 SizedBox(height: 15.h),
                 AppText(
