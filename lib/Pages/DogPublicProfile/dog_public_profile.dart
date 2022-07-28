@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile_dialog.dart';
 import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile_handler.dart';
+import 'package:dating_app/widget/allDogDataField.dart';
 import 'package:dating_app/widget/errorWidget.dart';
 import 'package:dating_app/widget/showProfileWidget.dart';
 import 'package:flutter/material.dart';
@@ -116,19 +116,6 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                                   fontWeight: FontWeight.w500,
                                 ).fontFamily,
                               ),
-                              // Row(
-                              //   children: [
-                              //     const Icon(
-                              //       Icons.location_on_outlined,
-                              //       color: AppStyles.whiteColor,
-                              //     ),
-                              //     SizedBox(width: 5.w),
-                              //     AppText(
-                              //       text: userState.user!.city.toString(),
-                              //       color: AppStyles.whiteColor,
-                              //     ),
-                              //   ],
-                              // )
                             ],
                           ),
                         )
@@ -165,7 +152,7 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                         ),
                         SizedBox(height: 10.h),
                         AppText(
-                          size: 21.sp,
+                          size: 18.sp,
                           text: "About",
                           fontFamily:
                               GoogleFonts.raleway(fontWeight: FontWeight.w700)
@@ -173,7 +160,7 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                         ),
                         SizedBox(height: 5.h),
                         AppText(
-                          size: 15.sp,
+                          size: 13.sp,
                           text: userState.user!.aboutSelf.toString(),
                           fontFamily:
                               GoogleFonts.raleway(fontWeight: FontWeight.w500)
@@ -181,17 +168,20 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                         ),
                         SizedBox(height: 20.h),
                         AppText(
-                          size: 21.sp,
+                          size: 18.sp,
                           text: "${dog!.dogName}'s Owner",
                           fontFamily:
                               GoogleFonts.raleway(fontWeight: FontWeight.w700)
                                   .fontFamily,
                         ),
-                        SizedBox(height: 20.h),
+                        SizedBox(height: 13.h),
                         ShowProfileWidget(
                           onTap: () {},
                           user: userState.user,
                         ),
+                        AllDogDataFieldWidget(
+                          dog: dog,
+                        )
                       ],
                     ),
                   )

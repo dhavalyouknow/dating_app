@@ -16,7 +16,7 @@ class DogEditPopup extends StatefulWidget {
   State<DogEditPopup> createState() => _DogEditPopupState();
 }
 
-class _DogEditPopupState extends State<DogEditPopup> with DogPublicHandlers {
+class _DogEditPopupState extends State<DogEditPopup> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

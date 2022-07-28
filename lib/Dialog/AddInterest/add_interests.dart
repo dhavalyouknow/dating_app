@@ -8,8 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddInterests extends StatefulWidget {
-  final Function(List<String>) callback;
-  final List<String> alsoSelected;
+  final Function(List<dynamic>) callback;
+  final List<dynamic> alsoSelected;
   const AddInterests(
       {Key? key, required this.callback, required this.alsoSelected})
       : super(key: key);

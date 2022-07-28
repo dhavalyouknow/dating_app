@@ -1,5 +1,6 @@
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Model/user.dart';
+import 'package:dating_app/widget/selected_inerests_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -132,17 +133,20 @@ class AllDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        ...user!.interests!
-            .map((e) => Padding(
-                  padding: EdgeInsets.only(top: 4.h),
-                  child: AppText(
-                    text: e,
-                    size: 13.sp,
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
-                        .fontFamily,
+        Wrap(
+          children: [
+            ...user!.interests!
+                .map(
+                  (e) => Padding(
+                    padding: EdgeInsets.only(top: 4.h),
+                    child: SelectedChipWidget(
+                      interestsName: e,
+                    ),
                   ),
-                ))
-            .toList(),
+                )
+                .toList(),
+          ],
+        ),
         Padding(
           padding: EdgeInsets.only(top: 8.h),
           child: AppText(
@@ -152,17 +156,20 @@ class AllDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        ...user!.favouriteNight!
-            .map((e) => Padding(
-                  padding: EdgeInsets.only(top: 4.h),
-                  child: AppText(
-                    text: e,
-                    size: 13.sp,
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
-                        .fontFamily,
+        Wrap(
+          children: [
+            ...user!.favouriteNight!
+                .map(
+                  (e) => Padding(
+                    padding: EdgeInsets.only(top: 4.h),
+                    child: SelectedChipWidget(
+                      interestsName: e,
+                    ),
                   ),
-                ))
-            .toList(),
+                )
+                .toList(),
+          ],
+        ),
         Padding(
           padding: EdgeInsets.only(top: 8.h),
           child: AppText(
@@ -172,19 +179,20 @@ class AllDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        ...user!.activity!
-            .map(
-              (e) => Padding(
-                padding: EdgeInsets.only(top: 4.h),
-                child: AppText(
-                  text: e,
-                  size: 13.sp,
-                  fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
-                      .fontFamily,
-                ),
-              ),
-            )
-            .toList(),
+        Wrap(
+          children: [
+            ...user!.activity!
+                .map(
+                  (e) => Padding(
+                    padding: EdgeInsets.only(top: 4.h),
+                    child: SelectedChipWidget(
+                      interestsName: e,
+                    ),
+                  ),
+                )
+                .toList(),
+          ],
+        ),
       ],
     );
   }

@@ -10,8 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../widget/selected_inerests_widget.dart';
 
 class AddNightModule extends StatefulWidget {
-  final Function(List<String>) callback;
-  final List<String> alsoSelected;
+  final Function(List<dynamic>) callback;
+  final List<dynamic> alsoSelected;
   const AddNightModule(
       {Key? key, required this.callback, required this.alsoSelected})
       : super(key: key);
@@ -26,6 +26,7 @@ class _AddNightModuleState extends State<AddNightModule>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     int length = widget.alsoSelected.length;
+    print(widget.alsoSelected);
 
     return Scaffold(
       backgroundColor: AppStyles.trasnparentColor,

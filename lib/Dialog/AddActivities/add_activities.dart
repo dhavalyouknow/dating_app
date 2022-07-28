@@ -8,8 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SelectedActivities extends StatefulWidget {
-  final Function(List<String>) callback;
-  final List<String> alsoSelected;
+  final Function(List<dynamic>) callback;
+  final List<dynamic> alsoSelected;
   const SelectedActivities({
     Key? key,
     required this.callback,

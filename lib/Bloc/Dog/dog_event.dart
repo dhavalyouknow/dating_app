@@ -35,6 +35,7 @@ class AddDogEvent extends DogEvent {
     required this.lookingFor,
     required this.onSuccess,
   });
+
   @override
   // TODO: implement props
   List<Object?> get props => [dogName, gender, size, lookingFor, onSuccess, id];
@@ -56,4 +57,22 @@ class UpdateDogEvent extends DogEvent {
   @override
   // TODO: implement props
   List<Object?> get props => [dog, success, circleProfileImage];
+}
+
+class UpdateDogField extends DogEvent {
+  final String dogName;
+  final String gender;
+  final String size;
+  final List<String> lookingFor;
+  final String dogId;
+  final VoidCallback onSuccess;
+
+  const UpdateDogField({
+    required this.dogName,
+    required this.gender,
+    required this.size,
+    required this.lookingFor,
+    required this.dogId,
+    required this.onSuccess,
+  });
 }

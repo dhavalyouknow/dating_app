@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class EditFormField extends StatefulWidget {
@@ -8,6 +6,7 @@ class EditFormField extends StatefulWidget {
   final TextEditingController? textEditingController;
   final double? width;
   final double? height;
+  final Function(String) callBack;
 
   const EditFormField({
     required this.hintTxt,
@@ -15,6 +14,7 @@ class EditFormField extends StatefulWidget {
     this.textEditingController,
     this.width,
     this.height,
+    required this.callBack,
     Key? key,
   }) : super(key: key);
 
@@ -23,6 +23,8 @@ class EditFormField extends StatefulWidget {
 }
 
 class _EditFormFieldState extends State<EditFormField> {
+  String fName = '';
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,13 +32,15 @@ class _EditFormFieldState extends State<EditFormField> {
       alignment: Alignment.center,
       width: widget.width,
       child: TextFormField(
-        validator: widget.validator,
-        obscureText: false,
         controller: widget.textEditingController,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: widget.hintTxt,
+          contentPadding: EdgeInsets.zero,
         ),
+        onChanged: (value) {
+          // widget.callBack(value);
+        },
       ),
     );
   }

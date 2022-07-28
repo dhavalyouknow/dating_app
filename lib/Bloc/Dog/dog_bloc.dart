@@ -1,14 +1,14 @@
-import 'dart:async';
 import 'dart:convert';
 import 'package:dating_app/Core/base/api_end_point.dart';
 import 'package:dating_app/Core/base/base_http_service.dart';
 import 'package:dating_app/Model/dog.dart';
 import 'package:dating_app/Model/squareprofileimage.dart';
-import 'package:dating_app/Model/user.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'dog_event.dart';
+
 part 'dog_state.dart';
 
 class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
@@ -17,6 +17,7 @@ class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
     on<AddDogEvent>(_onAddDogEvent);
     on<UpdateDogEvent>(_onUpdateDogEvent);
     on<SetDog>(_onSetDog);
+    on<UpdateDogField>(_onUpdateDogField);
   }
 
   _onSetDog(SetDog event, Emitter<DogState> emit) async {
@@ -109,6 +110,31 @@ class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
     } catch (e) {
       print(e);
       print('----update--dog');
+    }
+  }
+
+  _onUpdateDogField(UpdateDogField event, Emitter<DogState> emit) async {
+    try {
+      var resp =
+          await patch(url: '${ApiEndPoints.updateDog}${event.dogId}', body: {
+        "dogName": event.dogName,
+        "gender": event.gender,
+        "size": event.size,
+        "lookingFor": event.lookingFor
+      });
+      if (resp != null) {
+        if (resp.statusCode == 200) {
+          print(resp.statusCode);
+          print(resp.body);
+          event.onSuccess();
+        } else {
+          print(resp.statusCode);
+          print(resp.body);
+        }
+      } else {}
+    } catch (e) {
+      print(e);
+      print('-----update_dog_field------');
     }
   }
 }

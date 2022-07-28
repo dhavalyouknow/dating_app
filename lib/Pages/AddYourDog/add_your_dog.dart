@@ -229,7 +229,6 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                               print(myDogLookingFor);
                             } else {
                               myDogLookingFor.add(e.name);
-                              print('myDogLookingFor ===> $myDogLookingFor');
                             }
                             setState(
                               () {},

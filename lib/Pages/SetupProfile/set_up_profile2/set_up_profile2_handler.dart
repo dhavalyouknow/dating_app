@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 mixin SetupProfile2Handlers<T extends StatefulWidget> on State<T> {
-  List<String> interestedName = [];
-  List<String> favNights = [];
-  List<String> activities = [];
+  List<dynamic> interestedName = [];
+  List<dynamic> favNights = [];
+  List<dynamic> activities = [];
   User? user;
 
   @override
@@ -38,48 +38,4 @@ mixin SetupProfile2Handlers<T extends StatefulWidget> on State<T> {
       );
     }
   }
-
-  // Padding(
-  // padding: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
-  // child: Container(
-  // width: double.infinity,
-  // height: 45.h,
-  // decoration: BoxDecoration(
-  // borderRadius: BorderRadius.circular(10),
-  // gradient: const LinearGradient(
-  // begin: Alignment.topRight,
-  // end: Alignment.bottomLeft,
-  // colors: [
-  // Color(0xffFFE3E9),
-  // Color(0xffFAC7D1),
-  // Color(0xffFFBCC9),
-  // ],
-  // ),
-  // boxShadow: const [
-  // BoxShadow(
-  // color: Color(0xffFFBCC9),
-  // spreadRadius: 3,
-  // blurRadius: 26.0,
-  // offset: Offset(5, 5),
-  // ),
-  // ],
-  // ),
-  // child: FloatingActionButton(
-  // onPressed: () {
-  // onSubmitProfile2();
-  // },
-  // shape: RoundedRectangleBorder(
-  // borderRadius: BorderRadius.circular(22),
-  // ),
-  // backgroundColor: Colors.transparent,
-  // elevation: 0.0,
-  // child: const Text(
-  // 'Next',
-  // style: TextStyle(
-  // color: AppStyles.whiteColor,
-  // ),
-  // ),
-  // ),
-  // ),
-  // ),
 }

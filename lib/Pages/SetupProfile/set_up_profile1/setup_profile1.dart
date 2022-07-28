@@ -258,6 +258,7 @@ class _SetupProfile1State extends State<SetupProfile1>
                   ],
                 ),
                 SizedBox(height: 10.h),
+
                 AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
@@ -296,6 +297,7 @@ class _SetupProfile1State extends State<SetupProfile1>
                       : AppStyles.blackColor,
                 ),
                 SizedBox(height: 10.h),
+
                 AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
