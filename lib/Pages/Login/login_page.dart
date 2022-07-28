@@ -55,22 +55,6 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         image: AssetImage("assets/logo.png"),
                       ),
                     ),
-                    // FormFieldWidget(
-                    //   icon: IconButton(
-                    //     icon: const Icon(Icons.person_outline),
-                    //     onPressed: () {},
-                    //   ),
-                    //   backgroundColor: AppStyles.whiteColor,
-                    //   hintText: 'Dog Name',
-                    //   textEditingController: emailController,
-                    //   validator: emailValidator,
-                    //   obSecure: false,
-                    //   border: emailController.text.isEmpty ? 1.r : 2.r,
-                    //   borderColor: emailController.text.isEmpty
-                    //       ? AppStyles.greyColor
-                    //       : AppStyles.pinkColor,
-                    //   borderRadius: 10.r,
-                    // ),
                     TextFormFieldWidget(
                       textEditingController: emailController,
                       validator: emailValidator,
@@ -154,7 +138,6 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         height: 18.h,
                       ),
                     ),
-
                     AppleBtnWidget(
                       onPressed: signInWithApple,
                       title: "Sign In With Apple",

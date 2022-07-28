@@ -1,3 +1,4 @@
+import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/l10n/l10n.dart';
 import 'package:dating_app/language_provider/lannguagePro.dart';
 import 'package:flutter/material.dart';
@@ -9,34 +10,39 @@ class LanguagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var items = [...L10n.all.toList()];
+    final provider = Provider.of<LocalProvider>(context);
+    final locale = provider.locale ?? const Locale('en');
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        ...L10n.all.map((e) {
-          final flag = L10n.getFlag(e.languageCode);
-          return GestureDetector(
-            onTap: () {
-              final provider =
-                  Provider.of<LocalProvider>(context, listen: false);
-              provider.setLocal(e);
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  flag,
-                  style: TextStyle(fontSize: 30.sp),
-                ),
-                if (e.languageCode == 'en')
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5.w),
-                    child: const Text('vs'),
-                  )
-              ],
-            ),
-          );
-        }).toList(),
+        DropdownButtonHideUnderline(
+          child: DropdownButton(
+            value: locale,
+            icon: Container(width: 12),
+            items: L10n.all.map(
+              (locale) {
+                final flag = L10n.getFlag(locale.languageCode);
+
+                return DropdownMenuItem(
+                  value: locale,
+                  onTap: () {
+                    final provider =
+                        Provider.of<LocalProvider>(context, listen: false);
+
+                    provider.setLocal(locale);
+                  },
+                  child: Center(
+                    child: Text(
+                      flag,
+                      style: const TextStyle(fontSize: 32),
+                    ),
+                  ),
+                );
+              },
+            ).toList(),
+            onChanged: (_) {},
+          ),
+        ),
       ],
     );
   }

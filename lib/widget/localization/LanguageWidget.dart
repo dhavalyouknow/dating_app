@@ -6,6 +6,6 @@ class LanguageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LanguagePicker();
+    return const LanguagePicker();
   }
 }
