@@ -54,24 +54,19 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         image: AssetImage("assets/logo.png"),
                       ),
                     ),
-<<<<<<< HEAD
-                    TextFormFieldWidget(
-                      textEditingController: emailController,
-                      validator: emailValidator,
-                      borderRadius: 10,
-                      height: size.height / 14,
-                      txt: "Email",
-=======
                     FormFieldWidget(
->>>>>>> 1c371b6838fc5687b6fd41067a3e8a66b02f06b6
                       icon: IconButton(
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
+                      backgroundColor: AppStyles.whiteColor,
+                      hintText: 'Email',
+                      textEditingController: emailController,
+                      validator: emailValidator,
                       obSecure: false,
                       border: 0.r,
                       borderColor: AppStyles.trasnparentColor,
-                      obscureText: false,
+                      borderRadius: 10.r,
                     ),
                     FormFieldWidget(
                       icon: IconButton(

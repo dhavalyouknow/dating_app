@@ -7,13 +7,10 @@ import 'package:dating_app/Pages/BottomBar/bottom_bar.dart';
 import 'package:dating_app/Pages/ChattingPage/chatting_user_list.dart';
 import 'package:dating_app/Pages/Home/home_page_handler.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
-<<<<<<< HEAD
 import 'package:dating_app/widget/swiperCatelog/dogSwiperList.dart';
 import 'package:dating_app/widget/swiperCatelog/personSwiperList.dart';
-=======
 import 'package:dating_app/Pages/UpcomingEvents/upcoming_events.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
->>>>>>> 1c371b6838fc5687b6fd41067a3e8a66b02f06b6
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -119,122 +116,48 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                       child: Stack(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(
-                              top: 35.h,
-                              left: 31.w,
-                              right: 31.w,
-                            ),
-<<<<<<< HEAD
-                            height: size.height / 1.8,
-                            decoration: BoxDecoration(
-                              color: onSwitchDog
-                                  ? const Color(0xffEDDCC0)
-                                  : AppStyles.skyBlueColor,
-                              borderRadius: BorderRadius.circular(20.0),
-=======
-                            child: Stack(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: size.width * 2,
-                                      height: size.height * 0.4,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: ListView.builder(
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          return ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              topRight: Radius.circular(20),
-                                            ),
-                                            child: CachedNetworkImage(
-                                              imageUrl: swipeState
-                                                  .swipe[itemIndex]
-                                                  .squareProfileImage[index]
-                                                  .url
-                                                  .toString(),
-                                              width: size.width * 0.9,
-                                              fit: BoxFit.fitHeight,
-                                              placeholder: (context, url) =>
-                                                  const LoadingWidget(),
-                                            ),
-                                          );
-                                        },
-                                        shrinkWrap: true,
-                                        itemCount: swipeState.swipe[itemIndex]
-                                            .squareProfileImage.length,
-                                        scrollDirection: Axis.horizontal,
-                                      ),
-                                    ),
-                                    // Row(
-                                    //   children: [
-                                    //     ...swipeState
-                                    //         .swipe[itemIndex].squareProfileImage
-                                    //         .map(
-                                    //           (e) => CachedNetworkImage(
-                                    //             imageUrl: e.url.toString(),
-                                    //             height: 100,
-                                    //             width: 200,
-                                    //           ),
-                                    //         )
-                                    //         .toList(),
-                                    //   ],
-                                    // ),
-                                    Text(
-                                        '${swipeState.swipe[itemIndex].firstName} ${swipeState.swipe[itemIndex].lastName}'),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          size: 15.sp,
-                                          Icons.location_on_outlined,
-                                          color: AppStyles.greyColor,
+                              margin: EdgeInsets.only(
+                                top: 35.h,
+                                left: 31.w,
+                                right: 31.w,
+                              ),
+                              height: size.height / 1.8,
+                              decoration: BoxDecoration(
+                                color: onSwitchDog
+                                    ? const Color(0xffEDDCC0)
+                                    : AppStyles.skyBlueColor,
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: size.width * 2,
+                                        height: size.height * 0.4,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
                                         ),
-                                        AppText(
-                                          size: 14.sp,
-                                          text:
-                                              swipeState.swipe[itemIndex].city,
-                                          color: AppStyles.greyColor,
-                                        )
-                                      ],
-                                    ),
-                                    if (swipeState
-                                        .swipe[itemIndex].dog.isNotEmpty)
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            size: 15.sp,
-                                            Icons.favorite_border,
-                                            color: AppStyles.greyColor,
-                                          ),
-                                          ...swipeState.swipe[itemIndex].dog
-                                              .first.lookingFor!
-                                              .map((e) => AppText(text: e))
-                                              .toList()
-                                        ],
+                                        child: onSwitchDog
+                                            ? DogSwiperList(
+                                                swipeState: swipeState,
+                                                dogState: dogState,
+                                                controller: swipeController,
+                                                showImageBig: showImageBig,
+                                              )
+                                            : PersonSwiperList(
+                                                swipeState: swipeState,
+                                                showImageBig: showImageBig,
+                                                controller: swipeController,
+                                              ),
                                       ),
-                                  ],
-                                )
-                              ],
->>>>>>> 1c371b6838fc5687b6fd41067a3e8a66b02f06b6
-                            ),
-                          ),
-                          onSwitchDog
-                              ? DogSwiperList(
-                                  swipeState: swipeState,
-                                  dogState: dogState,
-                                  controller: swipeController,
-                                  showImageBig: showImageBig,
-                                )
-                              : PersonSwiperList(
-                                  swipeState: swipeState,
-                                  showImageBig: showImageBig,
-                                  controller: swipeController,
-                                ),
+                                    ],
+                                  ),
+                                ],
+                              ))
                         ],
                       ),
                     ),
