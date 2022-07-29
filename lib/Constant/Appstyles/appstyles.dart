@@ -17,6 +17,7 @@ class AppStyles {
   static const Color trasnparentColor = Colors.transparent;
   static const Color shadowColor = Color(0xffC71585);
   static const Color placeholder = Color(0xff9B9B9B);
+  static const Color beigeColor = Color(0xffEDDCC0);
 
   static List<Color> premiumPageGradientColor = [
     const Color(0xff47B3E7),

@@ -20,6 +20,7 @@ class EventBloc extends Bloc<EventEvent, EventState> with BaseHttpService {
       var resp = await get(url: ApiEndPoints.upComingEvent);
       if (resp != null) {
         if (resp.statusCode == 200) {
+          print("====================");
           print(resp.statusCode);
           print(resp.body);
           List<Event> events = [];

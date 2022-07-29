@@ -2,6 +2,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/CreatePassword/create_password_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
+import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -71,13 +72,7 @@ class _CreatePasswordState extends State<CreatePassword>
                   text:
                       "Password must be at least 8 characters, contain\nletters, numbers and one special character.",
                 ),
-                TextFormFieldWidget(
-                  obSecure: signUpPwd,
-                  textEditingController: passwordController,
-                  validator: passwordValidator,
-                  borderRadius: 10,
-                  height: size.height / 14,
-                  txt: "Password",
+                FormFieldWidget(
                   backIcon: IconButton(
                     onPressed: () {
                       setState(() {
@@ -94,19 +89,24 @@ class _CreatePasswordState extends State<CreatePassword>
                             color: AppStyles.textColor,
                           ),
                   ),
-                  obscureText: signUpPwd,
-                  border: passwordController.text.isEmpty ? 1 : 2,
-                  borderColor: AppStyles.pinkColor,
+                  backgroundColor: AppStyles.whiteColor,
+                  hintText: 'Password',
+                  textEditingController: passwordController,
+                  validator: passwordValidator,
+                  obSecure: signUpPwd,
+                  border: passwordController.text.isEmpty ? 1.w : 2.w,
+                  borderColor: AppStyles.textColor,
+                  borderRadius: 10.r,
                 ),
-                TextFormFieldWidget(
-                  validator: repeatpwdValidator,
+                FormFieldWidget(
+                  backgroundColor: AppStyles.whiteColor,
+                  hintText: 'Confirm Password',
                   textEditingController: rePasswordController,
-                  borderRadius: 10,
-                  height: size.height / 14,
-                  txt: "Confirm Password",
-                  obscureText: signUpPwd,
-                  border: rePasswordController.text.isEmpty ? 1 : 2,
-                  borderColor: AppStyles.pinkColor,
+                  validator: repeatpwdValidator,
+                  obSecure: signUpPwd,
+                  border: rePasswordController.text.isEmpty ? 1.w : 2.w,
+                  borderColor: AppStyles.textColor,
+                  borderRadius: 10.r,
                 ),
                 SizedBox(height: 20.h),
                 GradientBtn(

@@ -26,11 +26,7 @@ class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
 
   _onAddDogEvent(AddDogEvent event, Emitter<DogState> emit) async {
     try {
-      emit(
-        state.copyWith(
-          status: DogStatus.loading,
-        ),
-      );
+      emit(state.copyWith(status: DogStatus.loading));
 
       var resp = await post(
         url: ApiEndPoints.addDog,
@@ -55,21 +51,13 @@ class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
 
           event.onSuccess(dog);
         } else {
-          emit(
-            state.copyWith(
-              status: DogStatus.failure,
-            ),
-          );
+          emit(state.copyWith(status: DogStatus.failure));
 
           print(resp.body);
           print(resp.statusCode);
         }
       } else {
-        emit(
-          state.copyWith(
-            status: DogStatus.failure,
-          ),
-        );
+        emit(state.copyWith(status: DogStatus.failure));
       }
     } catch (e) {
       print(e);
@@ -79,6 +67,7 @@ class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
 
   _onUpdateDogEvent(UpdateDogEvent event, Emitter<DogState> emit) async {
     try {
+      emit(state.copyWith(status: DogStatus.loading));
       var resp = await patch(
         url: '${ApiEndPoints.updateDog}${event.dog.id}',
         body: {
@@ -105,8 +94,11 @@ class DogBloc extends Bloc<DogEvent, DogState> with BaseHttpService {
         } else {
           print(resp.statusCode);
           print(resp.body);
+          emit(state.copyWith(status: DogStatus.failure));
         }
-      } else {}
+      } else {
+        emit(state.copyWith(status: DogStatus.failure));
+      }
     } catch (e) {
       print(e);
       print('----update--dog');

@@ -9,6 +9,7 @@ class FormFieldWidget extends StatefulWidget {
   final String? Function(dynamic) validator;
   bool obSecure;
   final IconButton? icon;
+  final IconButton? backIcon;
   final Function(String)? onChanged;
   final VoidCallback? onTap;
   final TextInputType? type;
@@ -27,6 +28,7 @@ class FormFieldWidget extends StatefulWidget {
     required this.validator,
     required this.obSecure,
     this.icon,
+    this.backIcon,
     this.onChanged,
     this.onTap,
     this.type,
@@ -46,73 +48,72 @@ class FormFieldWidget extends StatefulWidget {
 class _FormFieldWidgetState extends State<FormFieldWidget> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          margin: EdgeInsets.only(top: 18.h),
-          alignment: Alignment.center,
-          child: TextFormField(
-            onFieldSubmitted: widget.onSubmit,
-            cursorColor: AppStyles.blackColor,
-            keyboardType: widget.type,
-            minLines: widget.minLines ?? 1,
-            maxLines: widget.maxLines ?? 1,
-            onTap: widget.onTap,
-            onChanged: widget.onChanged,
-            obscureText: widget.obSecure,
-            validator: widget.validator,
-            controller: widget.textEditingController,
-            style: TextStyle(
-              color: Theme.of(context).hintColor,
-              fontSize: 14.sp,
-              fontFamily: GoogleFonts.raleway(
-                      fontSize: 20.sp, fontWeight: FontWeight.w500)
+    return Container(
+      margin: EdgeInsets.only(top: 18.h),
+      alignment: Alignment.center,
+      child: TextFormField(
+        onFieldSubmitted: widget.onSubmit,
+        cursorColor: AppStyles.blackColor,
+        keyboardType: widget.type,
+        minLines: widget.minLines ?? 1,
+        maxLines: widget.maxLines ?? 1,
+        onTap: widget.onTap,
+        onChanged: widget.onChanged,
+        obscureText: widget.obSecure,
+        validator: widget.validator,
+        controller: widget.textEditingController,
+        style: TextStyle(
+          color: Theme.of(context).hintColor,
+          fontSize: 14.sp,
+          fontFamily:
+              GoogleFonts.raleway(fontSize: 20.sp, fontWeight: FontWeight.w500)
                   .fontFamily,
+        ),
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: widget.backgroundColor,
+          prefixIcon: widget.obSecure == true ? widget.icon : widget.icon,
+          border: InputBorder.none,
+          disabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: widget.borderColor,
+              width: widget.border,
             ),
-            decoration: InputDecoration(
-              fillColor: widget.backgroundColor,
-              prefixIcon: widget.obSecure == true ? widget.icon : widget.icon,
-              border: InputBorder.none,
-              disabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: widget.borderColor,
-                  width: widget.border,
-                ),
-                borderRadius: BorderRadius.circular(widget.borderRadius),
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: widget.borderColor, width: 2.0),
-                borderRadius: BorderRadius.circular(widget.borderRadius),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: widget.borderColor, width: widget.border),
-                borderRadius: BorderRadius.circular(widget.borderRadius),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: widget.borderColor, width: 1.0),
-                borderRadius: BorderRadius.circular(widget.borderRadius),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: widget.borderColor, width: 1.2),
-                borderRadius: BorderRadius.circular(widget.borderRadius),
-              ),
-              contentPadding: EdgeInsets.symmetric(
-                vertical: 15.h,
-                horizontal: 20.w,
-              ),
-              hintText: widget.hintText,
-              hintStyle: TextStyle(
-                fontFamily: GoogleFonts.raleway(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w500,
-                ).fontFamily,
-                color: AppStyles.textColor,
-              ),
-            ),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: widget.borderColor, width: 2.0),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide:
+                BorderSide(color: widget.borderColor, width: widget.border),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: widget.borderColor, width: 1.0),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: widget.borderColor, width: 1.2),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 15.h,
+            horizontal: 20.w,
+          ),
+          hintText: widget.hintText,
+          suffixIcon:
+              widget.obSecure == true ? widget.backIcon : widget.backIcon,
+          hintStyle: TextStyle(
+            fontFamily: GoogleFonts.raleway(
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w500,
+            ).fontFamily,
+            color: AppStyles.textColor,
           ),
         ),
-      ],
+      ),
     );
   }
 }
