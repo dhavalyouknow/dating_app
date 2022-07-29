@@ -53,11 +53,14 @@ class _SpalshScreenState extends State<SpalshScreen> {
           bool isSocialMedia = user.googleLogin == true ||
               user.facebookLogin == true ||
               user.appleLogin == true;
+          print('11111');
+          print(isSocialMedia);
+          print(user.circleProfileImage);
           if ((user.gender!.isEmpty || user.dob == null) && !isSocialMedia) {
             Navigator.pushReplacementNamed(context, '/CreateAccount');
           } else if (user.searchingFor!.isEmpty && !isSocialMedia) {
             Navigator.pushReplacementNamed(context, '/ChoosePartner');
-          } else if (user.circleProfileImage == null && !isSocialMedia) {
+          } else if (user.circleProfileImage == null && isSocialMedia) {
             Navigator.pushReplacementNamed(context, '/UploadProfile');
           } else if (isSocialMedia &&
               (user.gender!.isEmpty || user.dob == null) &&

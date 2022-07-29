@@ -13,6 +13,7 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> with BaseHttpService {
   SwipeBloc() : super(const SwipeInitial()) {
     on<SwipeEvent>((event, emit) {});
     on<GetSwipeList>(_onGetSwipeList);
+    on<DisLikePerson>(_onDisLikePerson);
   }
 
   _onGetSwipeList(GetSwipeList event, Emitter<SwipeState> emit) async {
@@ -29,7 +30,7 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> with BaseHttpService {
           for (dynamic json in result) {
             swipes.add(Swipe.fromJson(json));
           }
-          event.onSuccess(result);
+
           emit(state.copyWith(status: SwipeStatus.success, swipe: swipes));
         } else {
           print(resp.body);
@@ -43,6 +44,35 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> with BaseHttpService {
     } catch (e) {
       print(e);
       print('--get--swiper---');
+      emit(state.copyWith(status: SwipeStatus.failure));
+    }
+  }
+
+  _onDisLikePerson(DisLikePerson event, Emitter<SwipeState> emit) async {
+    try {
+      emit(state.copyWith(status: SwipeStatus.loading));
+      var resp = await post(
+        url: '${ApiEndPoints.disLikePerson}${event.userId}',
+        body: {
+          "userId": event.swipeUserId,
+        },
+      );
+      if (resp != null) {
+        if (resp.statusCode == 200) {
+          print(resp.body);
+          print(resp.statusCode);
+          emit(state.copyWith(status: SwipeStatus.success));
+        } else {
+          print(resp.body);
+          print(resp.statusCode);
+          emit(state.copyWith(status: SwipeStatus.failure));
+        }
+      } else {
+        emit(state.copyWith(status: SwipeStatus.failure));
+      }
+    } catch (e) {
+      print(e);
+      print('dislike----');
       emit(state.copyWith(status: SwipeStatus.failure));
     }
   }

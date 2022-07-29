@@ -12,7 +12,7 @@ class Swipe {
     required this.createdAt,
     required this.updatedAt,
     required this.year,
-    required this.dog,
+    this.dog,
     required this.circleProfileImage,
   });
 
@@ -25,7 +25,7 @@ class Swipe {
   DateTime? createdAt;
   DateTime? updatedAt;
   int year;
-  List<Dog> dog;
+  List<Dog>? dog;
   List<SquareProfileImage> circleProfileImage;
 
   Swipe copyWith({
@@ -56,6 +56,7 @@ class Swipe {
       );
 
   factory Swipe.fromJson(Map<String, dynamic> json) {
+    print(json["dog"]);
     return Swipe(
       id: json["_id"],
       firstName: json["firstName"],
@@ -70,7 +71,9 @@ class Swipe {
       updatedAt:
           json["updatedAt"] != null ? DateTime.parse(json["updatedAt"]) : null,
       year: json["year"],
-      dog: List<Dog>.from(json["dog"].map((x) => Dog.fromJson(x))),
+      dog: json["dog"] != null
+          ? List<Dog>.from(json["dog"].map((x) => Dog.fromJson(x)))
+          : null,
       circleProfileImage: List<SquareProfileImage>.from(
           (json["circleProfileImage"] ?? [])
               .map((x) => SquareProfileImage.fromJson(x))),
