@@ -4,6 +4,7 @@ import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/UpcomingEvents/upcoming_events_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/errorWidget.dart';
+import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -79,16 +80,7 @@ class _UpComingEventsDetailState extends State<UpComingEventsDetail>
                           errorWidget: (BuildContext context, url, data) {
                             return const ImageErrorWidget();
                           },
-                          placeholder: (context, url) => Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height,
-                            color: Colors.grey.withOpacity(0.1),
-                            child: const Center(
-                              child: CircularProgressIndicator(
-                                color: AppStyles.textColor,
-                              ),
-                            ),
-                          ),
+                          placeholder: (context, url) => const LoadingWidget(),
                         );
                       },
                     ),

@@ -3,7 +3,6 @@ import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/CreatePassword/create_password_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
-import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';

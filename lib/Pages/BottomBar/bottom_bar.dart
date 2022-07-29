@@ -1,4 +1,5 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
+import 'package:dating_app/Pages/ChattingPage/chatting_user_list.dart';
 import 'package:dating_app/Pages/Home/home_page.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
 import 'package:dating_app/Pages/UpcomingEvents/upcoming_events.dart';
@@ -79,6 +80,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             IconButton(
               onPressed: () {
                 updateTabSelection(3, "Message");
+                Navigator.pushReplacementNamed(
+                    context, ChattingUserListPage.routeName);
               },
               icon: Icon(
                 size: 27.sp,

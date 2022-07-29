@@ -2,6 +2,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Dialog/SelectGender/select_gender.dart';
 import 'package:dating_app/Pages/CreateAccount/create_account_handler.dart';
+import 'package:dating_app/Pages/Login/login_page.dart';
 import 'package:dating_app/widget/Button/gender_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
@@ -271,7 +272,7 @@ class _CreateAccountState extends State<CreateAccount>
                         AppText(text: "Already have an account?"),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, "/");
+                            Navigator.pushNamed(context, LoginPage.routeName);
                           },
                           child: AppText(text: "Sign In Instead"),
                         ),

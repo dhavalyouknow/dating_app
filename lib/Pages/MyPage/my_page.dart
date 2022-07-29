@@ -35,7 +35,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(),
       appBar: AppBar(
         actions: [
           Padding(
@@ -195,18 +195,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                                                 return const ImageErrorWidget();
                                               },
                                               placeholder: (context, url) =>
-                                                  Container(
-                                                width: size.width,
-                                                height: size.height,
-                                                color: Colors.grey
-                                                    .withOpacity(0.1),
-                                                child: const Center(
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    color: AppStyles.textColor,
-                                                  ),
-                                                ),
-                                              ),
+                                                  const LoadingWidget(),
                                             ),
                                           ),
                                         ),

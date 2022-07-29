@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dating_app/Bloc/Event/event_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/BottomBar/bottom_bar.dart';
 import 'package:dating_app/Pages/UpcomingEvents/upcoming_events_detail.dart';
 import 'package:dating_app/Pages/UpcomingEvents/upcoming_events_handler.dart';
 import 'package:dating_app/widget/errorWidget.dart';
@@ -28,6 +29,7 @@ class _UpComingEventsState extends State<UpComingEvents>
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      bottomNavigationBar: const BottomNavBar(),
       appBar: AppBar(
         actions: [
           Padding(

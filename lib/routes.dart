@@ -1,3 +1,5 @@
+// ignore_for_file: equal_keys_in_map
+
 import 'package:dating_app/Dialog/Match/matching.dart';
 import 'package:dating_app/Dialog/UpgradeToPremium/upgrade_to_premium.dart';
 import 'package:dating_app/OtherLogin/otherlogin_createacccount.dart';
@@ -5,6 +7,8 @@ import 'package:dating_app/Pages/About/about.dart';
 import 'package:dating_app/Pages/AddYourDog/add_your_dog.dart';
 import 'package:dating_app/Pages/AddYourDog/add_your_dog_dialog.dart';
 import 'package:dating_app/Pages/BecomeAPremium/become_premium.dart';
+import 'package:dating_app/Pages/ChattingPage/chattig_page.dart';
+import 'package:dating_app/Pages/ChattingPage/chatting_user_list.dart';
 import 'package:dating_app/Pages/EditEmail/edit_email.dart';
 import 'package:dating_app/Pages/ChooseDogPicture/choose_dog_picture.dart';
 import 'package:dating_app/Pages/ChooseDogPicture/CropDogPicture/choose_dog_picture2.dart';
@@ -16,7 +20,6 @@ import 'package:dating_app/Pages/AccountRecovery/account_recovery.dart';
 import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile.dart';
 import 'package:dating_app/Pages/EditDogProfile/edit_dog_profile.dart';
 import 'package:dating_app/Pages/EditPersonProfile/edit_person_profile.dart';
-//import 'package:dating_app/Pages/EditPersonProfile/edit_person_profile.dart';
 import 'package:dating_app/Pages/ForgetPassword/reset_password.dart';
 import 'package:dating_app/Pages/Home/home_page.dart';
 import 'package:dating_app/Pages/Intro/first_intro_page.dart';
@@ -34,7 +37,7 @@ import 'package:dating_app/Pages/SwipeSettings/swipe_settings.dart';
 import 'package:dating_app/Pages/UpcomingEvents/upcoming_events.dart';
 import 'package:dating_app/Pages/UpcomingEvents/upcoming_events_detail.dart';
 import 'package:dating_app/Pages/UploadProfile/upload_profile.dart';
-import 'package:dating_app/widget/spalsh.dart';
+import 'package:dating_app/widget/splash.dart';
 import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> routes = {
@@ -71,11 +74,13 @@ Map<String, WidgetBuilder> routes = {
   DogPublicProfile.routeName: (ctx) => const DogPublicProfile(),
   PersonPublicProfile.routeName: (ctx) => const PersonPublicProfile(),
   OtherLoginCreateAccount.routeName: (ctx) => const OtherLoginCreateAccount(),
-  SpalshScreen.routeName: (ctx) => const SpalshScreen(),
+  SplashScreen.routeName: (ctx) => const SplashScreen(),
   LoginPage.routeName: (ctx) => const LoginPage(
         key: Key('/LoginPage'),
       ),
   OtherLoginCreateAccount.routeName: (ctx) => const OtherLoginCreateAccount(),
   UpComingEvents.routeName: (ctx) => const UpComingEvents(),
   UpComingEventsDetail.routeName: (ctx) => const UpComingEventsDetail(),
+  ChattingUserListPage.routeName: (ctx) => const ChattingUserListPage(),
+  ChattingPage.routeName: (ctx) => const ChattingPage(),
 };
