@@ -10,10 +10,12 @@ import 'package:dating_app/widget/editPersonAllField.dart';
 import 'package:dating_app/widget/editPersonFieldWidget.dart';
 import 'package:dating_app/widget/editWidget.dart';
 import 'package:dating_app/widget/errorWidget.dart';
+import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditPersonProfile extends StatefulWidget {
@@ -44,6 +46,14 @@ class _EditPersonProfileState extends State<EditPersonProfile>
               borderRadius: 10.r,
               height: size.height / 14,
               txt: "Save",
+              boxShadow: [
+                BoxShadow(
+                  color: AppStyles.shadowColor.withOpacity(0.2),
+                  spreadRadius: 10,
+                  blurRadius: 20,
+                  offset: const Offset(5, 5), // changes position of shadow
+                ),
+              ],
               onTap: () {
                 User user =
                     BlocProvider.of<UserBloc>(context).state.user as User;
@@ -157,16 +167,8 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                               errorWidget: (BuildContext context, url, data) {
                                 return const ImageErrorWidget();
                               },
-                              placeholder: (context, url) => Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height,
-                                color: Colors.grey.withOpacity(0.1),
-                                child: const Center(
-                                  child: CircularProgressIndicator(
-                                    color: AppStyles.textColor,
-                                  ),
-                                ),
-                              ),
+                              placeholder: (context, url) =>
+                                  const LoadingWidget(),
                             ),
                           );
                         },
@@ -212,7 +214,8 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                               ),
                               EditWidget(
                                 icon: Icon(
-                                  Icons.edit_calendar_outlined,
+                                  size: 20.sp,
+                                  FontAwesomeIcons.penToSquare,
                                   color: index == 2
                                       ? AppStyles.pinkColor
                                       : AppStyles.blackColor,

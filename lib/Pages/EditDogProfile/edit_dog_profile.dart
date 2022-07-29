@@ -10,6 +10,7 @@ import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:dating_app/widget/TextformfieldWidget/edit_formfield.dart';
 import 'package:dating_app/widget/editPersonFieldWidget.dart';
 import 'package:dating_app/widget/errorWidget.dart';
+import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:dating_app/widget/selected_inerests_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,6 +40,14 @@ class _EditDogProfileState extends State<EditDogProfile> with EditDogHandlers {
           borderRadius: 10.r,
           height: size.height / 14,
           txt: "Save",
+          boxShadow: [
+            BoxShadow(
+              color: AppStyles.shadowColor.withOpacity(0.2),
+              spreadRadius: 10,
+              blurRadius: 20,
+              offset: const Offset(5, 5), // changes position of shadow
+            ),
+          ],
           onTap: () {
             BlocProvider.of<DogBloc>(context).add(
               UpdateDogField(
@@ -131,16 +140,7 @@ class _EditDogProfileState extends State<EditDogProfile> with EditDogHandlers {
                       errorWidget: (BuildContext context, url, data) {
                         return const ImageErrorWidget();
                       },
-                      placeholder: (context, url) => Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height,
-                        color: Colors.grey.withOpacity(0.1),
-                        child: const Center(
-                          child: CircularProgressIndicator(
-                            color: AppStyles.textColor,
-                          ),
-                        ),
-                      ),
+                      placeholder: (context, url) => const LoadingWidget(),
                     );
                   },
                 ),
@@ -265,7 +265,7 @@ class _EditDogProfileState extends State<EditDogProfile> with EditDogHandlers {
                                   ? FontWeight.normal
                                   : FontWeight.w700,
                               height: size.height * 0.05,
-                              width: size.width / 4,
+                              width: size.width / 3,
                               border:
                                   isdogLookingFor.contains(e.name) ? 1.r : 2.r,
                               borderRadius: 25.r,

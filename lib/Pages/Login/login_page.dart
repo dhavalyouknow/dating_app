@@ -7,7 +7,6 @@ import 'package:dating_app/widget/Button/facebook_btn.dart';
 import 'package:dating_app/widget/Button/google_btn.dart';
 import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:dating_app/widget/localization/LanguageWidget.dart';
-import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
@@ -55,16 +54,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         image: AssetImage("assets/logo.png"),
                       ),
                     ),
-<<<<<<< Updated upstream
-                    TextFormFieldWidget(
-                      textEditingController: emailController,
-                      validator: emailValidator,
-                      borderRadius: 10,
-                      height: size.height / 14,
-                      txt: "Email",
-=======
                     FormFieldWidget(
->>>>>>> Stashed changes
                       icon: IconButton(
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},

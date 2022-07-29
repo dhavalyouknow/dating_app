@@ -1,20 +1,10 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
-import 'package:dating_app/Pages/AccountRecovery/account_recovery.dart';
-import 'package:dating_app/Pages/CreateAccount/create_account.dart';
 import 'package:dating_app/Pages/EditEmail/edit_email_handler.dart';
-import 'package:dating_app/Pages/Login/login_handler.dart';
-import 'package:dating_app/Pages/Login/select_login_method.dart';
-import 'package:dating_app/widget/Button/facebook_btn.dart';
-import 'package:dating_app/widget/Button/google_btn.dart';
 import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
-import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
-import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class EditUserEmail extends StatefulWidget {
   static const routeName = '/EditUserEmail';

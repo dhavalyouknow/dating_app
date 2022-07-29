@@ -8,6 +8,7 @@ mixin ResetPasswordHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController newPwdController = TextEditingController();
   final TextEditingController confirmPwdController = TextEditingController();
   bool isVerifySuccessfull = false;
+  bool signUpPwd = false;
   final formKey = GlobalKey<FormState>();
 
   String? currentValidator(dynamic password) {

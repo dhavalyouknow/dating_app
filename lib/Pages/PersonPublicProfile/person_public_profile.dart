@@ -6,6 +6,7 @@ import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile_dialo
 import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile_handler.dart';
 import 'package:dating_app/widget/allDataFieldWidget.dart';
 import 'package:dating_app/widget/errorWidget.dart';
+import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:dating_app/widget/showDogProfileWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -106,16 +107,8 @@ class _PersonPublicProfileState extends State<PersonPublicProfile>
                               errorWidget: (BuildContext context, url, data) {
                                 return const ImageErrorWidget();
                               },
-                              placeholder: (context, url) => Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height,
-                                color: Colors.grey.withOpacity(0.1),
-                                child: const Center(
-                                  child: CircularProgressIndicator(
-                                    color: AppStyles.textColor,
-                                  ),
-                                ),
-                              ),
+                              placeholder: (context, url) =>
+                                  const LoadingWidget(),
                             );
                           },
                         ),

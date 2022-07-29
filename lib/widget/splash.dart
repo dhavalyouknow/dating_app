@@ -7,16 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SpalshScreen extends StatefulWidget {
-  static const String routeName = "/Splash";
+class SplashScreen extends StatefulWidget {
+  static const String routeName = "/SplashScreen";
 
-  const SpalshScreen({Key? key}) : super(key: key);
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<SpalshScreen> createState() => _SpalshScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SpalshScreenState extends State<SpalshScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   String? token;
   User? user;
 

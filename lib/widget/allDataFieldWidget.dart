@@ -17,7 +17,7 @@ class AllDataFieldWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 8.h),
+          padding: EdgeInsets.only(top: 10.h),
           child: AppText(
             text: 'Relationship Status',
             size: 17.sp,
@@ -25,17 +25,14 @@ class AllDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top: 4.h),
-          child: AppText(
-            text: user!.relationshipStatus!,
-            size: 13.sp,
-            fontFamily:
-                GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
-          ),
+        AppText(
+          text: user!.relationshipStatus!,
+          size: 13.sp,
+          fontFamily:
+              GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
         ),
         Padding(
-          padding: EdgeInsets.only(top: 8.h),
+          padding: EdgeInsets.only(top: 10.h),
           child: AppText(
             text: 'I m Interested in',
             size: 17.sp,
@@ -43,17 +40,14 @@ class AllDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top: 4.h),
-          child: AppText(
-            text: user!.interestedIn!,
-            size: 13.sp,
-            fontFamily:
-                GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
-          ),
+        AppText(
+          text: user!.interestedIn!,
+          size: 13.sp,
+          fontFamily:
+              GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
         ),
         Padding(
-          padding: EdgeInsets.only(top: 8.h),
+          padding: EdgeInsets.only(top: 10.h),
           child: AppText(
             text: 'Have Kids?',
             size: 17.sp,
@@ -61,17 +55,14 @@ class AllDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top: 4.h),
-          child: AppText(
-            text: user!.haveKids!.toString(),
-            size: 13.sp,
-            fontFamily:
-                GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
-          ),
+        AppText(
+          text: user!.haveKids!.toString(),
+          size: 13.sp,
+          fontFamily:
+              GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
         ),
         Padding(
-          padding: EdgeInsets.only(top: 8.h),
+          padding: EdgeInsets.only(top: 10.h),
           child: AppText(
             text: 'Occupation',
             size: 17.sp,
@@ -79,17 +70,14 @@ class AllDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top: 4.h),
-          child: AppText(
-            text: user!.occupation!,
-            size: 13.sp,
-            fontFamily:
-                GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
-          ),
+        AppText(
+          text: user!.occupation!,
+          size: 13.sp,
+          fontFamily:
+              GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
         ),
         Padding(
-          padding: EdgeInsets.only(top: 8.h),
+          padding: EdgeInsets.only(top: 10.h),
           child: AppText(
             text: 'Eye Color',
             size: 17.sp,
@@ -97,17 +85,14 @@ class AllDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top: 4.h),
-          child: AppText(
-            text: user!.eyeColor!,
-            size: 13.sp,
-            fontFamily:
-                GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
-          ),
+        AppText(
+          text: user!.eyeColor!,
+          size: 13.sp,
+          fontFamily:
+              GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
         ),
         Padding(
-          padding: EdgeInsets.only(top: 8.h),
+          padding: EdgeInsets.only(top: 10.h),
           child: AppText(
             text: 'Length(cm)',
             size: 17.sp,
@@ -115,17 +100,14 @@ class AllDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top: 4.h),
-          child: AppText(
-            text: user!.length!.toString(),
-            size: 13.sp,
-            fontFamily:
-                GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
-          ),
+        AppText(
+          text: user!.length!.toString(),
+          size: 13.sp,
+          fontFamily:
+              GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
         ),
         Padding(
-          padding: EdgeInsets.only(top: 8.h),
+          padding: EdgeInsets.only(top: 10.h),
           child: AppText(
             text: 'Interests',
             size: 17.sp,
@@ -137,18 +119,13 @@ class AllDataFieldWidget extends StatelessWidget {
           children: [
             ...user!.interests!
                 .map(
-                  (e) => Padding(
-                    padding: EdgeInsets.only(top: 4.h),
-                    child: SelectedChipWidget(
-                      interestsName: e,
-                    ),
-                  ),
+                  (e) => SelectedChipWidget(interestsName: e),
                 )
                 .toList(),
           ],
         ),
         Padding(
-          padding: EdgeInsets.only(top: 8.h),
+          padding: EdgeInsets.only(top: 10.h),
           child: AppText(
             text: 'Favorite night',
             size: 17.sp,
@@ -160,18 +137,13 @@ class AllDataFieldWidget extends StatelessWidget {
           children: [
             ...user!.favouriteNight!
                 .map(
-                  (e) => Padding(
-                    padding: EdgeInsets.only(top: 4.h),
-                    child: SelectedChipWidget(
-                      interestsName: e,
-                    ),
-                  ),
+                  (e) => SelectedChipWidget(interestsName: e),
                 )
                 .toList(),
           ],
         ),
         Padding(
-          padding: EdgeInsets.only(top: 8.h),
+          padding: EdgeInsets.only(top: 10.h),
           child: AppText(
             text: 'Activities',
             size: 17.sp,
@@ -183,12 +155,7 @@ class AllDataFieldWidget extends StatelessWidget {
           children: [
             ...user!.activity!
                 .map(
-                  (e) => Padding(
-                    padding: EdgeInsets.only(top: 4.h),
-                    child: SelectedChipWidget(
-                      interestsName: e,
-                    ),
-                  ),
+                  (e) => SelectedChipWidget(interestsName: e),
                 )
                 .toList(),
           ],

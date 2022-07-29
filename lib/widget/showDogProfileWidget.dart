@@ -4,6 +4,7 @@ import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Model/dog.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:dating_app/widget/errorWidget.dart';
+import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,6 +36,7 @@ class ShowDogProfileWidget extends StatelessWidget {
                       ? e.squareProfileImage!.first.url.toString()
                       : "",
                   fit: BoxFit.cover,
+                  placeholder: (context, url) => const LoadingWidget(),
                   errorWidget: (BuildContext context, url, data) {
                     return const ImageErrorWidget();
                   },
@@ -85,6 +87,7 @@ class ShowDogProfileWidget extends StatelessWidget {
                           errorWidget: (BuildContext context, url, data) {
                             return const ImageErrorWidget();
                           },
+                          placeholder: (context, url) => const LoadingWidget(),
                           height: 18.h,
                           width: 18.h,
                         ),

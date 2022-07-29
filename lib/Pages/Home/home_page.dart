@@ -4,8 +4,11 @@ import 'package:dating_app/Bloc/Swipe/swipe_state.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/BottomBar/bottom_bar.dart';
+import 'package:dating_app/Pages/ChattingPage/chatting_user_list.dart';
 import 'package:dating_app/Pages/Home/home_page_handler.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
+import 'package:dating_app/Pages/UpcomingEvents/upcoming_events.dart';
+import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,6 +30,8 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
     final size = MediaQuery.of(context).size;
     final pages = [
       const MyPage(),
+      const UpComingEvents(),
+      const ChattingUserListPage(),
     ];
 
     return Scaffold(
@@ -143,6 +148,8 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                                                   .toString(),
                                               width: size.width * 0.9,
                                               fit: BoxFit.fitHeight,
+                                              placeholder: (context, url) =>
+                                                  const LoadingWidget(),
                                             ),
                                           );
                                         },

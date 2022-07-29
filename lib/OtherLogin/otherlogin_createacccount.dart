@@ -1,4 +1,3 @@
-import 'package:csc_picker/csc_picker.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
@@ -6,7 +5,7 @@ import 'package:dating_app/Dialog/SelectGender/select_gender.dart';
 import 'package:dating_app/OtherLogin/otherlogin_handler.dart';
 import 'package:dating_app/widget/Button/gender_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
-import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
+import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:dating_app/widget/locationPicker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,68 +84,53 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                         text: "Update account",
                       ),
                     ),
-                    TextFormFieldWidget(
-                      textEditingController: nameController,
-                      validator: nameValidator,
-                      borderRadius: 10,
+                    FormFieldWidget(
                       icon: IconButton(
-                        icon: Icon(
-                          Icons.person_outline,
-                          color: nameController.text.isEmpty
-                              ? AppStyles.greyColor
-                              : AppStyles.pinkColor,
-                        ),
+                        icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      height: size.height / 14,
-                      txt: "Name",
-                      obscureText: false,
-                      border: nameController.text.isEmpty ? 1 : 2,
+                      hintText: 'Name',
+                      textEditingController: nameController,
+                      validator: nameValidator,
+                      obSecure: false,
+                      border: nameController.text.isEmpty ? 1.r : 2.r,
                       borderColor: nameController.text.isEmpty
                           ? AppStyles.greyColor
                           : AppStyles.pinkColor,
+                      borderRadius: 10.r,
+                      backgroundColor: AppStyles.trasnparentColor,
                     ),
-                    TextFormFieldWidget(
-                      textEditingController: surnameController,
-                      validator: surnameValidator,
-                      borderRadius: 10,
+                    FormFieldWidget(
                       icon: IconButton(
-                        icon: Icon(
-                          Icons.person_outline,
-                          color: surnameController.text.isEmpty
-                              ? AppStyles.greyColor
-                              : AppStyles.pinkColor,
-                        ),
+                        icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      height: size.height / 14,
-                      txt: "Surname",
-                      obscureText: false,
-                      border: surnameController.text.isEmpty ? 1 : 2,
+                      hintText: 'Surname',
+                      textEditingController: surnameController,
+                      validator: surnameValidator,
+                      obSecure: false,
+                      border: surnameController.text.isEmpty ? 1.r : 2.r,
                       borderColor: surnameController.text.isEmpty
                           ? AppStyles.greyColor
                           : AppStyles.pinkColor,
+                      borderRadius: 10.r,
+                      backgroundColor: AppStyles.trasnparentColor,
                     ),
-                    TextFormFieldWidget(
-                      textEditingController: emailController,
-                      validator: emailValidator,
-                      borderRadius: 10,
+                    FormFieldWidget(
                       icon: IconButton(
-                        icon: Icon(
-                          Icons.email_outlined,
-                          color: emailController.text.isEmpty
-                              ? AppStyles.greyColor
-                              : AppStyles.pinkColor,
-                        ),
+                        icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      height: size.height / 14,
-                      txt: "Email",
-                      obscureText: false,
-                      border: emailController.text.isEmpty ? 1 : 2,
+                      hintText: 'Email',
+                      textEditingController: emailController,
+                      validator: emailValidator,
+                      obSecure: false,
+                      border: emailController.text.isEmpty ? 1.r : 2.r,
                       borderColor: emailController.text.isEmpty
                           ? AppStyles.greyColor
                           : AppStyles.pinkColor,
+                      borderRadius: 10.r,
+                      backgroundColor: AppStyles.trasnparentColor,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

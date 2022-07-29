@@ -3,7 +3,7 @@ import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/AccountRecovery/account_recovery_handler.dart';
 import 'package:dating_app/Pages/CreateAccount/create_account.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
-import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
+import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -70,19 +70,21 @@ class _AccountRecoveryState extends State<AccountRecovery>
                   size: 15.sp,
                 ),
                 SizedBox(height: 15.h),
-                TextFormFieldWidget(
-                  textEditingController: emailController,
-                  validator: emailValidator,
-                  borderRadius: 10.r,
-                  height: size.height / 14,
-                  txt: "Email",
+                FormFieldWidget(
                   icon: IconButton(
                     icon: const Icon(Icons.person_outline),
                     onPressed: () {},
                   ),
-                  obscureText: false,
+                  hintText: 'Email',
+                  textEditingController: emailController,
+                  validator: emailValidator,
+                  obSecure: false,
                   border: emailController.text.isEmpty ? 1.r : 2.r,
-                  borderColor: AppStyles.greyColor,
+                  borderColor: emailController.text.isEmpty
+                      ? AppStyles.greyColor
+                      : AppStyles.pinkColor,
+                  borderRadius: 10.r,
+                  backgroundColor: AppStyles.trasnparentColor,
                 ),
                 SizedBox(height: 20.h),
                 GradientBtn(

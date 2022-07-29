@@ -2,7 +2,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/ForgetPassword/reset_password_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
-import 'package:dating_app/widget/TextformfieldWidget/textformfield_widget.dart';
+import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -76,47 +76,110 @@ class _ResetPasswordState extends State<ResetPassword>
                               "Your new password must be different\nfrom previous used passwords.",
                         ),
                       ),
-                      TextFormFieldWidget(
-                        borderRadius: 10,
+                      FormFieldWidget(
                         backIcon: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(CupertinoIcons.eye_slash),
+                          onPressed: () {
+                            setState(() {
+                              signUpPwd = !signUpPwd;
+                            });
+                          },
+                          icon: signUpPwd
+                              ? const Icon(
+                                  Icons.lock_outlined,
+                                  color: AppStyles.textColor,
+                                )
+                              : const Icon(
+                                  Icons.lock_open,
+                                  color: AppStyles.textColor,
+                                ),
                         ),
-                        height: size.height / 16,
-                        txt: "Current Password",
-                        obscureText: true,
-                        border: 1,
-                        borderColor: AppStyles.greyColor,
+                        backgroundColor: AppStyles.whiteColor,
+                        hintText: 'Current Password',
                         textEditingController: currentPwdController,
                         validator: currentValidator,
+                        obSecure: signUpPwd,
+                        border: currentPwdController.text.isEmpty ? 1.w : 2.w,
+                        borderColor: AppStyles.textColor,
+                        borderRadius: 10.r,
                       ),
+                      // TextFormFieldWidget(
+                      //   borderRadius: 10,
+                      //   backIcon: IconButton(
+                      //     onPressed: () {},
+                      //     icon: const Icon(CupertinoIcons.eye_slash),
+                      //   ),
+                      //   height: size.height / 16,
+                      //   txt: "Current Password",
+                      //   obscureText: true,
+                      //   border: 1,
+                      //   borderColor: AppStyles.greyColor,
+                      //   textEditingController: currentPwdController,
+                      //   validator: currentValidator,
+                      // ),
                       if (isVerifySuccessfull)
                         Column(
                           children: [
-                            TextFormFieldWidget(
-                              borderRadius: 10,
+                            FormFieldWidget(
                               backIcon: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(CupertinoIcons.eye_slash),
+                                onPressed: () {
+                                  setState(() {
+                                    signUpPwd = !signUpPwd;
+                                  });
+                                },
+                                icon: signUpPwd
+                                    ? const Icon(
+                                        Icons.lock_outlined,
+                                        color: AppStyles.textColor,
+                                      )
+                                    : const Icon(
+                                        Icons.lock_open,
+                                        color: AppStyles.textColor,
+                                      ),
                               ),
-                              height: size.height / 16,
-                              txt: "New Password",
-                              obscureText: true,
-                              border: 1,
-                              borderColor: AppStyles.greyColor,
+                              backgroundColor: AppStyles.whiteColor,
+                              hintText: 'Password',
                               textEditingController: newPwdController,
                               validator: currentValidator,
+                              obSecure: signUpPwd,
+                              border: newPwdController.text.isEmpty ? 1.w : 2.w,
+                              borderColor: AppStyles.textColor,
+                              borderRadius: 10.r,
                             ),
-                            TextFormFieldWidget(
-                              borderRadius: 10,
-                              height: size.height / 16,
-                              txt: "Confirm Password",
-                              obscureText: true,
-                              border: 1,
-                              borderColor: AppStyles.greyColor,
+                            // TextFormFieldWidget(
+                            //   borderRadius: 10,
+                            //   backIcon: IconButton(
+                            //     onPressed: () {},
+                            //     icon: const Icon(CupertinoIcons.eye_slash),
+                            //   ),
+                            //   height: size.height / 16,
+                            //   txt: "New Password",
+                            //   obscureText: true,
+                            //   border: 1,
+                            //   borderColor: AppStyles.greyColor,
+                            //   textEditingController: newPwdController,
+                            //   validator: currentValidator,
+                            // ),
+                            FormFieldWidget(
+                              backgroundColor: AppStyles.whiteColor,
+                              hintText: 'Confirm Password',
                               textEditingController: confirmPwdController,
                               validator: currentValidator,
+                              obSecure: signUpPwd,
+                              border:
+                                  confirmPwdController.text.isEmpty ? 1.w : 2.w,
+                              borderColor: AppStyles.textColor,
+                              borderRadius: 10.r,
                             ),
+                            // TextFormFieldWidget(
+                            //   borderRadius: 10,
+                            //   height: size.height / 16,
+                            //   txt: "Confirm Password",
+                            //   obscureText: true,
+                            //   border: 1,
+                            //   borderColor: AppStyles.greyColor,
+                            //   textEditingController: confirmPwdController,
+                            //   validator: currentValidator,
+                            // ),
                           ],
                         ),
                       SizedBox(height: 20.h),

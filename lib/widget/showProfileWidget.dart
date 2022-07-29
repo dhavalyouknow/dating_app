@@ -3,6 +3,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:dating_app/widget/errorWidget.dart';
+import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,6 +38,7 @@ class ShowProfileWidget extends StatelessWidget {
                 errorWidget: (BuildContext context, url, data) {
                   return const ImageErrorWidget();
                 },
+                placeholder: (context, url) => const LoadingWidget(),
               ),
             ),
           ),
@@ -99,6 +101,8 @@ class ShowProfileWidget extends StatelessWidget {
                                             (BuildContext context, url, data) {
                                           return const ImageErrorWidget();
                                         },
+                                        placeholder: (context, url) =>
+                                            const LoadingWidget(),
                                         height: 20.h,
                                         width: 20.h,
                                         fit: BoxFit.cover,

@@ -6,6 +6,7 @@ import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile_dialog.dart
 import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile_handler.dart';
 import 'package:dating_app/widget/allDogDataField.dart';
 import 'package:dating_app/widget/errorWidget.dart';
+import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:dating_app/widget/showProfileWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -89,16 +90,8 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                               errorWidget: (BuildContext context, url, data) {
                                 return const ImageErrorWidget();
                               },
-                              placeholder: (context, url) => Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height,
-                                color: Colors.grey.withOpacity(0.1),
-                                child: const Center(
-                                  child: CircularProgressIndicator(
-                                    color: AppStyles.textColor,
-                                  ),
-                                ),
-                              ),
+                              placeholder: (context, url) =>
+                                  const LoadingWidget(),
                             );
                           },
                         ),
@@ -150,15 +143,16 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                             ),
                           ],
                         ),
-                        SizedBox(height: 10.h),
-                        AppText(
-                          size: 18.sp,
-                          text: "About",
-                          fontFamily:
-                              GoogleFonts.raleway(fontWeight: FontWeight.w700)
-                                  .fontFamily,
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.h),
+                          child: AppText(
+                            size: 18.sp,
+                            text: "About",
+                            fontFamily:
+                                GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                                    .fontFamily,
+                          ),
                         ),
-                        SizedBox(height: 5.h),
                         AppText(
                           size: 13.sp,
                           text: userState.user!.aboutSelf.toString(),
@@ -166,18 +160,22 @@ class _DogPublicProfileState extends State<DogPublicProfile>
                               GoogleFonts.raleway(fontWeight: FontWeight.w500)
                                   .fontFamily,
                         ),
-                        SizedBox(height: 20.h),
-                        AppText(
-                          size: 18.sp,
-                          text: "${dog!.dogName}'s Owner",
-                          fontFamily:
-                              GoogleFonts.raleway(fontWeight: FontWeight.w700)
-                                  .fontFamily,
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.h),
+                          child: AppText(
+                            size: 18.sp,
+                            text: "${dog!.dogName}'s Owner",
+                            fontFamily:
+                                GoogleFonts.raleway(fontWeight: FontWeight.w700)
+                                    .fontFamily,
+                          ),
                         ),
-                        SizedBox(height: 13.h),
-                        ShowProfileWidget(
-                          onTap: () {},
-                          user: userState.user,
+                        Padding(
+                          padding: EdgeInsets.only(top: 5.h),
+                          child: ShowProfileWidget(
+                            onTap: () {},
+                            user: userState.user,
+                          ),
                         ),
                         AllDogDataFieldWidget(
                           dog: dog,

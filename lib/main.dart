@@ -6,13 +6,11 @@ import 'package:dating_app/Bloc/ForgotPassword/forgot_password_bloc.dart';
 import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
-import 'package:dating_app/Pages/Login/login_page.dart';
-import 'package:dating_app/Pages/MyPage/my_page.dart';
 import 'package:dating_app/firebase_options.dart';
 import 'package:dating_app/l10n/l10n.dart';
 import 'package:dating_app/language_provider/lannguagePro.dart';
 import 'package:dating_app/routes.dart';
-import 'package:dating_app/widget/spalsh.dart';
+import 'package:dating_app/widget/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -101,7 +99,7 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 title: "Dating App",
                 routes: routes,
-                initialRoute: SpalshScreen.routeName,
+                initialRoute: SplashScreen.routeName,
               );
             },
           );
