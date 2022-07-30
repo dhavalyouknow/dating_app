@@ -6,6 +6,7 @@ import 'package:dating_app/widget/TextformfieldWidget/descriptionWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SetupProfile3 extends StatefulWidget {
   static const routeName = "/SetupProfile3";
@@ -26,7 +27,7 @@ class _SetupProfile3State extends State<SetupProfile3>
         child: GradientBtn(
           borderRadius: 10.r,
           height: size.height / 14,
-          txt: "Next",
+          txt: AppLocalizations.of(context)!.save,
           onTap: () {
             onSubmitProfile3();
           },
@@ -101,7 +102,7 @@ class _SetupProfile3State extends State<SetupProfile3>
                 AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "Tell us a bit about yourself",
+                  text: AppLocalizations.of(context)!.tellusabitaboutyourself,
                 ),
                 SizedBox(height: 10.h),
                 DescriptionWidget(

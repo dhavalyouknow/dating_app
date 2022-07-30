@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChooseDogPicture extends StatefulWidget {
   static const routeName = "/ChooseDogPicture";
@@ -27,9 +28,17 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 30),
         child: GradientBtn(
+          boxShadow: [
+            BoxShadow(
+              color: AppStyles.shadowColor.withOpacity(0.2),
+              spreadRadius: 10,
+              blurRadius: 20,
+              offset: const Offset(5, 5), // changes position of shadow
+            ),
+          ],
           borderRadius: 10.r,
           height: size.height / 14,
-          txt: "Next",
+          txt: AppLocalizations.of(context)!.next,
           onTap: () {
             if (imageFile != null) {
               Navigator.pushReplacementNamed(context, ('/MyPage'));
@@ -66,7 +75,8 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
                           fontFamily:
                               GoogleFonts.raleway(fontWeight: FontWeight.bold)
                                   .fontFamily,
-                          text: "Choose Your Dog Picture",
+                          text: AppLocalizations.of(context)!
+                              .chooseYourDogPicture,
                         ),
                       ),
                       SizedBox(height: 20.h),
@@ -146,7 +156,8 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
                                 const Icon(Icons.camera_alt_outlined),
                                 SizedBox(width: 10.w),
                                 AppText(
-                                  text: "Upload picture",
+                                  text: AppLocalizations.of(context)!
+                                      .uploadPicture,
                                   fontFamily: GoogleFonts.raleway(
                                           fontWeight: FontWeight.bold)
                                       .fontFamily,

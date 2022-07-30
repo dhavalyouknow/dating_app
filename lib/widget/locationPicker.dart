@@ -3,6 +3,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LocationPicker extends StatefulWidget {
   final Function(String) countryCallback;
@@ -105,10 +106,11 @@ class _LocationPickerState extends State<LocationPicker> {
             countrySearchPlaceholder: "Country",
             stateSearchPlaceholder: "State",
             citySearchPlaceholder: "City",
-            countryDropdownLabel:
-                countryValue.isNotEmpty ? countryValue : "Select Country",
-            stateDropdownLabel: "Select State",
-            cityDropdownLabel: "Select City",
+            countryDropdownLabel: countryValue.isNotEmpty
+                ? countryValue
+                : AppLocalizations.of(context)!.selectCountry,
+            stateDropdownLabel: AppLocalizations.of(context)!.selectState,
+            cityDropdownLabel: AppLocalizations.of(context)!.selectCity,
             selectedItemStyle: TextStyle(
               fontFamily: GoogleFonts.raleway().fontFamily,
               color: AppStyles.greyColor,

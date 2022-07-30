@@ -4,8 +4,8 @@ import 'package:dating_app/Pages/ChoosePartner/choose_partner_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChoosePartner extends StatefulWidget {
   static const routeName = "/ChoosePartner";
@@ -73,7 +73,7 @@ class _ChoosePartnerState extends State<ChoosePartner>
                 size: 21.sp,
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
-                text: "Create account",
+                text: AppLocalizations.of(context)!.createAccount,
               ),
               SizedBox(height: 20.h),
               AppText(
@@ -152,7 +152,7 @@ class _ChoosePartnerState extends State<ChoosePartner>
               GradientBtn(
                 borderRadius: 10.r,
                 height: size.height / 14,
-                txt: "Next",
+                txt: AppLocalizations.of(context)!.next,
                 onTap: () {
                   onSearchingFor();
                   // Navigator.pushNamed(context, "/UploadProfile");
@@ -161,10 +161,11 @@ class _ChoosePartnerState extends State<ChoosePartner>
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AppText(text: "Already have an account?"),
+                  AppText(
+                      text: AppLocalizations.of(context)!.alreadyHaveAccount),
                   TextButton(
                     onPressed: () {},
-                    child: AppText(text: "Sign In Instead"),
+                    child: AppText(text: AppLocalizations.of(context)!.signIn),
                   ),
                 ],
               )

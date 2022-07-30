@@ -2,6 +2,7 @@
  "welcome":"Welcome",
  "forgotPassword":"Forgot Password",
  "login":"Login",
+ "signIn":"Sign In",
  "account":"Don't have an account?",
  "signUp":"Sign Up",
  "myProfile":"My Profile",
@@ -13,7 +14,6 @@
  "language":"Language",
  "about":"About",
  "logOut":"Log Out",
- "createAccount":"Create account",
  "name":"Name",
  "surname":"Surname",
  "email":"Email",
@@ -62,5 +62,13 @@
  "next":"Next",
  "myPage":"My Page",
  "myProfile":"My Profile",
- "myDogs":"My Dogs"
+ "myDogs":"My Dogs",
+ "signInWith":"Sign In With",
+ "signUpWith":"Sign Up With",
+ "signUpManually":"Sign Up Manually",
+ "alreadyHaveAccount":"Already have an account?",
+  "createAccount":"Create account",
+  "upComingEvents":"Upcoming Events",
+  "mingle":"Mingle"
+
 }

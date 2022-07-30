@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         onPressed: () {},
                       ),
                       backgroundColor: AppStyles.whiteColor,
-                      hintText: 'Email',
+                      hintText: AppLocalizations.of(context)!.email,
                       textEditingController: emailController,
                       validator: emailValidator,
                       obSecure: false,
@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                               ),
                       ),
                       backgroundColor: AppStyles.whiteColor,
-                      hintText: 'Password',
+                      hintText: AppLocalizations.of(context)!.password,
                       textEditingController: passwordController,
                       validator: passwordValidator,
                       obSecure: signUpPwd,
@@ -122,12 +122,14 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                     GoogleBtnWidget(
                       color: AppStyles.whiteColor,
                       onPressed: signInWithGoogle,
-                      title: 'Sign in with Google',
+                      title:
+                          '${AppLocalizations.of(context)!.signInWith} Google',
                       image: Image.asset('assets/icons/google.png'),
                     ),
                     FaceBookBtnWidget(
                       onPressed: signInWithFacebook,
-                      title: 'Sign in with Facebook',
+                      title:
+                          '${AppLocalizations.of(context)!.signInWith} Facebook',
                       image: Image.asset(
                         'assets/icons/facebook.png',
                         height: 18.h,
@@ -135,7 +137,8 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                     ),
                     AppleBtnWidget(
                       onPressed: signInWithApple,
-                      title: "Sign In With Apple",
+                      title:
+                          "${AppLocalizations.of(context)!.signInWith} Apple",
                       image: Image.asset(
                         "assets/icons/AppleIcon.png",
                         height: 23.h,

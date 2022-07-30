@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FirstIntroPage extends StatefulWidget {
   static const routeName = "/FirstIntroPage";
@@ -88,7 +89,7 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                     textAlign: TextAlign.center,
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                         .fontFamily,
-                    text: "Welcome to the dogtrick!",
+                    text: AppLocalizations.of(context)!.welcometothedogtrick,
                     size: 20.sp,
                   ),
                   SizedBox(height: 10.h),
@@ -103,7 +104,7 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                   GradientBtn(
                     borderRadius: 10.r,
                     height: size.height / 14,
-                    txt: "Next",
+                    txt: AppLocalizations.of(context)!.next,
                     onTap: () {
                       Navigator.pushNamed(context, "/SecondIntroPage");
                     },

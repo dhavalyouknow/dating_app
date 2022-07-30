@@ -1,5 +1,3 @@
-import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
-import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/ImageCropper/image_cropper_handler.dart';
@@ -7,9 +5,9 @@ import 'package:dating_app/Pages/UploadProfile/upload_profile_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UploadProfile extends StatefulWidget {
   static const routeName = "/UploadProfile";
@@ -66,7 +64,7 @@ class _UploadProfileState extends State<UploadProfile>
                     size: 21.sp,
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                         .fontFamily,
-                    text: "Upload Profile Picture",
+                    text: AppLocalizations.of(context)!.uploadProfilePicture,
                   ),
                   SizedBox(height: 20.h),
                   imageFile == null ||
@@ -143,7 +141,7 @@ class _UploadProfileState extends State<UploadProfile>
                             const Icon(Icons.camera_alt_outlined),
                             SizedBox(width: 10.w),
                             AppText(
-                              text: "Upload picture",
+                              text: AppLocalizations.of(context)!.uploadPicture,
                               fontFamily: GoogleFonts.raleway(
                                       fontWeight: FontWeight.bold)
                                   .fontFamily,
@@ -211,13 +209,13 @@ class _UploadProfileState extends State<UploadProfile>
                       ? GradientBtn(
                           borderRadius: 10.r,
                           height: size.height / 14,
-                          txt: "Next",
+                          txt: AppLocalizations.of(context)!.next,
                           onTap: () {},
                         )
                       : GradientBtn(
                           borderRadius: 10.r,
                           height: size.height / 14,
-                          txt: "Save",
+                          txt: AppLocalizations.of(context)!.save,
                           onTap: () {
                             if (imageFile != null) {
                               onProfileSave(isVerify: user!.isEmailVerified!);
@@ -227,10 +225,13 @@ class _UploadProfileState extends State<UploadProfile>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AppText(text: "Already have an account?"),
+                      AppText(
+                          text:
+                              AppLocalizations.of(context)!.alreadyHaveAccount),
                       TextButton(
                         onPressed: () {},
-                        child: AppText(text: "Sign In Instead"),
+                        child:
+                            AppText(text: AppLocalizations.of(context)!.signIn),
                       ),
                     ],
                   )

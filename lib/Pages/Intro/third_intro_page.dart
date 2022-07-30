@@ -2,13 +2,13 @@
 
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
-import 'package:dating_app/Pages/AddYourDog/add_your_dog_dialog.dart';
 import 'package:dating_app/Pages/SetupProfile/setup_profile-dialog.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ThirdIntroPage extends StatefulWidget {
   static const routeName = "/ThirdIntroPage";
@@ -146,7 +146,7 @@ class _ThirdIntroPageState extends State<ThirdIntroPage> {
                   GradientBtn(
                     borderRadius: 10.r,
                     height: size.height / 14,
-                    txt: "Get Started",
+                    txt: AppLocalizations.of(context)!.getStarted,
                     onTap: () {
                       showDialog(
                         context: context,

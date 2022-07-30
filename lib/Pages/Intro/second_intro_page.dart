@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SecondIntroPage extends StatefulWidget {
   static const routeName = "/SecondIntroPage";
@@ -98,7 +99,7 @@ class _SecondIntroPageState extends State<SecondIntroPage> {
                   GradientBtn(
                     borderRadius: 10.r,
                     height: size.height / 14,
-                    txt: "Next",
+                    txt: AppLocalizations.of(context)!.next,
                     onTap: () {
                       Navigator.pushNamed(context, "/ThirdIntroPage");
                     },

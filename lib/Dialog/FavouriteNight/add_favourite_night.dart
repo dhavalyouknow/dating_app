@@ -6,8 +6,7 @@ import 'package:dating_app/widget/interests_chip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../widget/selected_inerests_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddNightModule extends StatefulWidget {
   final Function(List<dynamic>) callback;
@@ -59,7 +58,7 @@ class _AddNightModuleState extends State<AddNightModule>
                 ),
                 AppText(
                   size: 18.sp,
-                  text: "Favourite Night",
+                  text: AppLocalizations.of(context)!.favouriteNight,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
                 ),
@@ -110,7 +109,7 @@ class _AddNightModuleState extends State<AddNightModule>
             GradientBtn(
               borderRadius: 10.r,
               height: size.height / 14,
-              txt: "Save",
+              txt: AppLocalizations.of(context)!.save,
               onTap: () {
                 setState(() {
                   widget.callback(selectedNights);

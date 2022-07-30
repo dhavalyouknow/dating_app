@@ -4,11 +4,11 @@ import 'package:dating_app/Pages/AddYourDog/add_your_dog_handler.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:dating_app/widget/Button/gender_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
-import 'package:dating_app/widget/TextformfieldWidget/dog_name_textformfield.dart';
 import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddYourDog extends StatefulWidget {
   static const routeName = "/AddYourDog";
@@ -28,7 +28,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
         child: GradientBtn(
           borderRadius: 10.r,
           height: size.height / 14,
-          txt: "Next",
+          txt: AppLocalizations.of(context)!.next,
           onTap: () {
             onSubmitDog();
           },
@@ -80,7 +80,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                     size: 21.sp,
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                         .fontFamily,
-                    text: "Add Your Dog",
+                    text: AppLocalizations.of(context)!.addYourDog,
                   ),
                 ),
                 SizedBox(
@@ -94,7 +94,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                     ),
                     onPressed: () {},
                   ),
-                  hintText: 'Dog Name',
+                  hintText: AppLocalizations.of(context)!.dogName,
                   textEditingController: dogNameController,
                   validator: dogNameValidator,
                   obSecure: false,
@@ -110,7 +110,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                   size: 21.sp,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                       .fontFamily,
-                  text: "Gender",
+                  text: AppLocalizations.of(context)!.gender,
                 ),
                 SizedBox(height: 15.h),
                 Row(
@@ -160,7 +160,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                   size: 21.sp,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                       .fontFamily,
-                  text: "Size",
+                  text: AppLocalizations.of(context)!.size,
                 ),
                 SizedBox(height: 15.h),
                 Wrap(
@@ -200,7 +200,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                   size: 21.sp,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                       .fontFamily,
-                  text: "My dog is looking for",
+                  text: AppLocalizations.of(context)!.mydogislookingfor,
                 ),
                 SizedBox(height: 15.h),
                 Wrap(

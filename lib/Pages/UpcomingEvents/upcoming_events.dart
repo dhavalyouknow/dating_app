@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UpComingEvents extends StatefulWidget {
   static const routeName = "/UpComingEvents";
@@ -49,7 +50,7 @@ class _UpComingEventsState extends State<UpComingEvents>
         centerTitle: true,
         title: AppText(
           size: 18.sp,
-          text: 'Mingle',
+          text: AppLocalizations.of(context)!.mingle,
           fontFamily:
               GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
         ),
@@ -79,7 +80,7 @@ class _UpComingEventsState extends State<UpComingEvents>
                           padding: EdgeInsets.symmetric(vertical: 10.h),
                           child: AppText(
                             size: 18.sp,
-                            text: "Upcoming Events",
+                            text: AppLocalizations.of(context)!.upComingEvents,
                             fontFamily:
                                 GoogleFonts.raleway(fontWeight: FontWeight.bold)
                                     .fontFamily,

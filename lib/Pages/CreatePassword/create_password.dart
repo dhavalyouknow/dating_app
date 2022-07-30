@@ -6,6 +6,7 @@ import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreatePassword extends StatefulWidget {
   static const routeName = "/CreatePassword";
@@ -61,7 +62,7 @@ class _CreatePasswordState extends State<CreatePassword>
                   size: 21.sp,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                       .fontFamily,
-                  text: "Create Password",
+                  text: AppLocalizations.of(context)!.createPassword,
                 ),
                 SizedBox(height: 20.h),
                 AppText(
@@ -112,7 +113,7 @@ class _CreatePasswordState extends State<CreatePassword>
                   borderRadius: 10.r,
                   fontSize: 15.sp,
                   height: size.height / 14,
-                  txt: "Done",
+                  txt: AppLocalizations.of(context)!.done,
                   onTap: onSignUp,
                 ),
                 SizedBox(height: 20.h),

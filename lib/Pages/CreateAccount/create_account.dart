@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreateAccount extends StatefulWidget {
   static const routeName = "/CreateAccount";
@@ -73,7 +74,7 @@ class _CreateAccountState extends State<CreateAccount>
                         fontFamily:
                             GoogleFonts.raleway(fontWeight: FontWeight.bold)
                                 .fontFamily,
-                        text: "Create account",
+                        text: AppLocalizations.of(context)!.createAccount,
                       ),
                     ),
                     FormFieldWidget(
@@ -81,7 +82,7 @@ class _CreateAccountState extends State<CreateAccount>
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      hintText: 'Name',
+                      hintText: AppLocalizations.of(context)!.name,
                       textEditingController: nameController,
                       validator: nameValidator,
                       obSecure: false,
@@ -97,7 +98,7 @@ class _CreateAccountState extends State<CreateAccount>
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      hintText: 'Surname',
+                      hintText: AppLocalizations.of(context)!.surname,
                       textEditingController: surnameController,
                       validator: surnameValidator,
                       obSecure: false,
@@ -113,7 +114,7 @@ class _CreateAccountState extends State<CreateAccount>
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      hintText: 'Email',
+                      hintText: AppLocalizations.of(context)!.email,
                       textEditingController: emailController,
                       validator: emailValidator,
                       obSecure: false,
@@ -142,7 +143,7 @@ class _CreateAccountState extends State<CreateAccount>
                                       color: AppStyles.pinkColor,
                                     ),
                               txt: selectedGender.isEmpty
-                                  ? "Select Gender"
+                                  ? AppLocalizations.of(context)!.selectGender
                                   : selectedGender,
                               border: selectedGender.isEmpty ? 1.r : 1.5.r,
                               onTap: () {
@@ -206,7 +207,8 @@ class _CreateAccountState extends State<CreateAccount>
                                         ? DateFormat('MM-dd-yyyy').format(
                                             DateTime.parse('$selectedDate'),
                                           )
-                                        : "Date Of Birth",
+                                        : AppLocalizations.of(context)!
+                                            .dateOfBirth,
                                     style: TextStyle(
                                       fontFamily: GoogleFonts.raleway(
                                         fontSize: 15.sp,
@@ -243,7 +245,7 @@ class _CreateAccountState extends State<CreateAccount>
                     GradientBtn(
                       borderRadius: 10.r,
                       height: size.height / 14,
-                      txt: "Next",
+                      txt: AppLocalizations.of(context)!.next,
                       onTap: onSubmit,
                     ),
                     // GoogleBtnWidget(
@@ -269,12 +271,15 @@ class _CreateAccountState extends State<CreateAccount>
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AppText(text: "Already have an account?"),
+                        AppText(
+                            text: AppLocalizations.of(context)!
+                                .alreadyHaveAccount),
                         TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, LoginPage.routeName);
                           },
-                          child: AppText(text: "Sign In Instead"),
+                          child: AppText(
+                              text: AppLocalizations.of(context)!.signIn),
                         ),
                       ],
                     )

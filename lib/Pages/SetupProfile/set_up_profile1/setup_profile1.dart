@@ -7,10 +7,11 @@ import 'package:dating_app/Dialog/occuption/occuptionWidget.dart';
 import 'package:dating_app/Pages/SetupProfile/set_up_profile1/setup_profile1_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
+import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:numberpicker/numberpicker.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SetupProfile1 extends StatefulWidget {
   static const routeName = "/SetupProfile1";
@@ -32,7 +33,7 @@ class _SetupProfile1State extends State<SetupProfile1>
         child: GradientBtn(
           borderRadius: 10.r,
           height: size.height / 14,
-          txt: "Next",
+          txt: AppLocalizations.of(context)!.next,
           onTap: () {
             onSubmitProfile1();
           },
@@ -107,7 +108,7 @@ class _SetupProfile1State extends State<SetupProfile1>
                 AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "Have a dog?",
+                  text: AppLocalizations.of(context)!.haveadog,
                 ),
                 SizedBox(height: 10.h),
                 Row(
@@ -145,7 +146,7 @@ class _SetupProfile1State extends State<SetupProfile1>
                 AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "Relationship Status",
+                  text: AppLocalizations.of(context)!.relationshipStatus,
                 ),
                 SizedBox(height: 10.h),
                 DefaultAppBtn(
@@ -183,7 +184,7 @@ class _SetupProfile1State extends State<SetupProfile1>
                 AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "I'm Interested In",
+                  text: AppLocalizations.of(context)!.imInterestedIn,
                 ),
                 SizedBox(height: 10.h),
                 DefaultAppBtn(
@@ -221,7 +222,7 @@ class _SetupProfile1State extends State<SetupProfile1>
                 AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "Have kids?",
+                  text: AppLocalizations.of(context)!.havekids,
                 ),
                 SizedBox(height: 10.h),
                 Row(
@@ -262,7 +263,7 @@ class _SetupProfile1State extends State<SetupProfile1>
                 AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "Occupation",
+                  text: AppLocalizations.of(context)!.occupation,
                 ),
                 SizedBox(height: 10.h),
                 DefaultAppBtn(
@@ -301,7 +302,7 @@ class _SetupProfile1State extends State<SetupProfile1>
                 AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "Eye Colour",
+                  text: AppLocalizations.of(context)!.eyeColour,
                 ),
                 SizedBox(height: 10.h),
                 DefaultAppBtn(
@@ -339,20 +340,34 @@ class _SetupProfile1State extends State<SetupProfile1>
                 AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "Length (cm)",
+                  text: AppLocalizations.of(context)!.length,
                 ),
-                SizedBox(height: 10.h),
-                DefaultAppBtn(
-                  height: size.height / 16,
-                  border: 1.r,
-                  borderRadius: 25.r,
-                  borderColor: AppStyles.greyColor,
-                  txt: currentLength.isEmpty ? "Select Length" : currentLength,
-                  txtColor: AppStyles.greyColor,
-                  onTap: () {
-                    selectLength(context);
-                  },
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  child: FormFieldWidget(
+                    type: TextInputType.number,
+                    backgroundColor: AppStyles.trasnparentColor,
+                    hintText: "Enter Length",
+                    textEditingController: lengthController,
+                    validator: lengthValidator,
+                    obSecure: false,
+                    borderRadius: 20.r,
+                    borderColor: AppStyles.greyColor,
+                    border: 1.r,
+                  ),
                 ),
+                // DefaultAppBtn(
+                //   height: size.height / 16,
+                //   border: 1.r,
+                //   borderRadius: 25.r,
+                //   borderColor: AppStyles.greyColor,
+                //   txt: currentLength.isEmpty ? "Select Length" : currentLength,
+                //   txtColor: AppStyles.greyColor,
+                //   onTap: () {
+                //     selectLength(context);
+                //   },
+                // ),
 
                 SizedBox(height: 80.h),
 

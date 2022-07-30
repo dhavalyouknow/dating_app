@@ -10,6 +10,7 @@ import 'package:dating_app/widget/selected_inerests_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SetupProfile2 extends StatefulWidget {
   static const routeName = "/SetupProfile2";
@@ -38,7 +39,7 @@ class _SetupProfile2State extends State<SetupProfile2>
             ),
           ],
           height: size.height / 14,
-          txt: "Next",
+          txt: AppLocalizations.of(context)!.next,
           onTap: () {
             onSubmitProfile2();
           },
@@ -104,7 +105,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                   AppText(
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                         .fontFamily,
-                    text: "Interests",
+                    text: AppLocalizations.of(context)!.interests,
                   ),
                   interestedName.isNotEmpty
                       ? IconButton(
@@ -173,7 +174,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                   AppText(
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                         .fontFamily,
-                    text: "Favourite Night",
+                    text: AppLocalizations.of(context)!.favouriteNight,
                   ),
                   favNights.isNotEmpty
                       ? IconButton(
@@ -241,7 +242,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                   AppText(
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                         .fontFamily,
-                    text: "Activities",
+                    text: AppLocalizations.of(context)!.activities,
                   ),
                   activities.isNotEmpty
                       ? IconButton(

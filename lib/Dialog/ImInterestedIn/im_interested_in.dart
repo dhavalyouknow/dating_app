@@ -72,18 +72,29 @@ class _ImInterestedInState extends State<ImInterestedIn>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: AppText(
-                      size: 21.sp,
-                      fontFamily:
-                          GoogleFonts.raleway(fontWeight: FontWeight.bold)
-                              .fontFamily,
-                      text: "Cancel",
+                  SizedBox(
+                    width: size.width / 4,
+                    child: GradientBtn(
+                      borderRadius: 10.r,
+                      height: size.height / 18,
+                      txt: "Cancel",
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   ),
+                  // TextButton(
+                  //   onPressed: () {
+                  //     Navigator.pop(context);
+                  //   },
+                  //   child: AppText(
+                  //     size: 21.sp,
+                  //     fontFamily:
+                  //         GoogleFonts.raleway(fontWeight: FontWeight.bold)
+                  //             .fontFamily,
+                  //     text: "Cancel",
+                  //   ),
+                  // ),
                   SizedBox(
                     width: size.width / 4,
                     child: GradientBtn(

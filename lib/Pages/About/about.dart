@@ -19,6 +19,23 @@ class _AboutState extends State<About> with AboutHandlers {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 30),
+        child: GradientBtn(
+          borderRadius: 10.r,
+          height: size.height / 14,
+          txt: "Contact",
+          onTap: () {},
+          boxShadow: [
+            BoxShadow(
+              color: AppStyles.shadowColor.withOpacity(0.2),
+              spreadRadius: 10,
+              blurRadius: 20,
+              offset: const Offset(5, 5), // changes position of shadow
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         leading: Padding(
           padding: EdgeInsets.only(left: 10.w),
@@ -89,13 +106,13 @@ class _AboutState extends State<About> with AboutHandlers {
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
               ),
-              SizedBox(height: 50.h),
-              GradientBtn(
-                borderRadius: 10.r,
-                height: size.height / 14,
-                txt: "Contact",
-                onTap: () {},
-              )
+              // SizedBox(height: 50.h),
+              // GradientBtn(
+              //   borderRadius: 10.r,
+              //   height: size.height / 14,
+              //   txt: "Contact",
+              //   onTap: () {},
+              // )
             ],
           ),
         ),

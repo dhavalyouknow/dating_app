@@ -3,6 +3,7 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Dialog/SelectGender/select_gender.dart';
 import 'package:dating_app/OtherLogin/otherlogin_handler.dart';
+import 'package:dating_app/Pages/Login/login_page.dart';
 import 'package:dating_app/widget/Button/gender_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OtherLoginCreateAccount extends StatefulWidget {
   static const routeName = '/OtherLoginCreateAccount';
@@ -89,7 +91,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      hintText: 'Name',
+                      hintText: AppLocalizations.of(context)!.name,
                       textEditingController: nameController,
                       validator: nameValidator,
                       obSecure: false,
@@ -105,7 +107,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      hintText: 'Surname',
+                      hintText: AppLocalizations.of(context)!.surname,
                       textEditingController: surnameController,
                       validator: surnameValidator,
                       obSecure: false,
@@ -121,7 +123,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      hintText: 'Email',
+                      hintText: AppLocalizations.of(context)!.email,
                       textEditingController: emailController,
                       validator: emailValidator,
                       obSecure: false,
@@ -150,7 +152,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                                       color: AppStyles.pinkColor,
                                     ),
                               txt: selectedGender.isEmpty
-                                  ? "Select Gender"
+                                  ? AppLocalizations.of(context)!.selectGender
                                   : selectedGender,
                               border: selectedGender.isEmpty ? 1.r : 2.r,
                               onTap: () {
@@ -184,7 +186,6 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                           child: GestureDetector(
                             onTap: () {
                               selectDate(context);
-
                               tapped = true;
                             },
                             child: Container(
@@ -214,7 +215,8 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                                         ? DateFormat('MM-dd-yyyy').format(
                                             DateTime.parse('$selectedDate'),
                                           )
-                                        : "Date Of Birth",
+                                        : AppLocalizations.of(context)!
+                                            .dateOfBirth,
                                     style: TextStyle(
                                       fontFamily: GoogleFonts.raleway(
                                         fontSize: 15.sp,
@@ -251,18 +253,21 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                     GradientBtn(
                       borderRadius: 10.r,
                       height: size.height / 14,
-                      txt: "Next",
+                      txt: AppLocalizations.of(context)!.next,
                       onTap: onUpdateUser,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AppText(text: "Already have an account?"),
+                        AppText(
+                            text: AppLocalizations.of(context)!
+                                .alreadyHaveAccount),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, "/");
+                            Navigator.pushNamed(context, LoginPage.routeName);
                           },
-                          child: AppText(text: "Sign In Instead"),
+                          child: AppText(
+                              text: AppLocalizations.of(context)!.signIn),
                         ),
                       ],
                     )

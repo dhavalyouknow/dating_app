@@ -9,7 +9,7 @@ import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SelectLoginMethod extends StatefulWidget {
   static const routeName = '/SelectLoginMethod';
@@ -54,7 +54,7 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                       borderRadius: 10.r,
                       fontSize: 16.sp,
                       height: size.height / 14,
-                      txt: "Sign Up Manually",
+                      txt: AppLocalizations.of(context)!.signUpManually,
                       onTap: () {
                         Navigator.pushNamed(context, CreateAccount.routeName);
                       },
@@ -62,12 +62,14 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                     GoogleBtnWidget(
                       color: AppStyles.whiteColor,
                       onPressed: signInWithGoogle,
-                      title: 'Sign Up with Google',
+                      title:
+                          '${AppLocalizations.of(context)!.signUpWith} Google',
                       image: Image.asset('assets/icons/google.png'),
                     ),
                     FaceBookBtnWidget(
                       onPressed: signInWithFacebook,
-                      title: 'Sign Up with Facebook',
+                      title:
+                          '${AppLocalizations.of(context)!.signUpWith} Facebook',
                       image: Image.asset(
                         'assets/icons/facebook.png',
                         height: 18.h,
@@ -76,7 +78,8 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
 
                     AppleBtnWidget(
                       onPressed: signInWithApple,
-                      title: "Sign Up With Apple",
+                      title:
+                          "${AppLocalizations.of(context)!.signUpWith} Apple",
                       image: Image.asset(
                         "assets/icons/AppleIcon.png",
                         height: 23.h,
@@ -95,7 +98,7 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Already have an account?",
+                          AppLocalizations.of(context)!.alreadyHaveAccount,
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: AppStyles.blackColor,
@@ -106,7 +109,7 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                             Navigator.pushNamed(context, LoginPage.routeName);
                           },
                           child: Text(
-                            "Sign In",
+                            AppLocalizations.of(context)!.signIn,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 14.sp,

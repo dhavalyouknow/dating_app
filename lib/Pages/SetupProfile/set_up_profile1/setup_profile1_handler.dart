@@ -179,7 +179,7 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
                     occupation: selectedOccupation,
                     eyeColor: selectedEyeColor,
                     haveKids: haveKids,
-                    length: int.parse(currentLength),
+                    length: int.parse(lengthController.text),
                   ),
                   success: (value) {
                     Navigator.pushNamed(context, SetupProfile2.routeName);

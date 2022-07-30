@@ -19,6 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyPage extends StatefulWidget {
   static const routeName = "/MyPage";
@@ -57,7 +58,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
         centerTitle: true,
         title: AppText(
           size: 18.sp,
-          text: 'My Page',
+          text: AppLocalizations.of(context)!.myPage,
           fontFamily:
               GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
         ),
@@ -106,7 +107,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                   SizedBox(height: 20.h),
                   AppText(
                     size: 18.sp,
-                    text: "My Profile",
+                    text: AppLocalizations.of(context)!.myProfile,
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                         .fontFamily,
                   ),
@@ -123,7 +124,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                   SizedBox(height: 20.h),
                   AppText(
                     size: 18.sp,
-                    text: "My Dogs",
+                    text: AppLocalizations.of(context)!.myDogs,
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                         .fontFamily,
                   ),
@@ -164,7 +165,8 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                               padding: EdgeInsets.symmetric(vertical: 10.h),
                               child: AppText(
                                 size: 18.sp,
-                                text: "Upcoming Events",
+                                text: AppLocalizations.of(context)!
+                                    .upComingEvents,
                                 fontFamily: GoogleFonts.raleway(
                                         fontWeight: FontWeight.bold)
                                     .fontFamily,

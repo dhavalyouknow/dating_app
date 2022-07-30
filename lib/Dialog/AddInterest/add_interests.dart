@@ -6,6 +6,7 @@ import 'package:dating_app/widget/interests_chip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddInterests extends StatefulWidget {
   final Function(List<dynamic>) callback;
@@ -55,7 +56,7 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
                 ),
                 AppText(
                   size: 18.sp,
-                  text: "Interests",
+                  text: AppLocalizations.of(context)!.interests,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
                 ),
@@ -106,7 +107,7 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
             GradientBtn(
               borderRadius: 10.r,
               height: size.height / 14,
-              txt: "Save",
+              txt: AppLocalizations.of(context)!.save,
               onTap: () {
                 setState(() {
                   widget.callback(selectedInterestsName);
