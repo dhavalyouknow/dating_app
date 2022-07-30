@@ -28,6 +28,7 @@ void main() async {
   var token = prefs.getString('auth_token');
   print('token ===> $token');
   await Firebase.initializeApp(
+    name: "dating_app",
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
