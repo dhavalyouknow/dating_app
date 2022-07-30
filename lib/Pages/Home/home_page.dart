@@ -4,13 +4,10 @@ import 'package:dating_app/Bloc/Swipe/swipe_state.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/BottomBar/bottom_bar.dart';
-import 'package:dating_app/Pages/ChattingPage/chatting_user_list.dart';
 import 'package:dating_app/Pages/Home/home_page_handler.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
 import 'package:dating_app/widget/swiperCatelog/dogSwiperList.dart';
 import 'package:dating_app/widget/swiperCatelog/personSwiperList.dart';
-import 'package:dating_app/Pages/UpcomingEvents/upcoming_events.dart';
-import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,8 +29,6 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
     final size = MediaQuery.of(context).size;
     final pages = [
       const MyPage(),
-      const UpComingEvents(),
-      const ChattingUserListPage(),
     ];
 
     return Scaffold(
@@ -116,48 +111,31 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                       child: Stack(
                         children: [
                           Container(
-                              margin: EdgeInsets.only(
-                                top: 35.h,
-                                left: 31.w,
-                                right: 31.w,
-                              ),
-                              height: size.height / 1.8,
-                              decoration: BoxDecoration(
-                                color: onSwitchDog
-                                    ? const Color(0xffEDDCC0)
-                                    : AppStyles.skyBlueColor,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: size.width * 2,
-                                        height: size.height * 0.4,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        child: onSwitchDog
-                                            ? DogSwiperList(
-                                                swipeState: swipeState,
-                                                dogState: dogState,
-                                                controller: swipeController,
-                                                showImageBig: showImageBig,
-                                              )
-                                            : PersonSwiperList(
-                                                swipeState: swipeState,
-                                                showImageBig: showImageBig,
-                                                controller: swipeController,
-                                              ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ))
+                            margin: EdgeInsets.only(
+                              top: 35.h,
+                              left: 31.w,
+                              right: 31.w,
+                            ),
+                            height: size.height / 1.8,
+                            decoration: BoxDecoration(
+                              color: onSwitchDog
+                                  ? const Color(0xffEDDCC0)
+                                  : AppStyles.skyBlueColor,
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                          ),
+                          onSwitchDog
+                              ? DogSwiperList(
+                                  swipeState: swipeState,
+                                  dogState: dogState,
+                                  controller: swipeController,
+                                  showImageBig: showImageBig,
+                                )
+                              : PersonSwiperList(
+                                  swipeState: swipeState,
+                                  showImageBig: showImageBig,
+                                  controller: swipeController,
+                                ),
                         ],
                       ),
                     ),
@@ -166,12 +144,16 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            //  print(user?.id);
+                            print(user?.id);
                             swipeController.next(
                               swipeDirection: SwipeDirection.left,
                             );
                             swipeController.addListener(() {
-                              swipeController.notifyListeners();
+                              print(swipeController.currentIndex);
+                              swipeController.rewind();
+                              // print(swipeState
+                              //     .swipe[swipeController.currentIndex]
+                              //     .firstName);
                             });
                           },
                           child: Container(

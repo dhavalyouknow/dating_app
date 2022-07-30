@@ -248,26 +248,6 @@ class _CreateAccountState extends State<CreateAccount>
                       txt: AppLocalizations.of(context)!.next,
                       onTap: onSubmit,
                     ),
-                    // GoogleBtnWidget(
-                    //   color: Colors.grey,
-                    //   onPressed: signInWithGoogle,
-                    //   title: 'Sign in with Google',
-                    //   image: Image.asset('assets/icons/google.png'),
-                    // ),
-                    // FaceBookBtnWidget(
-                    //   onPressed: signInWithFacebook,
-                    //   title: 'Sign in with Facebook',
-                    //   image: Image.asset(
-                    //     'assets/icons/facebook.png',
-                    //     height: 18.h,
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: EdgeInsets.only(top: 8.h),
-                    //   child: SignInWithAppleButton(
-                    //     onPressed: signInWithApple,
-                    //   ),
-                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

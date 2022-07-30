@@ -174,11 +174,23 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
                 },
                 onSuccess: (User user) {
                   BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-                  setState(
-                    () {
-                      isLoading = false;
-                    },
-                  );
+                  setState(() {
+                    isLoading = false;
+                  });
+                },
+                onError: (value) {
+                  setState(() {
+                    isLoading = false;
+                  });
+                  if (value ==
+                      'Firebase: Error (auth/account-exists-with-different-credential).') {
+                    Fluttertoast.showToast(
+                        msg: 'This email is exists with different credential');
+                  } else {
+                    Fluttertoast.showToast(
+                        msg:
+                            'Something happened wrong try again after sometime.');
+                  }
                 },
               ),
             );
@@ -219,12 +231,9 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
         AppleIDAuthorizationScopes.fullName,
       ],
     );
-    print('111111111');
-    print(credential);
-    print(credential.identityToken);
-    print(credential.authorizationCode);
-    print(credential.userIdentifier);
-    print('222222222');
+    setState(() {
+      isLoading = true;
+    });
 
     Future.delayed(
       const Duration(seconds: 0),
@@ -235,12 +244,26 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
             appleId: credential.authorizationCode,
             pushToken: fcmToken!,
             headerToken: credential.identityToken!,
+            isRegistered: (value) {
+              print(value);
+              if (value == false) {
+                Navigator.pushReplacementNamed(
+                  context,
+                  '/OtherLoginCreateAccount',
+                );
+              } else {
+                print('else---');
+                Navigator.pushReplacementNamed(
+                  context,
+                  '/MyPage',
+                );
+              }
+            },
             onSuccess: (User user) {
               BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-              Navigator.pushReplacementNamed(
-                context,
-                '/MyPage',
-              );
+              setState(() {
+                isLoading = false;
+              });
             },
           ),
         );

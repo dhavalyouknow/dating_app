@@ -19,6 +19,7 @@ import 'package:dating_app/Pages/CheckMail/check_email.dart';
 import 'package:dating_app/Pages/AccountRecovery/account_recovery.dart';
 import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile.dart';
 import 'package:dating_app/Pages/EditDogProfile/edit_dog_profile.dart';
+import 'package:dating_app/Pages/EditEmail/enter_email.dart';
 import 'package:dating_app/Pages/EditPersonProfile/edit_person_profile.dart';
 import 'package:dating_app/Pages/ForgetPassword/reset_password.dart';
 import 'package:dating_app/Pages/Home/home_page.dart';
@@ -83,4 +84,5 @@ Map<String, WidgetBuilder> routes = {
   UpComingEventsDetail.routeName: (ctx) => const UpComingEventsDetail(),
   ChattingUserListPage.routeName: (ctx) => const ChattingUserListPage(),
   ChattingPage.routeName: (ctx) => const ChattingPage(),
+  EditUserEmail.routeName: (ctx) => const EditUserEmail(),
 };

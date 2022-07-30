@@ -56,7 +56,8 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                       height: size.height / 14,
                       txt: AppLocalizations.of(context)!.signUpManually,
                       onTap: () {
-                        Navigator.pushNamed(context, CreateAccount.routeName);
+                        Navigator.pushReplacementNamed(
+                            context, CreateAccount.routeName);
                       },
                     ),
                     GoogleBtnWidget(
@@ -81,7 +82,7 @@ class _SelectLoginMethodState extends State<SelectLoginMethod>
                       title:
                           "${AppLocalizations.of(context)!.signUpWith} Apple",
                       image: Image.asset(
-                        "assets/icons/AppleIcon.png",
+                        "assets/icons/apple.png",
                         height: 23.h,
                         color: AppStyles.whiteColor,
                       ),

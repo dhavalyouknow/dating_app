@@ -31,6 +31,7 @@ mixin SetupProfile2Handlers<T extends StatefulWidget> on State<T> {
                 success: (value) {
                   Navigator.pushNamed(context, SetupProfile3.routeName);
                 },
+                onError: () {},
               ),
             );
           },

@@ -140,7 +140,7 @@ class ShowProfileWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(width: 5.w),
+                    if (user!.dog.length > 1) SizedBox(width: 5.w),
                     AppText(
                       size: 14.sp,
                       text:

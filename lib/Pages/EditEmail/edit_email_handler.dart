@@ -1,9 +1,23 @@
+import 'package:dating_app/Bloc/User/user_bloc.dart';
+import 'package:dating_app/Model/user.dart';
+import 'package:dating_app/Pages/EditEmail/edit_email.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 mixin EditEmailHandler<T extends StatefulWidget> on State<T> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController editEmailController = TextEditingController();
   final TextEditingController confirmEmailController = TextEditingController();
+  bool isLoading = false;
+  User? user;
+
+  @override
+  void initState() {
+    super.initState();
+    user = BlocProvider.of<UserBloc>(context).state.user;
+  }
 
   String? emailValidator(dynamic email) {
     if (email.isEmpty) {
@@ -19,5 +33,59 @@ mixin EditEmailHandler<T extends StatefulWidget> on State<T> {
       return 'Not match';
     }
     return null;
+  }
+
+  editEmail() async {
+    setState(() {
+      isLoading = true;
+    });
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString('auth_token');
+    user = user?.copyWith(email: confirmEmailController.text);
+    Future.delayed(
+      const Duration(seconds: 0),
+      () {
+        BlocProvider.of<UserBloc>(context).add(
+          UpdateUserEvent(
+            user: user!,
+            success: (success) {
+              BlocProvider.of<UserBloc>(context).add(
+                ResendEmail(
+                  headerToken: token!,
+                  onSuccess: () {
+                    Fluttertoast.showToast(
+                        msg: 'Your reset email has been successfully sent.');
+                    setState(() {
+                      isLoading = false;
+                    });
+
+                    Navigator.pushReplacementNamed(
+                      context,
+                      EditEmail.routeName,
+                    );
+                  },
+                  onError: () {
+                    setState(() {
+                      isLoading = false;
+                    });
+                    Fluttertoast.showToast(
+                        msg:
+                            'This email address is already associated with another account. Please use a different email address.');
+                  },
+                ),
+              );
+            },
+            onError: () {
+              setState(() {
+                isLoading = false;
+              });
+              Fluttertoast.showToast(
+                  msg:
+                      'This email address is already associated with another account. Please use a different email address.');
+            },
+          ),
+        );
+      },
+    );
   }
 }

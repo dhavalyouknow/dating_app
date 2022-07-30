@@ -126,14 +126,17 @@ class LoginWithFacebook extends AuthEvent {
   final String headerToken;
   final Function(User) onSuccess;
   final Function(bool) isRegistered;
+  final Function(String) onError;
 
-  const LoginWithFacebook(
-      {required this.email,
-      required this.facebookId,
-      required this.pushToken,
-      required this.headerToken,
-      required this.onSuccess,
-      required this.isRegistered});
+  const LoginWithFacebook({
+    required this.email,
+    required this.facebookId,
+    required this.pushToken,
+    required this.headerToken,
+    required this.onSuccess,
+    required this.isRegistered,
+    required this.onError,
+  });
 
   @override
   // TODO: implement props
@@ -151,14 +154,15 @@ class LoginWithApple extends AuthEvent {
   final String pushToken;
   final String headerToken;
   final Function(User) onSuccess;
+  final Function(bool) isRegistered;
 
-  const LoginWithApple({
-    required this.email,
-    required this.appleId,
-    required this.pushToken,
-    required this.headerToken,
-    required this.onSuccess,
-  });
+  const LoginWithApple(
+      {required this.email,
+      required this.appleId,
+      required this.pushToken,
+      required this.headerToken,
+      required this.onSuccess,
+      required this.isRegistered});
 
   @override
   // TODO: implement props
@@ -167,5 +171,7 @@ class LoginWithApple extends AuthEvent {
         appleId,
         pushToken,
         headerToken,
+        onSuccess,
+        isRegistered,
       ];
 }

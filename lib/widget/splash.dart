@@ -2,6 +2,7 @@ import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Model/user.dart';
+import 'package:dating_app/Pages/EditEmail/edit_email.dart';
 import 'package:dating_app/Pages/Login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,22 +57,34 @@ class _SplashScreenState extends State<SplashScreen> {
           print('11111');
           print(isSocialMedia);
           print(user.circleProfileImage);
-          if ((user.gender!.isEmpty || user.dob == null) && !isSocialMedia) {
-            Navigator.pushReplacementNamed(context, '/CreateAccount');
-          } else if (user.searchingFor!.isEmpty && !isSocialMedia) {
-            Navigator.pushReplacementNamed(context, '/ChoosePartner');
-          } else if (user.circleProfileImage == null && isSocialMedia) {
-            Navigator.pushReplacementNamed(context, '/UploadProfile');
-          } else if (isSocialMedia &&
-              (user.gender!.isEmpty || user.dob == null) &&
-              user.searchingFor!.isEmpty &&
-              user.circleProfileImage == null) {
-            Navigator.pushReplacementNamed(
-              context,
-              '/OtherLoginCreateAccount',
-            );
-          } else {
-            Navigator.pushReplacementNamed(context, '/MyPage');
+          //with social media routing
+          if (isSocialMedia) {
+            if (user.gender!.isEmpty || user.dob == null) {
+              Navigator.pushReplacementNamed(
+                  context, '/OtherLoginCreateAccount');
+            } else if (user.searchingFor!.isEmpty) {
+              Navigator.pushReplacementNamed(context, '/ChoosePartner');
+            } else if (user.circleProfileImage == null ||
+                user.squareProfileImage!.isEmpty) {
+              Navigator.pushReplacementNamed(context, '/UploadProfile');
+            } else {
+              Navigator.pushReplacementNamed(context, '/MyPage');
+            }
+          }
+          //without social media routing
+          else {
+            if (user.gender!.isEmpty || user.dob == null) {
+              Navigator.pushReplacementNamed(context, '/CreateAccount');
+            } else if (user.isEmailVerified == false) {
+              Navigator.pushReplacementNamed(context, EditEmail.routeName);
+            } else if (user.searchingFor!.isEmpty) {
+              Navigator.pushReplacementNamed(context, '/ChoosePartner');
+            } else if (user.circleProfileImage == null ||
+                user.squareProfileImage!.isEmpty) {
+              Navigator.pushReplacementNamed(context, '/UploadProfile');
+            } else {
+              Navigator.pushReplacementNamed(context, '/MyPage');
+            }
           }
         },
       ),

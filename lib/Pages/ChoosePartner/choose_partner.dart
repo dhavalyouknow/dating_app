@@ -87,7 +87,7 @@ class _ChoosePartnerState extends State<ChoosePartner>
                 size: 16.sp,
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
-                text: "You must choose at least one!",
+                text: "com.thedogtrick.comse at least one!",
               ),
               SizedBox(height: 30.h),
               ...searchingFor

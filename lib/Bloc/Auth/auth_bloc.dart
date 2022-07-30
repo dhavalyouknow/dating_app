@@ -339,6 +339,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
         } else {
           print(resp.body);
           print(resp.statusCode);
+          Map<String, dynamic> data = jsonDecode(resp.body);
+          event.onError(data["error"]);
           emit(state.copyWith(status: AuthStatus.loginFailure));
         }
       } else {
@@ -370,6 +372,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
         if (resp.statusCode == 200) {
           print(resp.body);
           print(resp.statusCode);
+          var _token = resp.headers["x-auth-token"];
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('auth_token', _token!);
+          Map<String, dynamic> data = jsonDecode(resp.body);
+          User user = User.fromJson(data);
+          event.isRegistered(data["isRegistered"]);
+          event.onSuccess(user);
         } else {
           if (resp.statusCode == 500) {
             Fluttertoast.showToast(

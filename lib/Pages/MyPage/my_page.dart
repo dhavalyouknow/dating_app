@@ -73,14 +73,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                     SetUser(user: user),
                   );
                   userState.user = user;
-                  if (userState.user?.circleProfileImage == null) {
-                    // showDialog(
-                    //   context: context,
-                    //   builder: (BuildContext context) {
-                    //     return const CompleteProfileWidget();
-                    //   },
-                    // );
-                  }
+
                   if (mounted) {
                     setState(() {});
                   }

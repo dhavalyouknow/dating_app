@@ -186,6 +186,7 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
                     Fluttertoast.showToast(
                         msg: 'Your Profile Setup Successfully');
                   },
+                  onError: () {},
                 ),
               );
             },

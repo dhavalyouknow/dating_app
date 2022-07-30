@@ -6,6 +6,7 @@ import 'package:dating_app/Core/base/base_http_service.dart';
 import 'package:dating_app/Model/dog.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 part 'user_event.dart';
 
@@ -17,6 +18,7 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
     on<UpdateUserEvent>(_onUpdateUserEvent);
     on<SetUser>(_onSetUser);
     on<SetUserInitial>(_serUserInitial);
+    on<ResendEmail>(_resendEmail);
   }
 
   _serUserInitial(SetUserInitial event, Emitter<UserState> emit) {
@@ -31,7 +33,6 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
       payload.removeWhere((key, value) =>
           value == null ||
           key == "_id" ||
-          key == "email" ||
           key == "userType" ||
           key == "googleId" ||
           key == "googleLogin" ||
@@ -43,10 +44,6 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
         url: '${ApiEndPoints.updateUser}${event.user.id}',
         body: payload,
       );
-      print("+++++++++++++++");
-      print(resp?.body);
-      print(resp?.statusCode);
-      print('payload ===> $payload');
 
       if (resp != null) {
         if (resp.statusCode == 200) {
@@ -60,10 +57,12 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
         } else {
           print(resp.body);
           print(resp.statusCode);
+          event.onError();
           emit(state.copyWith(status: UserStatus.failure));
         }
       } else {
         print(resp?.statusCode);
+        event.onError();
         emit(state.copyWith(status: UserStatus.failure));
       }
     } catch (e) {
@@ -79,5 +78,33 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
         user: event.user,
       ),
     );
+  }
+
+  _resendEmail(ResendEmail event, Emitter<UserState> emit) async {
+    try {
+      emit(state.copyWith(status: UserStatus.loading));
+      var resp =
+          await post(url: ApiEndPoints.resendEmail, body: {}, customHeader: {
+        "authorization": event.headerToken,
+      });
+      if (resp != null) {
+        if (resp.statusCode == 200) {
+          print(resp.statusCode);
+          print(resp.body);
+          event.onSuccess();
+          emit(state.copyWith(status: UserStatus.success));
+        } else {
+          print(resp.statusCode);
+          print(resp.body);
+          event.onError();
+          emit(state.copyWith(status: UserStatus.failure));
+        }
+      } else {
+        emit(state.copyWith(status: UserStatus.failure));
+      }
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(status: UserStatus.failure));
+    }
   }
 }

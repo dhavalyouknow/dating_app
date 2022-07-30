@@ -60,6 +60,7 @@ mixin EditPersonHandlers<T extends StatefulWidget> on State<T> {
           Fluttertoast.showToast(msg: 'Your Profile Updated Successfully');
           Navigator.pushReplacementNamed(context, '/MyPage');
         },
+        onError: () {},
       ),
     );
   }

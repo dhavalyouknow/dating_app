@@ -249,6 +249,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                     ),
                   );
                 },
+                onError: () {},
               ),
             );
           },
@@ -290,6 +291,9 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                       onSuccess: (User user) {
                         BlocProvider.of<UserBloc>(context).add(
                           SetUser(user: user),
+                        );
+                        Fluttertoast.showToast(
+                          msg: 'Your Profile Picture is added successfully',
                         );
                         setState(() {
                           isLoading = false;

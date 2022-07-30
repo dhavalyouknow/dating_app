@@ -92,6 +92,7 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                           msg: 'Your Profile Updated Successfully');
                       Navigator.pushReplacementNamed(context, '/MyPage');
                     },
+                    onError: () {},
                   ),
                 );
               },

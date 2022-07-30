@@ -45,6 +45,7 @@ mixin SetupProfile3Handlers<T extends StatefulWidget> on State<T> {
                     );
                     Fluttertoast.showToast(msg: 'SetUp Profile Done');
                   },
+                  onError: () {},
                 ),
               );
             },

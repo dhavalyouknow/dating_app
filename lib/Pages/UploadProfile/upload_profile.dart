@@ -217,7 +217,7 @@ class _UploadProfileState extends State<UploadProfile>
                           height: size.height / 14,
                           txt: AppLocalizations.of(context)!.save,
                           onTap: () {
-                            if (imageFile != null) {
+                            if (imageFile != null && !isLoading) {
                               onProfileSave(isVerify: user!.isEmailVerified!);
                             }
                           },

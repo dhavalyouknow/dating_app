@@ -140,7 +140,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       title:
                           "${AppLocalizations.of(context)!.signInWith} Apple",
                       image: Image.asset(
-                        "assets/icons/AppleIcon.png",
+                        "assets/icons/apple.png",
                         height: 23.h,
                         color: AppStyles.whiteColor,
                       ),
@@ -157,7 +157,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(
+                            Navigator.pushReplacementNamed(
                                 context, SelectLoginMethod.routeName);
                           },
                           child: Text(

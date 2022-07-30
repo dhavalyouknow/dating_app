@@ -98,6 +98,7 @@ mixin OtherLoginHandlers<T extends StatefulWidget> on State<T> {
         success: (value) {
           Navigator.pushNamed(context, ChoosePartner.routeName);
         },
+        onError: () {},
       ),
     );
   }

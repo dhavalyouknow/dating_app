@@ -2,6 +2,7 @@ import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:dating_app/Pages/ChoosePartner/choose_partner.dart';
+import 'package:dating_app/Pages/EditEmail/edit_email.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +16,7 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
       TextEditingController(text: 'Dp1@3110');
   final TextEditingController rePasswordController =
       TextEditingController(text: 'Dp1@3110');
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -33,25 +35,7 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
     return;
   }
 
-  // String password = passwordText.getText().toString();
-  // if (password.isEmpty() || password.length() < 6) {  passwordText.setError("Password cannot be less than 6 characters!");
-  // }
-  // else {
-  // passwordText.setError(null);
-  // startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
-  // }
-
   String? passwordValidator(dynamic password) {
-    // Password Validation
-    // ^                 # start-of-string
-    // (?=.*[0-9])       # a digit must occur at least once
-    // (?=.*[a-z])       # a lower case letter must occur at least once
-    // (?=.*[A-Z])       # an upper case letter must occur at least once
-    // (?=.*[@#$%^&+=])  # a special character must occur at least once
-    // (?=\S+$)          # no whitespace allowed in the entire string
-    //     .{8,}             # anything, at least eight places though
-    // $                 # end-of-string
-
     RegExp upperCase = RegExp('^(?=.*[A-Z])');
     RegExp lowerCase = RegExp('^(?=.*[a-z])');
     RegExp specialChar = RegExp("^(?=.*[@#%^&+=])");
@@ -81,6 +65,9 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
 
   onSignUp() {
     if (formKey.currentState!.validate()) {
+      setState(() {
+        isLoading = true;
+      });
       BlocProvider.of<AuthBloc>(context).add(
         SignUpRequest(
           name: detailList!["name"],
@@ -96,12 +83,23 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
               print('******success****');
             }
             BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-            Navigator.pushReplacementNamed(context, ChoosePartner.routeName);
+            if (user.isEmailVerified == true) {
+              Navigator.pushReplacementNamed(context, ChoosePartner.routeName);
+            } else {
+              Navigator.pushNamed(context, EditEmail.routeName);
+            }
+            //
+            setState(() {
+              isLoading = false;
+            });
           },
           onError: () {
             if (kDebugMode) {
               print('******Error****');
             }
+            setState(() {
+              isLoading = false;
+            });
             Fluttertoast.showToast(msg: 'Something Went Wrong');
           },
         ),

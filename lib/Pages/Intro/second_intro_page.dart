@@ -101,7 +101,8 @@ class _SecondIntroPageState extends State<SecondIntroPage> {
                     height: size.height / 14,
                     txt: AppLocalizations.of(context)!.next,
                     onTap: () {
-                      Navigator.pushNamed(context, "/ThirdIntroPage");
+                      Navigator.pushReplacementNamed(
+                          context, "/ThirdIntroPage");
                     },
                   ),
                   SizedBox(height: 10.h),
