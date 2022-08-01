@@ -51,6 +51,7 @@ class _EditUserEmailState extends State<EditUserEmail> with EditEmailHandler {
                   ),
                   SizedBox(height: 0.h),
                   FormFieldWidget(
+                    backgroundColor: AppStyles.whiteColor,
                     icon: IconButton(
                       icon: const Icon(Icons.email_outlined),
                       onPressed: () {},
