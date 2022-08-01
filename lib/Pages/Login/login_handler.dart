@@ -13,7 +13,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController emailController =
-      TextEditingController(text: 'dp2@gmail.com');
+      TextEditingController(text: 'dhavall.par@gmail.com');
   final TextEditingController passwordController =
       TextEditingController(text: 'Dp1@3110');
   int index = 0;
