@@ -41,7 +41,8 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
           txt: AppLocalizations.of(context)!.next,
           onTap: () {
             if (imageFile != null) {
-              Navigator.pushReplacementNamed(context, ('/MyPage'));
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/MyPage', (route) => false);
             }
           },
         ),

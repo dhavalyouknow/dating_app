@@ -107,10 +107,10 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                   SizedBox(height: 15.h),
                   ShowProfileWidget(
                     onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        PersonPublicProfile.routeName,
-                      );
+                      // Navigator.pushNamed(
+                      //   context,
+                      //   PersonPublicProfile.routeName,
+                      // );
                     },
                     user: userState.user,
                   ),
@@ -125,11 +125,11 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                   ...userState.user!.dog.map((e) {
                     return ShowDogProfileWidget(
                       onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          DogPublicProfile.routeName,
-                          arguments: e,
-                        );
+                        // Navigator.pushNamed(
+                        //   context,
+                        //   DogPublicProfile.routeName,
+                        //   arguments: e,
+                        // );
                       },
                       user: userState.user,
                       e: e,
@@ -147,126 +147,126 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                       },
                     ),
                   ),
-                  BlocBuilder<EventBloc, EventState>(
-                    builder: (context, evenStatus) {
-                      print(evenStatus);
-                      if (evenStatus.event != null) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10.h),
-                              child: AppText(
-                                size: 18.sp,
-                                text: AppLocalizations.of(context)!
-                                    .upComingEvents,
-                                fontFamily: GoogleFonts.raleway(
-                                        fontWeight: FontWeight.bold)
-                                    .fontFamily,
-                              ),
-                            ),
-                            ...evenStatus.event!.map(
-                              (e) {
-                                return Row(
-                                  children: [
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          margin: EdgeInsets.symmetric(
-                                              vertical: 5.h),
-                                          height: 70.h,
-                                          width: 70.w,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(15.r),
-                                            child: CachedNetworkImage(
-                                              height: 100.h,
-                                              imageUrl: e.eventPic!.first.url
-                                                  .toString(),
-                                              fit: BoxFit.cover,
-                                              errorWidget:
-                                                  (BuildContext context, url,
-                                                      data) {
-                                                return const ImageErrorWidget();
-                                              },
-                                              placeholder: (context, url) =>
-                                                  const LoadingWidget(),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 12.w,
-                                          top: 10.h,
-                                          child: AppText(
-                                            size: 24.sp,
-                                            textAlign: TextAlign.center,
-                                            text: DateFormat('dd\nMMMM').format(
-                                              DateTime.parse("${e.eventDate}"),
-                                            ),
-                                            fontFamily: GoogleFonts.raleway(
-                                                    fontWeight: FontWeight.w600)
-                                                .fontFamily,
-                                            color: AppStyles.whiteColor,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10.w),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          AppText(
-                                            size: 16.sp,
-                                            text: e.title.toString(),
-                                            fontFamily: GoogleFonts.raleway(
-                                                    fontWeight: FontWeight.w600)
-                                                .fontFamily,
-                                          ),
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: 5.w,
-                                              vertical: 5.h,
-                                            ),
-                                            height: 30.h,
-                                            decoration: BoxDecoration(
-                                              color: AppStyles.primaryColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                const Icon(
-                                                    Icons.person_outline),
-                                                AppText(
-                                                  size: 16.sp,
-                                                  text:
-                                                      "${e.bookedSeat}/${e.totalCapacity} people",
-                                                  fontFamily:
-                                                      GoogleFonts.raleway(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600)
-                                                          .fontFamily,
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ),
-                          ],
-                        );
-                      } else {
-                        return const LoadingWidget();
-                      }
-                    },
-                  ),
+                  // BlocBuilder<EventBloc, EventState>(
+                  //   builder: (context, evenStatus) {
+                  //     print(evenStatus);
+                  //     if (evenStatus.event != null) {
+                  //       return Column(
+                  //         crossAxisAlignment: CrossAxisAlignment.start,
+                  //         children: [
+                  //           Padding(
+                  //             padding: EdgeInsets.symmetric(vertical: 10.h),
+                  //             child: AppText(
+                  //               size: 18.sp,
+                  //               text: AppLocalizations.of(context)!
+                  //                   .upComingEvents,
+                  //               fontFamily: GoogleFonts.raleway(
+                  //                       fontWeight: FontWeight.bold)
+                  //                   .fontFamily,
+                  //             ),
+                  //           ),
+                  //           ...evenStatus.event!.map(
+                  //             (e) {
+                  //               return Row(
+                  //                 children: [
+                  //                   Stack(
+                  //                     children: [
+                  //                       Container(
+                  //                         margin: EdgeInsets.symmetric(
+                  //                             vertical: 5.h),
+                  //                         height: 70.h,
+                  //                         width: 70.w,
+                  //                         child: ClipRRect(
+                  //                           borderRadius:
+                  //                               BorderRadius.circular(15.r),
+                  //                           child: CachedNetworkImage(
+                  //                             height: 100.h,
+                  //                             imageUrl: e.eventPic!.first.url
+                  //                                 .toString(),
+                  //                             fit: BoxFit.cover,
+                  //                             errorWidget:
+                  //                                 (BuildContext context, url,
+                  //                                     data) {
+                  //                               return const ImageErrorWidget();
+                  //                             },
+                  //                             placeholder: (context, url) =>
+                  //                                 const LoadingWidget(),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                       Positioned(
+                  //                         left: 12.w,
+                  //                         top: 10.h,
+                  //                         child: AppText(
+                  //                           size: 24.sp,
+                  //                           textAlign: TextAlign.center,
+                  //                           text: DateFormat('dd\nMMMM').format(
+                  //                             DateTime.parse("${e.eventDate}"),
+                  //                           ),
+                  //                           fontFamily: GoogleFonts.raleway(
+                  //                                   fontWeight: FontWeight.w600)
+                  //                               .fontFamily,
+                  //                           color: AppStyles.whiteColor,
+                  //                         ),
+                  //                       ),
+                  //                     ],
+                  //                   ),
+                  //                   Padding(
+                  //                     padding: EdgeInsets.only(left: 10.w),
+                  //                     child: Column(
+                  //                       crossAxisAlignment:
+                  //                           CrossAxisAlignment.start,
+                  //                       children: [
+                  //                         AppText(
+                  //                           size: 16.sp,
+                  //                           text: e.title.toString(),
+                  //                           fontFamily: GoogleFonts.raleway(
+                  //                                   fontWeight: FontWeight.w600)
+                  //                               .fontFamily,
+                  //                         ),
+                  //                         Container(
+                  //                           padding: EdgeInsets.symmetric(
+                  //                             horizontal: 5.w,
+                  //                             vertical: 5.h,
+                  //                           ),
+                  //                           height: 30.h,
+                  //                           decoration: BoxDecoration(
+                  //                             color: AppStyles.primaryColor,
+                  //                             borderRadius:
+                  //                                 BorderRadius.circular(10),
+                  //                           ),
+                  //                           child: Row(
+                  //                             children: [
+                  //                               const Icon(
+                  //                                   Icons.person_outline),
+                  //                               AppText(
+                  //                                 size: 16.sp,
+                  //                                 text:
+                  //                                     "${e.bookedSeat}/${e.totalCapacity} people",
+                  //                                 fontFamily:
+                  //                                     GoogleFonts.raleway(
+                  //                                             fontWeight:
+                  //                                                 FontWeight
+                  //                                                     .w600)
+                  //                                         .fontFamily,
+                  //                               ),
+                  //                             ],
+                  //                           ),
+                  //                         )
+                  //                       ],
+                  //                     ),
+                  //                   ),
+                  //                 ],
+                  //               );
+                  //             },
+                  //           ),
+                  //         ],
+                  //       );
+                  //     } else {
+                  //       return const LoadingWidget();
+                  //     }
+                  //   },
+                  // ),
                 ],
               ),
             ),

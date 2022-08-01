@@ -29,7 +29,8 @@ mixin SetupProfile2Handlers<T extends StatefulWidget> on State<T> {
                   activity: activities,
                 ),
                 success: (value) {
-                  Navigator.pushNamed(context, SetupProfile3.routeName);
+                  Navigator.pushReplacementNamed(
+                      context, SetupProfile3.routeName);
                 },
                 onError: () {},
               ),

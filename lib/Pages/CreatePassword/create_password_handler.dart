@@ -86,7 +86,7 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
             if (user.isEmailVerified == true) {
               Navigator.pushReplacementNamed(context, ChoosePartner.routeName);
             } else {
-              Navigator.pushNamed(context, EditEmail.routeName);
+              Navigator.pushReplacementNamed(context, EditEmail.routeName);
             }
             //
             setState(() {

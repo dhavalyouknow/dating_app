@@ -1,6 +1,7 @@
 import 'package:dating_app/l10n/l10n.dart';
 import 'package:dating_app/language_provider/lannguagePro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class LanguagePicker extends StatelessWidget {
@@ -40,6 +41,10 @@ class LanguagePicker extends StatelessWidget {
             onChanged: (_) {},
           ),
         ),
+        Icon(
+          Icons.arrow_forward_ios,
+          size: 15.sp,
+        )
       ],
     );
   }

@@ -13,6 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Settings extends StatefulWidget {
   static const routeName = "/Settings";
@@ -47,7 +48,7 @@ class _SettingsState extends State<Settings> with SettingHandlers {
         centerTitle: true,
         title: AppText(
           size: 18.sp,
-          text: "Settings",
+          text: AppLocalizations.of(context)!.settings,
           fontFamily:
               GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
         ),
@@ -76,7 +77,7 @@ class _SettingsState extends State<Settings> with SettingHandlers {
                 title: AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "MemberShip",
+                  text: AppLocalizations.of(context)!.memberShip,
                 ),
               ),
               const Divider(),
@@ -91,7 +92,7 @@ class _SettingsState extends State<Settings> with SettingHandlers {
                 title: AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "Password",
+                  text: AppLocalizations.of(context)!.password,
                 ),
               ),
               const Divider(),
@@ -103,7 +104,7 @@ class _SettingsState extends State<Settings> with SettingHandlers {
                 title: AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "Account settings",
+                  text: AppLocalizations.of(context)!.accountSettings,
                 ),
               ),
               const Divider(),
@@ -116,7 +117,7 @@ class _SettingsState extends State<Settings> with SettingHandlers {
                 title: AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "Language",
+                  text: AppLocalizations.of(context)!.language,
                 ),
               ),
               const Divider(),
@@ -128,7 +129,7 @@ class _SettingsState extends State<Settings> with SettingHandlers {
                 title: AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "About",
+                  text: AppLocalizations.of(context)!.about,
                 ),
               ),
               const Divider(),
@@ -141,7 +142,7 @@ class _SettingsState extends State<Settings> with SettingHandlers {
                 title: AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: "Log Out",
+                  text: AppLocalizations.of(context)!.logOut,
                 ),
               ),
               const Divider(),

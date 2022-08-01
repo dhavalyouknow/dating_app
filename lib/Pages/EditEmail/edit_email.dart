@@ -63,14 +63,20 @@ class _EditEmailState extends State<EditEmail> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset("assets/mail_icon.png"),
+            Image.asset(
+              "assets/mail.png",
+              width: 200.w,
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
             AppText(
               size: 21.sp,
               fontFamily:
                   GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
               text: "Almost There!",
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 15.h),
             AppText(
               fontFamily:
                   GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
@@ -98,7 +104,6 @@ class _EditEmailState extends State<EditEmail> {
                 BlocProvider.of<AuthBloc>(context).add(
                   SessionRequest(
                     onSuccess: (user) {
-                      print('=====');
                       if (user.isEmailVerified == true) {
                         Navigator.pushReplacementNamed(
                             context, '/ChoosePartner');
@@ -145,7 +150,7 @@ class _EditEmailState extends State<EditEmail> {
               child: AppText(
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
-                text: "Resend Email",
+                text: "Send Email",
               ),
             ),
             AppText(

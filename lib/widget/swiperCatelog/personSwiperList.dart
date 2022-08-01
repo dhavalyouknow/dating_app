@@ -12,12 +12,16 @@ class PersonSwiperList extends StatefulWidget {
   final SwipeState swipeState;
   final SwipableStackController? controller;
   bool showImageBig;
-  PersonSwiperList(
-      {Key? key,
-      required this.swipeState,
-      required this.controller,
-      required this.showImageBig})
-      : super(key: key);
+  int pageNo;
+  int limitNo;
+  PersonSwiperList({
+    Key? key,
+    required this.swipeState,
+    required this.controller,
+    required this.showImageBig,
+    required this.pageNo,
+    required this.limitNo,
+  }) : super(key: key);
 
   @override
   State<PersonSwiperList> createState() => _PersonSwiperListState();
@@ -37,6 +41,7 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
       cancelAnimationCurve: Curves.easeIn,
       builder: (c, p) {
         final itemIndex = p.index % widget.swipeState.swipe.length;
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -184,6 +189,7 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
                     bottom: 112.h,
                     child: GestureDetector(
                       onTap: () {
+                        print('object');
                         if (widget.showImageBig == true) {
                           widget.showImageBig = false;
                         } else {
@@ -229,6 +235,13 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
       },
       onSwipeCompleted: (index, direction) {
         //print('$index, $direction');
+        widget.pageNo = index;
+        print(widget.pageNo);
+        if (widget.pageNo == (widget.swipeState.swipe.length) - 1) {
+          int no = widget.pageNo + 10;
+          print(no);
+        }
+        setState(() {});
       },
     );
   }

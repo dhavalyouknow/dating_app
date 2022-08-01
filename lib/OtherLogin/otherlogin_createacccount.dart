@@ -38,7 +38,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
             padding: EdgeInsets.only(right: 10.w),
             child: IconButton(
               onPressed: () {
-                // Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, '/LoginPage');
               },
               icon: Icon(
                 size: 30.h,

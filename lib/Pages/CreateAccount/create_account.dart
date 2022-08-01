@@ -35,7 +35,7 @@ class _CreateAccountState extends State<CreateAccount>
             padding: EdgeInsets.only(right: 10.w),
             child: IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, '/LoginPage');
               },
               icon: Icon(
                 size: 30.h,
@@ -256,7 +256,8 @@ class _CreateAccountState extends State<CreateAccount>
                                 .alreadyHaveAccount),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, LoginPage.routeName);
+                            Navigator.pushReplacementNamed(
+                                context, LoginPage.routeName);
                           },
                           child: AppText(
                               text: AppLocalizations.of(context)!.signIn),

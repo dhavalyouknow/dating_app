@@ -70,8 +70,8 @@ class _AddYourDogNowState extends State<AddYourDogNow> {
                       txt: "Later",
                       txtColor: AppStyles.blackColor,
                       onTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, HomePage.routeName);
+                        // Navigator.pushReplacementNamed(
+                        //     context, HomePage.routeName,);
                       },
                     ),
                   )

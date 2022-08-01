@@ -55,7 +55,9 @@ class _SetUpProfileNowState extends State<SetUpProfileNow> {
                       txtColor: AppStyles.blackColor,
                       onTap: () {
                         Navigator.pushReplacementNamed(
-                            context, SetupProfile1.routeName);
+                          context,
+                          SetupProfile1.routeName,
+                        );
                       },
                     ),
                   ),
@@ -69,8 +71,10 @@ class _SetUpProfileNowState extends State<SetUpProfileNow> {
                       txt: "Later",
                       txtColor: AppStyles.blackColor,
                       onTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, HomePage.routeName);
+                        // Navigator.pushReplacementNamed(
+                        //   context,
+                        //   HomePage.routeName,
+                        // );
                       },
                     ),
                   )

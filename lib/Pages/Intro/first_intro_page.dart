@@ -113,7 +113,8 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                   SizedBox(height: 10.h),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, ThirdIntroPage.routeName);
+                      Navigator.pushReplacementNamed(
+                          context, ThirdIntroPage.routeName);
                     },
                     child: AppText(
                       fontFamily:

@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipable_stack/swipable_stack.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = "/HomePage";
@@ -135,6 +134,8 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                                   swipeState: swipeState,
                                   showImageBig: showImageBig,
                                   controller: swipeController,
+                                  pageNo: pageNo,
+                                  limitNo: limitNo,
                                 ),
                         ],
                       ),
@@ -144,17 +145,11 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            print(user?.id);
-                            swipeController.next(
-                              swipeDirection: SwipeDirection.left,
-                            );
-                            swipeController.addListener(() {
-                              print(swipeController.currentIndex);
-                              swipeController.rewind();
-                              // print(swipeState
-                              //     .swipe[swipeController.currentIndex]
-                              //     .firstName);
-                            });
+                            if (onSwitchDog) {
+                              disLikeDog(dogState);
+                            } else {
+                              disLikePerson(swipeState);
+                            }
                           },
                           child: Container(
                             padding: const EdgeInsets.all(16.0),
@@ -176,9 +171,11 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                         SizedBox(width: 15.w),
                         GestureDetector(
                           onTap: () {
-                            swipeController.next(
-                              swipeDirection: SwipeDirection.right,
-                            );
+                            if (onSwitchDog) {
+                              likeDog(dogState);
+                            } else {
+                              likePerson(swipeState);
+                            }
                           },
                           child: Container(
                             height: 70.h,

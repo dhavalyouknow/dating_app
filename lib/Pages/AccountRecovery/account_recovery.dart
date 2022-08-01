@@ -117,7 +117,8 @@ class _AccountRecoveryState extends State<AccountRecovery>
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, CreateAccount.routeName);
+                      Navigator.pushReplacementNamed(
+                          context, CreateAccount.routeName);
                     },
                     child: AppText(
                       fontFamily:

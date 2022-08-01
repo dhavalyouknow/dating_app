@@ -182,7 +182,8 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
                     length: int.parse(lengthController.text),
                   ),
                   success: (value) {
-                    Navigator.pushNamed(context, SetupProfile2.routeName);
+                    Navigator.pushReplacementNamed(
+                        context, SetupProfile2.routeName);
                     Fluttertoast.showToast(
                         msg: 'Your Profile Setup Successfully');
                   },

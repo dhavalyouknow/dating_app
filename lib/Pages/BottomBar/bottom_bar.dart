@@ -66,8 +66,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             IconButton(
               onPressed: () {
                 updateTabSelection(2, "Events");
-                Navigator.pushReplacementNamed(
-                    context, UpComingEvents.routeName);
+                // Navigator.pushReplacementNamed(
+                //     context, UpComingEvents.routeName);
               },
               icon: Icon(
                 size: 24.sp,
@@ -80,8 +80,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             IconButton(
               onPressed: () {
                 updateTabSelection(3, "Message");
-                Navigator.pushReplacementNamed(
-                    context, ChattingUserListPage.routeName);
+                // Navigator.pushReplacementNamed(
+                //     context, ChattingUserListPage.routeName);
               },
               icon: Icon(
                 size: 27.sp,

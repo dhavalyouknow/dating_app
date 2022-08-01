@@ -1,5 +1,6 @@
 import 'package:dating_app/Bloc/DogSwipe/dog_swipe_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
+import 'package:dating_app/Bloc/Swipe/swipe_state.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:flutter/material.dart';
@@ -11,53 +12,96 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
   bool showImageBig = false;
   bool onSwitchDog = false;
   User? user;
+  int pageNo = 1;
+  int limitNo = 10;
 
-  void _listenController() => setState(() {});
+  void listenController() => setState(() {});
 
   @override
   initState() {
     super.initState();
-    swipeController = SwipableStackController()..addListener(_listenController);
+    swipeController = SwipableStackController()..addListener(listenController);
     BlocProvider.of<SwipeBloc>(context).add(
-      GetSwipeList(),
+      GetSwipeList(pageNo: 1, limitNo: 10),
     );
-
     user = BlocProvider.of<UserBloc>(context).state.user;
-
-    //  BlocProvider.of<SwipeBloc>(context).add(DogSwipeList());
   }
 
   @override
   void dispose() {
     super.dispose();
     swipeController
-      ..removeListener(_listenController)
+      ..removeListener(listenController)
       ..dispose();
   }
 
   onDogSwipe() {
     if (onSwitchDog == false) {
       onSwitchDog = true;
-      BlocProvider.of<DogSwipeBloc>(context).add(GetDogSwiperList());
+      BlocProvider.of<DogSwipeBloc>(context)
+          .add(GetDogSwiperList(pageNo: 1, limitNo: 1));
     } else {
       onSwitchDog = false;
       BlocProvider.of<SwipeBloc>(context).add(
-        GetSwipeList(),
+        GetSwipeList(pageNo: 1, limitNo: 10),
       );
     }
     setState(() {});
   }
 
-  // disLikePerson() {
-  //   print(user?.id);
-  //   swipeController.next(
-  //     swipeDirection: SwipeDirection.left,
-  //   );
-  //   swipeController.addListener(() {
-  //     print('${swipeController.currentIndex}');
-  //     print('1111');
-  //   });
-  //
-  //   // BlocProvider.of<SwipeBloc>(context).add(DisLikePerson(swipeUserId: '',userId: ''));
-  // }
+  disLikePerson(SwipeState swipeState) {
+    BlocProvider.of<SwipeBloc>(context).add(
+      DisLikePerson(
+        userId: user!.id.toString(),
+        swipeUserId: swipeState.swipe[swipeController.currentIndex].id,
+        onSuccess: (value) {
+          swipeController.next(
+            swipeDirection: SwipeDirection.left,
+          );
+        },
+      ),
+    );
+  }
+
+  disLikeDog(DogSwipeState dogSwipeState) {
+    BlocProvider.of<DogSwipeBloc>(context).add(
+      DisLikeDog(
+        userId: user!.id.toString(),
+        swipeUSerId: dogSwipeState.dogSwipes[swipeController.currentIndex].id!,
+        onSuccess: () {
+          swipeController.next(
+            swipeDirection: SwipeDirection.left,
+          );
+        },
+      ),
+    );
+  }
+
+  likePerson(SwipeState swipeState) {
+    BlocProvider.of<SwipeBloc>(context).add(
+      LikePerson(
+        userId: user!.id.toString(),
+        swipeUserId: swipeState.swipe[swipeController.currentIndex].id,
+        onSuccess: (value) {
+          swipeController.next(
+            swipeDirection: SwipeDirection.right,
+          );
+        },
+      ),
+    );
+  }
+
+  likeDog(DogSwipeState dogSwipeState) {
+    BlocProvider.of<DogSwipeBloc>(context).add(
+      LikeDog(
+        userId: user!.id.toString(),
+        swipeUSerId: dogSwipeState.dogSwipes[swipeController.currentIndex].id!,
+        onSuccess: () {
+          swipeController.next(
+            swipeDirection: SwipeDirection.right,
+          );
+        },
+      ),
+    );
+  }
 }
