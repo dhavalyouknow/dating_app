@@ -56,7 +56,6 @@ class Swipe {
       );
 
   factory Swipe.fromJson(Map<String, dynamic> json) {
-    print(json["dog"]);
     return Swipe(
       id: json["_id"],
       firstName: json["firstName"],

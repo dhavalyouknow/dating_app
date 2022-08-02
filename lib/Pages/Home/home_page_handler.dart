@@ -15,14 +15,16 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
   int pageNo = 1;
   int limitNo = 10;
 
-  void listenController() => setState(() {});
+  void listenController() => setState(() {
+        print('-----11111------');
+      });
 
   @override
   initState() {
     super.initState();
     swipeController = SwipableStackController()..addListener(listenController);
     BlocProvider.of<SwipeBloc>(context).add(
-      GetSwipeList(pageNo: 1, limitNo: 10),
+      GetSwipeList(pageNo: pageNo, limitNo: 10, onSuccess: (success) {}),
     );
     user = BlocProvider.of<UserBloc>(context).state.user;
   }
@@ -43,7 +45,7 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
     } else {
       onSwitchDog = false;
       BlocProvider.of<SwipeBloc>(context).add(
-        GetSwipeList(pageNo: 1, limitNo: 10),
+        GetSwipeList(pageNo: pageNo, limitNo: 10, onSuccess: (success) {}),
       );
     }
     setState(() {});

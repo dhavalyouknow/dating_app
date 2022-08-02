@@ -14,6 +14,7 @@ class PersonSwiperList extends StatefulWidget {
   bool showImageBig;
   int pageNo;
   int limitNo;
+  final Function(int) onPageNo;
   PersonSwiperList({
     Key? key,
     required this.swipeState,
@@ -21,6 +22,7 @@ class PersonSwiperList extends StatefulWidget {
     required this.showImageBig,
     required this.pageNo,
     required this.limitNo,
+    required this.onPageNo,
   }) : super(key: key);
 
   @override
@@ -41,7 +43,7 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
       cancelAnimationCurve: Curves.easeIn,
       builder: (c, p) {
         final itemIndex = p.index % widget.swipeState.swipe.length;
-
+        print('********************');
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -235,11 +237,11 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
       },
       onSwipeCompleted: (index, direction) {
         //print('$index, $direction');
-        widget.pageNo = index;
-        print(widget.pageNo);
-        if (widget.pageNo == (widget.swipeState.swipe.length) - 1) {
-          int no = widget.pageNo + 10;
-          print(no);
+        if (index == (widget.swipeState.swipe.length) - 1) {
+          widget.pageNo = widget.pageNo + 1;
+          print(widget.pageNo);
+          print('--------------');
+          widget.onPageNo(widget.pageNo);
         }
         setState(() {});
       },

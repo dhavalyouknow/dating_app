@@ -22,17 +22,17 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> with BaseHttpService {
       emit(state.copyWith(status: SwipeStatus.loading));
       var resp =
           await get(url: ApiEndPoints.swipe(event.pageNo, event.limitNo));
-      print(ApiEndPoints.swipe);
+      print(ApiEndPoints.swipe(event.pageNo, event.limitNo));
       if (resp != null) {
         if (resp.statusCode == 200) {
-          // print(resp.statusCode);
-          // print(resp.body);
+          print(resp.statusCode);
+          print(resp.body);
           dynamic result = jsonDecode(resp.body);
           List<Swipe> swipes = [];
           for (dynamic json in result) {
             swipes.add(Swipe.fromJson(json));
           }
-
+          event.onSuccess('success');
           emit(state.copyWith(status: SwipeStatus.success, swipe: swipes));
         } else {
           print(resp.body);

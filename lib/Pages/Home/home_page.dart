@@ -6,6 +6,7 @@ import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/BottomBar/bottom_bar.dart';
 import 'package:dating_app/Pages/Home/home_page_handler.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
+import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:dating_app/widget/swiperCatelog/dogSwiperList.dart';
 import 'package:dating_app/widget/swiperCatelog/personSwiperList.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,6 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
     final pages = [
       const MyPage(),
     ];
-
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -89,6 +89,10 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
         builder: (context, dogState) {
           return BlocBuilder<SwipeBloc, SwipeState>(
             builder: (context, swipeState) {
+              print(swipeState.status);
+              if (swipeState.status == SwipeStatus.loading) {
+                return const LoadingWidget();
+              }
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -136,6 +140,19 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                                   controller: swipeController,
                                   pageNo: pageNo,
                                   limitNo: limitNo,
+                                  onPageNo: (no) {
+                                    print('----last-------');
+                                    pageNo = no;
+                                    print('*************');
+                                    print(pageNo);
+                                    BlocProvider.of<SwipeBloc>(context).add(
+                                      GetSwipeList(
+                                        pageNo: pageNo,
+                                        limitNo: 10,
+                                        onSuccess: (success) {},
+                                      ),
+                                    );
+                                  },
                                 ),
                         ],
                       ),
