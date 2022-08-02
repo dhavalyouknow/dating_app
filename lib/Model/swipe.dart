@@ -6,6 +6,7 @@ class Swipe {
     required this.id,
     required this.firstName,
     required this.lastName,
+    required this.about,
     required this.dob,
     required this.city,
     required this.squareProfileImage,
@@ -19,6 +20,7 @@ class Swipe {
   String id;
   String firstName;
   String lastName;
+  String about;
   DateTime dob;
   String city;
   List<SquareProfileImage> squareProfileImage;
@@ -32,6 +34,7 @@ class Swipe {
     String? id,
     String? firstName,
     String? lastName,
+    String? about,
     DateTime? dob,
     String? city,
     List<SquareProfileImage>? squareProfileImage,
@@ -45,6 +48,7 @@ class Swipe {
         id: id ?? this.id,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
+        about: about ?? this.about,
         dob: dob ?? this.dob,
         city: city ?? this.city,
         squareProfileImage: squareProfileImage ?? this.squareProfileImage,
@@ -60,6 +64,7 @@ class Swipe {
       id: json["_id"],
       firstName: json["firstName"],
       lastName: json["lastName"],
+      about: json["about"] ?? "",
       dob: DateTime.parse(json["dob"]),
       city: json["city"] ?? "",
       squareProfileImage: List<SquareProfileImage>.from(

@@ -1,12 +1,13 @@
 import 'package:dating_app/Bloc/DogSwipe/dog_swipe_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_state.dart';
+import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Dialog/UpgradeToPremium/upgrade_to_premium.dart';
 import 'package:dating_app/Pages/BottomBar/bottom_bar.dart';
 import 'package:dating_app/Pages/Home/home_page_handler.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
-import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:dating_app/widget/swiperCatelog/dogSwiperList.dart';
 import 'package:dating_app/widget/swiperCatelog/personSwiperList.dart';
 import 'package:flutter/material.dart';
@@ -89,10 +90,6 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
         builder: (context, dogState) {
           return BlocBuilder<SwipeBloc, SwipeState>(
             builder: (context, swipeState) {
-              print(swipeState.status);
-              if (swipeState.status == SwipeStatus.loading) {
-                return const LoadingWidget();
-              }
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -140,18 +137,8 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                                   controller: swipeController,
                                   pageNo: pageNo,
                                   limitNo: limitNo,
-                                  onPageNo: (no) {
-                                    print('----last-------');
-                                    pageNo = no;
-                                    print('*************');
-                                    print(pageNo);
-                                    BlocProvider.of<SwipeBloc>(context).add(
-                                      GetSwipeList(
-                                        pageNo: pageNo,
-                                        limitNo: 10,
-                                        onSuccess: (success) {},
-                                      ),
-                                    );
+                                  onPageNo: (i) {
+                                    print(i);
                                   },
                                 ),
                         ],
@@ -161,11 +148,24 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            if (onSwitchDog) {
-                              disLikeDog(dogState);
+                          onTap: () async {
+                            if (BlocProvider.of<UserBloc>(context)
+                                    .state
+                                    .user!
+                                    .isPro ==
+                                false) {
+                              await showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return const UpgradeToPremium();
+                                },
+                              );
                             } else {
-                              disLikePerson(swipeState);
+                              if (onSwitchDog) {
+                                disLikeDog(dogState);
+                              } else {
+                                disLikePerson(swipeState);
+                              }
                             }
                           },
                           child: Container(
@@ -187,11 +187,24 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                         ),
                         SizedBox(width: 15.w),
                         GestureDetector(
-                          onTap: () {
-                            if (onSwitchDog) {
-                              likeDog(dogState);
+                          onTap: () async {
+                            if (BlocProvider.of<UserBloc>(context)
+                                    .state
+                                    .user!
+                                    .isPro ==
+                                false) {
+                              await showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return const UpgradeToPremium();
+                                },
+                              );
                             } else {
-                              likePerson(swipeState);
+                              if (onSwitchDog) {
+                                likeDog(dogState);
+                              } else {
+                                likePerson(swipeState);
+                              }
                             }
                           },
                           child: Container(

@@ -36,20 +36,17 @@ class ReportUserBloc extends Bloc<ReportUserEvent, ReportUserState>
       );
       if (resp != null) {
         if (resp.statusCode == 200) {
-          Map<String, dynamic> data = jsonDecode(resp.body);
-
+          print(resp.statusCode);
+          print(resp.body);
+          event.success();
           emit(state.copyWith(status: ReportUserStatus.success));
-          User user = User.fromJson(data);
-
-          event.success(user);
-          Fluttertoast.showToast(msg: 'User Reported Successfully');
         } else {
           print(resp.statusCode);
           print(resp.body);
           emit(state.copyWith(status: ReportUserStatus.failure));
         }
       } else {
-        print(resp);
+        print(resp?.statusCode);
         emit(state.copyWith(status: ReportUserStatus.failure));
       }
     } catch (e) {

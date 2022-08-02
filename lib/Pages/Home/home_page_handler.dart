@@ -2,6 +2,7 @@ import 'package:dating_app/Bloc/DogSwipe/dog_swipe_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_state.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
+import 'package:dating_app/Dialog/UpgradeToPremium/upgrade_to_premium.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,8 +16,15 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
   int pageNo = 1;
   int limitNo = 10;
 
-  void listenController() => setState(() {
-        print('-----11111------');
+  void listenController() => setState(() async {
+        if (BlocProvider.of<UserBloc>(context).state.user!.isPro == false) {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return const UpgradeToPremium();
+            },
+          );
+        }
       });
 
   @override

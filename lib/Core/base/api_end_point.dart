@@ -16,9 +16,14 @@ class ApiEndPoints {
   static const String updatePassword = '$baseUrl/user/update_password';
   static const String forgotPassword = '$baseUrl/user/forget_password';
   static const String upComingEvent = '$baseUrl/event/upcoming';
+
 //  static const String dogSwipe = '$baseUrl/dog/swiper?page=${5}&limit=${10}';
+
+  static const String searchEvent = '$baseUrl/event?query=';
+  // static const String dogSwipe = '$baseUrl/dog/swiper?page=${5}&limit=${10}';
   static const String disLikePerson = '$baseUrl/user/swipeLeft/';
   static const String reportUser = '$baseUrl/report';
+  static const String blockUser = '$baseUrl/user/';
   static const String resendEmail = '$baseUrl/user/resent_veri_email';
   static const String likePerson = '$baseUrl/user/swipeRight/';
   static const String disLikeDog = '$baseUrl/dog/swipeRight/';

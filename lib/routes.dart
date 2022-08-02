@@ -29,6 +29,7 @@ import 'package:dating_app/Pages/Intro/third_intro_page.dart';
 import 'package:dating_app/Pages/Login/login_page.dart';
 import 'package:dating_app/Pages/Login/select_login_method.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
+import 'package:dating_app/Pages/OtherPublicProfile/other_public_profile.dart';
 import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile.dart';
 import 'package:dating_app/Pages/Setting/setting.dart';
 import 'package:dating_app/Pages/SetupProfile/set_up_profile1/setup_profile1.dart';
@@ -85,4 +86,5 @@ Map<String, WidgetBuilder> routes = {
   ChattingUserListPage.routeName: (ctx) => const ChattingUserListPage(),
   ChattingPage.routeName: (ctx) => const ChattingPage(),
   EditUserEmail.routeName: (ctx) => const EditUserEmail(),
+  OtherPublicProfile.routeName: (ctx) => const OtherPublicProfile(),
 };

@@ -16,7 +16,7 @@ class AllDogDataFieldWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 10.h),
+          padding: EdgeInsets.only(top: 15.h),
           child: AppText(
             text: 'Gender',
             size: 17.sp,
@@ -24,14 +24,17 @@ class AllDogDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        AppText(
-          text: '${dog!.gender}',
-          size: 13.sp,
-          fontFamily:
-              GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
+        Padding(
+          padding: EdgeInsets.only(top: 5.h),
+          child: AppText(
+            text: '${dog!.gender}',
+            size: 13.sp,
+            fontFamily:
+                GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
+          ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 10.h),
+          padding: EdgeInsets.only(top: 15.h),
           child: AppText(
             text: 'Size',
             size: 17.sp,
@@ -39,14 +42,17 @@ class AllDogDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        AppText(
-          text: '${dog!.size}',
-          size: 13.sp,
-          fontFamily:
-              GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
+        Padding(
+          padding: EdgeInsets.only(top: 5.h),
+          child: AppText(
+            text: '${dog!.size}',
+            size: 13.sp,
+            fontFamily:
+                GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
+          ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 10.h),
+          padding: EdgeInsets.only(top: 15.h),
           child: AppText(
             text: 'My dog is looking for',
             size: 17.sp,
@@ -54,14 +60,17 @@ class AllDogDataFieldWidget extends StatelessWidget {
                 GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
           ),
         ),
-        Wrap(
-          children: [
-            ...dog!.lookingFor!
-                .map(
-                  (e) => SelectedChipWidget(interestsName: e),
-                )
-                .toList(),
-          ],
+        Padding(
+          padding: EdgeInsets.only(top: 5.h),
+          child: Wrap(
+            children: [
+              ...dog!.lookingFor!
+                  .map(
+                    (e) => SelectedChipWidget(interestsName: e),
+                  )
+                  .toList(),
+            ],
+          ),
         ),
       ],
     );

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Core/base/api_end_point.dart';
 import 'package:dating_app/Core/base/base_http_service.dart';
 import 'package:dating_app/Model/user.dart';
@@ -281,9 +280,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
       );
       if (resp != null) {
         if (resp.statusCode == 200) {
-          var _token = resp.headers["x-auth-token"];
+          var token = resp.headers["x-auth-token"];
           SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('auth_token', _token!);
+          prefs.setString('auth_token', token!);
           Map<String, dynamic> data = jsonDecode(resp.body);
           User user = User.fromJson(data);
           event.isRegistered(data["isRegistered"]);
@@ -325,9 +324,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
       );
       if (resp != null) {
         if (resp.statusCode == 200) {
-          var _token = resp.headers["x-auth-token"];
+          var token = resp.headers["x-auth-token"];
           SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('auth_token', _token!);
+          prefs.setString('auth_token', token!);
           Map<String, dynamic> data = jsonDecode(resp.body);
           User user = User.fromJson(data);
           event.onSuccess(user);
@@ -372,9 +371,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
         if (resp.statusCode == 200) {
           print(resp.body);
           print(resp.statusCode);
-          var _token = resp.headers["x-auth-token"];
+          var token = resp.headers["x-auth-token"];
           SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('auth_token', _token!);
+          prefs.setString('auth_token', token!);
           Map<String, dynamic> data = jsonDecode(resp.body);
           User user = User.fromJson(data);
           event.isRegistered(data["isRegistered"]);

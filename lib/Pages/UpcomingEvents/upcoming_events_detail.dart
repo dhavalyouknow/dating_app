@@ -283,6 +283,15 @@ class _UpComingEventsDetailState extends State<UpComingEventsDetail>
                         onTap: () {},
                       ),
                     ),
+                    SizedBox(
+                      width: size.width / 3,
+                      child: GradientBtn(
+                        borderRadius: 12.r,
+                        height: size.height / 16,
+                        txt: "Cancel",
+                        onTap: () {},
+                      ),
+                    ),
                   ],
                 ),
               )

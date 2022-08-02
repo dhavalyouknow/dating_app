@@ -1,10 +1,12 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
+import 'package:dating_app/Bloc/BlockUser/block_user_bloc.dart';
 import 'package:dating_app/Bloc/ChangePassword/change_password_bloc.dart';
 import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
 import 'package:dating_app/Bloc/DogSwipe/dog_swipe_bloc.dart';
 import 'package:dating_app/Bloc/Event/event_bloc.dart';
 import 'package:dating_app/Bloc/ForgotPassword/forgot_password_bloc.dart';
 import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
+import 'package:dating_app/Bloc/ReportUser/report_user_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/firebase_options.dart';
@@ -82,6 +84,14 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<DogSwipeBloc>(
           create: (BuildContext context) => DogSwipeBloc(),
+          lazy: true,
+        ),
+        BlocProvider<BlockUserBloc>(
+          create: (BuildContext context) => BlockUserBloc(),
+          lazy: true,
+        ),
+        BlocProvider<ReportUserBloc>(
+          create: (BuildContext context) => ReportUserBloc(),
           lazy: true,
         ),
       ],
