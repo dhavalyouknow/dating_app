@@ -2,15 +2,12 @@
 
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
-<<<<<<< HEAD
-import 'package:dating_app/Pages/ChattingPage/chat_page.dart';
-=======
 import 'package:dating_app/Dialog/UpgradeToPremium/upgrade_to_premium.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:dating_app/Pages/ChattingPage/chatting_user_list.dart';
->>>>>>> 0e8389b71394193d8ee5f23d2593de3810ebe354
 import 'package:dating_app/Pages/Home/home_page.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
+import 'package:dating_app/Pages/UpcomingEvents/upcoming_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -87,20 +84,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
                       : AppStyles.greyColor,
                 ),
               ),
-<<<<<<< HEAD
-            ),
-            IconButton(
-              onPressed: () {
-                updateTabSelection(3, "Message");
-                Navigator.pushNamed(context, ChatPage.routeName);
-              },
-              icon: Icon(
-                size: 27.sp,
-                Icons.chat_bubble_sharp,
-                color: selectedIndex == 3
-                    ? AppStyles.pinkColor
-                    : AppStyles.greyColor,
-=======
               IconButton(
                 onPressed: () async {
                   updateTabSelection(3, "Message");
@@ -124,7 +107,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
                       ? AppStyles.pinkColor
                       : AppStyles.greyColor,
                 ),
->>>>>>> 0e8389b71394193d8ee5f23d2593de3810ebe354
               ),
             ],
           ),

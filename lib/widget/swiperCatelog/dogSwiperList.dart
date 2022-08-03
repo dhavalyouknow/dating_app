@@ -1,6 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dating_app/Bloc/DogSwipe/dog_swipe_bloc.dart';
-import 'package:dating_app/Bloc/Swipe/swipe_state.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Model/dogSwipe.dart';
@@ -245,3 +243,11 @@ class _DogSwiperListState extends State<DogSwiperList> {
     );
   }
 }
+
+// onTap: () {
+// Navigator.pushNamed(
+// context,
+// OtherPublicProfile.routeName,
+// arguments: widget.swipes[itemIndex],
+// );
+// },

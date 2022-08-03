@@ -111,21 +111,12 @@ class _MyAppState extends State<MyApp> {
           create: (BuildContext context) => DogSwipeBloc(),
           lazy: true,
         ),
-<<<<<<< HEAD
-        BlocProvider<ChattingBloc>(
-          create: (BuildContext context) => ChattingBloc(),
-          lazy: true,
-        ),
-        BlocProvider<ChatroomBloc>(
-          create: (BuildContext context) => ChatroomBloc(),
-=======
         BlocProvider<BlockUserBloc>(
           create: (BuildContext context) => BlockUserBloc(),
           lazy: true,
         ),
         BlocProvider<ReportUserBloc>(
           create: (BuildContext context) => ReportUserBloc(),
->>>>>>> 0e8389b71394193d8ee5f23d2593de3810ebe354
           lazy: true,
         ),
       ],
