@@ -7,6 +7,7 @@ import 'package:dating_app/mqtt.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -93,6 +94,26 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   final ScrollController _scrollController = ScrollController();
+  int index = -1;
+
+  PopupMenuItem _buildPopupMenuItem(String menuTitle,
+      {required bool isSelected, required VoidCallback onTap}) {
+    return PopupMenuItem(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Row(
+          children: [
+            Text(
+              menuTitle,
+              style: TextStyle(
+                  color:
+                      isSelected ? AppStyles.pinkColor : AppStyles.blackColor),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,19 +124,54 @@ class _ChatScreenState extends State<ChatScreen> {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: AppStyles.introGradientColor,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: AppStyles.forgotPassGradientColor,
         ),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: AppStyles.blackColor),
+          iconTheme: const IconThemeData(color: AppStyles.greyColor),
           elevation: 0.0,
           backgroundColor: Colors.transparent,
           title: Text(
             getChatRoomTitle(chatRoom),
             style: const TextStyle(color: AppStyles.blackColor),
           ),
+          actions: [
+            PopupMenuButton(
+                itemBuilder: (BuildContext context) => [
+                      PopupMenuItem(
+                        child: StatefulBuilder(
+                          builder: (context, setState) {
+                            return Column(
+                              children: [
+                                _buildPopupMenuItem('Archive chat',
+                                    isSelected: index == 0, onTap: () {
+                                  setState(() {
+                                    index = 0;
+                                  });
+                                }),
+                                _buildPopupMenuItem('Report chat',
+                                    isSelected: index == 1, onTap: () {
+                                  setState(() {
+                                    index = 1;
+                                  });
+                                }),
+                                _buildPopupMenuItem('Block user',
+                                    isSelected: index == 2, onTap: () {
+                                  setState(() {
+                                    index = 2;
+                                  });
+                                }),
+                              ],
+                            );
+                          },
+                        ),
+                      )
+                    ])
+          ],
         ),
         body: Column(
           children: [
@@ -157,16 +213,15 @@ class _ChatScreenState extends State<ChatScreen> {
                                           topLeft: Radius.circular(23),
                                           bottomLeft: Radius.circular(23),
                                         ),
-                                        color: AppStyles.whiteColor)
-                                    : BoxDecoration(
-                                        borderRadius: const BorderRadius.only(
+                                        color: AppStyles.skyBlueColor,
+                                      )
+                                    : const BoxDecoration(
+                                        borderRadius: BorderRadius.only(
                                           topRight: Radius.circular(23),
                                           topLeft: Radius.circular(23),
                                           bottomRight: Radius.circular(23),
                                         ),
-                                        gradient: LinearGradient(
-                                          colors: AppStyles.myPageGradientColor,
-                                        ),
+                                        color: AppStyles.lightGreyColor,
                                       ),
                                 child: Container(
                                   padding: const EdgeInsets.all(10.0),
@@ -184,40 +239,97 @@ class _ChatScreenState extends State<ChatScreen> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 29,
-                right: 29,
-                bottom: 25,
-              ),
-              child: Container(
-                height: 55,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: AppStyles.whiteColor,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 15,
-                  ),
-                  child: TextFormField(
-                    textInputAction: TextInputAction.done,
-                    onFieldSubmitted: publishMessage,
-                    controller: message,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'message..',
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          publishMessage(message.text);
-                        },
-                        icon: const Icon(Icons.send),
+            Row(
+              children: [
+                Flexible(
+                  flex: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 10,
+                      right: 0,
+                      bottom: 29,
+                    ),
+                    child: Container(
+                      height: 55,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: AppStyles.whiteColor,
+                        border: Border.all(
+                          color: AppStyles.greyColor,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 15,
+                        ),
+                        child: TextFormField(
+                          textInputAction: TextInputAction.done,
+                          onFieldSubmitted: publishMessage,
+                          controller: message,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Type your message',
+                            hintStyle:
+                                const TextStyle(color: AppStyles.greyColor),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                publishMessage(message.text);
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                  top: 5.h,
+                                  bottom: 5.h,
+                                  right: 5.w,
+                                ),
+                                width: 70.w,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: AppStyles.pinkGradientColor,
+                                  ),
+                                  borderRadius: BorderRadius.circular(22.0),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Send',
+                                    style: TextStyle(
+                                      color: AppStyles.whiteColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 13.sp,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
+                Flexible(
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          colors: AppStyles.pinkGradientColor,
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(bottom: 29, left: 5),
+                      child: Icon(
+                        Icons.camera_alt_outlined,
+                        color: AppStyles.whiteColor,
+                        size: 25.sp,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

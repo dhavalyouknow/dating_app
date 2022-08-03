@@ -29,6 +29,12 @@ class AppStyles {
     const Color(0xffF7BFAE),
   ];
 
+  static List<Color> pinkGradientColor = [
+    const Color(0xffFFBCC9),
+    const Color(0xffFAC7D1),
+    const Color(0xffFFE3E9),
+  ];
+
   static List<Color> forgotPassGradientColor = [
     const Color(0xffFFFFFF),
     const Color(0xffFFFFFF),
@@ -272,4 +278,17 @@ List<DogSize> dogLookingFor = [
   // DogSize(name: "Bonus Husse", selected: false),
   DogSize(name: "Bonus Father", selected: false),
   DogSize(name: "Bonus Mother", selected: false),
+];
+
+class ChatUser {
+  String name;
+  bool selected;
+
+  ChatUser({required this.name, required this.selected});
+}
+
+List<ChatUser> chatUser = [
+  ChatUser(name: 'Archive chat', selected: false),
+  ChatUser(name: 'Report chat', selected: false),
+  ChatUser(name: 'Block user', selected: false),
 ];
