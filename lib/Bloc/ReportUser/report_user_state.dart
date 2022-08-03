@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 part of 'report_user_bloc.dart';
 
 enum ReportUserStatus {
@@ -27,7 +29,6 @@ class ReportUserState extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [status, user];
 }
 

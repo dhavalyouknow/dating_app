@@ -2,8 +2,12 @@ import 'package:dating_app/Bloc/DogSwipe/dog_swipe_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_state.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
+
 import 'package:dating_app/Model/dogSwipe.dart';
 import 'package:dating_app/Model/swipe.dart';
+
+import 'package:dating_app/Dialog/UpgradeToPremium/upgrade_to_premium.dart';
+
 import 'package:dating_app/Model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +24,18 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
   bool isLoadMore = false;
   List<Swipe> swipe = [];
   List<DogSwipe> dogSwipe = [];
+  int limitNo = 10;
+
+  void listenController() => setState(() async {
+        if (BlocProvider.of<UserBloc>(context).state.user!.isPro == false) {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return const UpgradeToPremium();
+            },
+          );
+        }
+      });
 
   @override
   initState() {
@@ -65,10 +81,6 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
       });
 
     user = BlocProvider.of<UserBloc>(context).state.user;
-  }
-
-  Future<void> listenController() async {
-    setState(() {});
   }
 
   Future<void> dogListenController() async {

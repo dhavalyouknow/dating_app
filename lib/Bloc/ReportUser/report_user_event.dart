@@ -8,7 +8,7 @@ class ReportUserRequest extends ReportUserEvent {
   final String reportBy;
   final String reason;
   final String message;
-  final Function(User) success;
+  final VoidCallback success;
 
   ReportUserRequest({
     required this.userId,

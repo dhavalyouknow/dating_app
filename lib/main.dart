@@ -1,4 +1,5 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
+import 'package:dating_app/Bloc/BlockUser/block_user_bloc.dart';
 import 'package:dating_app/Bloc/ChangePassword/change_password_bloc.dart';
 import 'package:dating_app/Bloc/ChatRoom/chatroom_bloc.dart';
 import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:dating_app/Bloc/DogSwipe/dog_swipe_bloc.dart';
 import 'package:dating_app/Bloc/Event/event_bloc.dart';
 import 'package:dating_app/Bloc/ForgotPassword/forgot_password_bloc.dart';
 import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
+import 'package:dating_app/Bloc/ReportUser/report_user_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Bloc/chatting/chatting_bloc.dart';
@@ -109,12 +111,21 @@ class _MyAppState extends State<MyApp> {
           create: (BuildContext context) => DogSwipeBloc(),
           lazy: true,
         ),
+<<<<<<< HEAD
         BlocProvider<ChattingBloc>(
           create: (BuildContext context) => ChattingBloc(),
           lazy: true,
         ),
         BlocProvider<ChatroomBloc>(
           create: (BuildContext context) => ChatroomBloc(),
+=======
+        BlocProvider<BlockUserBloc>(
+          create: (BuildContext context) => BlockUserBloc(),
+          lazy: true,
+        ),
+        BlocProvider<ReportUserBloc>(
+          create: (BuildContext context) => ReportUserBloc(),
+>>>>>>> 0e8389b71394193d8ee5f23d2593de3810ebe354
           lazy: true,
         ),
       ],

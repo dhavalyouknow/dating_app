@@ -73,117 +73,335 @@ class _UpComingEventsState extends State<UpComingEvents>
                 builder: (context, evenStatus) {
                   print(evenStatus);
                   if (evenStatus.event != null) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    return Stack(
+                      alignment: Alignment.topCenter,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10.h),
-                          child: AppText(
-                            size: 18.sp,
-                            text: AppLocalizations.of(context)!.upComingEvents,
-                            fontFamily:
-                                GoogleFonts.raleway(fontWeight: FontWeight.bold)
-                                    .fontFamily,
-                          ),
-                        ),
-                        ...evenStatus.event!.map(
-                          (e) {
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  UpComingEventsDetail.routeName,
-                                  arguments: e,
-                                );
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextField(
+                              controller: searchController,
+                              style:
+                                  const TextStyle(color: AppStyles.blackColor),
+                              decoration: InputDecoration(
+                                hintText: 'Search Events',
+                                hintStyle: TextStyle(
+                                  color: AppStyles.placeholder,
+                                  fontSize: 12.sp,
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: AppStyles.textColor,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(22.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: AppStyles.textColor,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(22.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: AppStyles.whiteColor,
+                                    width: 0.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(22.0),
+                                ),
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 10.h,
+                                  horizontal: 15.w,
+                                ),
+                                filled: true,
+                                fillColor: AppStyles.whiteColor,
+                                border: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: AppStyles.textColor,
+                                  ),
+                                ),
+                              ),
+                              onChanged: (value) {
+                                showWhenOpen = true;
+                                if (value.isEmpty) {
+                                  isNotShowList = true;
+                                } else {
+                                  isNotShowList = false;
+                                  BlocProvider.of<EventBloc>(context).add(
+                                    SearchEvent(
+                                      searchText: value,
+                                      onSuccess: (searchEvent) {
+                                        print(searchEvent);
+                                      },
+                                    ),
+                                  );
+                                }
+                                setState(() {});
                               },
-                              child: Row(
-                                children: [
-                                  Stack(
+                            ),
+                            if (showWhenOpen &&
+                                searchController.text.isNotEmpty)
+                              Container(
+                                decoration: const BoxDecoration(
+                                    color: AppStyles.whiteColor),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        showWhenOpen = false;
+                                        setState(() {});
+                                      },
+                                      icon: const Icon(Icons.close),
+                                    ),
+                                    ...evenStatus.event!.map(
+                                      (e) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                              context,
+                                              UpComingEventsDetail.routeName,
+                                              arguments: e,
+                                            );
+                                          },
+                                          child: Row(
+                                            children: [
+                                              Stack(
+                                                children: [
+                                                  Container(
+                                                    margin:
+                                                        EdgeInsets.symmetric(
+                                                            vertical: 5.h),
+                                                    height: 70.h,
+                                                    width: 70.w,
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15.r),
+                                                      child: CachedNetworkImage(
+                                                        imageUrl: e
+                                                            .eventPic!.first.url
+                                                            .toString(),
+                                                        fit: BoxFit.cover,
+                                                        errorWidget:
+                                                            (BuildContext
+                                                                    context,
+                                                                url,
+                                                                data) {
+                                                          return const ImageErrorWidget();
+                                                        },
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            const LoadingWidget(),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    left: 10.w,
+                                                    top: 10.h,
+                                                    child: AppText(
+                                                      size: 24.sp,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      text:
+                                                          DateFormat('dd\nMMMM')
+                                                              .format(
+                                                        DateTime.parse(
+                                                            "${e.eventDate}"),
+                                                      ),
+                                                      fontFamily:
+                                                          GoogleFonts.raleway(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600)
+                                                              .fontFamily,
+                                                      color:
+                                                          AppStyles.whiteColor,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 10.w),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    AppText(
+                                                      size: 16.sp,
+                                                      text: e.title.toString(),
+                                                      fontFamily:
+                                                          GoogleFonts.raleway(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600)
+                                                              .fontFamily,
+                                                    ),
+                                                    Container(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                        horizontal: 5.w,
+                                                        vertical: 5.h,
+                                                      ),
+                                                      height: 30.h,
+                                                      decoration: BoxDecoration(
+                                                        color: AppStyles
+                                                            .primaryColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      child: Row(
+                                                        children: [
+                                                          const Icon(Icons
+                                                              .person_outline),
+                                                          AppText(
+                                                            size: 16.sp,
+                                                            text:
+                                                                "${e.bookedSeat}/${e.totalCapacity} people",
+                                                            fontFamily: GoogleFonts.raleway(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600)
+                                                                .fontFamily,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              )
+                            else
+                              Container(),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10.h),
+                              child: AppText(
+                                size: 18.sp,
+                                text: AppLocalizations.of(context)!
+                                    .upComingEvents,
+                                fontFamily: GoogleFonts.raleway(
+                                        fontWeight: FontWeight.bold)
+                                    .fontFamily,
+                              ),
+                            ),
+                            ...evenStatus.event!.map(
+                              (e) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      UpComingEventsDetail.routeName,
+                                      arguments: e,
+                                    );
+                                  },
+                                  child: Row(
                                     children: [
-                                      Container(
-                                        margin:
-                                            EdgeInsets.symmetric(vertical: 5.h),
-                                        height: 70.h,
-                                        width: 70.w,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(15.r),
-                                          child: CachedNetworkImage(
-                                            imageUrl: e.eventPic!.first.url
-                                                .toString(),
-                                            fit: BoxFit.cover,
-                                            errorWidget: (BuildContext context,
-                                                url, data) {
-                                              return const ImageErrorWidget();
-                                            },
-                                            placeholder: (context, url) =>
-                                                const LoadingWidget(),
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.symmetric(
+                                                vertical: 5.h),
+                                            height: 70.h,
+                                            width: 70.w,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.r),
+                                              child: CachedNetworkImage(
+                                                imageUrl: e.eventPic!.first.url
+                                                    .toString(),
+                                                fit: BoxFit.cover,
+                                                errorWidget:
+                                                    (BuildContext context, url,
+                                                        data) {
+                                                  return const ImageErrorWidget();
+                                                },
+                                                placeholder: (context, url) =>
+                                                    const LoadingWidget(),
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          Positioned(
+                                            left: 10.w,
+                                            top: 10.h,
+                                            child: AppText(
+                                              size: 24.sp,
+                                              textAlign: TextAlign.center,
+                                              text:
+                                                  DateFormat('dd\nMMMM').format(
+                                                DateTime.parse(
+                                                    "${e.eventDate}"),
+                                              ),
+                                              fontFamily: GoogleFonts.raleway(
+                                                      fontWeight:
+                                                          FontWeight.w600)
+                                                  .fontFamily,
+                                              color: AppStyles.whiteColor,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Positioned(
-                                        left: 10.w,
-                                        top: 10.h,
-                                        child: AppText(
-                                          size: 24.sp,
-                                          textAlign: TextAlign.center,
-                                          text: DateFormat('dd\nMMMM').format(
-                                            DateTime.parse("${e.eventDate}"),
-                                          ),
-                                          fontFamily: GoogleFonts.raleway(
-                                                  fontWeight: FontWeight.w600)
-                                              .fontFamily,
-                                          color: AppStyles.whiteColor,
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 10.w),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            AppText(
+                                              size: 16.sp,
+                                              text: e.title.toString(),
+                                              fontFamily: GoogleFonts.raleway(
+                                                      fontWeight:
+                                                          FontWeight.w600)
+                                                  .fontFamily,
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: 5.w,
+                                                vertical: 5.h,
+                                              ),
+                                              height: 30.h,
+                                              decoration: BoxDecoration(
+                                                color: AppStyles.primaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  const Icon(
+                                                      Icons.person_outline),
+                                                  AppText(
+                                                    size: 16.sp,
+                                                    text:
+                                                        "${e.bookedSeat}/${e.totalCapacity} people",
+                                                    fontFamily:
+                                                        GoogleFonts.raleway(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600)
+                                                            .fontFamily,
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ],
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10.w),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        AppText(
-                                          size: 16.sp,
-                                          text: e.title.toString(),
-                                          fontFamily: GoogleFonts.raleway(
-                                                  fontWeight: FontWeight.w600)
-                                              .fontFamily,
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: 5.w,
-                                            vertical: 5.h,
-                                          ),
-                                          height: 30.h,
-                                          decoration: BoxDecoration(
-                                            color: AppStyles.primaryColor,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              const Icon(Icons.person_outline),
-                                              AppText(
-                                                size: 16.sp,
-                                                text:
-                                                    "${e.bookedSeat}/${e.totalCapacity} people",
-                                                fontFamily: GoogleFonts.raleway(
-                                                        fontWeight:
-                                                            FontWeight.w600)
-                                                    .fontFamily,
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
+                                );
+                              },
+                            ),
+                          ],
                         ),
                       ],
                     );

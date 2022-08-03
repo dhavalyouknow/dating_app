@@ -13,6 +13,7 @@ class EventBloc extends Bloc<EventEvent, EventState> with BaseHttpService {
   EventBloc() : super(EventInitial()) {
     on<EventEvent>((event, emit) {});
     on<GetEventList>(_onGetEventList);
+    on<SearchEvent>(_onSearchEvent);
   }
   _onGetEventList(GetEventList event, Emitter<EventState> emit) async {
     try {
@@ -44,6 +45,40 @@ class EventBloc extends Bloc<EventEvent, EventState> with BaseHttpService {
     } catch (e) {
       print(e);
       print('--get events---');
+    }
+  }
+
+  _onSearchEvent(SearchEvent event, Emitter<EventState> emit) async {
+    try {
+      var resp = await get(
+        url: "${ApiEndPoints.searchEvent}${event.searchText}",
+      );
+      if (resp != null) {
+        emit(state.copyWith(status: EventStatus.loading));
+        if (resp.statusCode == 200) {
+          print(resp.body);
+          print(resp.statusCode);
+          dynamic result = jsonDecode(resp.body);
+          List<Event> searchEvents = [];
+          for (dynamic data in result) {
+            searchEvents.add(Event.fromJson(data));
+          }
+          print(searchEvents.length);
+          event.onSuccess(searchEvents);
+          emit(
+              state.copyWith(event: searchEvents, status: EventStatus.success));
+        } else {
+          print(resp.body);
+          print(resp.statusCode);
+          emit(state.copyWith(status: EventStatus.failure));
+        }
+      } else {
+        print(resp?.statusCode);
+        emit(state.copyWith(status: EventStatus.failure));
+      }
+    } catch (e) {
+      print(e);
+      print('--search events---');
     }
   }
 }

@@ -107,10 +107,10 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                   SizedBox(height: 15.h),
                   ShowProfileWidget(
                     onTap: () {
-                      // Navigator.pushNamed(
-                      //   context,
-                      //   PersonPublicProfile.routeName,
-                      // );
+                      Navigator.pushNamed(
+                        context,
+                        PersonPublicProfile.routeName,
+                      );
                     },
                     user: userState.user,
                   ),
@@ -125,11 +125,11 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                   ...userState.user!.dog.map((e) {
                     return ShowDogProfileWidget(
                       onTap: () {
-                        // Navigator.pushNamed(
-                        //   context,
-                        //   DogPublicProfile.routeName,
-                        //   arguments: e,
-                        // );
+                        Navigator.pushNamed(
+                          context,
+                          DogPublicProfile.routeName,
+                          arguments: e,
+                        );
                       },
                       user: userState.user,
                       e: e,

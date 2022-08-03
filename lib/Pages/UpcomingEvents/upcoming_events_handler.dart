@@ -5,6 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 mixin UpComingEventsHandlers<T extends StatefulWidget> on State<T> {
   Event? event;
+  TextEditingController searchController = TextEditingController();
+  List<Event> searchEvents = [];
+  bool isNotShowList = false;
+  bool showWhenOpen = false;
+
   @override
   initState() {
     super.initState();

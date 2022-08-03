@@ -1,6 +1,5 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
-import 'package:dating_app/Pages/EditDogProfile/edit_dog_profile.dart';
 import 'package:dating_app/Pages/EditPersonProfile/edit_person_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
