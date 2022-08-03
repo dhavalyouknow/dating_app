@@ -83,7 +83,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                         fontFamily:
                             GoogleFonts.raleway(fontWeight: FontWeight.bold)
                                 .fontFamily,
-                        text: "Update account",
+                        text: AppLocalizations.of(context)!.updateAccount,
                       ),
                     ),
                     FormFieldWidget(

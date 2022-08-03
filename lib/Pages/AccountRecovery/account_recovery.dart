@@ -7,6 +7,7 @@ import 'package:dating_app/widget/TextformfieldWidget/formfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AccountRecovery extends StatefulWidget {
   static const routeName = "/AccountRecovery";
@@ -57,7 +58,7 @@ class _AccountRecoveryState extends State<AccountRecovery>
                   child: AppText(
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                         .fontFamily,
-                    text: "Account Recovery",
+                    text: AppLocalizations.of(context)!.accountRecovery,
                     size: 21.sp,
                   ),
                 ),
@@ -65,8 +66,7 @@ class _AccountRecoveryState extends State<AccountRecovery>
                 AppText(
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w400)
                       .fontFamily,
-                  text:
-                      "Enter your email and receive a link to recover\nyour account.",
+                  text: AppLocalizations.of(context)!.enterYourEmailAndReceive,
                   size: 15.sp,
                 ),
                 SizedBox(height: 15.h),
@@ -75,7 +75,7 @@ class _AccountRecoveryState extends State<AccountRecovery>
                     icon: const Icon(Icons.person_outline),
                     onPressed: () {},
                   ),
-                  hintText: 'Email',
+                  hintText: AppLocalizations.of(context)!.email,
                   textEditingController: emailController,
                   validator: emailValidator,
                   obSecure: false,
@@ -91,7 +91,7 @@ class _AccountRecoveryState extends State<AccountRecovery>
                   borderRadius: 10.r,
                   fontSize: 18.sp,
                   height: size.height / 14,
-                  txt: "Send Link",
+                  txt: AppLocalizations.of(context)!.sendLink,
                   onTap: () {
                     sentLink();
                   },
@@ -105,7 +105,7 @@ class _AccountRecoveryState extends State<AccountRecovery>
                     Padding(
                       padding: EdgeInsets.only(left: 10.r, right: 10.r),
                       child: AppText(
-                        text: "OR",
+                        text: AppLocalizations.of(context)!.oR,
                       ),
                     ),
                     const Expanded(
@@ -124,7 +124,7 @@ class _AccountRecoveryState extends State<AccountRecovery>
                       fontFamily:
                           GoogleFonts.raleway(fontWeight: FontWeight.bold)
                               .fontFamily,
-                      text: "Create New Account",
+                      text: AppLocalizations.of(context)!.createNewAccount,
                       size: 20.sp,
                     ),
                   ),

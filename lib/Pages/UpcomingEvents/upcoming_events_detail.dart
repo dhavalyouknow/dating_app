@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Pages/UpcomingEvents/upcoming_events_handler.dart';
@@ -6,6 +7,7 @@ import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/errorWidget.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -274,6 +276,7 @@ class _UpComingEventsDetailState extends State<UpComingEventsDetail>
                                 .fontFamily,
                       ),
                     ),
+                    // if(BlocProvider.of<UserBloc>(context).state.user.)
                     SizedBox(
                       width: size.width / 3,
                       child: GradientBtn(

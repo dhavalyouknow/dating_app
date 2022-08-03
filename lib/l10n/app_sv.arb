@@ -69,6 +69,12 @@
     "signUpManually":"Registrera dig manuellt",
     "alreadyHaveAnAccount":"Har du redan ett konto?",
     "upComingEvents":"uppkommande händelser",
-    "mingle":"Blanda"
-
+    "mingle":"Blanda",
+    "dontHaveAccount":"Har du inget konto?",
+    "accountRecovery":"Kontoåterhämtning",
+    "sendLink":"Skicka länk",
+    "createNewAccount":"Skapa nytt konto",
+    "enterYourEmailAndReceive":"Ange din e-postadress och få en länk för att återställa ditt konto",
+    "oR":"ELLER",
+    "updateAccount":"Uppdatera konto"
 }

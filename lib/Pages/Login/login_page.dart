@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/LoginPage';
@@ -56,7 +57,10 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                     ),
                     FormFieldWidget(
                       icon: IconButton(
-                        icon: const Icon(Icons.person_outline),
+                        icon: const Icon(
+                          Icons.person_outline,
+                          color: AppStyles.textColor,
+                        ),
                         onPressed: () {},
                       ),
                       backgroundColor: AppStyles.whiteColor,
@@ -76,13 +80,16 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                           });
                         },
                         icon: signUpPwd
-                            ? const Icon(
-                                Icons.lock_outlined,
+                            ? ImageIcon(
+                                const AssetImage(
+                                    "assets/icons/CloseEyeIcon.png"),
                                 color: AppStyles.textColor,
+                                size: 20.sp,
                               )
-                            : const Icon(
-                                Icons.lock_open,
+                            : Icon(
+                                Icons.remove_red_eye_outlined,
                                 color: AppStyles.textColor,
+                                size: 22.sp,
                               ),
                       ),
                       backgroundColor: AppStyles.whiteColor,
@@ -149,7 +156,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          AppLocalizations.of(context)!.account,
+                          AppLocalizations.of(context)!.dontHaveAccount,
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: AppStyles.blackColor,

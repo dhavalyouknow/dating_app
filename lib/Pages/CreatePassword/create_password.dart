@@ -7,7 +7,6 @@ import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreatePassword extends StatefulWidget {
   static const routeName = "/CreatePassword";
@@ -70,15 +69,34 @@ class _CreatePasswordState extends State<CreatePassword>
                             });
                           },
                           icon: signUpPwd
-                              ? const Icon(
-                                  Icons.lock_outlined,
+                              ? ImageIcon(
+                                  const AssetImage(
+                                      "assets/icons/CloseEyeIcon.png"),
                                   color: AppStyles.textColor,
+                                  size: 20.sp,
                                 )
-                              : const Icon(
-                                  Icons.lock_open,
+                              : Icon(
+                                  Icons.remove_red_eye_outlined,
                                   color: AppStyles.textColor,
+                                  size: 22.sp,
                                 ),
                         ),
+                        // backIcon: IconButton(
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       signUpPwd = !signUpPwd;
+                        //     });
+                        //   },
+                        //   icon: signUpPwd
+                        //       ? const Icon(
+                        //           Icons.lock_outlined,
+                        //           color: AppStyles.textColor,
+                        //         )
+                        //       : const Icon(
+                        //           Icons.lock_open,
+                        //           color: AppStyles.textColor,
+                        //         ),
+                        // ),
                         backgroundColor: AppStyles.whiteColor,
                         hintText: 'Password',
                         textEditingController: passwordController,

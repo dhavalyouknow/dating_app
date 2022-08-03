@@ -29,9 +29,12 @@ class ApiEndPoints {
   static const String likePerson = '$baseUrl/user/swipeRight/';
   static const String disLikeDog = '$baseUrl/dog/swipeRight/';
   static const String likeDog = '$baseUrl/dog/swipeLeft/';
+
   static const String MQTTClientUrl = 'ws://65.0.77.129';
   static const String message = '$baseUrl/message/';
   static const String chatRoom = '$baseUrl/chat_room/';
+
+  static const String bookTicket = '$baseUrl/ticket/';
 
   static String swipe(int pageNo, int limitNo) {
     return "$baseUrl/user/swiper?page=$pageNo&limit=$limitNo";

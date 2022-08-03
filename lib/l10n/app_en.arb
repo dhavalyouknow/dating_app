@@ -69,6 +69,13 @@
  "alreadyHaveAccount":"Already have an account?",
   "createAccount":"Create account",
   "upComingEvents":"Upcoming Events",
-  "mingle":"Mingle"
+  "mingle":"Mingle",
+  "dontHaveAccount":"Don't have an account?",
+  "accountRecovery":"Account Recovery",
+  "sendLink":"Send Link",
+  "createNewAccount":"Create New Account",
+  "enterYourEmailAndReceive":"Enter your email and receive a link to recover your account",
+  "oR":"OR",
+  "updateAccount":"Update Account"
 
 }
