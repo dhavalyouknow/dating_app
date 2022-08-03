@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
+import 'package:dating_app/Pages/UpcomingEvents/attend_ticket_dialog.dart';
 import 'package:dating_app/Pages/UpcomingEvents/upcoming_events_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/errorWidget.dart';
@@ -276,25 +277,48 @@ class _UpComingEventsDetailState extends State<UpComingEventsDetail>
                                 .fontFamily,
                       ),
                     ),
-                    // if(BlocProvider.of<UserBloc>(context).state.user.)
+                    BlocProvider.of<UserBloc>(context)
+                            .state
+                            .user!
+                            .ticketId!
+                            .contains(event!.id)
+                        ? SizedBox(
+                            width: size.width / 3,
+                            child: GradientBtn(
+                              borderRadius: 12.r,
+                              height: size.height / 16,
+                              txt: "Cancel",
+                              onTap: onCancelEvent,
+                            ),
+                          )
+                        : SizedBox(
+                            width: size.width / 3,
+                            child: GradientBtn(
+                              borderRadius: 12.r,
+                              height: size.height / 16,
+                              txt: "Attend",
+                              onTap: () async {
+                                // onAttendEvent();
+                                await showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AttendTicketDialog(
+                                      value: "${event?.price}",
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
                     SizedBox(
                       width: size.width / 3,
                       child: GradientBtn(
                         borderRadius: 12.r,
                         height: size.height / 16,
-                        txt: "Attend",
-                        onTap: () {},
+                        txt: "Update",
+                        onTap: onUpdateEvent,
                       ),
-                    ),
-                    SizedBox(
-                      width: size.width / 3,
-                      child: GradientBtn(
-                        borderRadius: 12.r,
-                        height: size.height / 16,
-                        txt: "Cancel",
-                        onTap: () {},
-                      ),
-                    ),
+                    )
                   ],
                 ),
               )

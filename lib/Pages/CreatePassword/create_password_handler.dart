@@ -25,7 +25,6 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     print(ModalRoute.of(context)?.settings.arguments);
     if (ModalRoute.of(context)?.settings.arguments != null) {
@@ -36,10 +35,10 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
   }
 
   String? passwordValidator(dynamic password) {
-    RegExp upperCase = RegExp('^(?=.*[A-Z])');
-    RegExp lowerCase = RegExp('^(?=.*[a-z])');
-    RegExp specialChar = RegExp("^(?=.*[@#%^&+=])");
-    RegExp minNumber = RegExp('^().{8,}');
+    RegExp upperCase = RegExp("^(?=.*[A-Z])");
+    RegExp lowerCase = RegExp("^(?=.*[a-z])");
+    RegExp specialChar = RegExp("^(?=.*[@#\$%^&+=])");
+    RegExp minNumber = RegExp("^().{8,}");
     if (password.isEmpty) {
       return 'Enter password';
     } else if (!upperCase.hasMatch(password)) {

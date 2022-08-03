@@ -38,6 +38,8 @@ class User {
     this.long,
     this.searchDistance,
     this.searchDistanceType,
+    this.eventId,
+    this.ticketId,
   });
 
   String? id;
@@ -75,6 +77,8 @@ class User {
   int? long;
   int? searchDistance;
   String? searchDistanceType;
+  List<dynamic>? eventId;
+  List<dynamic>? ticketId;
 
   User copyWith({
     String? id,
@@ -112,6 +116,8 @@ class User {
     int? long,
     int? searchDistance,
     String? searchDistanceType,
+    List<dynamic>? eventId,
+    List<dynamic>? ticketId,
   }) {
     return User(
       id: id ?? this.id,
@@ -149,6 +155,8 @@ class User {
       long: long ?? this.long,
       searchDistance: searchDistance ?? this.searchDistance,
       searchDistanceType: searchDistanceType ?? this.searchDistanceType,
+      eventId: eventId ?? this.eventId,
+      ticketId: ticketId ?? this.ticketId,
     );
   }
 
@@ -193,6 +201,8 @@ class User {
       long: json["long"],
       searchDistance: json["searchDistance"],
       searchDistanceType: json["searchDistanceType"] ?? "",
+      eventId: List<dynamic>.from(json["eventId"].map((x) => x)),
+      ticketId: List<dynamic>.from(json["ticketId"].map((x) => x)),
     );
   }
 
@@ -232,5 +242,7 @@ class User {
         "long": long,
         "searchDistance": searchDistance,
         "searchDistanceType": searchDistanceType,
+        "eventId": List<dynamic>.from(eventId!.map((x) => x)),
+        "ticketId": List<dynamic>.from(ticketId!.map((x) => x)),
       };
 }

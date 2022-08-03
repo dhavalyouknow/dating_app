@@ -38,10 +38,10 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
     // RegExp regex =
     //     RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
-    RegExp upperCase = RegExp('^(?=.*[A-Z])');
-    RegExp lowerCase = RegExp('^(?=.*[a-z])');
-    RegExp specialChar = RegExp("^(?=.*[@#%^&+=])");
-    RegExp minNumber = RegExp('^().{8,}');
+    RegExp upperCase = RegExp("^(?=.*[A-Z])");
+    RegExp lowerCase = RegExp("^(?=.*[a-z])");
+    RegExp specialChar = RegExp("^(?=.*[@#\$%^&+=])");
+    RegExp minNumber = RegExp("^().{8,}");
     if (password.isEmpty) {
       return 'Enter password';
     } else if (!upperCase.hasMatch(password)) {

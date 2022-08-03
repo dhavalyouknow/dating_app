@@ -29,6 +29,7 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
 
   final formKey = GlobalKey<FormState>();
   DateTime selectedDate = DateTime.now();
+  DateTime defaultDateTime = DateTime.now();
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
   final fbLogin = FacebookLogin();
 
@@ -86,8 +87,8 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
     var datePicked = await DatePicker.showDatePicker(
       context,
       minTime: DateTime(1900, 1, 1),
-      maxTime: DateTime(
-          selectedDate.year - 18, selectedDate.month, selectedDate.day),
+      maxTime: DateTime(defaultDateTime.year - 18, defaultDateTime.month,
+          defaultDateTime.day),
       theme: const DatePickerTheme(
         backgroundColor: AppStyles.whiteColor,
       ),

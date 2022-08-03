@@ -3,7 +3,7 @@ part of 'book_ticket_bloc.dart';
 abstract class BookTicketEvent extends Equatable {}
 
 class BookUserTicketEvent extends BookTicketEvent {
-  final Int seatCount;
+  final int seatCount;
   final String stripeTransaction;
   final String eventId;
   final String userId;
@@ -28,7 +28,7 @@ class BookUserTicketEvent extends BookTicketEvent {
 }
 
 class UpdateUserTicket extends BookTicketEvent {
-  final Int seatCount;
+  final int seatCount;
   final String stripeTransaction;
   final String eventId;
   final String userId;

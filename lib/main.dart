@@ -1,5 +1,6 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/BlockUser/block_user_bloc.dart';
+import 'package:dating_app/Bloc/BookTicket/book_ticket_bloc.dart';
 import 'package:dating_app/Bloc/ChangePassword/change_password_bloc.dart';
 import 'package:dating_app/Bloc/ChatRoom/chatroom_bloc.dart';
 import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
@@ -125,6 +126,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider<ChattingBloc>(
           create: (BuildContext context) => ChattingBloc(),
+        ),
+        BlocProvider<BookTicketBloc>(
+          create: (BuildContext context) => BookTicketBloc(),
           lazy: true,
         ),
       ],

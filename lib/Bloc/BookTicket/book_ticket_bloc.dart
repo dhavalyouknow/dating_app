@@ -28,7 +28,7 @@ class BookTicketBloc extends Bloc<BookTicketEvent, BookTicketState>
           "seatCount": event.seatCount,
           "stripeTransaction": event.stripeTransaction,
           "eventId": event.eventId,
-          "userID": event.userId,
+          "userId": event.userId,
         },
       );
       if (resp != null) {
@@ -58,13 +58,12 @@ class BookTicketBloc extends Bloc<BookTicketEvent, BookTicketState>
   ) async {
     try {
       emit(state.copyWith(status: BookTicketStatus.loading));
-      var resp = await post(
+      var resp = await patch(
         url: "${ApiEndPoints.bookTicket}/${event.eventId}",
         body: {
           "seatCount": event.seatCount,
           "stripeTransaction": event.stripeTransaction,
           "eventId": event.eventId,
-          "userId": event.userId,
         },
       );
       if (resp != null) {

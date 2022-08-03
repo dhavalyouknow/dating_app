@@ -1,7 +1,10 @@
+import 'package:dating_app/Bloc/BookTicket/book_ticket_bloc.dart';
 import 'package:dating_app/Bloc/Event/event_bloc.dart';
+import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Model/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 mixin UpComingEventsHandlers<T extends StatefulWidget> on State<T> {
   Event? event;
@@ -26,4 +29,43 @@ mixin UpComingEventsHandlers<T extends StatefulWidget> on State<T> {
     event = ModalRoute.of(context)!.settings.arguments as Event?;
     super.didChangeDependencies();
   }
+
+  onAttendEvent() {
+    BlocProvider.of<BookTicketBloc>(context).add(
+      BookUserTicketEvent(
+        seatCount: 1,
+        stripeTransaction: "stripeTransaction",
+        eventId: event!.id.toString(),
+        userId: BlocProvider.of<UserBloc>(context).state.user!.id.toString(),
+        success: () {
+          if (event!.bookedSeat == event!.totalCapacity) {
+            Fluttertoast.showToast(msg: 'No Tickets Are Available');
+          } else {
+            Fluttertoast.showToast(msg: 'Your Ticket Booked Successfully');
+          }
+        },
+      ),
+    );
+  }
+
+  onUpdateEvent() {
+    BlocProvider.of<BookTicketBloc>(context).add(
+      UpdateUserTicket(
+        seatCount: 5,
+        stripeTransaction: "stripeTransaction",
+        eventId: event!.id.toString(),
+        userId: BlocProvider.of<UserBloc>(context)
+            .state
+            .user!
+            .ticketId!
+            .first
+            .toString(),
+        success: () {
+          Fluttertoast.showToast(msg: 'Your Ticket Updated Successfully');
+        },
+      ),
+    );
+  }
+
+  onCancelEvent() {}
 }
