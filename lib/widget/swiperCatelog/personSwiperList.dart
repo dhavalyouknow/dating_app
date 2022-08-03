@@ -3,6 +3,7 @@ import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Model/swipe.dart';
 import 'package:dating_app/Pages/OtherPublicProfile/other_public_profile.dart';
+import 'package:dating_app/widget/errorWidget.dart';
 import 'package:dating_app/widget/swiperCatelog/swipe_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -140,31 +141,32 @@ class _PersonSwiperListState extends State<PersonSwiperList>
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 15.w,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        size: 15.sp,
-                                        Icons.location_on_outlined,
-                                        color: AppStyles.skyBlueColor,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 8.w),
-                                        child: AppText(
+                                if (widget.swipes[itemIndex].city.isNotEmpty)
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 15.w,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(
                                           size: 15.sp,
-                                          text: widget.swipes[itemIndex].city,
-                                          color: AppStyles.greyColor,
-                                          fontFamily: GoogleFonts.raleway(
-                                            fontWeight: FontWeight.w700,
-                                          ).fontFamily,
+                                          Icons.location_on_outlined,
+                                          color: AppStyles.skyBlueColor,
                                         ),
-                                      )
-                                    ],
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 8.w),
+                                          child: AppText(
+                                            size: 15.sp,
+                                            text: widget.swipes[itemIndex].city,
+                                            color: AppStyles.greyColor,
+                                            fontFamily: GoogleFonts.raleway(
+                                              fontWeight: FontWeight.w700,
+                                            ).fontFamily,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
                               ],
                             ),
                           ),
@@ -202,50 +204,57 @@ class _PersonSwiperListState extends State<PersonSwiperList>
                             ),
                         ],
                       ),
-                      if (widget.swipes[itemIndex].dog!.isNotEmpty)
-                        Positioned(
-                          left: 10.w,
-                          bottom: 112.h,
-                          child: GestureDetector(
-                            onTap: () {
-                              print('object');
-                              if (widget.showImageBig == true) {
-                                widget.showImageBig = false;
-                              } else {
-                                widget.showImageBig = true;
-                              }
-                              setState(() {});
-                            },
-                            child: AnimatedContainer(
-                              height: size.height / 7,
-                              width: size.width / 2.9,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(13.0),
-                                gradient: LinearGradient(
-                                  colors: AppStyles.myPageGradientColor,
-                                ),
+                      // if (widget.swipes[itemIndex].dog!.isNotEmpty)
+                      Positioned(
+                        left: 10.w,
+                        bottom: 112.h,
+                        child: GestureDetector(
+                          onTap: () {
+                            print('object');
+                            if (widget.showImageBig == true) {
+                              widget.showImageBig = false;
+                            } else {
+                              widget.showImageBig = true;
+                            }
+                            setState(() {});
+                          },
+                          child: AnimatedContainer(
+                            height: size.height / 7,
+                            width: size.width / 2.9,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(13.0),
+                              gradient: LinearGradient(
+                                colors: AppStyles.myPageGradientColor,
                               ),
-                              padding: const EdgeInsets.all(6.0),
-                              duration: const Duration(milliseconds: 2),
-                              curve: Curves.bounceInOut,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(13.0),
-                                child: widget.showImageBig
-                                    ? CachedNetworkImage(
-                                        imageUrl: widget.swipes[itemIndex]
-                                            .squareProfileImage.first.url
-                                            .toString(),
-                                        fit: BoxFit.fitHeight,
-                                      )
-                                    : CachedNetworkImage(
-                                        imageUrl:
-                                            'https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGltZXxlbnwwfHwwfHw%3D&w=1000&q=80',
-                                        fit: BoxFit.fitHeight,
-                                      ),
-                              ),
+                            ),
+                            padding: const EdgeInsets.all(6.0),
+                            duration: const Duration(milliseconds: 2),
+                            curve: Curves.bounceInOut,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(13.0),
+                              child: widget.showImageBig
+                                  ? CachedNetworkImage(
+                                      imageUrl: widget.swipes[itemIndex]
+                                              .squareProfileImage.isNotEmpty
+                                          ? widget.swipes[itemIndex]
+                                              .squareProfileImage.first.url
+                                              .toString()
+                                          : "",
+                                      fit: BoxFit.fitHeight,
+                                      errorWidget:
+                                          (BuildContext context, url, data) {
+                                        return const ImageErrorWidget();
+                                      },
+                                    )
+                                  : CachedNetworkImage(
+                                      imageUrl:
+                                          'https://images.unsplash.com/photo-1501139083538-0139583c060f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dGltZXxlbnwwfHwwfHw%3D&w=1000&q=80',
+                                      fit: BoxFit.fitHeight,
+                                    ),
                             ),
                           ),
                         ),
+                      ),
                     ],
                   ),
                 ),

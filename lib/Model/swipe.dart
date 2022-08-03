@@ -6,8 +6,8 @@ class Swipe {
     required this.id,
     required this.firstName,
     required this.lastName,
-    required this.about,
-    required this.dob,
+    this.about,
+    this.dob,
     required this.city,
     required this.squareProfileImage,
     required this.createdAt,
@@ -20,8 +20,8 @@ class Swipe {
   String id;
   String firstName;
   String lastName;
-  String about;
-  DateTime dob;
+  String? about;
+  DateTime? dob;
   String city;
   List<SquareProfileImage> squareProfileImage;
   DateTime? createdAt;
@@ -65,7 +65,7 @@ class Swipe {
       firstName: json["firstName"],
       lastName: json["lastName"],
       about: json["about"] ?? "",
-      dob: DateTime.parse(json["dob"]),
+      dob: json["dob"] != null ? DateTime.parse(json["dob"]) : null,
       city: json["city"] ?? "",
       squareProfileImage: List<SquareProfileImage>.from(
           json["squareProfileImage"]
@@ -74,7 +74,7 @@ class Swipe {
           json["createdAt"] != null ? DateTime.parse(json["createdAt"]) : null,
       updatedAt:
           json["updatedAt"] != null ? DateTime.parse(json["updatedAt"]) : null,
-      year: json["year"],
+      year: json["year"] ?? 0,
       dog: json["dog"] != null
           ? List<Dog>.from(json["dog"].map((x) => Dog.fromJson(x)))
           : null,
@@ -88,7 +88,7 @@ class Swipe {
         "_id": id,
         "firstName": firstName,
         "lastName": lastName,
-        "dob": dob.toIso8601String(),
+        "dob": dob?.toIso8601String(),
         "city": city,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),

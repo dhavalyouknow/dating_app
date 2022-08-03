@@ -200,7 +200,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(
                                 right: 29,
-                                bottom: 16.0,
+                                bottom: 10.0,
                                 left: 29,
                               ),
                               child: Container(
@@ -209,17 +209,17 @@ class _ChatScreenState extends State<ChatScreen> {
                                         userId
                                     ? const BoxDecoration(
                                         borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(23),
-                                          topLeft: Radius.circular(23),
-                                          bottomLeft: Radius.circular(23),
+                                          topRight: Radius.circular(10),
+                                          topLeft: Radius.circular(10),
+                                          bottomLeft: Radius.circular(10),
                                         ),
                                         color: AppStyles.skyBlueColor,
                                       )
                                     : const BoxDecoration(
                                         borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(23),
-                                          topLeft: Radius.circular(23),
-                                          bottomRight: Radius.circular(23),
+                                          topRight: Radius.circular(10),
+                                          topLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10),
                                         ),
                                         color: AppStyles.lightGreyColor,
                                       ),
