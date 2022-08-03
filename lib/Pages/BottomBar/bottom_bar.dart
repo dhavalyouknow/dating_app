@@ -4,6 +4,7 @@ import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Dialog/UpgradeToPremium/upgrade_to_premium.dart';
 import 'package:dating_app/Model/user.dart';
+import 'package:dating_app/Pages/ChattingPage/chat_page.dart';
 import 'package:dating_app/Pages/ChattingPage/chatting_user_list.dart';
 import 'package:dating_app/Pages/Home/home_page.dart';
 import 'package:dating_app/Pages/MyPage/my_page.dart';
@@ -96,8 +97,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     );
                   }
                   if (userStatus.user!.isPro == true) {
-                    Navigator.pushReplacementNamed(
-                        context, ChattingUserListPage.routeName);
+                    Navigator.pushReplacementNamed(context, ChatPage.routeName);
                   }
                 },
                 icon: Icon(

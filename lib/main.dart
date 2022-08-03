@@ -119,6 +119,14 @@ class _MyAppState extends State<MyApp> {
           create: (BuildContext context) => ReportUserBloc(),
           lazy: true,
         ),
+        BlocProvider<ChatroomBloc>(
+          create: (BuildContext context) => ChatroomBloc(),
+          lazy: true,
+        ),
+        BlocProvider<ChattingBloc>(
+          create: (BuildContext context) => ChattingBloc(),
+          lazy: true,
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 680),

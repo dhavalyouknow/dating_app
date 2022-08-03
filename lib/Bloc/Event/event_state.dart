@@ -20,8 +20,6 @@ class EventState extends Equatable {
     EventStatus? status,
     List<Event>? event,
   }) {
-    print(event);
-    print('11111');
     return EventState(
         status: status ?? this.status, event: event ?? this.event);
   }

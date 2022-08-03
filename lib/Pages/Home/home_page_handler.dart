@@ -2,12 +2,9 @@ import 'package:dating_app/Bloc/DogSwipe/dog_swipe_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_state.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
-
 import 'package:dating_app/Model/dogSwipe.dart';
 import 'package:dating_app/Model/swipe.dart';
-
 import 'package:dating_app/Dialog/UpgradeToPremium/upgrade_to_premium.dart';
-
 import 'package:dating_app/Model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,26 +18,29 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
   User? user;
   int pageNo = 1;
   int dogPageNo = 1;
-  bool isLoadMore = false;
   List<Swipe> swipe = [];
   List<DogSwipe> dogSwipe = [];
-  int limitNo = 10;
 
-  void listenController() => setState(() async {
-        if (BlocProvider.of<UserBloc>(context).state.user!.isPro == false) {
-          await showDialog(
-            context: context,
-            builder: (context) {
-              return const UpgradeToPremium();
-            },
-          );
-        }
-      });
+  //for user swipe
+  void listenController() => setState(
+        () async {
+          if (BlocProvider.of<UserBloc>(context).state.user!.isPro == false) {
+            await showDialog(
+              context: context,
+              builder: (context) {
+                return const UpgradeToPremium();
+              },
+            );
+          }
+        },
+      );
 
   @override
   initState() {
     super.initState();
     user = BlocProvider.of<UserBloc>(context).state.user;
+
+    //load swipe user data first time
     BlocProvider.of<SwipeBloc>(context).add(
       GetSwipeList(
           pageNo: pageNo,
@@ -49,8 +49,11 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
             swipe.addAll(listOfSwipes);
           }),
     );
+
+    //listen user swipe
     swipeController = SwipableStackController()
       ..addListener(() {
+        //if length small than currentIndex new data are added in list
         if (swipeController.currentIndex >= swipe.length && !onSwitchDog) {
           BlocProvider.of<SwipeBloc>(context).add(
             GetSwipeList(
@@ -63,8 +66,11 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
           );
         } else {}
       });
+
+    //listen dog swipe
     dogSwipeController = SwipableStackController()
       ..addListener(() {
+        //if length small than currentIndex new data are added in list
         if (dogSwipeController.currentIndex >= dogSwipe.length && onSwitchDog) {
           BlocProvider.of<DogSwipeBloc>(context).add(
             GetDogSwiperList(
@@ -95,6 +101,7 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
       ..dispose();
   }
 
+  //swap among person and dog in swipe
   onDogSwipe() {
     if (onSwitchDog == false) {
       onSwitchDog = true;
@@ -126,6 +133,7 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
     setState(() {});
   }
 
+//dislike user
   disLikePerson(SwipeState swipeState) {
     BlocProvider.of<SwipeBloc>(context).add(
       DisLikePerson(
@@ -140,6 +148,7 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
     );
   }
 
+  //dislike dog
   disLikeDog(DogSwipeState dogSwipeState) {
     BlocProvider.of<DogSwipeBloc>(context).add(
       DisLikeDog(
@@ -154,6 +163,7 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
     );
   }
 
+  //like user
   likePerson(SwipeState swipeState) {
     BlocProvider.of<SwipeBloc>(context).add(
       LikePerson(
@@ -168,6 +178,7 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
     );
   }
 
+  //like dog
   likeDog(DogSwipeState dogSwipeState) {
     BlocProvider.of<DogSwipeBloc>(context).add(
       LikeDog(

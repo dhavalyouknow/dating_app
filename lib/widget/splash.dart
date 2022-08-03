@@ -54,9 +54,6 @@ class _SplashScreenState extends State<SplashScreen> {
           bool isSocialMedia = user.googleLogin == true ||
               user.facebookLogin == true ||
               user.appleLogin == true;
-          print('11111');
-          print(isSocialMedia);
-          print(user.circleProfileImage);
           //with social media routing
           if (isSocialMedia) {
             if (user.gender!.isEmpty || user.dob == null) {

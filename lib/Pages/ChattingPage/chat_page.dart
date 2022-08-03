@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dating_app/Bloc/ChatRoom/chatroom_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
-import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Model/chat_room.dart';
 import 'package:dating_app/Model/participant.dart';
 import 'package:dating_app/Pages/ChattingPage/chatting_screen.dart';
@@ -24,28 +23,11 @@ class _ChatPageState extends State<ChatPage> {
   final bool _snap = false;
   String userId = "";
   String searchString = "";
-  ScrollController scrollController = ScrollController();
-  bool isAppBarShow = false;
 
   @override
   void initState() {
     super.initState();
     loadChatRooms();
-    scrollController = ScrollController();
-    scrollController.addListener(_scrollListener);
-  }
-
-  _scrollListener() {
-    if (scrollController.offset > scrollController.position.maxScrollExtent) {
-      setState(() {
-        isAppBarShow = !isAppBarShow;
-      });
-    }
-    if (scrollController.offset < scrollController.position.minScrollExtent) {
-      setState(() {
-        isAppBarShow = !isAppBarShow;
-      });
-    }
   }
 
   loadChatRooms() async {
