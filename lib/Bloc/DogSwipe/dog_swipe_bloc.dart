@@ -24,16 +24,15 @@ class DogSwipeBloc extends Bloc<DogSwipeEvent, DogSwipeState>
       emit(state.copyWith(status: DogSwipeStatus.loading));
       var resp =
           await get(url: ApiEndPoints.dogSwipe(event.pageNo, event.limitNo));
-      print(ApiEndPoints.dogSwipe);
       if (resp != null) {
         if (resp.statusCode == 200) {
           print(resp.statusCode);
-          print(resp.body);
           dynamic result = jsonDecode(resp.body);
           List<DogSwipe> dogSwipes = [];
           for (dynamic json in result) {
             dogSwipes.add(DogSwipe.fromJson(json));
           }
+          event.onSuccess(dogSwipes);
           emit(state.copyWith(
               status: DogSwipeStatus.success, dogSwipes: dogSwipes));
         } else {

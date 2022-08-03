@@ -38,16 +38,20 @@ class DogSwipe {
         userId: userId ?? this.userId,
       );
 
-  factory DogSwipe.fromJson(Map<String, dynamic> json) => DogSwipe(
-        id: json["_id"],
-        dogName: json["dogName"],
-        gender: json["gender"],
-        size: json["size"],
-        lookingFor: List<dynamic>.from(json["lookingFor"].map((x) => x)),
-        squareProfileImage: List<SquareProfileImage>.from(
-            json["squareProfileImage"].map((x) => x)),
-        userId: UserId.fromJson(json["userId"]),
-      );
+  factory DogSwipe.fromJson(Map<String, dynamic> json) {
+    return DogSwipe(
+      id: json["_id"],
+      dogName: json["dogName"],
+      gender: json["gender"],
+      size: json["size"],
+      lookingFor: List<dynamic>.from(json["lookingFor"].map((x) => x)),
+      squareProfileImage: json["squareProfileImage"] != null
+          ? List<SquareProfileImage>.from(json["squareProfileImage"]
+              .map((x) => SquareProfileImage.fromJson(x)))
+          : null,
+      userId: json["userId"] != null ? UserId.fromJson(json["userId"]) : null,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "_id": id,
@@ -65,7 +69,7 @@ class UserId {
     required this.lastName,
     required this.dob,
     required this.city,
-    required this.squareProfileImage,
+    this.squareProfileImage,
   });
 
   String? id;
@@ -92,16 +96,22 @@ class UserId {
         squareProfileImage: squareProfileImage ?? this.squareProfileImage,
       );
 
-  factory UserId.fromJson(Map<String, dynamic> json) => UserId(
-        id: json["_id"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        dob: DateTime.parse(json["dob"]),
-        city: json["city"],
-        squareProfileImage: List<SquareProfileImage>.from(
-            json["squareProfileImage"]
-                .map((x) => SquareProfileImage.fromJson(x))),
-      );
+  factory UserId.fromJson(Map<String, dynamic> json) {
+    return UserId(
+      id: json["_id"],
+      firstName: json["firstName"],
+      lastName: json["lastName"],
+      dob: json["dob"] != null ? DateTime.parse(json["dob"]) : null,
+      city: json["city"],
+      squareProfileImage: json["squareProfileImage"] != null
+          ? List<SquareProfileImage>.from(
+              json["squareProfileImage"].map(
+                (x) => SquareProfileImage.fromJson(x),
+              ),
+            )
+          : null,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "_id": id,
@@ -109,6 +119,7 @@ class UserId {
         "lastName": lastName,
         "dob": dob?.toIso8601String(),
         "city": city,
-        // "squareProfileImage": List<dynamic>.from(squareProfileImage.map((x) => x.toJson())),
+        // "squareProfileImage":
+        //     List<dynamic>.from(squareProfileImage!.map((x) => x.toJson())),
       };
 }

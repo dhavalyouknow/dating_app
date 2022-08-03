@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dating_app/Bloc/Swipe/swipe_state.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
+import 'package:dating_app/Model/swipe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,19 +9,17 @@ import 'package:swipable_stack/swipable_stack.dart';
 import '../../Constant/Apptext/apptext.dart';
 
 class PersonSwiperList extends StatefulWidget {
-  final SwipeState swipeState;
+  final List<Swipe> swipes;
   final SwipableStackController? controller;
   bool showImageBig;
   int pageNo;
-  int limitNo;
   final Function(int) onPageNo;
   PersonSwiperList({
     Key? key,
-    required this.swipeState,
+    required this.swipes,
     required this.controller,
     required this.showImageBig,
     required this.pageNo,
-    required this.limitNo,
     required this.onPageNo,
   }) : super(key: key);
 
@@ -35,15 +33,15 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
     final size = MediaQuery.of(context).size;
     return SwipableStack(
       controller: widget.controller,
-      itemCount: widget.swipeState.swipe.length,
+      itemCount: widget.swipes.length,
       swipeAssistDuration: const Duration(milliseconds: 10),
       allowVerticalSwipe: false,
       horizontalSwipeThreshold: 0.8,
       verticalSwipeThreshold: 0.8,
       cancelAnimationCurve: Curves.easeIn,
       builder: (c, p) {
-        final itemIndex = p.index % widget.swipeState.swipe.length;
-        print('********************');
+        final itemIndex = p.index % widget.swipes.length;
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -96,11 +94,8 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
                                       topRight: Radius.circular(20),
                                     ),
                                     child: CachedNetworkImage(
-                                      imageUrl: widget
-                                          .swipeState
-                                          .swipe[itemIndex]
-                                          .squareProfileImage[index]
-                                          .url
+                                      imageUrl: widget.swipes[itemIndex]
+                                          .squareProfileImage[index].url
                                           .toString(),
                                       width: size.width * 0.9,
                                       fit: BoxFit.fitHeight,
@@ -108,7 +103,7 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
                                   );
                                 },
                                 shrinkWrap: true,
-                                itemCount: widget.swipeState.swipe[itemIndex]
+                                itemCount: widget.swipes[itemIndex]
                                     .squareProfileImage.length,
                                 scrollDirection: Axis.horizontal,
                               ),
@@ -119,7 +114,7 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
                           vertical: 10.h,
                         ),
                         child: Text(
-                          '${widget.swipeState.swipe[itemIndex].firstName} ${widget.swipeState.swipe[itemIndex].lastName}',
+                          '${widget.swipes[itemIndex].firstName} ${widget.swipes[itemIndex].lastName}',
                           style: TextStyle(
                             fontSize: 23.sp,
                             fontWeight: FontWeight.bold,
@@ -141,7 +136,7 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
                               padding: EdgeInsets.only(left: 8.w),
                               child: AppText(
                                 size: 15.sp,
-                                text: widget.swipeState.swipe[itemIndex].city,
+                                text: widget.swipes[itemIndex].city,
                                 color: AppStyles.greyColor,
                                 fontFamily: GoogleFonts.raleway(
                                   fontWeight: FontWeight.w700,
@@ -151,7 +146,7 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
                           ],
                         ),
                       ),
-                      if (widget.swipeState.swipe[itemIndex].dog!.isNotEmpty)
+                      if (widget.swipes[itemIndex].dog!.isNotEmpty)
                         Padding(
                           padding: EdgeInsets.symmetric(
                             horizontal: 15.w,
@@ -163,8 +158,7 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
                                 Icons.favorite_border,
                                 color: AppStyles.pinkColor,
                               ),
-                              ...widget.swipeState.swipe[itemIndex].dog!.first
-                                  .lookingFor!
+                              ...widget.swipes[itemIndex].dog!.first.lookingFor!
                                   .map(
                                     (e) => Padding(
                                       padding: EdgeInsets.only(
@@ -191,7 +185,6 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
                     bottom: 112.h,
                     child: GestureDetector(
                       onTap: () {
-                        print('object');
                         if (widget.showImageBig == true) {
                           widget.showImageBig = false;
                         } else {
@@ -215,7 +208,7 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
                           borderRadius: BorderRadius.circular(13.0),
                           child: widget.showImageBig
                               ? CachedNetworkImage(
-                                  imageUrl: widget.swipeState.swipe[itemIndex]
+                                  imageUrl: widget.swipes[itemIndex]
                                       .squareProfileImage.first.url
                                       .toString(),
                                   fit: BoxFit.fitHeight,
@@ -236,11 +229,8 @@ class _PersonSwiperListState extends State<PersonSwiperList> {
         );
       },
       onSwipeCompleted: (index, direction) {
-        //print('$index, $direction');
-        if (index == (widget.swipeState.swipe.length) - 1) {
+        if (index == (widget.swipes.length) - 1) {
           widget.pageNo = widget.pageNo + 1;
-          print(widget.pageNo);
-          print('--------------');
           widget.onPageNo(widget.pageNo);
         }
         setState(() {});

@@ -89,10 +89,10 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
         builder: (context, dogState) {
           return BlocBuilder<SwipeBloc, SwipeState>(
             builder: (context, swipeState) {
-              print(swipeState.status);
               if (swipeState.status == SwipeStatus.loading) {
                 return const LoadingWidget();
               }
+
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -129,29 +129,22 @@ class _HomePageState extends State<HomePage> with HomePageHandlers {
                           ),
                           onSwitchDog
                               ? DogSwiperList(
-                                  swipeState: swipeState,
-                                  dogState: dogState,
-                                  controller: swipeController,
+                                  dogSwipes: dogSwipe,
+                                  swipes: swipe,
+                                  controller: dogSwipeController,
                                   showImageBig: showImageBig,
+                                  pageNo: dogPageNo,
+                                  onPageNo: (no) {
+                                    dogPageNo = no;
+                                  },
                                 )
                               : PersonSwiperList(
-                                  swipeState: swipeState,
+                                  swipes: swipe,
                                   showImageBig: showImageBig,
                                   controller: swipeController,
                                   pageNo: pageNo,
-                                  limitNo: limitNo,
                                   onPageNo: (no) {
-                                    print('----last-------');
                                     pageNo = no;
-                                    print('*************');
-                                    print(pageNo);
-                                    BlocProvider.of<SwipeBloc>(context).add(
-                                      GetSwipeList(
-                                        pageNo: pageNo,
-                                        limitNo: 10,
-                                        onSuccess: (success) {},
-                                      ),
-                                    );
                                   },
                                 ),
                         ],

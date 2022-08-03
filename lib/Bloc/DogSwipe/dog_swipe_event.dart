@@ -5,11 +5,21 @@ abstract class DogSwipeEvent extends Equatable {}
 class GetDogSwiperList extends DogSwipeEvent {
   final int pageNo;
   final int limitNo;
+  final Function(List<DogSwipe>) onSuccess;
 
-  GetDogSwiperList({required this.pageNo, required this.limitNo});
+  GetDogSwiperList({
+    required this.pageNo,
+    required this.limitNo,
+    required this.onSuccess,
+  });
+
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        pageNo,
+        limitNo,
+        onSuccess,
+      ];
 }
 
 class DisLikeDog extends DogSwipeEvent {
@@ -21,6 +31,7 @@ class DisLikeDog extends DogSwipeEvent {
       {required this.userId,
       required this.swipeUSerId,
       required this.onSuccess});
+
   @override
   // TODO: implement props
   List<Object?> get props => [
@@ -39,6 +50,7 @@ class LikeDog extends DogSwipeEvent {
       {required this.userId,
       required this.swipeUSerId,
       required this.onSuccess});
+
   @override
   // TODO: implement props
   List<Object?> get props => [

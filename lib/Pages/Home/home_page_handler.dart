@@ -2,6 +2,8 @@ import 'package:dating_app/Bloc/DogSwipe/dog_swipe_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_state.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
+import 'package:dating_app/Model/dogSwipe.dart';
+import 'package:dating_app/Model/swipe.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,24 +11,68 @@ import 'package:swipable_stack/swipable_stack.dart';
 
 mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
   late SwipableStackController swipeController = SwipableStackController();
+  late SwipableStackController dogSwipeController = SwipableStackController();
   bool showImageBig = false;
   bool onSwitchDog = false;
   User? user;
   int pageNo = 1;
-  int limitNo = 10;
-
-  void listenController() => setState(() {
-        print('-----11111------');
-      });
+  int dogPageNo = 1;
+  bool isLoadMore = false;
+  List<Swipe> swipe = [];
+  List<DogSwipe> dogSwipe = [];
 
   @override
   initState() {
     super.initState();
-    swipeController = SwipableStackController()..addListener(listenController);
     BlocProvider.of<SwipeBloc>(context).add(
-      GetSwipeList(pageNo: pageNo, limitNo: 10, onSuccess: (success) {}),
+      GetSwipeList(
+          pageNo: pageNo,
+          limitNo: 10,
+          onSuccess: (listOfSwipes) {
+            swipe.addAll(listOfSwipes);
+          }),
     );
+    swipeController = SwipableStackController()
+      ..addListener(() {
+        if (swipeController.currentIndex >= swipe.length && !onSwitchDog) {
+          BlocProvider.of<SwipeBloc>(context).add(
+            GetSwipeList(
+              pageNo: pageNo,
+              limitNo: 10,
+              onSuccess: (listOfSwipes) {
+                swipe.addAll(listOfSwipes);
+              },
+            ),
+          );
+        } else {}
+
+        dogSwipeController = SwipableStackController()
+          ..addListener(() {
+            if (dogSwipeController.currentIndex >= dogSwipe.length &&
+                onSwitchDog) {
+              BlocProvider.of<DogSwipeBloc>(context).add(
+                GetDogSwiperList(
+                  pageNo: dogPageNo,
+                  limitNo: 10,
+                  onSuccess: (listOfDogs) {
+                    dogSwipe.addAll(listOfDogs);
+                  },
+                ),
+              );
+            }
+          });
+        setState(() {});
+      });
+
     user = BlocProvider.of<UserBloc>(context).state.user;
+  }
+
+  Future<void> listenController() async {
+    setState(() {});
+  }
+
+  Future<void> dogListenController() async {
+    setState(() {});
   }
 
   @override
@@ -35,17 +81,37 @@ mixin HomePageHandlers<T extends StatefulWidget> on State<T> {
     swipeController
       ..removeListener(listenController)
       ..dispose();
+    dogSwipeController
+      ..removeListener(dogListenController)
+      ..dispose();
   }
 
   onDogSwipe() {
     if (onSwitchDog == false) {
       onSwitchDog = true;
-      BlocProvider.of<DogSwipeBloc>(context)
-          .add(GetDogSwiperList(pageNo: 1, limitNo: 1));
+      BlocProvider.of<DogSwipeBloc>(context).add(
+        GetDogSwiperList(
+          pageNo: dogPageNo,
+          limitNo: 10,
+          onSuccess: (listOfDogs) {
+            if (dogSwipe.isEmpty) {
+              dogSwipe.addAll(listOfDogs);
+            }
+          },
+        ),
+      );
     } else {
       onSwitchDog = false;
       BlocProvider.of<SwipeBloc>(context).add(
-        GetSwipeList(pageNo: pageNo, limitNo: 10, onSuccess: (success) {}),
+        GetSwipeList(
+          pageNo: pageNo,
+          limitNo: 10,
+          onSuccess: (listOfSwipes) {
+            if (swipe.isEmpty) {
+              swipe.addAll(listOfSwipes);
+            }
+          },
+        ),
       );
     }
     setState(() {});

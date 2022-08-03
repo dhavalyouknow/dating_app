@@ -1,5 +1,6 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/ChangePassword/change_password_bloc.dart';
+import 'package:dating_app/Bloc/ChatRoom/chatroom_bloc.dart';
 import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
 import 'package:dating_app/Bloc/DogSwipe/dog_swipe_bloc.dart';
 import 'package:dating_app/Bloc/Event/event_bloc.dart';
@@ -7,9 +8,11 @@ import 'package:dating_app/Bloc/ForgotPassword/forgot_password_bloc.dart';
 import 'package:dating_app/Bloc/ImageUpload/image_upload_bloc.dart';
 import 'package:dating_app/Bloc/Swipe/swipe_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
+import 'package:dating_app/Bloc/chatting/chatting_bloc.dart';
 import 'package:dating_app/firebase_options.dart';
 import 'package:dating_app/l10n/l10n.dart';
 import 'package:dating_app/language_provider/lannguagePro.dart';
+import 'package:dating_app/mqtt.dart';
 import 'package:dating_app/routes.dart';
 import 'package:dating_app/widget/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -39,10 +42,32 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final String? token;
 
   const MyApp({Key? key, required this.token}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadMqtt();
+  }
+
+  loadMqtt() async {
+    Mqtt mqttClient = Mqtt();
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    if (pref.getString("user_id") != null &&
+        pref.getString("user_id")!.isNotEmpty) {
+      await mqttClient.connect();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +107,14 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<DogSwipeBloc>(
           create: (BuildContext context) => DogSwipeBloc(),
+          lazy: true,
+        ),
+        BlocProvider<ChattingBloc>(
+          create: (BuildContext context) => ChattingBloc(),
+          lazy: true,
+        ),
+        BlocProvider<ChatroomBloc>(
+          create: (BuildContext context) => ChatroomBloc(),
           lazy: true,
         ),
       ],

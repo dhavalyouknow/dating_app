@@ -32,7 +32,7 @@ class SwipeBloc extends Bloc<SwipeEvent, SwipeState> with BaseHttpService {
           for (dynamic json in result) {
             swipes.add(Swipe.fromJson(json));
           }
-          event.onSuccess('success');
+          event.onSuccess(swipes);
           emit(state.copyWith(status: SwipeStatus.success, swipe: swipes));
         } else {
           print(resp.body);

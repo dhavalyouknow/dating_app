@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       backgroundColor: AppStyles.whiteColor,
                       hintText: AppLocalizations.of(context)!.password,
                       textEditingController: passwordController,
-                      validator: passwordValidator,
+                      validator: (passwordValidator) {},
                       obSecure: signUpPwd,
                       border: 0.r,
                       borderColor: AppStyles.trasnparentColor,

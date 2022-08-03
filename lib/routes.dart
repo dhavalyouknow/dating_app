@@ -7,7 +7,9 @@ import 'package:dating_app/Pages/About/about.dart';
 import 'package:dating_app/Pages/AddYourDog/add_your_dog.dart';
 import 'package:dating_app/Pages/AddYourDog/add_your_dog_dialog.dart';
 import 'package:dating_app/Pages/BecomeAPremium/become_premium.dart';
+import 'package:dating_app/Pages/ChattingPage/chat_page.dart';
 import 'package:dating_app/Pages/ChattingPage/chattig_page.dart';
+import 'package:dating_app/Pages/ChattingPage/chatting_screen.dart';
 import 'package:dating_app/Pages/ChattingPage/chatting_user_list.dart';
 import 'package:dating_app/Pages/EditEmail/edit_email.dart';
 import 'package:dating_app/Pages/ChooseDogPicture/choose_dog_picture.dart';
@@ -78,6 +80,12 @@ Map<String, WidgetBuilder> routes = {
   SplashScreen.routeName: (ctx) => const SplashScreen(),
   LoginPage.routeName: (ctx) => const LoginPage(
         key: Key('/LoginPage'),
+      ),
+  ChatScreen.routeName: (ctx) => const ChatScreen(
+        key: Key('/ChatScreen'),
+      ),
+  ChatPage.routeName: (ctx) => const ChatPage(
+        key: Key('ChatPage'),
       ),
   OtherLoginCreateAccount.routeName: (ctx) => const OtherLoginCreateAccount(),
   UpComingEvents.routeName: (ctx) => const UpComingEvents(),

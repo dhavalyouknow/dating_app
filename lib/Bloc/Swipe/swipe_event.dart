@@ -5,7 +5,7 @@ abstract class SwipeEvent extends Equatable {}
 class GetSwipeList extends SwipeEvent {
   final int pageNo;
   final int limitNo;
-  final Function(String) onSuccess;
+  final Function(List<Swipe>) onSuccess;
 
   GetSwipeList(
       {required this.pageNo, required this.limitNo, required this.onSuccess});
