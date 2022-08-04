@@ -122,7 +122,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                         .fontFamily,
                   ),
                   SizedBox(height: 15.h),
-                  ...userState.user!.dog.map((e) {
+                  ...userState.user!.dog!.map((e) {
                     return ShowDogProfileWidget(
                       onTap: () {
                         Navigator.pushNamed(

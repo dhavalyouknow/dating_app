@@ -68,7 +68,7 @@ class ShowProfileWidget extends StatelessWidget {
                   ],
                 ),
               SizedBox(height: 5.h),
-              if (user!.dog.isNotEmpty)
+              if (user!.dog!.isNotEmpty)
                 Row(
                   children: [
                     Row(
@@ -77,7 +77,7 @@ class ShowProfileWidget extends StatelessWidget {
                           width: size.width / 7,
                           child: Stack(
                             children: [
-                              if (user!.dog.length > 1)
+                              if (user!.dog!.length > 1)
                                 Positioned(
                                   left: 18.w,
                                   child: Container(
@@ -91,9 +91,9 @@ class ShowProfileWidget extends StatelessWidget {
                                     child: ClipOval(
                                       child: CachedNetworkImage(
                                         imageUrl:
-                                            user!.dog[1].circleProfileImage !=
+                                            user!.dog![1].circleProfileImage !=
                                                     null
-                                                ? user!.dog[1]
+                                                ? user!.dog![1]
                                                     .circleProfileImage!.url
                                                     .toString()
                                                 : "",
@@ -120,11 +120,12 @@ class ShowProfileWidget extends StatelessWidget {
                                 padding: const EdgeInsets.all(3.0),
                                 child: ClipOval(
                                   child: CachedNetworkImage(
-                                    imageUrl: user!.dog[0].circleProfileImage !=
-                                            null
-                                        ? user!.dog[0].circleProfileImage!.url
-                                            .toString()
-                                        : "",
+                                    imageUrl:
+                                        user!.dog![0].circleProfileImage != null
+                                            ? user!
+                                                .dog![0].circleProfileImage!.url
+                                                .toString()
+                                            : "",
                                     errorWidget:
                                         (BuildContext context, url, data) {
                                       return const ImageErrorWidget();
@@ -140,11 +141,11 @@ class ShowProfileWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    if (user!.dog.length > 1) SizedBox(width: 5.w),
+                    if (user!.dog!.length > 1) SizedBox(width: 5.w),
                     AppText(
                       size: 14.sp,
                       text:
-                          "${user!.dog.length} ${user!.dog.length == 1 ? 'Dog' : 'Dogs'}",
+                          "${user!.dog!.length} ${user!.dog!.length == 1 ? 'Dog' : 'Dogs'}",
                       fontFamily:
                           GoogleFonts.raleway(fontWeight: FontWeight.w700)
                               .fontFamily,

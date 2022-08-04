@@ -24,7 +24,9 @@ mixin ChoosePartnerHandlers<T extends StatefulWidget> on State<T> {
                   Navigator.pushReplacementNamed(
                       context, UploadProfile.routeName);
                 },
-                onError: () {},
+                onError: () {
+                  print("Something Happened Wrong");
+                },
               ),
             );
           },

@@ -287,8 +287,17 @@ class _UpComingEventsDetailState extends State<UpComingEventsDetail>
                             child: GradientBtn(
                               borderRadius: 12.r,
                               height: size.height / 16,
-                              txt: "Cancel",
-                              onTap: onCancelEvent,
+                              txt: "Update",
+                              onTap: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AttendTicketDialog(
+                                      value: event!.price as int,
+                                    );
+                                  },
+                                );
+                              },
                             ),
                           )
                         : SizedBox(
@@ -303,22 +312,22 @@ class _UpComingEventsDetailState extends State<UpComingEventsDetail>
                                   context: context,
                                   builder: (context) {
                                     return AttendTicketDialog(
-                                      value: "${event?.price}",
+                                      value: event!.price as int,
                                     );
                                   },
                                 );
                               },
                             ),
                           ),
-                    SizedBox(
-                      width: size.width / 3,
-                      child: GradientBtn(
-                        borderRadius: 12.r,
-                        height: size.height / 16,
-                        txt: "Update",
-                        onTap: onUpdateEvent,
-                      ),
-                    )
+                    // SizedBox(
+                    //   width: size.width / 3,
+                    //   child: GradientBtn(
+                    //     borderRadius: 12.r,
+                    //     height: size.height / 16,
+                    //     txt: "Update",
+                    //     onTap: onUpdateEvent,
+                    //   ),
+                    // )
                   ],
                 ),
               )

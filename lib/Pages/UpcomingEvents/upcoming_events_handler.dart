@@ -30,10 +30,10 @@ mixin UpComingEventsHandlers<T extends StatefulWidget> on State<T> {
     super.didChangeDependencies();
   }
 
-  onAttendEvent() {
+  onAttendEvent(int seatCount) {
     BlocProvider.of<BookTicketBloc>(context).add(
       BookUserTicketEvent(
-        seatCount: 1,
+        seatCount: seatCount,
         stripeTransaction: "stripeTransaction",
         eventId: event!.id.toString(),
         userId: BlocProvider.of<UserBloc>(context).state.user!.id.toString(),
@@ -43,6 +43,7 @@ mixin UpComingEventsHandlers<T extends StatefulWidget> on State<T> {
           } else {
             Fluttertoast.showToast(msg: 'Your Ticket Booked Successfully');
           }
+          Navigator.pop(context);
         },
       ),
     );

@@ -79,6 +79,10 @@ class _ImInterestedInState extends State<ImInterestedIn>
                       height: size.height / 18,
                       txt: "Cancel",
                       onTap: () {
+                        for (var tapped in interestedIn) {
+                          tapped.selected = false;
+                        }
+                        widget.callback('');
                         Navigator.pop(context);
                       },
                     ),

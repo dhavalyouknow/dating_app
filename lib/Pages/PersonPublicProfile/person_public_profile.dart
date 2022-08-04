@@ -202,7 +202,7 @@ class _PersonPublicProfileState extends State<PersonPublicProfile>
                                   .fontFamily,
                         ),
                         SizedBox(height: 13.h),
-                        ...userState.user!.dog.map((e) {
+                        ...userState.user!.dog!.map((e) {
                           return ShowDogProfileWidget(
                             onTap: () {},
                             user: userState.user,

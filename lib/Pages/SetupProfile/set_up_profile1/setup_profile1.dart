@@ -342,9 +342,8 @@ class _SetupProfile1State extends State<SetupProfile1>
                       .fontFamily,
                   text: AppLocalizations.of(context)!.length,
                 ),
-
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  padding: EdgeInsets.only(left: 5.w, right: 5.w, bottom: 80.h),
                   child: FormFieldWidget(
                     type: TextInputType.number,
                     backgroundColor: AppStyles.trasnparentColor,
@@ -369,9 +368,9 @@ class _SetupProfile1State extends State<SetupProfile1>
                 //   },
                 // ),
 
-                SizedBox(height: 80.h),
-
-                // SizedBox(height: 60.h),
+                // SizedBox(height: 80.h),
+                //
+                // // SizedBox(height: 60.h),
               ],
             ),
           ),

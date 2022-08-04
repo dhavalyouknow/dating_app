@@ -5,6 +5,7 @@ import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RelationshipStatus extends StatefulWidget {
@@ -60,11 +61,17 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                       onTap: () {
                         setState(() {
                           selectedStatus = e.status;
+                          for (var tapped in relationShip) {
+                            tapped.selected = false;
+                          }
+                          e.selected = true;
                         });
-                        for (var tapped in relationShip) {
-                          tapped.selected = false;
-                        }
-                        e.selected = true;
+
+                        setState(() {
+                          if (selectedStatus.isEmpty) {
+                            e.selected = false;
+                          }
+                        });
                       },
                     ),
                   );
@@ -81,6 +88,10 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                       height: size.height / 18,
                       txt: "Cancel",
                       onTap: () {
+                        for (var tapped in relationShip) {
+                          tapped.selected = false;
+                        }
+                        widget.callback('');
                         Navigator.pop(context);
                       },
                     ),
@@ -92,8 +103,10 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                       height: size.height / 18,
                       txt: "Save",
                       onTap: () {
+                        // if (selectedStatus.isNotEmpty) {
                         widget.callback(selectedStatus);
                         Navigator.pop(context);
+                        // }
                       },
                     ),
                   )

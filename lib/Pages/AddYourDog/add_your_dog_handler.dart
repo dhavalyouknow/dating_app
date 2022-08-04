@@ -46,7 +46,7 @@ mixin AddYourDogHandlers<T extends StatefulWidget> on State<T> {
             print('DOG -> $dog');
             user = user?.copyWith(dog: [...?user?.dog, dog]);
             BlocProvider.of<UserBloc>(context).add(SetUser(user: user!));
-            print(user?.dog.length);
+            print(user?.dog!.length);
             Navigator.pushReplacementNamed(context, ChooseDogPicture.routeName);
             for (var tapped in sizeOfDog) {
               tapped.selected = false;
