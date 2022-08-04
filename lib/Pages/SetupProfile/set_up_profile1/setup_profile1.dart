@@ -343,7 +343,12 @@ class _SetupProfile1State extends State<SetupProfile1>
                   text: AppLocalizations.of(context)!.length,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 5.w, right: 5.w, bottom: 80.h),
+                  padding: EdgeInsets.only(
+                    left: 5.w,
+                    right: 5.w,
+                    top: 5.w,
+                    bottom: 20.h,
+                  ),
                   child: FormFieldWidget(
                     type: TextInputType.number,
                     backgroundColor: AppStyles.trasnparentColor,

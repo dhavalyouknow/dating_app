@@ -189,7 +189,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
         squareImageFile = File(croppedFile.path);
         cropImage(
           style: CropStyle.circle,
-          aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 10),
+          aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 8),
         );
         onSquareImageUpdate();
       } else {

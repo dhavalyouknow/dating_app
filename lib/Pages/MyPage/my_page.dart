@@ -36,7 +36,9 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(
+        selectedItemPosition: 0,
+      ),
       appBar: AppBar(
         actions: [
           Padding(

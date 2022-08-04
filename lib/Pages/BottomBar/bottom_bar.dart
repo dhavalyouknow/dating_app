@@ -15,7 +15,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
+  const BottomNavBar({Key? key, this.selectedItemPosition = 1})
+      : super(key: key);
+  final int selectedItemPosition;
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -26,6 +28,33 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int selectedIndex = 0;
   String text = "My Page";
 
+  routePage(int index) {
+    switch (index) {
+      case 0:
+        Future.delayed(Duration.zero, () {
+          Navigator.pushReplacementNamed(context, MyPage.routeName);
+        });
+        break;
+      case 1:
+        Future.delayed(Duration.zero, () {
+          Navigator.pushNamedAndRemoveUntil(
+              context, HomePage.routeName, (Route<dynamic> route) => false);
+        });
+        break;
+      case 2:
+        BlocProvider.of<UserBloc>(context).add(SetUserInitial());
+        Future.delayed(Duration.zero, () {
+          Navigator.pushReplacementNamed(context, UpComingEvents.routeName);
+        });
+        break;
+      case 3:
+        Future.delayed(Duration.zero, () {
+          Navigator.pushReplacementNamed(context, ChatPage.routeName);
+        });
+        break;
+    }
+  }
+
   void updateTabSelection(int index, String buttonText) {
     setState(() {
       selectedIndex = index;
@@ -35,6 +64,20 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.selectedItemPosition);
+    // return BottomNavigationBar(
+    //   items: const <BottomNavigationBarItem>[
+    //     BottomNavigationBarItem(icon: Icon(Icons.face)),
+    //     BottomNavigationBarItem(icon: Icon(Icons.favorite)),
+    //     BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_sharp)),
+    //   ],
+    //   type: BottomNavigationBarType.shifting,
+    //   currentIndex: widget.selectedItemPosition,
+    //   selectedItemColor: Colors.black,
+    //   iconSize: 40,
+    //   onTap: routePage,
+    //   elevation: 5,
+    // );
     return BottomAppBar(
       color: Colors.white,
       child: BlocBuilder<UserBloc, UserState>(builder: (context, userStatus) {
@@ -48,6 +91,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               IconButton(
                 onPressed: () {
                   updateTabSelection(0, "My Page");
+
                   Navigator.pushReplacementNamed(context, MyPage.routeName);
                 },
                 icon: Icon(

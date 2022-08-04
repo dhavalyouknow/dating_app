@@ -221,10 +221,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
       var res = await get(url: ApiEndPoints.getUser);
       print(ApiEndPoints.getUser);
       if (res != null) {
-        print(res.body);
-        print(res.statusCode);
         if (res.statusCode == 200) {
           var data = jsonDecode(res.body);
+
           User user = User.fromJson(data);
           SharedPreferences prefs = await SharedPreferences.getInstance();
           String token = prefs.getString('auth_token') as String;
