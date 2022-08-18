@@ -2,6 +2,7 @@ import 'package:dating_app/Bloc/ChangePassword/change_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 mixin ResetPasswordHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController currentPwdController = TextEditingController();
@@ -44,7 +45,7 @@ mixin ResetPasswordHandlers<T extends StatefulWidget> on State<T> {
           newPassword: confirmPwdController.text,
           onSuccess: (success) {
             Fluttertoast.showToast(
-              msg: 'Password has been updated..',
+              msg: AppLocalizations.of(context)!.passwordhasbeenupdated,
               timeInSecForIosWeb: 5,
             );
           },

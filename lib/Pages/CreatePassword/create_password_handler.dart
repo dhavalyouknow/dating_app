@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
   bool signUpPwd = true;
@@ -86,7 +87,10 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
             } else {
               Navigator.pushReplacementNamed(context, EditEmail.routeName);
             }
-            //
+            Fluttertoast.showToast(
+              msg: AppLocalizations.of(context)!.signUpsuccessfully,
+              timeInSecForIosWeb: 5,
+            );
             setState(() {
               isLoading = false;
             });
@@ -99,7 +103,7 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
               isLoading = false;
             });
             Fluttertoast.showToast(
-              msg: 'Something Went Wrong',
+              msg: AppLocalizations.of(context)!.somethingwentwrong,
               timeInSecForIosWeb: 5,
             );
           },

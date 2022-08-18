@@ -98,7 +98,8 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
                             selectedInterestsName.add(e);
                           } else {
                             Fluttertoast.showToast(
-                              msg: 'You can select only 5 items',
+                              msg: AppLocalizations.of(context)!
+                                  .youcanselectonly5items,
                               timeInSecForIosWeb: 5,
                             );
                           }

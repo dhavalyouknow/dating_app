@@ -27,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     loadData();
   }
 
+  //get token which user login and if not return null
   loadData() async {
     Future.delayed(
       const Duration(seconds: 2),
@@ -37,6 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (token == null) {
           Navigator.pushReplacementNamed(context, LoginPage.routeName);
         } else {
+          //load user data which is login
           await loadUser();
         }
       },

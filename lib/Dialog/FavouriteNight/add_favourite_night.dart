@@ -99,7 +99,8 @@ class _AddNightModuleState extends State<AddNightModule>
                             selectedNights.add(e);
                           } else {
                             Fluttertoast.showToast(
-                              msg: 'You can select only 5 items',
+                              msg: AppLocalizations.of(context)!
+                                  .youcanselectonly5items,
                               timeInSecForIosWeb: 5,
                             );
                           }

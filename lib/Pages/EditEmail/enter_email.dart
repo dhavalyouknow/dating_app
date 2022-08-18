@@ -62,7 +62,7 @@ class _EditUserEmailState extends State<EditUserEmail> with EditEmailHandler {
                       icon: const Icon(Icons.email_outlined),
                       onPressed: () {},
                     ),
-                    hintText: 'Enter your new email',
+                    hintText: AppLocalizations.of(context)!.enterEmail,
                     textEditingController: confirmEmailController,
                     validator: emailValidator,
                     obSecure: false,
@@ -81,7 +81,7 @@ class _EditUserEmailState extends State<EditUserEmail> with EditEmailHandler {
                     },
                     borderRadius: 25,
                     height: size.height / 16,
-                    txt: 'Update Email',
+                    txt: AppLocalizations.of(context)!.save,
                   )
                 ],
               ),

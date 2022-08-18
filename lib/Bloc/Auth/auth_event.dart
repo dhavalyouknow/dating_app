@@ -4,6 +4,7 @@ abstract class AuthEvent extends Equatable {
   const AuthEvent();
 }
 
+//loginInitial event
 class SetLoginInitial extends AuthEvent {
   const SetLoginInitial() : super();
 
@@ -12,6 +13,7 @@ class SetLoginInitial extends AuthEvent {
   List<Object?> get props => [];
 }
 
+//check email event
 class DuplicateEvent extends AuthEvent {
   final String email;
   final VoidCallback onSuccess;
@@ -24,17 +26,20 @@ class DuplicateEvent extends AuthEvent {
   List<Object?> get props => [];
 }
 
+//login event
 class LoginRequest extends AuthEvent {
   final String email;
   final String password;
   final String pushToken;
   final Function(User) success;
+  final VoidCallback onError;
 
   const LoginRequest({
     required this.email,
     required this.password,
     required this.pushToken,
     required this.success,
+    required this.onError,
   }) : super();
 
   @override
@@ -43,9 +48,11 @@ class LoginRequest extends AuthEvent {
         password,
         pushToken,
         success,
+        onError,
       ];
 }
 
+//signup event
 class SignUpRequest extends AuthEvent {
   final String name;
   final String surname;
@@ -86,6 +93,7 @@ class SignUpRequest extends AuthEvent {
       ];
 }
 
+//get user data event
 class SessionRequest extends AuthEvent {
   final Function(User) onSuccess;
 
@@ -95,6 +103,7 @@ class SessionRequest extends AuthEvent {
   List<Object?> get props => [onSuccess];
 }
 
+//login with google event
 class LoginWithGoogle extends AuthEvent {
   final String email;
   final String firebaseUserId;
@@ -125,6 +134,7 @@ class LoginWithGoogle extends AuthEvent {
   List<Object?> get props => [];
 }
 
+//login with facebook event
 class LoginWithFacebook extends AuthEvent {
   final String email;
   final String firebaseUserId;
@@ -154,6 +164,7 @@ class LoginWithFacebook extends AuthEvent {
       ];
 }
 
+//login with apple event
 class LoginWithApple extends AuthEvent {
   final String email;
   final String firebaseUserId;

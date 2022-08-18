@@ -14,17 +14,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  int index = 0;
   bool signUpPwd = true;
   final formKey = GlobalKey<FormState>();
   bool isLoading = false;
-  String dropdownvalue = 'Sweeden';
   bool isRegister = false;
-
-  var items = [
-    'Sweeden',
-    'English',
-  ];
 
   String? emailValidator(dynamic email) {
     if (email.isEmpty) {
@@ -52,18 +45,28 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
     return null;
   }
 
+  //manually login
   onLogin() {
     if (formKey.currentState!.validate()) {
       BlocProvider.of<AuthBloc>(context).add(
         LoginRequest(
-          email: emailController.text,
-          password: passwordController.text,
-          pushToken: '222222',
-          success: (User user) {
-            BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-            Navigator.pushReplacementNamed(context, '/MyPage');
-          },
-        ),
+            email: emailController.text,
+            password: passwordController.text,
+            pushToken: '222222',
+            success: (User user) {
+              BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+              Navigator.pushReplacementNamed(context, '/MyPage');
+              Fluttertoast.showToast(
+                msg: AppLocalizations.of(context)!.loginsuccessfully,
+                timeInSecForIosWeb: 5,
+              );
+            },
+            onError: () {
+              Fluttertoast.showToast(
+                msg: AppLocalizations.of(context)!.invalidusernameorpassword,
+                timeInSecForIosWeb: 5,
+              );
+            }),
       );
     }
   }
@@ -149,7 +152,7 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
     }
   }
 
-//loginWithFacebook
+  //loginWithFacebook
   signInWithFacebook() async {
     String? pushToken = await FirebaseMessaging.instance.getToken();
     // Trigger the sign-in flow
@@ -226,7 +229,6 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
   }
 
   //loginWithApple
-
   Future signInWithApple() async {
     String? fcmToken = await FirebaseMessaging.instance.getToken();
 
@@ -300,6 +302,11 @@ mixin LoginHandlers<T extends StatefulWidget> on State<T> {
               });
             },
             onError: () {
+              Fluttertoast.showToast(
+                msg: AppLocalizations.of(context)!
+                    .somethinghappenedwrongtryagainaftersometime,
+                timeInSecForIosWeb: 5,
+              );
               setState(() {
                 isLoading = false;
               });

@@ -12,6 +12,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fbAuth;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController nameController = TextEditingController();
@@ -106,12 +107,17 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
     }
   }
 
+  //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
   onSubmit() {
     if (formKey.currentState!.validate()) {
       BlocProvider.of<AuthBloc>(context).add(
         DuplicateEvent(
           email: emailController.text,
           onSuccess: () {
+            Fluttertoast.showToast(
+              msg: AppLocalizations.of(context)!.validemail,
+              timeInSecForIosWeb: 5,
+            );
             Navigator.pushNamed(
               context,
               CreatePassword.routeName,
@@ -363,6 +369,11 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
               });
             },
             onError: () {
+              Fluttertoast.showToast(
+                msg: AppLocalizations.of(context)!
+                    .somethinghappenedwrongtryagainaftersometime,
+                timeInSecForIosWeb: 3,
+              );
               setState(() {
                 isLoading = false;
               });

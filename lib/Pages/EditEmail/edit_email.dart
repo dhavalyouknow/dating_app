@@ -97,7 +97,8 @@ class _EditEmailState extends State<EditEmail> {
                             context, '/ChoosePartner');
                       } else {
                         Fluttertoast.showToast(
-                          msg: 'Please verify your email',
+                          msg: AppLocalizations.of(context)!
+                              .pleaseverifyyouremail,
                           timeInSecForIosWeb: 5,
                         );
                       }
@@ -119,7 +120,8 @@ class _EditEmailState extends State<EditEmail> {
                       headerToken: token!,
                       onSuccess: () {
                         Fluttertoast.showToast(
-                          msg: 'Your reset email has been successfully sent.',
+                          msg: AppLocalizations.of(context)!
+                              .yourresetemailhasbeensuccessfullysent,
                           timeInSecForIosWeb: 5,
                         );
                         setState(() {
@@ -135,8 +137,8 @@ class _EditEmailState extends State<EditEmail> {
                           isLoading = false;
                         });
                         Fluttertoast.showToast(
-                          msg:
-                              'This email address is already associated with another account. Please use a different email address.',
+                          msg: AppLocalizations.of(context)!
+                              .thisemailaddressisalreadyassociatedwithanotheraccountpleaseuseadifferentemailaddress,
                           timeInSecForIosWeb: 5,
                         );
                       },

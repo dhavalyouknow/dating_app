@@ -26,10 +26,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     on<LoginWithApple>(_onLoginWithApple);
   }
 
+  //login initial
   Future<void> _onLoginInitial(
-    SetLoginInitial event,
-    Emitter<AuthState> emit,
-  ) async {
+      SetLoginInitial event, Emitter<AuthState> emit) async {
     emit(
       state.copyWith(
         status: AuthStatus.initial,
@@ -37,6 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     );
   }
 
+  //check email is already register or not
   Future<void> _onDuplicateEvent(
       DuplicateEvent event, Emitter<AuthState> emit) async {
     try {
@@ -51,10 +51,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           print(resp.statusCode);
           event.onSuccess();
           emit(state.copyWith(status: AuthStatus.loginSuccess));
-          Fluttertoast.showToast(
-            msg: 'Valid Email',
-            timeInSecForIosWeb: 5,
-          );
         } else {
           print(resp.body);
           print(resp.statusCode);
@@ -73,11 +69,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     }
   }
 
+  //signup
   Future<void> _onSignUpRequest(
-    //For Signup
-    SignUpRequest event,
-    Emitter<AuthState> emit,
-  ) async {
+      SignUpRequest event, Emitter<AuthState> emit) async {
     emit(
       state.copyWith(
         status: AuthStatus.loading,
@@ -126,10 +120,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           User user = User.fromJson(data);
           emit(state.copyWith(status: AuthStatus.loginSuccess));
           event.success(user);
-          Fluttertoast.showToast(
-            msg: 'SignUp Successfully',
-            timeInSecForIosWeb: 5,
-          );
         } else {
           if (kDebugMode) {
             print(resp.statusCode);
@@ -154,12 +144,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     }
   }
 
+  //signIn
   Future<void> _onLoginRequest(
-    // For Login
-
-    LoginRequest event,
-    Emitter<AuthState> emit,
-  ) async {
+      LoginRequest event, Emitter<AuthState> emit) async {
     try {
       emit(state.copyWith(status: AuthStatus.loading));
       var resp = await post(
@@ -185,10 +172,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           User user = User.fromJson(data);
           event.success(user);
           emit(state.copyWith(status: AuthStatus.loginSuccess));
-          Fluttertoast.showToast(
-            msg: 'Login Successfully',
-            timeInSecForIosWeb: 5,
-          );
+
           emit(
             state.copyWith(
               status: AuthStatus.loginSuccess,
@@ -205,27 +189,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
             print(resp.statusCode);
             print(resp.body);
           }
-          Fluttertoast.showToast(
-            msg: 'Invalid Username or Password',
-            timeInSecForIosWeb: 5,
-          );
+          event.onError();
         }
       } else {
         if (kDebugMode) {
-          Fluttertoast.showToast(
-            msg: 'Something Went Wrong',
-            timeInSecForIosWeb: 5,
-          );
           emit(state.copyWith(status: AuthStatus.loginFailure));
           print(resp?.statusCode);
         }
       }
     } catch (e) {
       if (kDebugMode) {
-        Fluttertoast.showToast(
-          msg: 'Something Went Wrong',
-          timeInSecForIosWeb: 5,
-        );
         emit(state.copyWith(status: AuthStatus.loginFailure));
         print('object');
         print(e);
@@ -234,10 +207,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     }
   }
 
+  //get user data
   Future<void> _onSessionRequest(
-    SessionRequest event,
-    Emitter<AuthState> emit,
-  ) async {
+      SessionRequest event, Emitter<AuthState> emit) async {
     try {
       emit(state.copyWith(status: AuthStatus.loading));
       var res = await get(url: ApiEndPoints.getUser);
@@ -284,6 +256,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     }
   }
 
+  //login with google
   Future<void> _onLoginWithGoogle(
       LoginWithGoogle event, Emitter<AuthState> emit) async {
     try {
@@ -332,6 +305,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     }
   }
 
+  //login with facebook
   Future<void> _onLoginWithFacebook(
       LoginWithFacebook event, Emitter<AuthState> emit) async {
     try {
@@ -377,6 +351,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
     }
   }
 
+  //login with apple
   Future<void> _onLoginWithApple(
       LoginWithApple event, Emitter<AuthState> emit) async {
     try {
@@ -408,10 +383,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
         } else {
           if (resp.statusCode == 500) {
             event.onError();
-            Fluttertoast.showToast(
-              msg: "Something happened wrong try again after sometime.",
-              timeInSecForIosWeb: 3,
-            );
           }
           emit(state.copyWith(status: AuthStatus.loginFailure));
           print(resp.body);

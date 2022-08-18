@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 mixin EditEmailHandler<T extends StatefulWidget> on State<T> {
   final formKey = GlobalKey<FormState>();
@@ -54,7 +55,8 @@ mixin EditEmailHandler<T extends StatefulWidget> on State<T> {
                   headerToken: token!,
                   onSuccess: () {
                     Fluttertoast.showToast(
-                      msg: 'Your reset email has been successfully sent.',
+                      msg: AppLocalizations.of(context)!
+                          .yourresetemailhasbeensuccessfullysent,
                       timeInSecForIosWeb: 5,
                     );
                     setState(() {
@@ -71,8 +73,8 @@ mixin EditEmailHandler<T extends StatefulWidget> on State<T> {
                       isLoading = false;
                     });
                     Fluttertoast.showToast(
-                      msg:
-                          'This email address is already associated with another account. Please use a different email address.',
+                      msg: AppLocalizations.of(context)!
+                          .thisemailaddressisalreadyassociatedwithanotheraccountpleaseuseadifferentemailaddress,
                       timeInSecForIosWeb: 5,
                     );
                   },
@@ -84,8 +86,8 @@ mixin EditEmailHandler<T extends StatefulWidget> on State<T> {
                 isLoading = false;
               });
               Fluttertoast.showToast(
-                msg:
-                    'This email address is already associated with another account. Please use a different email address.',
+                msg: AppLocalizations.of(context)!
+                    .thisemailaddressisalreadyassociatedwithanotheraccountpleaseuseadifferentemailaddress,
                 timeInSecForIosWeb: 5,
               );
             },

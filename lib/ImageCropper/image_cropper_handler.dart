@@ -12,6 +12,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
   final ImagePicker _picker = ImagePicker();
@@ -240,7 +241,8 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                 user: user!,
                 success: (value) {
                   Fluttertoast.showToast(
-                    msg: 'Your Profile Picture is added successfully',
+                    msg: AppLocalizations.of(context)!
+                        .yourprofilepictureisaddedsuccessfully,
                     timeInSecForIosWeb: 5,
                   );
                   BlocProvider.of<AuthBloc>(context).add(
@@ -300,7 +302,8 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                           SetUser(user: user),
                         );
                         Fluttertoast.showToast(
-                          msg: 'Your Profile Picture is added successfully',
+                          msg: AppLocalizations.of(context)!
+                              .yourprofilepictureisaddedsuccessfully,
                           timeInSecForIosWeb: 5,
                         );
                         setState(() {

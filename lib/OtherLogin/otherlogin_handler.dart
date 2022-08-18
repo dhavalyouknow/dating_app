@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 mixin OtherLoginHandlers<T extends StatefulWidget> on State<T> {
   TextEditingController nameController = TextEditingController();
@@ -101,8 +102,9 @@ mixin OtherLoginHandlers<T extends StatefulWidget> on State<T> {
         },
         onError: () {
           Fluttertoast.showToast(
-              msg:
-                  'This email address is already associated with another account. Please use a different email address.');
+            msg: AppLocalizations.of(context)!
+                .thisemailaddressisalreadyassociatedwithanotheraccountpleaseuseadifferentemailaddress,
+          );
         },
       ),
     );
