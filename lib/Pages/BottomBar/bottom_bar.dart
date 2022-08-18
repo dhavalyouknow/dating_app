@@ -105,7 +105,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               IconButton(
                 onPressed: () {
                   updateTabSelection(1, "Like");
-                  Navigator.pushReplacementNamed(context, HomePage.routeName);
+                  //Navigator.pushReplacementNamed(context, HomePage.routeName);
                 },
                 icon: Icon(
                   size: 27.sp,
@@ -118,8 +118,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
               IconButton(
                 onPressed: () {
                   updateTabSelection(2, "Events");
-                  Navigator.pushReplacementNamed(
-                      context, UpComingEvents.routeName);
+                  // Navigator.pushReplacementNamed(
+                  //     context, UpComingEvents.routeName);
                 },
                 icon: Icon(
                   size: 24.sp,
@@ -131,18 +131,18 @@ class _BottomNavBarState extends State<BottomNavBar> {
               ),
               IconButton(
                 onPressed: () async {
-                  updateTabSelection(3, "Message");
-                  if (userStatus.user!.isPro == false) {
-                    await showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const UpgradeToPremium();
-                      },
-                    );
-                  }
-                  if (userStatus.user!.isPro == true) {
-                    Navigator.pushReplacementNamed(context, ChatPage.routeName);
-                  }
+                  // updateTabSelection(3, "Message");
+                  // if (userStatus.user!.isPro == false) {
+                  //   await showDialog(
+                  //     context: context,
+                  //     builder: (context) {
+                  //       return const UpgradeToPremium();
+                  //     },
+                  //   );
+                  // }
+                  // if (userStatus.user!.isPro == true) {
+                  //   Navigator.pushReplacementNamed(context, ChatPage.routeName);
+                  // }
                 },
                 icon: Icon(
                   size: 27.sp,

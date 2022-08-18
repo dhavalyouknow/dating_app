@@ -6,10 +6,13 @@ import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ImInterestedIn extends StatefulWidget {
   final Function(String) callback;
-  const ImInterestedIn({Key? key, required this.callback}) : super(key: key);
+  String alreadyUsed;
+  ImInterestedIn({Key? key, required this.callback, required this.alreadyUsed})
+      : super(key: key);
 
   @override
   State<ImInterestedIn> createState() => _ImInterestedInState();
@@ -26,7 +29,7 @@ class _ImInterestedInState extends State<ImInterestedIn>
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 10.w),
           padding: EdgeInsets.symmetric(horizontal: 20.w),
-          height: size.height / 2,
+          height: size.height / 2.3,
           decoration: BoxDecoration(
             color: AppStyles.whiteColor,
             borderRadius: BorderRadius.circular(20),
@@ -38,18 +41,20 @@ class _ImInterestedInState extends State<ImInterestedIn>
                 size: 21.sp,
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
-                text: "I’m interested in",
+                text: AppLocalizations.of(context)!.imInterestedIn,
               ),
               SizedBox(height: 15.h),
-              ...interestedIn.map(
+              ...selectedInterestedName.map(
                 (e) {
                   return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.h),
+                    padding: EdgeInsets.symmetric(vertical: 5.h),
                     child: DefaultAppBtn(
                       fontWeight:
                           e.selected ? FontWeight.w700 : FontWeight.normal,
                       height: size.height / 14,
-                      border: e.selected ? 3.r : 1.r,
+                      border: widget.alreadyUsed == e.interest || e.selected
+                          ? 2.r
+                          : 1.r,
                       borderRadius: 20,
                       borderColor: AppStyles.pinkColor,
                       txt: e.interest,
@@ -58,9 +63,10 @@ class _ImInterestedInState extends State<ImInterestedIn>
                           : AppStyles.greyColor,
                       onTap: () {
                         setState(() {
+                          widget.alreadyUsed = e.interest;
                           selectedInterestedIn = e.interest;
                         });
-                        for (var tapped in interestedIn) {
+                        for (var tapped in selectedInterestedName) {
                           tapped.selected = false;
                         }
                         e.selected = true;
@@ -69,49 +75,45 @@ class _ImInterestedInState extends State<ImInterestedIn>
                   );
                 },
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: size.width / 4,
-                    child: GradientBtn(
-                      borderRadius: 10.r,
-                      height: size.height / 18,
-                      txt: "Cancel",
-                      onTap: () {
-                        for (var tapped in interestedIn) {
-                          tapped.selected = false;
-                        }
-                        widget.callback('');
-                        Navigator.pop(context);
-                      },
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 8.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: size.width / 2.7,
+                      child: GradientBtn(
+                        borderRadius: 10.r,
+                        height: size.height / 18,
+                        txt: AppLocalizations.of(context)!.cancel,
+                        onTap: () {
+                          for (var tapped in selectedInterestedName) {
+                            tapped.selected = false;
+                          }
+                          widget.callback(widget.alreadyUsed);
+                          Navigator.pop(context);
+                        },
+                      ),
                     ),
-                  ),
-                  // TextButton(
-                  //   onPressed: () {
-                  //     Navigator.pop(context);
-                  //   },
-                  //   child: AppText(
-                  //     size: 21.sp,
-                  //     fontFamily:
-                  //         GoogleFonts.raleway(fontWeight: FontWeight.bold)
-                  //             .fontFamily,
-                  //     text: "Cancel",
-                  //   ),
-                  // ),
-                  SizedBox(
-                    width: size.width / 4,
-                    child: GradientBtn(
-                      borderRadius: 10.r,
-                      height: size.height / 18,
-                      txt: "Save",
-                      onTap: () {
-                        widget.callback(selectedInterestedIn);
-                        Navigator.pop(context);
-                      },
-                    ),
-                  )
-                ],
+                    SizedBox(
+                      width: size.width / 2.7,
+                      child: GradientBtn(
+                        borderRadius: 10.r,
+                        height: size.height / 18,
+                        txt: AppLocalizations.of(context)!.save,
+                        onTap: () {
+                          if (selectedInterestedIn.isEmpty) {
+                            widget.callback(widget.alreadyUsed);
+                          } else {
+                            widget.callback(selectedInterestedIn);
+                          }
+
+                          Navigator.pop(context);
+                        },
+                      ),
+                    )
+                  ],
+                ),
               )
             ],
           ),

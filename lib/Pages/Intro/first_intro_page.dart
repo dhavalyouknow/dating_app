@@ -120,7 +120,7 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
                       fontFamily:
                           GoogleFonts.raleway(fontWeight: FontWeight.w500)
                               .fontFamily,
-                      text: "Skip",
+                      text: AppLocalizations.of(context)!.skip,
                     ),
                   )
                 ],

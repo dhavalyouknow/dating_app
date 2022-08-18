@@ -9,6 +9,7 @@ class FormFieldWidget extends StatefulWidget {
   final String? Function(dynamic) validator;
   bool obSecure;
   final IconButton? icon;
+  final IconButton? suffixIcon;
   final IconButton? backIcon;
   final Function(String)? onChanged;
   final VoidCallback? onTap;
@@ -20,6 +21,8 @@ class FormFieldWidget extends StatefulWidget {
   final Color borderColor;
   final Color? backgroundColor;
   final double border;
+  FocusNode? focusNode;
+  TextInputAction? textInputAction;
 
   FormFieldWidget({
     Key? key,
@@ -28,10 +31,13 @@ class FormFieldWidget extends StatefulWidget {
     required this.validator,
     required this.obSecure,
     this.icon,
+    this.suffixIcon,
     this.backIcon,
     this.onChanged,
     this.onTap,
     this.type,
+    this.textInputAction,
+    this.focusNode,
     this.minLines,
     this.maxLines,
     this.onSubmit,
@@ -52,6 +58,8 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
       margin: EdgeInsets.only(top: 18.h),
       alignment: Alignment.center,
       child: TextFormField(
+        textInputAction: widget.textInputAction,
+        focusNode: widget.focusNode,
         onFieldSubmitted: widget.onSubmit,
         cursorColor: AppStyles.blackColor,
         keyboardType: widget.type,
@@ -63,10 +71,10 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
         validator: widget.validator,
         controller: widget.textEditingController,
         style: TextStyle(
-          color: Theme.of(context).hintColor,
+          color: AppStyles.blackColor,
           fontSize: 14.sp,
           fontFamily:
-              GoogleFonts.raleway(fontSize: 20.sp, fontWeight: FontWeight.w500)
+              GoogleFonts.raleway(fontSize: 20.sp, fontWeight: FontWeight.w600)
                   .fontFamily,
         ),
         decoration: InputDecoration(
@@ -108,9 +116,9 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
           hintStyle: TextStyle(
             fontFamily: GoogleFonts.raleway(
               fontSize: 20.sp,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w400,
             ).fontFamily,
-            color: AppStyles.textColor,
+            color: AppStyles.greyColor,
           ),
         ),
       ),

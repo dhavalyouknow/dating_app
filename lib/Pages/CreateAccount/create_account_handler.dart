@@ -7,10 +7,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fbAuth;
 
 mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   final TextEditingController nameController = TextEditingController();
@@ -24,6 +25,11 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   String? stateValue;
   String? cityValue;
   bool isLoading = false;
+  bool isRegister = false;
+  bool isColorRed = false;
+  bool isOnTapFName = false;
+  bool isOnTapEmail = false;
+  bool isOnTapSurname = false;
 
   // Icon selectedIcon;
 
@@ -31,7 +37,6 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   DateTime selectedDate = DateTime.now();
   DateTime defaultDateTime = DateTime.now();
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
-  final fbLogin = FacebookLogin();
 
   @override
   initState() {
@@ -107,7 +112,7 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
         DuplicateEvent(
           email: emailController.text,
           onSuccess: () {
-            Navigator.pushReplacementNamed(
+            Navigator.pushNamed(
               context,
               CreatePassword.routeName,
               arguments: {
@@ -120,19 +125,35 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
               },
             );
           },
+          onError: (value) {
+            isColorRed = true;
+            setState(() {});
+            Fluttertoast.showToast(
+              msg: '${value.split('.').first}.',
+              timeInSecForIosWeb: 5,
+            );
+          },
         ),
       );
     }
   }
 
   //signupWithGoogle
-
   signInWithGoogle() async {
-    String? fcmToken = await FirebaseMessaging.instance.getToken();
+    String? pushToken = await FirebaseMessaging.instance.getToken();
     GoogleSignInAccount? value = await _googleSignIn.signIn();
+
     if (value != null) {
       var val = await value.authentication;
+      final oAuthProvider = fbAuth.OAuthProvider("google.com");
+      final crd = oAuthProvider.credential(
+        idToken: val.idToken,
+        accessToken: val.accessToken,
+      );
 
+      var resp = await fbAuth.FirebaseAuth.instance.signInWithCredential(crd);
+      String? firebaseUserId = resp.user?.uid;
+      var fcmToken = await resp.user?.getIdToken();
       setState(() {
         isLoading = true;
       });
@@ -143,32 +164,47 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
           BlocProvider.of<AuthBloc>(context).add(
             LoginWithGoogle(
               email: value.email,
-              googleId: value.id,
-              pushToken: fcmToken!,
+              firebaseUserId: firebaseUserId!,
+              pushToken: pushToken!,
+              firstName: resp.user!.displayName!.split(' ').first,
+              lastName: resp.user!.displayName!.split(' ').last,
               //for header
-              fcmtoken: val.idToken!,
+              fcmtoken: fcmToken!,
               isRegistered: (value) {
-                if (value == false) {
+                isRegister = value;
+                setState(() {});
+              },
+              onSuccess: (User user) {
+                BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+                if (isRegister == false) {
                   Navigator.pushReplacementNamed(
                     context,
                     '/OtherLoginCreateAccount',
                   );
                 } else {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    '/MyPage',
-                  );
+                  if (user.gender!.isEmpty || user.dob == null) {
+                    Navigator.pushReplacementNamed(
+                        context, '/OtherLoginCreateAccount');
+                  } else if (user.searchingFor!.isEmpty) {
+                    Navigator.pushReplacementNamed(context, '/ChoosePartner');
+                  } else if (user.circleProfileImage == null) {
+                    Navigator.pushReplacementNamed(context, '/UploadProfile');
+                  } else {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/MyPage',
+                    );
+                  }
                 }
-              },
-              onSuccess: (User user) {
-                BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
                 setState(() {
                   isLoading = false;
                 });
               },
-              onError: () {
+              onError: (value) {
                 Fluttertoast.showToast(
-                    msg: 'Something happened wrong try again after sometime.');
+                  msg: value,
+                  timeInSecForIosWeb: 5,
+                );
                 setState(() {
                   isLoading = false;
                 });
@@ -181,80 +217,80 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   }
 
   //signupWithFacebook
+  signInWithFacebook() async {
+    String? pushToken = await FirebaseMessaging.instance.getToken();
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login();
 
-  Future signInWithFacebook() async {
-    String? fcmToken = await FirebaseMessaging.instance.getToken();
-    final res = await fbLogin.logIn(permissions: [
-      FacebookPermission.publicProfile,
-      FacebookPermission.email,
-    ]);
-    switch (res.status) {
-      case FacebookLoginStatus.success:
-        // Logged in
-        // Send access token to server for validation and auth
-        final FacebookAccessToken? accessToken = res.accessToken;
-        final profile = await fbLogin.getUserProfile();
-        final email = await fbLogin.getUserEmail();
-        setState(() {
-          isLoading = true;
-        });
-        Future.delayed(
-          const Duration(seconds: 0),
-          () {
-            BlocProvider.of<AuthBloc>(context).add(
-              LoginWithFacebook(
-                email: email!,
-                facebookId: profile!.userId,
-                pushToken: fcmToken!,
-                headerToken: accessToken!.token,
-                isRegistered: (value) {
-                  if (value == false) {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      '/OtherLoginCreateAccount',
-                    );
-                  } else {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      '/MyPage',
-                    );
-                  }
-                },
-                onSuccess: (User user) {
-                  BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
-                  setState(() {
-                    isLoading = false;
-                  });
-                },
-                onError: (value) {
-                  setState(() {
-                    isLoading = false;
-                  });
-                  if (value ==
-                      'Firebase: Error (auth/account-exists-with-different-credential).') {
-                    Fluttertoast.showToast(
-                        msg: 'This email is exists with different credential');
-                  } else {
-                    Fluttertoast.showToast(
-                        msg:
-                            'Something happened wrong try again after sometime.');
-                  }
-                },
-              ),
-            );
-          },
+    // Create a credential from the access token
+    final fbAuth.OAuthCredential facebookAuthCredential =
+        fbAuth.FacebookAuthProvider.credential(
+      loginResult.accessToken!.token,
+    );
+
+    // Once signed in, return the UserCredential
+    var resp = await fbAuth.FirebaseAuth.instance
+        .signInWithCredential(facebookAuthCredential);
+    String? firebaseUserId = resp.user?.uid;
+    var fcmToken = await resp.user?.getIdToken();
+
+    setState(() {
+      isLoading = true;
+    });
+
+    Future.delayed(
+      const Duration(seconds: 0),
+      () {
+        BlocProvider.of<AuthBloc>(context).add(
+          LoginWithFacebook(
+            email: resp.user!.email!,
+            firebaseUserId: firebaseUserId!,
+            pushToken: pushToken!,
+            headerToken: fcmToken!,
+            isRegistered: (value) {
+              isRegister = value;
+              setState(() {});
+            },
+            onSuccess: (User user) {
+              BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+              if (isRegister == false) {
+                Navigator.pushReplacementNamed(
+                  context,
+                  '/OtherLoginCreateAccount',
+                );
+              } else {
+                if (user.gender!.isEmpty || user.dob == null) {
+                  Navigator.pushReplacementNamed(
+                      context, '/OtherLoginCreateAccount');
+                } else if (user.searchingFor!.isEmpty) {
+                  Navigator.pushReplacementNamed(context, '/ChoosePartner');
+                } else if (user.circleProfileImage == null) {
+                  Navigator.pushReplacementNamed(context, '/UploadProfile');
+                } else {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/MyPage',
+                  );
+                }
+              }
+              setState(() {
+                isLoading = false;
+              });
+            },
+            onError: (value) {
+              Fluttertoast.showToast(
+                msg: value,
+                timeInSecForIosWeb: 5,
+              );
+              setState(() {
+                isLoading = false;
+              });
+            },
+          ),
         );
-
-        break;
-      case FacebookLoginStatus.cancel:
-        // User cancel log in
-        Fluttertoast.showToast(msg: '${FacebookLoginStatus.cancel}');
-        break;
-      case FacebookLoginStatus.error:
-        // Log in failed
-        Fluttertoast.showToast(msg: '${res.error}');
-        break;
-    }
+      },
+    );
+    // return resp;
   }
 
   //signupWithFacebook
@@ -268,6 +304,15 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
         AppleIDAuthorizationScopes.fullName,
       ],
     );
+    final oAuthProvider = fbAuth.OAuthProvider("apple.com");
+
+    final crd = oAuthProvider.credential(
+      idToken: credential.identityToken!,
+      accessToken: credential.authorizationCode,
+    );
+    var resp = await fbAuth.FirebaseAuth.instance.signInWithCredential(crd);
+
+    var t = await resp.user?.getIdToken();
     setState(() {
       isLoading = true;
     });
@@ -278,25 +323,46 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
         BlocProvider.of<AuthBloc>(context).add(
           LoginWithApple(
             email: credential.email ?? "",
-            appleId: credential.authorizationCode,
+            firstName: resp.user?.displayName == null
+                ? ''
+                : resp.user!.displayName!.split(' ').first,
+            lastName: resp.user?.displayName == null
+                ? ''
+                : resp.user!.displayName!.split(' ').last,
+            firebaseUserId: resp.user!.uid,
             pushToken: fcmToken!,
-            headerToken: credential.identityToken!,
+            headerToken: t!,
             isRegistered: (value) {
-              if (value == false) {
+              isRegister = value;
+              setState(() {});
+            },
+            onSuccess: (User user) {
+              BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+              if (isRegister == false) {
                 Navigator.pushReplacementNamed(
                   context,
                   '/OtherLoginCreateAccount',
                 );
               } else {
-                print('else---');
-                Navigator.pushReplacementNamed(
-                  context,
-                  '/MyPage',
-                );
+                if (user.gender!.isEmpty || user.dob == null) {
+                  Navigator.pushReplacementNamed(
+                      context, '/OtherLoginCreateAccount');
+                } else if (user.searchingFor!.isEmpty) {
+                  Navigator.pushReplacementNamed(context, '/ChoosePartner');
+                } else if (user.circleProfileImage == null) {
+                  Navigator.pushReplacementNamed(context, '/UploadProfile');
+                } else {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/MyPage',
+                  );
+                }
               }
+              setState(() {
+                isLoading = false;
+              });
             },
-            onSuccess: (User user) {
-              BlocProvider.of<UserBloc>(context).add(SetUser(user: user));
+            onError: () {
               setState(() {
                 isLoading = false;
               });

@@ -1,6 +1,6 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
-import 'package:dating_app/Pages/Home/home_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:dating_app/Pages/SetupProfile/set_up_profile1/setup_profile1.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,8 @@ class _SetUpProfileNowState extends State<SetUpProfileNow> {
               AppText(
                 color: AppStyles.blackColor,
                 size: 16.sp,
-                text: "Do you want to setup your full profile\nnow?",
+                text: AppLocalizations.of(context)!
+                    .doyouwanttosetupyourfullprofilenow,
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
               ),
@@ -51,7 +52,7 @@ class _SetUpProfileNowState extends State<SetUpProfileNow> {
                       border: 1,
                       borderRadius: 30.w,
                       borderColor: AppStyles.blackColor,
-                      txt: "Yes",
+                      txt: AppLocalizations.of(context)!.yes,
                       txtColor: AppStyles.blackColor,
                       onTap: () {
                         Navigator.pushReplacementNamed(
@@ -68,7 +69,7 @@ class _SetUpProfileNowState extends State<SetUpProfileNow> {
                       border: 1,
                       borderRadius: 30.w,
                       borderColor: AppStyles.blackColor,
-                      txt: "Later",
+                      txt: AppLocalizations.of(context)!.later,
                       txtColor: AppStyles.blackColor,
                       onTap: () {
                         // Navigator.pushReplacementNamed(

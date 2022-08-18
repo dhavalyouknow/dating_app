@@ -23,7 +23,10 @@ mixin OtherPersonPublicHandlers<T extends StatefulWidget> on State<T> {
         reason: "hello",
         message: "message",
         success: () {
-          Fluttertoast.showToast(msg: 'User Reported Successfully');
+          Fluttertoast.showToast(
+            msg: 'User Reported Successfully',
+            timeInSecForIosWeb: 5,
+          );
         },
       ),
     );
@@ -35,7 +38,10 @@ mixin OtherPersonPublicHandlers<T extends StatefulWidget> on State<T> {
         myUserId: "${BlocProvider.of<UserBloc>(context).state.user!.id}",
         reportUserId: userId,
         success: () {
-          Fluttertoast.showToast(msg: 'User Blocked Successfully');
+          Fluttertoast.showToast(
+            msg: 'User Blocked Successfully',
+            timeInSecForIosWeb: 5,
+          );
         },
       ),
     );

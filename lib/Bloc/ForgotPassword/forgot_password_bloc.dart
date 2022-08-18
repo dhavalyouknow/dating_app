@@ -43,18 +43,27 @@ class ForgotPasswordBloc extends Bloc<ForgotPasswordEvent, ForgotPasswordState>
           print(resp.statusCode);
           print('2222222');
           Map<String, dynamic> data = jsonDecode(resp.body);
-          Fluttertoast.showToast(msg: data["message"]);
+          Fluttertoast.showToast(
+            msg: data["message"],
+            timeInSecForIosWeb: 5,
+          );
           emit(state.copyWith(status: ForgotStatus.failure));
         }
       } else {
-        Fluttertoast.showToast(msg: 'Something Went Wrong');
+        Fluttertoast.showToast(
+          msg: 'Something Went Wrong',
+          timeInSecForIosWeb: 5,
+        );
         emit(state.copyWith(status: ForgotStatus.failure));
       }
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
-      Fluttertoast.showToast(msg: 'Something Went Wrong');
+      Fluttertoast.showToast(
+        msg: 'Something Went Wrong',
+        timeInSecForIosWeb: 5,
+      );
       emit(state.copyWith(status: ForgotStatus.failure));
     }
   }

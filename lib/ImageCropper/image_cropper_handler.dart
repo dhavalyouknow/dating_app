@@ -125,12 +125,13 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
         imageFile = File(image.path);
         isLoading = true;
 
+        print('******000000*****');
         cropImage(
           style: CropStyle.rectangle,
           aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 10),
           index: index,
         );
-
+        print('******1111111*****');
         setState(() {});
       }
     }
@@ -191,6 +192,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
           style: CropStyle.circle,
           aspectRatio: const CropAspectRatio(ratioX: 8, ratioY: 8),
         );
+        print('******555555******');
         onSquareImageUpdate();
       } else {
         circleImageFile = File(croppedFile.path);
@@ -202,10 +204,12 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
   }
 
   onSquareImageUpdate() {
+    print('****6666666******');
     BlocProvider.of<ImageUploadBloc>(context).add(
       UploadImage(
         image: squareImageFile!,
         onSuccess: (SquareProfileImage value) {
+          print('******3333333*****');
           addSquareProfileImage = value;
           setState(() {});
         },
@@ -218,10 +222,12 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
       setState(() {
         isLoading = true;
       });
+      print('******4444444*****');
       BlocProvider.of<ImageUploadBloc>(context).add(
         UploadImage(
           image: circleImageFile!,
           onSuccess: (SquareProfileImage value) {
+            print('******8877777777*******');
             user = user?.copyWith(
               circleProfileImage: value,
               squareProfileImage: [
@@ -235,6 +241,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                 success: (value) {
                   Fluttertoast.showToast(
                     msg: 'Your Profile Picture is added successfully',
+                    timeInSecForIosWeb: 5,
                   );
                   BlocProvider.of<AuthBloc>(context).add(
                     SessionRequest(
@@ -294,6 +301,7 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
                         );
                         Fluttertoast.showToast(
                           msg: 'Your Profile Picture is added successfully',
+                          timeInSecForIosWeb: 5,
                         );
                         setState(() {
                           isLoading = false;

@@ -1,16 +1,16 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Dialog/RelationshipStatus/relationship_status_handler.dart';
-import 'package:dating_app/widget/Button/default_app_btn.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RelationshipStatus extends StatefulWidget {
   final Function(String) callback;
-  const RelationshipStatus({Key? key, required this.callback})
+  String status;
+  RelationshipStatus({Key? key, required this.callback, required this.status})
       : super(key: key);
 
   @override
@@ -27,8 +27,8 @@ class _RelationshipStatusState extends State<RelationshipStatus>
       body: Center(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 10.w),
-          padding: EdgeInsets.symmetric(horizontal: 30.w),
-          height: size.height / 2.2,
+          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
+          height: size.height / 2.3,
           decoration: BoxDecoration(
             color: AppStyles.whiteColor,
             borderRadius: BorderRadius.circular(20),
@@ -36,81 +36,76 @@ class _RelationshipStatusState extends State<RelationshipStatus>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: 10.h),
               AppText(
                 size: 21.sp,
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
-                text: "Relationship Status",
+                text: AppLocalizations.of(context)!.relationshipStatus,
               ),
-              SizedBox(height: 15.h),
-              ...relationShip.map(
-                (e) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10.h),
-                    child: DefaultAppBtn(
-                      fontWeight:
-                          e.selected ? FontWeight.w700 : FontWeight.normal,
-                      height: size.height / 14,
-                      border: e.selected ? 3.r : 1.r,
-                      borderRadius: 20,
-                      borderColor: AppStyles.pinkColor,
-                      txt: e.status,
-                      txtColor: e.selected
-                          ? AppStyles.blackColor
-                          : AppStyles.pinkColor,
-                      onTap: () {
-                        setState(() {
-                          selectedStatus = e.status;
-                          for (var tapped in relationShip) {
-                            tapped.selected = false;
-                          }
-                          e.selected = true;
-                        });
-
-                        setState(() {
-                          if (selectedStatus.isEmpty) {
-                            e.selected = false;
-                          }
-                        });
-                      },
-                    ),
-                  );
-                },
-              ),
-              SizedBox(height: 15.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: size.width / 4,
-                    child: GradientBtn(
-                      borderRadius: 10.r,
-                      height: size.height / 18,
-                      txt: "Cancel",
-                      onTap: () {
-                        for (var tapped in relationShip) {
-                          tapped.selected = false;
-                        }
-                        widget.callback('');
-                        Navigator.pop(context);
-                      },
-                    ),
+              SizedBox(height: 20.h),
+              Flexible(
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    mainAxisExtent: 50,
                   ),
-                  SizedBox(
-                    width: size.width / 4,
-                    child: GradientBtn(
-                      borderRadius: 10.r,
-                      height: size.height / 18,
-                      txt: "Save",
+                  itemCount: relationShipStatus.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
                       onTap: () {
-                        // if (selectedStatus.isNotEmpty) {
-                        widget.callback(selectedStatus);
-                        Navigator.pop(context);
-                        // }
+                        setState(() {
+                          widget.status = relationShipStatus[index];
+                          selectedStatus = relationShipStatus[index];
+                          widget.callback(selectedStatus);
+                        });
                       },
-                    ),
-                  )
-                ],
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppStyles.pinkColor,
+                            width: widget.status == relationShipStatus[index] ||
+                                    selectedStatus
+                                        .contains(relationShipStatus[index])
+                                ? 2.r
+                                : 1.r,
+                          ),
+                          borderRadius: BorderRadius.circular(22),
+                        ),
+                        child: Center(
+                          child: AppText(
+                            text: relationShipStatus[index],
+                            fontFamily: GoogleFonts.raleway(
+                                    fontWeight: widget.status ==
+                                                relationShipStatus[index] ||
+                                            selectedStatus.contains(
+                                                relationShipStatus[index])
+                                        ? FontWeight.w700
+                                        : FontWeight.normal)
+                                .fontFamily,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(height: 15.h),
+              GradientBtn(
+                borderRadius: 10.r,
+                height: size.height / 14,
+                txt: AppLocalizations.of(context)!.save,
+                onTap: () {
+                  if (selectedStatus.isEmpty) {
+                    widget.callback(widget.status);
+                  } else {
+                    widget.callback(selectedStatus);
+                  }
+
+                  Navigator.pop(context);
+                },
               )
             ],
           ),

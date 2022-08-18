@@ -5,6 +5,7 @@ import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/interests_chip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -25,7 +26,6 @@ class _AddNightModuleState extends State<AddNightModule>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     int length = widget.alsoSelected.length;
-    print(widget.alsoSelected);
 
     return Scaffold(
       backgroundColor: AppStyles.trasnparentColor,
@@ -51,7 +51,7 @@ class _AddNightModuleState extends State<AddNightModule>
                   },
                   child: AppText(
                     size: 15.sp,
-                    text: "Cancel",
+                    text: AppLocalizations.of(context)!.cancel,
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
                         .fontFamily,
                   ),
@@ -77,7 +77,7 @@ class _AddNightModuleState extends State<AddNightModule>
                 ),
                 AppText(
                   size: 15.sp,
-                  text: "$length /6",
+                  text: "$length /5",
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
                       .fontFamily,
                 ),
@@ -87,7 +87,7 @@ class _AddNightModuleState extends State<AddNightModule>
               padding: EdgeInsets.symmetric(vertical: 20.h),
               child: Wrap(
                 children: [
-                  ...favouriteNight.map((e) {
+                  ...favouriteNights.map((e) {
                     selectedNights = widget.alsoSelected;
                     return ListOfChipWidget(
                       interestsName: e,
@@ -95,7 +95,14 @@ class _AddNightModuleState extends State<AddNightModule>
                         if (selectedNights.contains(e)) {
                           selectedNights.remove(e);
                         } else {
-                          selectedNights.add(e);
+                          if (selectedNights.length < 5) {
+                            selectedNights.add(e);
+                          } else {
+                            Fluttertoast.showToast(
+                              msg: 'You can select only 5 items',
+                              timeInSecForIosWeb: 5,
+                            );
+                          }
                         }
                         setState(() {});
                       },

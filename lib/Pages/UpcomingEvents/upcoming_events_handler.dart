@@ -39,9 +39,15 @@ mixin UpComingEventsHandlers<T extends StatefulWidget> on State<T> {
         userId: BlocProvider.of<UserBloc>(context).state.user!.id.toString(),
         success: () {
           if (event!.bookedSeat == event!.totalCapacity) {
-            Fluttertoast.showToast(msg: 'No Tickets Are Available');
+            Fluttertoast.showToast(
+              msg: 'No Tickets Are Available',
+              timeInSecForIosWeb: 5,
+            );
           } else {
-            Fluttertoast.showToast(msg: 'Your Ticket Booked Successfully');
+            Fluttertoast.showToast(
+              msg: 'Your Ticket Booked Successfully',
+              timeInSecForIosWeb: 5,
+            );
           }
           Navigator.pop(context);
         },
@@ -62,7 +68,10 @@ mixin UpComingEventsHandlers<T extends StatefulWidget> on State<T> {
             .first
             .toString(),
         success: () {
-          Fluttertoast.showToast(msg: 'Your Ticket Updated Successfully');
+          Fluttertoast.showToast(
+            msg: 'Your Ticket Updated Successfully',
+            timeInSecForIosWeb: 5,
+          );
         },
       ),
     );

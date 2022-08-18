@@ -6,6 +6,7 @@ import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SelectGender extends StatefulWidget {
   final Function(String) callback;
@@ -19,6 +20,7 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: AppStyles.trasnparentColor,
       body: Center(
@@ -37,7 +39,7 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
                 size: 21.sp,
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
-                text: "Select Your Gender",
+                text: AppLocalizations.of(context)!.selectyourgender,
               ),
               SizedBox(height: 15.h),
               ...selectGender.map(
@@ -63,14 +65,11 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
                         }
                         e.selected = true;
                         yourGender = e.name;
-
                         setState(() {});
                       },
                       icon: Icon(
                         e.icon.icon,
-                        color: e.selected
-                            ? AppStyles.greyColor
-                            : AppStyles.pinkColor,
+                        color: AppStyles.greyColor,
                       ),
                     ),
                   );
@@ -87,6 +86,9 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
                       height: size.height / 18,
                       txt: "Cancel",
                       onTap: () {
+                        for (var tapped in selectGender) {
+                          tapped.selected = false;
+                        }
                         Navigator.pop(context);
                       },
                     ),

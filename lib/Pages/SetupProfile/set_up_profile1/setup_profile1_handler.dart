@@ -1,16 +1,15 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
-import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:dating_app/Pages/SetupProfile/set_up_profile2/setup_profile2.dart';
-import 'package:dating_app/widget/Button/gradient_button.dart';
+import 'package:dating_app/language_provider/lannguagePro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:numberpicker/numberpicker.dart';
+import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
   final TextEditingController lengthController = TextEditingController();
@@ -18,17 +17,66 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
   String selectedInterestedIn = '';
   String selectedOccupation = '';
   String selectedEyeColor = '';
+  String selectedClothingStyle = '';
   User? user;
   bool haveDog = false;
   bool haveKids = false;
   final items = List<String>.generate(151, (index) => '$index');
-
   String currentLength = '';
-
+  String? redirectDirectonMyPage;
   final formKey = GlobalKey<FormState>();
+  String isLength = '';
+  final lengthFocus = FocusNode();
+  List<YesNo> isHaveDogs = [];
+  List<YesNo> isHaveKid = [];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    loadLists();
+    if (ModalRoute.of(context)!.settings.arguments == null) {
+      return;
+    } else {
+      redirectDirectonMyPage =
+          ModalRoute.of(context)!.settings.arguments.toString();
+    }
+  }
+
+  loadLists() async {
+    final provider = Provider.of<LocalProvider>(context);
+    Locale locale = provider.locale ?? const Locale('en');
+    AppLocalizations t = await AppLocalizations.delegate.load(locale);
+    isHaveDogs = [
+      YesNo(name: t.yes, selected: false),
+      YesNo(name: t.no, selected: false),
+      YesNo(name: t.wishihade, selected: false),
+    ];
+    isHaveKid = [
+      YesNo(name: t.yes, selected: false),
+      YesNo(name: t.no, selected: false),
+      YesNo(name: 'Bonus', selected: false),
+    ];
+  }
+
+  KeyboardActionsConfig buildKeyboardActionsConfig(BuildContext context) {
+    return KeyboardActionsConfig(
+      keyboardActionsPlatform: KeyboardActionsPlatform.ALL,
+      keyboardBarColor: Colors.grey,
+      actions: [
+        KeyboardActionsItem(
+          focusNode: lengthFocus,
+        ),
+      ],
+    );
+  }
 
   String? lengthValidator(dynamic length) {
-    if (length.isEmpty) {
+    if (length == 0) {
       return 'Enter Length';
     }
     return null;
@@ -50,150 +98,58 @@ mixin SetupProfile1Handlers<T extends StatefulWidget> on State<T> {
     }
   }
 
-  Future<void> selectLength(BuildContext context) async {
-    final items = List<String>.generate(151, (index) => '$index');
-    showModalBottomSheet(
-      backgroundColor: AppStyles.trasnparentColor,
-      context: context,
-      builder: (BuildContext context) {
-        final size = MediaQuery.of(context).size;
-        return Container(
-          height: 230.h,
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-          decoration: BoxDecoration(
-            color: AppStyles.whiteColor,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20.r),
-              topLeft: Radius.circular(20.r),
-            ),
-          ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: AppText(
-                      size: 15.sp,
-                      text: "Cancel",
-                      fontFamily:
-                          GoogleFonts.raleway(fontWeight: FontWeight.w500)
-                              .fontFamily,
-                    ),
-                  ),
-                  AppText(
-                    size: 20.sp,
-                    text: "Select Length",
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
-                        .fontFamily,
-                  ),
-                  AppText(
-                    text: currentLength,
-                    fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
-                        .fontFamily,
-                    size: 20.sp,
-                  )
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 5.h, bottom: 10),
-                height: 130,
-                width: double.infinity,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Positioned(
-                      top: 20.h,
-                      child: Container(
-                        height: 40.h,
-                        width: size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.r),
-                          border: Border.all(
-                            color: AppStyles.greyColor,
-                            width: 0.5,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          ...items
-                              .map(
-                                (e) => GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      currentLength = e;
-                                    });
-                                  },
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(vertical: 5.h),
-                                    child: AppText(
-                                      text: e,
-                                      size: 20.sp,
-                                    ),
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                        ],
-                      ),
-                    ),
-                  ],
+  onSubmitProfile1() {
+    print(user);
+    if (user == null) {
+      BlocProvider.of<AuthBloc>(context).add(
+        SessionRequest(
+          onSuccess: (user) {
+            BlocProvider.of<UserBloc>(context).add(
+              UpdateUserEvent(
+                user: user.copyWith(
+                  haveDog: haveDog,
+                  relationshipStatus: selectedStatus,
+                  interestedIn: selectedInterestedIn,
+                  occupation: selectedOccupation,
+                  eyeColor: selectedEyeColor,
+                  haveKids: haveKids,
+                  length: lengthController.text.isNotEmpty
+                      ? int.parse(lengthController.text)
+                      : 0,
                 ),
-              ),
-              GradientBtn(
-                borderRadius: 10.r,
-                height: size.height / 14,
-                txt: "Save",
-                onTap: () {
-                  setState(() {});
-                  print(currentLength);
-                  Navigator.pop(context);
+                success: (value) {
+                  for (var tapped in isHaveDog) {
+                    tapped.selected = false;
+                  }
+                  for (var tapped in isHaveKid) {
+                    tapped.selected = false;
+                  }
+                  // for (var tapped in interestedIn) {
+                  //   tapped.selected = false;
+                  // }
+                  if (redirectDirectonMyPage == null) {
+                    Navigator.pushNamed(
+                      context,
+                      SetupProfile2.routeName,
+                    );
+                  } else {
+                    Navigator.pushNamed(context, SetupProfile2.routeName,
+                        arguments: 'redirectDirectonMyPage');
+                  }
+
+                  Fluttertoast.showToast(
+                    msg: 'Your Profile Setup Successfully',
+                    timeInSecForIosWeb: 5,
+                  );
+                },
+                onError: () {
+                  print('asa');
                 },
               ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  onSubmitProfile1() {
-    if (formKey.currentState!.validate()) {
-      if (user == null) {
-        BlocProvider.of<AuthBloc>(context).add(
-          SessionRequest(
-            onSuccess: (user) {
-              BlocProvider.of<UserBloc>(context).add(
-                UpdateUserEvent(
-                  user: user.copyWith(
-                    haveDog: haveDog,
-                    relationshipStatus: selectedStatus,
-                    interestedIn: selectedInterestedIn,
-                    occupation: selectedOccupation,
-                    eyeColor: selectedEyeColor,
-                    haveKids: haveKids,
-                    length: int.parse(lengthController.text),
-                  ),
-                  success: (value) {
-                    Navigator.pushReplacementNamed(
-                        context, SetupProfile2.routeName);
-                    Fluttertoast.showToast(
-                        msg: 'Your Profile Setup Successfully');
-                  },
-                  onError: () {},
-                ),
-              );
-            },
-          ),
-        );
-      }
+            );
+          },
+        ),
+      );
     }
   }
 }

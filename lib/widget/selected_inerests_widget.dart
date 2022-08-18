@@ -20,7 +20,7 @@ class _SelectedChipWidgetState extends State<SelectedChipWidget> {
       decoration: BoxDecoration(
         border: Border.all(
           color: AppStyles.pinkColor,
-          width: 3.r,
+          width: 2.r,
         ),
         borderRadius: BorderRadius.circular(22),
       ),

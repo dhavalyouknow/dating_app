@@ -64,7 +64,9 @@ class _EditDogProfileState extends State<EditDogProfile> with EditDogHandlers {
                           SetUser(user: user),
                         );
                         Fluttertoast.showToast(
-                            msg: 'Your dog has been updated..');
+                          msg: 'Your dog has been updated..',
+                          timeInSecForIosWeb: 5,
+                        );
                         Navigator.pushReplacementNamed(context, '/MyPage');
                       },
                     ),
@@ -224,7 +226,7 @@ class _EditDogProfileState extends State<EditDogProfile> with EditDogHandlers {
                               height: size.height * 0.05,
                               width: size.width / 4,
                               border:
-                                  e.name == dogSize || e.selected ? 3.r : 1.r,
+                                  e.name == dogSize || e.selected ? 2.r : 1.r,
                               borderRadius: 25.r,
                               borderColor: e.name == dogSize || e.selected
                                   ? AppStyles.pinkColor

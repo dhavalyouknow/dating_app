@@ -139,7 +139,7 @@ class _MyAppState extends State<MyApp> {
             create: (context) => LocalProvider(),
             builder: (context, child) {
               final provider = Provider.of<LocalProvider>(context);
-              print(provider.locale);
+              print(provider.locale ?? const Locale('en'));
               return MaterialApp(
                 localizationsDelegates: const [
                   AppLocalizations.delegate,
@@ -148,7 +148,7 @@ class _MyAppState extends State<MyApp> {
                   GlobalCupertinoLocalizations.delegate,
                 ],
                 supportedLocales: L10n.all,
-                locale: provider.locale,
+                locale: provider.locale ?? const Locale('en'),
                 debugShowCheckedModeBanner: false,
                 title: "Dating App",
                 routes: routes,

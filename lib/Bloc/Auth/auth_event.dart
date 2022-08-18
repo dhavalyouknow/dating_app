@@ -15,8 +15,10 @@ class SetLoginInitial extends AuthEvent {
 class DuplicateEvent extends AuthEvent {
   final String email;
   final VoidCallback onSuccess;
+  final Function(String) onError;
 
-  const DuplicateEvent({required this.email, required this.onSuccess});
+  const DuplicateEvent(
+      {required this.email, required this.onSuccess, required this.onError});
 
   @override
   List<Object?> get props => [];
@@ -95,19 +97,23 @@ class SessionRequest extends AuthEvent {
 
 class LoginWithGoogle extends AuthEvent {
   final String email;
-  final String googleId;
+  final String firebaseUserId;
   final String pushToken;
+  final String firstName;
+  final String lastName;
 
   //headertoken
   final String fcmtoken;
   final Function(User) onSuccess;
   final Function(bool) isRegistered;
-  final VoidCallback onError;
+  final Function(String) onError;
 
   const LoginWithGoogle({
     required this.email,
-    required this.googleId,
+    required this.firebaseUserId,
     required this.pushToken,
+    required this.firstName,
+    required this.lastName,
     required this.fcmtoken,
     required this.onSuccess,
     required this.isRegistered,
@@ -121,7 +127,7 @@ class LoginWithGoogle extends AuthEvent {
 
 class LoginWithFacebook extends AuthEvent {
   final String email;
-  final String facebookId;
+  final String firebaseUserId;
   final String pushToken;
   final String headerToken;
   final Function(User) onSuccess;
@@ -130,7 +136,7 @@ class LoginWithFacebook extends AuthEvent {
 
   const LoginWithFacebook({
     required this.email,
-    required this.facebookId,
+    required this.firebaseUserId,
     required this.pushToken,
     required this.headerToken,
     required this.onSuccess,
@@ -142,7 +148,7 @@ class LoginWithFacebook extends AuthEvent {
   // TODO: implement props
   List<Object?> get props => [
         email,
-        facebookId,
+        firebaseUserId,
         pushToken,
         headerToken,
       ];
@@ -150,25 +156,32 @@ class LoginWithFacebook extends AuthEvent {
 
 class LoginWithApple extends AuthEvent {
   final String email;
-  final String appleId;
+  final String firebaseUserId;
   final String pushToken;
   final String headerToken;
   final Function(User) onSuccess;
   final Function(bool) isRegistered;
+  final VoidCallback onError;
+  final String firstName;
+  final String lastName;
 
-  const LoginWithApple(
-      {required this.email,
-      required this.appleId,
-      required this.pushToken,
-      required this.headerToken,
-      required this.onSuccess,
-      required this.isRegistered});
+  const LoginWithApple({
+    required this.email,
+    required this.firebaseUserId,
+    required this.pushToken,
+    required this.headerToken,
+    required this.onSuccess,
+    required this.isRegistered,
+    required this.onError,
+    required this.firstName,
+    required this.lastName,
+  });
 
   @override
   // TODO: implement props
   List<Object?> get props => [
         email,
-        appleId,
+        firebaseUserId,
         pushToken,
         headerToken,
         onSuccess,

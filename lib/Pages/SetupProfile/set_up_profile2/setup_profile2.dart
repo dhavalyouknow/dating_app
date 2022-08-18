@@ -46,6 +46,7 @@ class _SetupProfile2State extends State<SetupProfile2>
         ),
       ),
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: AppStyles.blackColor),
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 10.w),
@@ -64,18 +65,18 @@ class _SetupProfile2State extends State<SetupProfile2>
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          height: size.height,
-          width: size.width,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: AppStyles.forgotPassGradientColor,
-            ),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        height: size.height,
+        width: size.width,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: AppStyles.forgotPassGradientColor,
           ),
+        ),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -87,7 +88,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                     size: 21.sp,
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                         .fontFamily,
-                    text: "Setup Profile",
+                    text: AppLocalizations.of(context)!.setupProfile,
                   ),
                   AppText(
                     color: AppStyles.greyColor,
@@ -152,7 +153,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                         height: size.height / 16,
                         border: 1.r,
                         borderColor: AppStyles.pinkColor,
-                        txt: "Add Interests",
+                        txt: AppLocalizations.of(context)!.addinterests,
                         txtColor: AppStyles.greyColor,
                       ),
                     )
@@ -220,7 +221,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                         height: size.height / 16,
                         border: 1.r,
                         borderColor: AppStyles.pinkColor,
-                        txt: "Add Favourite Night",
+                        txt: AppLocalizations.of(context)!.addfavouritenight,
                         txtColor: AppStyles.greyColor,
                       ),
                     )
@@ -290,7 +291,7 @@ class _SetupProfile2State extends State<SetupProfile2>
                         height: size.height / 16,
                         border: 1.r,
                         borderColor: AppStyles.pinkColor,
-                        txt: "Add Activities",
+                        txt: AppLocalizations.of(context)!.addactivities,
                         txtColor: AppStyles.greyColor,
                       ),
                     )

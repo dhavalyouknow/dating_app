@@ -5,6 +5,7 @@ import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/interests_chip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -49,7 +50,7 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
                   },
                   child: AppText(
                     size: 15.sp,
-                    text: "Cancel",
+                    text: AppLocalizations.of(context)!.cancel,
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
                         .fontFamily,
                   ),
@@ -75,7 +76,7 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
                 ),
                 AppText(
                   size: 15.sp,
-                  text: '$length/6',
+                  text: '$length/5',
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
                       .fontFamily,
                 ),
@@ -85,7 +86,7 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
               padding: EdgeInsets.symmetric(vertical: 10.h),
               child: Wrap(
                 children: [
-                  ...interestList.map((e) {
+                  ...interestLists.map((e) {
                     selectedInterestsName = widget.alsoSelected;
                     return ListOfChipWidget(
                       interestsName: e,
@@ -93,8 +94,16 @@ class _AddInterestsState extends State<AddInterests> with AddInterestsHandlers {
                         if (selectedInterestsName.contains(e)) {
                           selectedInterestsName.remove(e);
                         } else {
-                          selectedInterestsName.add(e);
+                          if (selectedInterestsName.length < 5) {
+                            selectedInterestsName.add(e);
+                          } else {
+                            Fluttertoast.showToast(
+                              msg: 'You can select only 5 items',
+                              timeInSecForIosWeb: 5,
+                            );
+                          }
                         }
+
                         setState(() {});
                       },
                       isSelected: selectedInterestsName.contains(e) ||

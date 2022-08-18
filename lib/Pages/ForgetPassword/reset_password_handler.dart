@@ -43,7 +43,10 @@ mixin ResetPasswordHandlers<T extends StatefulWidget> on State<T> {
           currentPassword: newPwdController.text,
           newPassword: confirmPwdController.text,
           onSuccess: (success) {
-            Fluttertoast.showToast(msg: 'Password has been updated..');
+            Fluttertoast.showToast(
+              msg: 'Password has been updated..',
+              timeInSecForIosWeb: 5,
+            );
           },
         ),
       );

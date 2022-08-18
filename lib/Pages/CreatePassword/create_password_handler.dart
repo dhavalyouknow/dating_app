@@ -10,12 +10,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
   bool signUpPwd = true;
+  bool signUpCon = true;
   Map<String, dynamic>? detailList;
   final formKey = GlobalKey<FormState>();
-  final TextEditingController passwordController =
-      TextEditingController(text: 'Dp1@3110');
-  final TextEditingController rePasswordController =
-      TextEditingController(text: 'Dp1@3110');
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController rePasswordController = TextEditingController();
   bool isLoading = false;
 
   @override
@@ -37,7 +36,7 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
   String? passwordValidator(dynamic password) {
     RegExp upperCase = RegExp("^(?=.*[A-Z])");
     RegExp lowerCase = RegExp("^(?=.*[a-z])");
-    RegExp specialChar = RegExp("^(?=.*[@#\$%^&+=])");
+    RegExp specialChar = RegExp("^(?=.*[@#\$%^&+=!*])");
     RegExp minNumber = RegExp("^().{8,}");
     if (password.isEmpty) {
       return 'Enter password';
@@ -99,7 +98,10 @@ mixin CreatePasswordHandlers<T extends StatefulWidget> on State<T> {
             setState(() {
               isLoading = false;
             });
-            Fluttertoast.showToast(msg: 'Something Went Wrong');
+            Fluttertoast.showToast(
+              msg: 'Something Went Wrong',
+              timeInSecForIosWeb: 5,
+            );
           },
         ),
       );

@@ -91,7 +91,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      hintText: AppLocalizations.of(context)!.name,
+                      hintText: AppLocalizations.of(context)!.firstname,
                       textEditingController: nameController,
                       validator: nameValidator,
                       obSecure: false,
@@ -107,7 +107,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      hintText: AppLocalizations.of(context)!.surname,
+                      hintText: AppLocalizations.of(context)!.lastname,
                       textEditingController: surnameController,
                       validator: surnameValidator,
                       obSecure: false,
@@ -152,7 +152,8 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                                       color: AppStyles.pinkColor,
                                     ),
                               txt: selectedGender.isEmpty
-                                  ? AppLocalizations.of(context)!.selectGender
+                                  ? AppLocalizations.of(context)!
+                                      .selectyourgender
                                   : selectedGender,
                               border: selectedGender.isEmpty ? 1.r : 2.r,
                               onTap: () {

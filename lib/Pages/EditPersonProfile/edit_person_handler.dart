@@ -57,7 +57,10 @@ mixin EditPersonHandlers<T extends StatefulWidget> on State<T> {
       UpdateUserEvent(
         user: user,
         success: (value) {
-          Fluttertoast.showToast(msg: 'Your Profile Updated Successfully');
+          Fluttertoast.showToast(
+            msg: 'Your Profile Updated Successfully',
+            timeInSecForIosWeb: 5,
+          );
           Navigator.pushReplacementNamed(context, '/MyPage');
         },
         onError: () {},

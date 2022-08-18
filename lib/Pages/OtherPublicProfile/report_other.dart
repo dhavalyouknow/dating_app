@@ -54,7 +54,9 @@ class _ReportOtherPopupState extends State<ReportOtherPopup>
                           message: "message",
                           success: () {
                             Fluttertoast.showToast(
-                                msg: 'User Reported Successfully');
+                              msg: 'User Reported Successfully',
+                              timeInSecForIosWeb: 5,
+                            );
                           },
                         ),
                       );
@@ -77,7 +79,9 @@ class _ReportOtherPopupState extends State<ReportOtherPopup>
                           reportUserId: widget.reportId.toString(),
                           success: () {
                             Fluttertoast.showToast(
-                                msg: 'User Blocked Successfully');
+                              msg: 'User Blocked Successfully',
+                              timeInSecForIosWeb: 5,
+                            );
                           },
                         ),
                       );

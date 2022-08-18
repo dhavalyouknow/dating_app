@@ -2,10 +2,10 @@ import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Dialog/AddActivities/add_activities.dart';
 import 'package:dating_app/Dialog/AddInterest/add_interests.dart';
+import 'package:dating_app/Dialog/Eyecolor/eyecolor_widget.dart';
 import 'package:dating_app/Dialog/FavouriteNight/add_favourite_night.dart';
 import 'package:dating_app/Dialog/ImInterestedIn/im_interested_in.dart';
 import 'package:dating_app/Dialog/RelationshipStatus/relationship_status.dart';
-import 'package:dating_app/Dialog/eyecolor/eyecolor_widget.dart';
 import 'package:dating_app/Dialog/occuption/occuptionWidget.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:dating_app/widget/Button/default_app_btn.dart';
@@ -92,7 +92,7 @@ class _EditPersonAllFieldState extends State<EditPersonAllField> {
                     fontWeight:
                         e.selected ? FontWeight.w700 : FontWeight.normal,
                     height: size.height / 16,
-                    border: e.selected ? 3.r : 1.r,
+                    border: e.selected ? 2.r : 1.r,
                     borderRadius: 20.r,
                     borderColor:
                         e.selected ? AppStyles.pinkColor : AppStyles.greyColor,
@@ -125,6 +125,7 @@ class _EditPersonAllFieldState extends State<EditPersonAllField> {
               context: context,
               builder: (context) {
                 return RelationshipStatus(
+                  status: selectedStatus,
                   callback: (value) {
                     setState(() {
                       selectedStatus = value;
@@ -137,7 +138,7 @@ class _EditPersonAllFieldState extends State<EditPersonAllField> {
           },
           borderRadius: 20.r,
           height: size.height / 16,
-          border: selectedStatus.isEmpty ? 1.r : 3.r,
+          border: selectedStatus.isEmpty ? 1.r : 2.r,
           borderColor: selectedStatus.isEmpty
               ? AppStyles.greyColor
               : AppStyles.pinkColor,
@@ -163,10 +164,10 @@ class _EditPersonAllFieldState extends State<EditPersonAllField> {
               context: context,
               builder: (BuildContext context) {
                 return ImInterestedIn(
+                  alreadyUsed: selectedInterestedIn,
                   callback: (value) {
                     setState(() {
                       selectedInterestedIn = value;
-                      print(selectedInterestedIn);
                     });
                   },
                 );
@@ -179,7 +180,7 @@ class _EditPersonAllFieldState extends State<EditPersonAllField> {
               : FontWeight.w700,
           borderRadius: 20.r,
           height: size.height / 16,
-          border: selectedInterestedIn.isEmpty ? 1.r : 3.r,
+          border: selectedInterestedIn.isEmpty ? 1.r : 2.r,
           borderColor: selectedInterestedIn.isEmpty
               ? AppStyles.greyColor
               : AppStyles.pinkColor,
@@ -206,7 +207,7 @@ class _EditPersonAllFieldState extends State<EditPersonAllField> {
                     fontWeight:
                         e.selected ? FontWeight.w700 : FontWeight.normal,
                     height: size.height / 16,
-                    border: e.selected ? 3.r : 1.r,
+                    border: e.selected ? 2.r : 1.r,
                     borderRadius: 20.r,
                     borderColor:
                         e.selected ? AppStyles.pinkColor : AppStyles.greyColor,
@@ -240,6 +241,7 @@ class _EditPersonAllFieldState extends State<EditPersonAllField> {
               context: context,
               builder: (BuildContext context) {
                 return OccupationWidget(
+                  alreadyUsed: selectedOccupation,
                   callback: (value) {
                     setState(() {
                       selectedOccupation = value;
@@ -254,7 +256,7 @@ class _EditPersonAllFieldState extends State<EditPersonAllField> {
               selectedOccupation.isEmpty ? FontWeight.normal : FontWeight.w700,
           borderRadius: 20.r,
           height: size.height / 16,
-          border: selectedOccupation.isEmpty ? 1.r : 3.r,
+          border: selectedOccupation.isEmpty ? 1.r : 2.r,
           borderColor: selectedOccupation.isEmpty
               ? AppStyles.greyColor
               : AppStyles.pinkColor,
@@ -277,7 +279,8 @@ class _EditPersonAllFieldState extends State<EditPersonAllField> {
             await showDialog(
               context: context,
               builder: (BuildContext context) {
-                return EyeColorWidget(
+                return SelectEyeColorWidget(
+                  alreadyUsed: selectedEyeColor,
                   callback: (value) {
                     setState(() {
                       selectedEyeColor = value;
@@ -292,7 +295,7 @@ class _EditPersonAllFieldState extends State<EditPersonAllField> {
               selectedEyeColor.isEmpty ? FontWeight.normal : FontWeight.w700,
           borderRadius: 20.r,
           height: size.height / 16,
-          border: selectedEyeColor.isEmpty ? 1.r : 3.r,
+          border: selectedEyeColor.isEmpty ? 1.r : 2.r,
           borderColor: selectedEyeColor.isEmpty
               ? AppStyles.greyColor
               : AppStyles.pinkColor,

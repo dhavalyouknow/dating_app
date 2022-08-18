@@ -9,6 +9,7 @@ import 'package:dating_app/Pages/BottomBar/bottom_bar.dart';
 import 'package:dating_app/Pages/DogPublicProfile/dog_public_profile.dart';
 import 'package:dating_app/Pages/MyPage/my_page_handler.dart';
 import 'package:dating_app/Pages/PersonPublicProfile/person_public_profile.dart';
+import 'package:dating_app/Pages/SetupProfile/set_up_profile1/setup_profile1.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/errorWidget.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
@@ -116,7 +117,27 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                     },
                     user: userState.user,
                   ),
-                  SizedBox(height: 20.h),
+
+                  if (userState.user!.occupation == null ||
+                      userState.user!.interests!.isEmpty ||
+                      userState.user!.aboutSelf!.isEmpty)
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.h),
+                      child: SizedBox(
+                        width: size.width / 2,
+                        child: GradientBtn(
+                          borderRadius: 10.r,
+                          height: size.height / 18,
+                          txt: "Setup full profile",
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, SetupProfile1.routeName,
+                                arguments: 'redirectDirectonMyPage');
+                          },
+                        ),
+                      ),
+                    ),
+                  SizedBox(height: 18.h),
                   AppText(
                     size: 18.sp,
                     text: AppLocalizations.of(context)!.myDogs,
@@ -137,7 +158,7 @@ class _MyPageState extends State<MyPage> with MyPageHandlers {
                       e: e,
                     );
                   }).toList(),
-                  SizedBox(height: 15.h),
+                  SizedBox(height: 13.h),
                   SizedBox(
                     width: size.width / 4,
                     child: GradientBtn(

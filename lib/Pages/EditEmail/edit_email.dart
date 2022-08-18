@@ -3,7 +3,6 @@ import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:dating_app/Pages/EditEmail/enter_email.dart';
-import 'package:dating_app/Pages/Intro/first_intro_page.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditEmail extends StatefulWidget {
   static const routeName = "/EditEmail";
@@ -27,22 +27,18 @@ class _EditEmailState extends State<EditEmail> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print('88888888');
   }
 
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    print('fdsfretreferd');
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     User? user = BlocProvider.of<UserBloc>(context).state.user;
-    print('5555555555');
-    print(user?.isEmailVerified);
 
     return Scaffold(
       body: Container(
@@ -74,7 +70,7 @@ class _EditEmailState extends State<EditEmail> {
               size: 21.sp,
               fontFamily:
                   GoogleFonts.raleway(fontWeight: FontWeight.bold).fontFamily,
-              text: "Almost There!",
+              text: AppLocalizations.of(context)!.almostthere,
             ),
             SizedBox(height: 15.h),
             AppText(
@@ -82,13 +78,13 @@ class _EditEmailState extends State<EditEmail> {
                   GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
               textAlign: TextAlign.center,
               text:
-                  "We just sent a confirmation link to\n${user!.email}\nCheck your email for a link to sign in.",
+                  "${AppLocalizations.of(context)!.wejustsendaconfirmationlinktomail}\n${user!.email}\n${AppLocalizations.of(context)!.checkemail}",
             ),
             SizedBox(height: 20.h),
             GradientBtn(
               borderRadius: 10.r,
               height: size.height / 14,
-              txt: "Edit email address",
+              txt: AppLocalizations.of(context)!.editemailaddress,
               onTap: () {
                 Navigator.pushNamed(context, EditUserEmail.routeName);
               },
@@ -99,7 +95,7 @@ class _EditEmailState extends State<EditEmail> {
             GradientBtn(
               borderRadius: 10.r,
               height: size.height / 14,
-              txt: "Next",
+              txt: AppLocalizations.of(context)!.clickhereafterverifyemail,
               onTap: () {
                 BlocProvider.of<AuthBloc>(context).add(
                   SessionRequest(
@@ -108,7 +104,10 @@ class _EditEmailState extends State<EditEmail> {
                         Navigator.pushReplacementNamed(
                             context, '/ChoosePartner');
                       } else {
-                        Fluttertoast.showToast(msg: 'Please verify your email');
+                        Fluttertoast.showToast(
+                          msg: 'Please verify your email',
+                          timeInSecForIosWeb: 5,
+                        );
                       }
                     },
                   ),
@@ -125,8 +124,9 @@ class _EditEmailState extends State<EditEmail> {
                       headerToken: token!,
                       onSuccess: () {
                         Fluttertoast.showToast(
-                            msg:
-                                'Your reset email has been successfully sent.');
+                          msg: 'Your reset email has been successfully sent.',
+                          timeInSecForIosWeb: 5,
+                        );
                         setState(() {
                           isLoading = false;
                         });
@@ -140,8 +140,10 @@ class _EditEmailState extends State<EditEmail> {
                           isLoading = false;
                         });
                         Fluttertoast.showToast(
-                            msg:
-                                'This email address is already associated with another account. Please use a different email address.');
+                          msg:
+                              'This email address is already associated with another account. Please use a different email address.',
+                          timeInSecForIosWeb: 5,
+                        );
                       },
                     ),
                   );
@@ -150,7 +152,7 @@ class _EditEmailState extends State<EditEmail> {
               child: AppText(
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
-                text: "Send Email",
+                text: AppLocalizations.of(context)!.sendemail,
               ),
             ),
             AppText(
@@ -158,7 +160,7 @@ class _EditEmailState extends State<EditEmail> {
                   GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
               textAlign: TextAlign.center,
               text:
-                  "Didn’t receive the link?\nMake sure to check your spam filter.",
+                  "${AppLocalizations.of(context)!.didntreceivethelink}\n${AppLocalizations.of(context)!.makesuretocheckyourspamfilter}",
             )
           ],
         ),

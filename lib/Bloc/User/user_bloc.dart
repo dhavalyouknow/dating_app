@@ -39,7 +39,9 @@ class UserBloc extends Bloc<UserEvent, UserState> with BaseHttpService {
           key == "facebookId" ||
           key == "facebookLogin" ||
           key == "appleId" ||
-          key == "appleLogin");
+          key == "appleLogin" ||
+          key == "eventId" ||
+          key == "ticketId");
       var resp = await patch(
         url: '${ApiEndPoints.updateUser}${event.user.id}',
         body: payload,

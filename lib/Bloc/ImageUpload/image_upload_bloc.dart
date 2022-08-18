@@ -23,16 +23,23 @@ class ImageUploadBloc extends Bloc<ImageUploadEvent, ImageUploadState>
     Emitter<ImageUploadState> emit,
   ) async {
     try {
+      print('1212121221212');
       emit(state.copyWith(status: ImageStatus.loading));
 
       var resp = await multipartPost(file: event.image);
+
+      print(resp);
+      print('******');
 
       if (resp != null) {
         Map<String, dynamic> rawImage = jsonDecode(resp);
         if (kDebugMode) {
           print(rawImage);
+          print('34343434343');
         }
         if (rawImage["_id"] != null) {
+          print(rawImage["_id"]);
+          print('----------');
           event.onSuccess(SquareProfileImage.fromJson(rawImage));
           emit(state.copyWith(status: ImageStatus.success));
         } else {

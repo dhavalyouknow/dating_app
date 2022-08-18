@@ -89,7 +89,9 @@ class _EditPersonProfileState extends State<EditPersonProfile>
                     user: user,
                     success: (value) {
                       Fluttertoast.showToast(
-                          msg: 'Your Profile Updated Successfully');
+                        msg: 'Your Profile Updated Successfully',
+                        timeInSecForIosWeb: 5,
+                      );
                       Navigator.pushReplacementNamed(context, '/MyPage');
                     },
                     onError: () {},

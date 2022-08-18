@@ -1,33 +1,34 @@
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
-import 'package:dating_app/Dialog/Eyecolor/eyecolor_handler.dart';
+import 'package:dating_app/Dialog/clothing/clothing_widget_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SelectEyeColorWidget extends StatefulWidget {
+class ClothingStyleWidget extends StatefulWidget {
   final Function(String) callback;
   String alreadyUsed;
-  SelectEyeColorWidget(
+  ClothingStyleWidget(
       {Key? key, required this.callback, required this.alreadyUsed})
       : super(key: key);
 
   @override
-  State<SelectEyeColorWidget> createState() => _SelectEyeColorWidgetState();
+  State<ClothingStyleWidget> createState() => _ClothingStyleWidgetState();
 }
 
-class _SelectEyeColorWidgetState extends State<SelectEyeColorWidget>
-    with EyeColorHandlers {
+class _ClothingStyleWidgetState extends State<ClothingStyleWidget>
+    with ClothingWidgetHandlers {
   @override
   Widget build(BuildContext context) {
+    String selectedClothingStyle = '';
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppStyles.trasnparentColor,
       body: Center(
         child: Container(
-            height: size.height / 1.7,
+            height: size.height / 1.4,
             margin: EdgeInsets.symmetric(horizontal: 10.w),
             padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
             decoration: BoxDecoration(
@@ -41,7 +42,7 @@ class _SelectEyeColorWidgetState extends State<SelectEyeColorWidget>
                   size: 20.sp,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
                       .fontFamily,
-                  text: AppLocalizations.of(context)!.eyeColour,
+                  text: "Clothing Style",
                 ),
                 SizedBox(height: 30.h),
                 Flexible(
@@ -53,22 +54,23 @@ class _SelectEyeColorWidgetState extends State<SelectEyeColorWidget>
                       crossAxisSpacing: 10,
                       mainAxisExtent: 50,
                     ),
-                    itemCount: eyeColor.length,
+                    itemCount: clothingStyle.length,
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
                           setState(() {
-                            widget.alreadyUsed = eyeColor[index];
-                            selectedEyeColor = eyeColor[index];
-                            widget.callback(selectedEyeColor);
+                            widget.alreadyUsed = clothingStyle[index];
+                            selectedClothingStyle = clothingStyle[index];
+                            widget.callback(selectedClothingStyle);
                           });
                         },
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(
                               width: widget.alreadyUsed
-                                          .contains(eyeColor[index]) ||
-                                      selectedEyeColor.contains(eyeColor[index])
+                                          .contains(clothingStyle[index]) ||
+                                      selectedClothingStyle
+                                          .contains(clothingStyle[index])
                                   ? 2.r
                                   : 1.r,
                               color: AppStyles.pinkColor,
@@ -77,12 +79,12 @@ class _SelectEyeColorWidgetState extends State<SelectEyeColorWidget>
                           ),
                           child: Center(
                             child: AppText(
-                              text: eyeColor[index],
+                              text: clothingStyle[index],
                               fontFamily: GoogleFonts.raleway(
                                 fontWeight: widget.alreadyUsed
-                                            .contains(eyeColor[index]) ||
-                                        selectedEyeColor
-                                            .contains(eyeColor[index])
+                                            .contains(clothingStyle[index]) ||
+                                        selectedClothingStyle
+                                            .contains(clothingStyle[index])
                                     ? FontWeight.w700
                                     : FontWeight.normal,
                               ).fontFamily,
@@ -93,18 +95,15 @@ class _SelectEyeColorWidgetState extends State<SelectEyeColorWidget>
                     },
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
                 GradientBtn(
                   borderRadius: 10.r,
                   height: size.height / 14,
                   txt: AppLocalizations.of(context)!.save,
                   onTap: () {
-                    if (selectedEyeColor.isEmpty) {
+                    if (selectedClothingStyle.isEmpty) {
                       widget.callback(widget.alreadyUsed);
                     } else {
-                      widget.callback(selectedEyeColor);
+                      widget.callback(selectedClothingStyle);
                     }
                     setState(() {});
                     Navigator.pop(context);

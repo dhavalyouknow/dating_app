@@ -1,10 +1,11 @@
 import 'package:dating_app/Bloc/User/user_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Model/user.dart';
-import 'package:dating_app/Pages/ChoosePartner/choose_partner.dart';
+import 'package:dating_app/Pages/ChoosePartner/choose_partner.dart' as partner;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 mixin OtherLoginHandlers<T extends StatefulWidget> on State<T> {
   TextEditingController nameController = TextEditingController();
@@ -96,9 +97,13 @@ mixin OtherLoginHandlers<T extends StatefulWidget> on State<T> {
       UpdateUserEvent(
         user: user!,
         success: (value) {
-          Navigator.pushNamed(context, ChoosePartner.routeName);
+          Navigator.pushNamed(context, partner.ChoosePartner.routeName);
         },
-        onError: () {},
+        onError: () {
+          Fluttertoast.showToast(
+              msg:
+                  'This email address is already associated with another account. Please use a different email address.');
+        },
       ),
     );
   }

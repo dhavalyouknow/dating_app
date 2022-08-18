@@ -42,6 +42,7 @@ class _SetupProfile3State extends State<SetupProfile3>
         ),
       ),
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: AppStyles.blackColor),
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 10.w),
@@ -86,7 +87,7 @@ class _SetupProfile3State extends State<SetupProfile3>
                       fontFamily:
                           GoogleFonts.raleway(fontWeight: FontWeight.bold)
                               .fontFamily,
-                      text: "Setup Profile",
+                      text: AppLocalizations.of(context)!.setupProfile,
                     ),
                     AppText(
                       color: AppStyles.greyColor,

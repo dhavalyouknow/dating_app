@@ -151,47 +151,30 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
                             ),
                       SizedBox(height: 20.h),
                       imageFile == null
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(Icons.camera_alt_outlined),
-                                SizedBox(width: 10.w),
-                                AppText(
-                                  text: AppLocalizations.of(context)!
-                                      .uploadPicture,
-                                  fontFamily: GoogleFonts.raleway(
-                                          fontWeight: FontWeight.bold)
-                                      .fontFamily,
-                                ),
-                              ],
+                          ? GestureDetector(
+                              onTap: () {
+                                editImage(type: 'dog');
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(Icons.camera_alt_outlined),
+                                  SizedBox(width: 10.w),
+                                  AppText(
+                                    text: AppLocalizations.of(context)!
+                                        .uploadPicture,
+                                    fontFamily: GoogleFonts.raleway(
+                                            fontWeight: FontWeight.bold)
+                                        .fontFamily,
+                                  ),
+                                ],
+                              ),
                             )
                           : Padding(
                               padding: EdgeInsets.symmetric(horizontal: 40.w),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      removeImage();
-                                    },
-                                    child: Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.close,
-                                          color: AppStyles.crimsonPinkColor,
-                                        ),
-                                        SizedBox(width: 5.w),
-                                        AppText(
-                                          color: AppStyles.crimsonPinkColor,
-                                          text: "Remove",
-                                          fontFamily: GoogleFonts.raleway(
-                                                  fontWeight: FontWeight.bold)
-                                              .fontFamily,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
                                   GestureDetector(
                                     onTap: () {
                                       editImage(type: "dog");
@@ -204,13 +187,14 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
                                     child: Row(
                                       children: [
                                         const Icon(
-                                          Icons.camera_alt_outlined,
-                                          color: AppStyles.blackColor,
+                                          Icons.close,
+                                          color: AppStyles.crimsonPinkColor,
                                         ),
                                         SizedBox(width: 5.w),
                                         AppText(
-                                          color: AppStyles.blackColor,
-                                          text: "Replace",
+                                          color: AppStyles.crimsonPinkColor,
+                                          text: AppLocalizations.of(context)!
+                                              .remove,
                                           fontFamily: GoogleFonts.raleway(
                                                   fontWeight: FontWeight.bold)
                                               .fontFamily,

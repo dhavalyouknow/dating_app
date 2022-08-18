@@ -29,7 +29,7 @@ class _DogSizeChipWidgetState extends State<DogSizeChipWidget> {
           border: Border.all(
             color:
                 widget.isSelected ? AppStyles.pinkColor : AppStyles.greyColor,
-            width: widget.isSelected ? 3.r : 1.r,
+            width: widget.isSelected ? 2.r : 1.r,
           ),
           borderRadius: BorderRadius.circular(22),
         ),

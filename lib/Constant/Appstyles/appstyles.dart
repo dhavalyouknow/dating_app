@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppStyles {
   static const Color primaryColor = Color(0xffCEEFFF);
@@ -86,81 +87,15 @@ List<String> interestList = [
   "Dog Clothes",
 ];
 
-List<String> favouriteNight = [
-  'Friday Cosiness',
-  'Meet Friends',
-  'Hang Out With The Family',
-  'Thank you tonight',
-  'Hundmingel',
-  'Eating Out (Restrictions)',
-  'Youtube',
-  'Concert',
-  'Cinema',
-  'Nightlife & Party',
-  'Check Out The Series',
-  'Opera / Theatre',
-  'Read Books',
-  'Bar / Pub',
-  'Go To A Concert',
-  'Take A Glass',
-  'Dinner Parties',
-  'Spotyevermang',
-  'Event',
-  'Karaoke',
-];
-
 List<String> occupation = [
   'Working',
   'Influencer',
   'Studying',
-  'Between',
-  'Jobs',
+  'Between jobs',
   'Entrepreneur',
   'Freelancer',
   'Pensioner',
   'Other'
-];
-
-List<String> eyeColor = [
-  'Brown',
-  'Blue',
-  'Hazel',
-  'Honey',
-  'Green',
-  'Gray',
-];
-
-List<String> activity = [
-  'Yoga',
-  'Padel',
-  'Bike Ride With The Dog',
-  'Walk',
-  'Golf',
-  'Dance',
-  'Motocross',
-  'Tennis',
-  'Go By Boat',
-  'Skating',
-  'Dog Paddle',
-  'Running',
-  'Riding',
-  'Jogging Trip With The Dog',
-  'Work Out At A Gym',
-  'Hiking',
-  'Motorsport',
-  'Hunting',
-  'Diving',
-  'Parachuting',
-  'Mediation',
-  'Surfing',
-  'Fishing',
-  'Football',
-  'Climbing',
-  'Swimming',
-  'Skiing / Snowboarding',
-  'Paddle Board',
-  'Badminton',
-  'Hockey',
 ];
 
 class YesNo {
@@ -173,26 +108,16 @@ class YesNo {
 List<YesNo> isHaveDog = [
   YesNo(name: 'Yes', selected: false),
   YesNo(name: 'No', selected: false),
+  YesNo(name: 'wish I hade', selected: false),
 ];
 
 List<YesNo> isHaveKids = [
   YesNo(name: 'Yes', selected: false),
   YesNo(name: 'No', selected: false),
+  YesNo(name: 'bonus', selected: false),
 ];
 
-// For RelationShip Popup Border
-
-class SingleMingle {
-  String status;
-  bool selected;
-
-  SingleMingle({required this.status, required this.selected});
-}
-
-List<SingleMingle> relationShip = [
-  SingleMingle(status: "Single", selected: false),
-  SingleMingle(status: "Mingle", selected: false),
-];
+// For RelationShip Popup
 
 // For InterestGender Popup Border
 
@@ -202,12 +127,6 @@ class InterestGender {
 
   InterestGender({required this.interest, required this.selected});
 }
-
-List<InterestGender> interestedIn = [
-  InterestGender(interest: "Men", selected: false),
-  InterestGender(interest: "Women", selected: false),
-  InterestGender(interest: "Other", selected: false),
-];
 
 // For Gender Selection
 
@@ -222,37 +141,6 @@ class MaleFemale {
     required this.icon,
   });
 }
-
-List<MaleFemale> selectGender = [
-  MaleFemale(
-    name: "Male",
-    selected: false,
-    icon: const Icon(Icons.male),
-  ),
-  MaleFemale(
-    name: "Female",
-    selected: false,
-    icon: const Icon(Icons.female),
-  ),
-  MaleFemale(
-    name: "Other",
-    selected: false,
-    icon: const Icon(Icons.transgender),
-  ),
-];
-
-List<MaleFemale> selectDogGender = [
-  MaleFemale(
-    name: "Male",
-    selected: false,
-    icon: const Icon(Icons.male),
-  ),
-  MaleFemale(
-    name: "Female",
-    selected: false,
-    icon: const Icon(Icons.female),
-  ),
-];
 
 // For Dog Size
 
@@ -274,21 +162,18 @@ List<DogSize> sizeOfDog = [
 List<DogSize> dogLookingFor = [
   DogSize(name: "Friends", selected: false),
   DogSize(name: "Nanny", selected: false),
-  DogSize(name: "Love", selected: false),
-  // DogSize(name: "Bonus Husse", selected: false),
   DogSize(name: "Bonus Father", selected: false),
   DogSize(name: "Bonus Mother", selected: false),
 ];
 
-class ChatUser {
+class ChoosePartner {
   String name;
   bool selected;
+  Image image;
 
-  ChatUser({required this.name, required this.selected});
+  ChoosePartner({
+    required this.name,
+    required this.selected,
+    required this.image,
+  });
 }
-
-List<ChatUser> chatUser = [
-  ChatUser(name: 'Archive chat', selected: false),
-  ChatUser(name: 'Report chat', selected: false),
-  ChatUser(name: 'Block user', selected: false),
-];

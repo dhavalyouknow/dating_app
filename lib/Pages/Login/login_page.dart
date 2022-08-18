@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/LoginPage';
@@ -82,7 +81,8 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                         icon: signUpPwd
                             ? ImageIcon(
                                 const AssetImage(
-                                    "assets/icons/CloseEyeIcon.png"),
+                                  "assets/icons/CloseEyeIcon.png",
+                                ),
                                 color: AppStyles.textColor,
                                 size: 20.sp,
                               )
@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                       backgroundColor: AppStyles.whiteColor,
                       hintText: AppLocalizations.of(context)!.password,
                       textEditingController: passwordController,
-                      validator: (passwordValidator) {},
+                      validator: passwordValidator,
                       obSecure: signUpPwd,
                       border: 0.r,
                       borderColor: AppStyles.trasnparentColor,
@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> with LoginHandlers {
                           );
                         },
                         child: Text(
-                          AppLocalizations.of(context)!.forgotPassword,
+                          '${AppLocalizations.of(context)!.forgotPassword}?',
                           style: TextStyle(
                             fontSize: 13.sp,
                             color: AppStyles.blackColor,

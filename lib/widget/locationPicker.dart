@@ -91,10 +91,13 @@ class _LocationPickerState extends State<LocationPicker> {
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               color: Colors.white,
               border: Border.all(
-                color: AppStyles.greyColor,
+                color: countryValue.isEmpty
+                    ? AppStyles.greyColor
+                    : AppStyles.pinkColor,
                 width: 1,
               ),
             ),
+
             disabledDropdownDecoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
               color: Colors.white,
@@ -106,16 +109,22 @@ class _LocationPickerState extends State<LocationPicker> {
             countrySearchPlaceholder: "Country",
             stateSearchPlaceholder: "State",
             citySearchPlaceholder: "City",
-            countryDropdownLabel: countryValue.isNotEmpty
-                ? countryValue
-                : AppLocalizations.of(context)!.selectCountry,
+            countryDropdownLabel: AppLocalizations.of(context)!.selectCountry,
             stateDropdownLabel: AppLocalizations.of(context)!.selectState,
             cityDropdownLabel: AppLocalizations.of(context)!.selectCity,
-            selectedItemStyle: TextStyle(
-              fontFamily: GoogleFonts.raleway().fontFamily,
-              color: AppStyles.greyColor,
-              fontSize: 14,
-            ),
+            selectedItemStyle: cityValue == null
+                ? TextStyle(
+                    fontFamily: GoogleFonts.raleway().fontFamily,
+                    fontWeight: FontWeight.w500,
+                    color: AppStyles.greyColor,
+                    fontSize: 14,
+                  )
+                : TextStyle(
+                    fontFamily: GoogleFonts.raleway().fontFamily,
+                    fontWeight: FontWeight.w700,
+                    color: AppStyles.blackColor,
+                    fontSize: 14,
+                  ),
             dropdownHeadingStyle: TextStyle(
               fontFamily: GoogleFonts.raleway().fontFamily,
               color: Colors.black,
@@ -135,7 +144,9 @@ class _LocationPickerState extends State<LocationPicker> {
                 widget.countryCallback(value);
                 if (countryHasNoState.contains(countryValue)) {
                   Fluttertoast.showToast(
-                      msg: 'Selected Country have not any state and city');
+                    msg: 'Selected Country have not any state and city',
+                    timeInSecForIosWeb: 5,
+                  );
                 }
               });
             },
@@ -149,7 +160,7 @@ class _LocationPickerState extends State<LocationPicker> {
             onCityChanged: (value) {
               // if (value!.isEmpty) {
               //   Fluttertoast.showToast(
-              //       msg: 'Selected Country have not any state and city');
+              //       msg: 'Selected Country have not any state and city',timeInSecForIosWeb: 5,);
               // }
               setState(() {
                 cityValue = value;

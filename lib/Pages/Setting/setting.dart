@@ -8,7 +8,7 @@ import 'package:dating_app/Pages/Login/login_page.dart';
 import 'package:dating_app/Pages/Setting/setting_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -154,7 +154,6 @@ class _SettingsState extends State<Settings> with SettingHandlers {
   }
 
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
-  final fbLogin = FacebookLogin();
 
   Future<void> _logOut() async {
     User user = BlocProvider.of<UserBloc>(context).state.user as User;
@@ -174,7 +173,7 @@ class _SettingsState extends State<Settings> with SettingHandlers {
     } else if (user.facebookLogin == true) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.clear();
-      fbLogin.logOut();
+      await FacebookAuth.instance.logOut();
       Future.delayed(
         Duration.zero,
         () {

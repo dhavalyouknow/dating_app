@@ -5,6 +5,7 @@ import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/interests_chip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -27,7 +28,6 @@ class _SelectedActivitiesState extends State<SelectedActivities>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     int length = widget.alsoSelected.length;
-    print(length);
 
     return Scaffold(
       backgroundColor: AppStyles.trasnparentColor,
@@ -53,7 +53,7 @@ class _SelectedActivitiesState extends State<SelectedActivities>
                   },
                   child: AppText(
                     size: 15.sp,
-                    text: "Cancel",
+                    text: AppLocalizations.of(context)!.cancel,
                     fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
                         .fontFamily,
                   ),
@@ -82,7 +82,7 @@ class _SelectedActivitiesState extends State<SelectedActivities>
                 ),
                 AppText(
                   size: 15.sp,
-                  text: "$length/6",
+                  text: "$length/5",
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w500)
                       .fontFamily,
                 ),
@@ -92,7 +92,7 @@ class _SelectedActivitiesState extends State<SelectedActivities>
               padding: EdgeInsets.symmetric(vertical: 20.h),
               child: Wrap(
                 children: [
-                  ...interestList.map((e) {
+                  ...activities.map((e) {
                     selectedActivities = widget.alsoSelected;
                     return ListOfChipWidget(
                       interestsName: e,
@@ -100,7 +100,14 @@ class _SelectedActivitiesState extends State<SelectedActivities>
                         if (selectedActivities.contains(e)) {
                           selectedActivities.remove(e);
                         } else {
-                          selectedActivities.add(e);
+                          if (selectedActivities.length < 5) {
+                            selectedActivities.add(e);
+                          } else {
+                            Fluttertoast.showToast(
+                              msg: 'You can select only 5 items',
+                              timeInSecForIosWeb: 5,
+                            );
+                          }
                         }
                         setState(() {});
                       },

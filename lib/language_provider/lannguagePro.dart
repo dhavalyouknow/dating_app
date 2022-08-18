@@ -10,6 +10,7 @@ class LocalProvider extends ChangeNotifier {
     if (!L10n.all.contains(locale)) return;
     _locale = locale;
     print(_locale);
+    print('3434');
     notifyListeners();
   }
 

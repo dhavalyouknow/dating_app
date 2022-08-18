@@ -37,19 +37,6 @@ class _ChoosePartnerState extends State<ChoosePartner>
             ),
           ),
         ],
-        // leading: Padding(
-        //   padding: EdgeInsets.only(left: 10.w),
-        //   child: IconButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     icon: Icon(
-        //       size: 30.h,
-        //       Icons.arrow_back_ios,
-        //       color: AppStyles.greyColor,
-        //     ),
-        //   ),
-        // ),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
@@ -80,14 +67,14 @@ class _ChoosePartnerState extends State<ChoosePartner>
                 size: 16.sp,
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
-                text: "I’m searching for:",
+                text: AppLocalizations.of(context)!.lookingfor,
               ),
               SizedBox(height: 10.h),
               AppText(
                 size: 16.sp,
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.w500).fontFamily,
-                text: "com.thedogtrick.comse at least one!",
+                text: AppLocalizations.of(context)!.chooseatleastone,
               ),
               SizedBox(height: 30.h),
               ...searchingFor
@@ -96,16 +83,14 @@ class _ChoosePartnerState extends State<ChoosePartner>
                       onTap: () {
                         if (imSearchingFor.contains(e.name)) {
                           imSearchingFor.remove(e.name);
-                          print(imSearchingFor);
                         } else {
                           imSearchingFor.add(e.name);
-                          print('imSearchingFor ===> $imSearchingFor');
                         }
                         setState(() {});
                       },
                       child: Container(
                         margin: EdgeInsets.symmetric(vertical: 5.h),
-                        padding: EdgeInsets.symmetric(horizontal: 20.r),
+                        padding: EdgeInsets.symmetric(horizontal: 10.r),
                         width: size.width / 2,
                         height: size.height / 14,
                         decoration: BoxDecoration(
@@ -115,7 +100,7 @@ class _ChoosePartnerState extends State<ChoosePartner>
                             color: imSearchingFor.contains(e.name)
                                 ? AppStyles.pinkColor
                                 : AppStyles.greyColor,
-                            width: imSearchingFor.contains(e.name) ? 3.r : 1.r,
+                            width: imSearchingFor.contains(e.name) ? 2.r : 1.r,
                           ),
                         ),
                         child: Row(
@@ -130,7 +115,7 @@ class _ChoosePartnerState extends State<ChoosePartner>
                                     : AppStyles.pinkColor,
                               ),
                             ),
-                            SizedBox(width: 10.w),
+                            SizedBox(width: 8.w),
                             AppText(
                               color: imSearchingFor.contains(e.name)
                                   ? AppStyles.blackColor

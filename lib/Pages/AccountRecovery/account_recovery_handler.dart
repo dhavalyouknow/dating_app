@@ -21,7 +21,10 @@ mixin AccountRecoveryHandlers<T extends StatefulWidget> on State<T> {
         ForgotPwdRequest(
           email: emailController.text,
           onSuccess: () {
-            Fluttertoast.showToast(msg: 'Please Check Your Email');
+            Fluttertoast.showToast(
+              msg: 'Please Check Your Email',
+              timeInSecForIosWeb: 5,
+            );
           },
         ),
       );

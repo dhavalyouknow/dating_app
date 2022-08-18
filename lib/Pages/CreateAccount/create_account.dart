@@ -27,6 +27,23 @@ class _CreateAccountState extends State<CreateAccount>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    List<MaleFemale> selectGender = [
+      MaleFemale(
+        name: AppLocalizations.of(context)!.male,
+        selected: false,
+        icon: const Icon(Icons.male),
+      ),
+      MaleFemale(
+        name: AppLocalizations.of(context)!.female,
+        selected: false,
+        icon: const Icon(Icons.female),
+      ),
+      MaleFemale(
+        name: AppLocalizations.of(context)!.other,
+        selected: false,
+        icon: const Icon(Icons.transgender),
+      ),
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -35,6 +52,9 @@ class _CreateAccountState extends State<CreateAccount>
             padding: EdgeInsets.only(right: 10.w),
             child: IconButton(
               onPressed: () {
+                for (var tapped in selectGender) {
+                  tapped.selected = false;
+                }
                 Navigator.pushReplacementNamed(context, '/LoginPage');
               },
               icon: Icon(
@@ -78,38 +98,50 @@ class _CreateAccountState extends State<CreateAccount>
                       ),
                     ),
                     FormFieldWidget(
+                      onTap: () {
+                        isOnTapFName = true;
+                        setState(() {});
+                      },
                       icon: IconButton(
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      hintText: AppLocalizations.of(context)!.name,
+                      hintText: AppLocalizations.of(context)!.firstname,
                       textEditingController: nameController,
                       validator: nameValidator,
                       obSecure: false,
-                      border: nameController.text.isEmpty ? 1.r : 2.r,
-                      borderColor: nameController.text.isEmpty
-                          ? AppStyles.greyColor
-                          : AppStyles.pinkColor,
+                      border: 1.r,
+                      borderColor: isOnTapFName
+                          ? AppStyles.pinkColor
+                          : AppStyles.greyColor,
                       borderRadius: 10.r,
                       backgroundColor: AppStyles.trasnparentColor,
                     ),
                     FormFieldWidget(
+                      onTap: () {
+                        isOnTapSurname = true;
+                        setState(() {});
+                      },
                       icon: IconButton(
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
                       ),
-                      hintText: AppLocalizations.of(context)!.surname,
+                      hintText: AppLocalizations.of(context)!.lastname,
                       textEditingController: surnameController,
                       validator: surnameValidator,
                       obSecure: false,
-                      border: nameController.text.isEmpty ? 1.r : 2.r,
-                      borderColor: nameController.text.isEmpty
-                          ? AppStyles.greyColor
-                          : AppStyles.pinkColor,
+                      border: 1.r,
+                      borderColor: isOnTapSurname
+                          ? AppStyles.pinkColor
+                          : AppStyles.greyColor,
                       borderRadius: 10.r,
                       backgroundColor: AppStyles.trasnparentColor,
                     ),
                     FormFieldWidget(
+                      onTap: () {
+                        isOnTapEmail = true;
+                        setState(() {});
+                      },
                       icon: IconButton(
                         icon: const Icon(Icons.person_outline),
                         onPressed: () {},
@@ -118,10 +150,12 @@ class _CreateAccountState extends State<CreateAccount>
                       textEditingController: emailController,
                       validator: emailValidator,
                       obSecure: false,
-                      border: nameController.text.isEmpty ? 1.r : 2.r,
-                      borderColor: nameController.text.isEmpty
+                      border: 1.r,
+                      borderColor: !isOnTapEmail
                           ? AppStyles.greyColor
-                          : AppStyles.pinkColor,
+                          : isColorRed
+                              ? Colors.red
+                              : AppStyles.pinkColor,
                       borderRadius: 10.r,
                       backgroundColor: AppStyles.trasnparentColor,
                     ),
@@ -136,16 +170,22 @@ class _CreateAccountState extends State<CreateAccount>
                               icon: selectedGender.isEmpty
                                   ? const Icon(
                                       Icons.male,
-                                      color: AppStyles.pinkColor,
+                                      color: AppStyles.greyColor,
                                     )
-                                  : const Icon(
-                                      Icons.female,
-                                      color: AppStyles.pinkColor,
-                                    ),
+                                  : selectedGender.toLowerCase() == 'female'
+                                      ? const Icon(
+                                          Icons.female,
+                                          color: AppStyles.greyColor,
+                                        )
+                                      : const Icon(
+                                          Icons.transgender,
+                                          color: AppStyles.greyColor,
+                                        ),
                               txt: selectedGender.isEmpty
-                                  ? AppLocalizations.of(context)!.selectGender
+                                  ? AppLocalizations.of(context)!
+                                      .selectyourgender
                                   : selectedGender,
-                              border: selectedGender.isEmpty ? 1.r : 1.5.r,
+                              border: 1.r,
                               onTap: () {
                                 showDialog(
                                   context: context,
@@ -160,7 +200,7 @@ class _CreateAccountState extends State<CreateAccount>
                                 );
                               },
                               fontWeight: selectedGender.isEmpty
-                                  ? FontWeight.normal
+                                  ? FontWeight.w400
                                   : FontWeight.w600,
                               borderRadius: 10.r,
                               borderColor: selectedGender.isEmpty
@@ -177,7 +217,6 @@ class _CreateAccountState extends State<CreateAccount>
                           child: GestureDetector(
                             onTap: () {
                               selectDate(context);
-
                               tapped = true;
                             },
                             child: Container(
@@ -192,14 +231,14 @@ class _CreateAccountState extends State<CreateAccount>
                                   color: tapped
                                       ? AppStyles.pinkColor
                                       : AppStyles.greyColor,
-                                  width: tapped ? 1.5 : 1,
+                                  width: 1,
                                 ),
                               ),
                               child: Row(
                                 children: [
                                   const Icon(
                                     Icons.cake_outlined,
-                                    color: AppStyles.pinkColor,
+                                    color: AppStyles.greyColor,
                                   ),
                                   SizedBox(width: 10.w),
                                   Text(
@@ -214,8 +253,8 @@ class _CreateAccountState extends State<CreateAccount>
                                         fontSize: 15.sp,
                                         fontWeight:
                                             selectedDate == DateTime.now()
-                                                ? FontWeight.normal
-                                                : FontWeight.w600,
+                                                ? FontWeight.w600
+                                                : FontWeight.normal,
                                       ).fontFamily,
                                       color: tapped
                                           ? AppStyles.blackColor
@@ -260,7 +299,8 @@ class _CreateAccountState extends State<CreateAccount>
                                 context, LoginPage.routeName);
                           },
                           child: AppText(
-                              text: AppLocalizations.of(context)!.signIn),
+                            text: AppLocalizations.of(context)!.signIn,
+                          ),
                         ),
                       ],
                     )

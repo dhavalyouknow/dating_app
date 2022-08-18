@@ -112,7 +112,7 @@ class _SecondIntroPageState extends State<SecondIntroPage> {
                       fontFamily:
                           GoogleFonts.raleway(fontWeight: FontWeight.w500)
                               .fontFamily,
-                      text: "Skip",
+                      text: AppLocalizations.of(context)!.skip,
                     ),
                   )
                 ],

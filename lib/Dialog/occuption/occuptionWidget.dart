@@ -5,10 +5,14 @@ import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OccupationWidget extends StatefulWidget {
   final Function(String) callback;
-  const OccupationWidget({Key? key, required this.callback}) : super(key: key);
+  String alreadyUsed;
+  OccupationWidget(
+      {Key? key, required this.callback, required this.alreadyUsed})
+      : super(key: key);
 
   @override
   State<OccupationWidget> createState() => _OccupationWidgetState();
@@ -25,7 +29,7 @@ class _OccupationWidgetState extends State<OccupationWidget>
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 10.w),
           padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
-          height: size.height / 1.6,
+          height: size.height / 2.0,
           decoration: BoxDecoration(
             color: AppStyles.whiteColor,
             borderRadius: BorderRadius.circular(20),
@@ -37,7 +41,7 @@ class _OccupationWidgetState extends State<OccupationWidget>
                 size: 20.sp,
                 fontFamily:
                     GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
-                text: "Occupation",
+                text: AppLocalizations.of(context)!.occupation,
               ),
               SizedBox(height: 10.h),
               Flexible(
@@ -48,12 +52,13 @@ class _OccupationWidgetState extends State<OccupationWidget>
                     crossAxisSpacing: 10,
                     mainAxisExtent: 50,
                   ),
-                  itemCount: occupation.length,
+                  itemCount: occupations.length,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       onTap: () {
                         setState(() {
-                          selectedOccupation = occupation[index];
+                          widget.alreadyUsed = occupations[index];
+                          selectedOccupation = occupations[index];
                           widget.callback(selectedOccupation);
                         });
                       },
@@ -61,19 +66,22 @@ class _OccupationWidgetState extends State<OccupationWidget>
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: AppStyles.pinkColor,
-                            width:
-                                selectedOccupation.contains(occupation[index])
-                                    ? 3.r
-                                    : 1.r,
+                            width: widget.alreadyUsed == occupations[index] ||
+                                    selectedOccupation
+                                        .contains(occupations[index])
+                                ? 2.r
+                                : 1.r,
                           ),
                           borderRadius: BorderRadius.circular(22),
                         ),
                         child: Center(
                           child: AppText(
-                            text: occupation[index],
+                            text: occupations[index],
                             fontFamily: GoogleFonts.raleway(
-                                    fontWeight: selectedOccupation
-                                            .contains(occupation[index])
+                                    fontWeight: widget.alreadyUsed ==
+                                                occupations[index] ||
+                                            selectedOccupation
+                                                .contains(occupations[index])
                                         ? FontWeight.w700
                                         : FontWeight.normal)
                                 .fontFamily,
@@ -87,11 +95,14 @@ class _OccupationWidgetState extends State<OccupationWidget>
               GradientBtn(
                 borderRadius: 10.r,
                 height: size.height / 14,
-                txt: "Save",
+                txt: AppLocalizations.of(context)!.save,
                 onTap: () {
-                  setState(() {
+                  if (selectedOccupation.isEmpty) {
+                    widget.callback(widget.alreadyUsed);
+                  } else {
                     widget.callback(selectedOccupation);
-                  });
+                  }
+                  setState(() {});
                   Navigator.pop(context);
                 },
               ),

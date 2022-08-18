@@ -51,10 +51,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           print(resp.statusCode);
           event.onSuccess();
           emit(state.copyWith(status: AuthStatus.loginSuccess));
-          Fluttertoast.showToast(msg: 'Valid Email');
+          Fluttertoast.showToast(
+            msg: 'Valid Email',
+            timeInSecForIosWeb: 5,
+          );
         } else {
           print(resp.body);
           print(resp.statusCode);
+          if (resp.statusCode == 422) {
+            Map<String, dynamic> data = jsonDecode(resp.body);
+            event.onError(data["message"]);
+          }
           emit(state.copyWith(status: AuthStatus.loginFailure));
         }
       } else {
@@ -119,7 +126,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           User user = User.fromJson(data);
           emit(state.copyWith(status: AuthStatus.loginSuccess));
           event.success(user);
-          Fluttertoast.showToast(msg: 'SignUp Successfully');
+          Fluttertoast.showToast(
+            msg: 'SignUp Successfully',
+            timeInSecForIosWeb: 5,
+          );
         } else {
           if (kDebugMode) {
             print(resp.statusCode);
@@ -175,7 +185,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           User user = User.fromJson(data);
           event.success(user);
           emit(state.copyWith(status: AuthStatus.loginSuccess));
-          Fluttertoast.showToast(msg: 'Login Successfully');
+          Fluttertoast.showToast(
+            msg: 'Login Successfully',
+            timeInSecForIosWeb: 5,
+          );
           emit(
             state.copyWith(
               status: AuthStatus.loginSuccess,
@@ -192,18 +205,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
             print(resp.statusCode);
             print(resp.body);
           }
-          Fluttertoast.showToast(msg: 'Invalid Username or Password');
+          Fluttertoast.showToast(
+            msg: 'Invalid Username or Password',
+            timeInSecForIosWeb: 5,
+          );
         }
       } else {
         if (kDebugMode) {
-          Fluttertoast.showToast(msg: 'Something Went Wrong');
+          Fluttertoast.showToast(
+            msg: 'Something Went Wrong',
+            timeInSecForIosWeb: 5,
+          );
           emit(state.copyWith(status: AuthStatus.loginFailure));
           print(resp?.statusCode);
         }
       }
     } catch (e) {
       if (kDebugMode) {
-        Fluttertoast.showToast(msg: 'Something Went Wrong');
+        Fluttertoast.showToast(
+          msg: 'Something Went Wrong',
+          timeInSecForIosWeb: 5,
+        );
         emit(state.copyWith(status: AuthStatus.loginFailure));
         print('object');
         print(e);
@@ -266,12 +288,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
       LoginWithGoogle event, Emitter<AuthState> emit) async {
     try {
       emit(state.copyWith(status: AuthStatus.loading));
+
       var resp = await post(
         url: ApiEndPoints.loginWithGoogle,
         body: {
           "email": event.email,
-          "googleId": event.googleId,
+          "firebaseUserId": event.firebaseUserId,
           "pushToken": event.pushToken,
+          "firstName": event.firstName,
+          "lastName": event.lastName,
         },
         customHeader: {
           "Google-Id-Token": event.fcmtoken,
@@ -293,7 +318,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
         } else {
           print(resp.body);
           print(resp.statusCode);
-          event.onError();
+          Map<String, dynamic> data = jsonDecode(resp.body);
+          event.onError(data['message']);
           emit(state.copyWith(status: AuthStatus.loginFailure));
         }
       } else {
@@ -314,7 +340,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
         url: ApiEndPoints.loginWithFacebook,
         body: {
           "email": event.email,
-          "facebookId": event.facebookId,
+          "firebaseUserId": event.firebaseUserId,
           "pushToken": event.pushToken,
         },
         customHeader: {
@@ -328,8 +354,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           prefs.setString('auth_token', token!);
           Map<String, dynamic> data = jsonDecode(resp.body);
           User user = User.fromJson(data);
-          event.onSuccess(user);
           event.isRegistered(data["isRegistered"]);
+          event.onSuccess(user);
           print(resp.body);
           print(resp.statusCode);
           emit(state.copyWith(
@@ -359,8 +385,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
         url: ApiEndPoints.loginWithApple,
         body: {
           "email": event.email,
-          "appleId": event.appleId,
-          "pushToken": event.pushToken
+          "firebaseUserId": event.firebaseUserId,
+          "pushToken": event.pushToken,
+          "firstName": event.firstName,
+          "lastName": event.lastName,
         },
         customHeader: {
           "apple-id-token": event.headerToken,
@@ -379,8 +407,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> with BaseHttpService {
           event.onSuccess(user);
         } else {
           if (resp.statusCode == 500) {
+            event.onError();
             Fluttertoast.showToast(
-                msg: "Something happened wrong try again after sometime.");
+              msg: "Something happened wrong try again after sometime.",
+              timeInSecForIosWeb: 3,
+            );
           }
           emit(state.copyWith(status: AuthStatus.loginFailure));
           print(resp.body);

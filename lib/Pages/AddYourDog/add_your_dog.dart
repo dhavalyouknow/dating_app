@@ -84,7 +84,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                   ),
                 ),
                 SizedBox(
-                  height: 10.h,
+                  height: 8.h,
                 ),
                 FormFieldWidget(
                   icon: IconButton(
@@ -107,7 +107,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                 ),
                 SizedBox(height: 15.h),
                 AppText(
-                  size: 21.sp,
+                  size: 18.sp,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                       .fontFamily,
                   text: AppLocalizations.of(context)!.gender,
@@ -125,7 +125,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                                   ? FontWeight.w700
                                   : FontWeight.normal,
                               height: size.height / 14,
-                              border: e.selected ? 3.r : 1.r,
+                              border: e.selected ? 2.r : 1.r,
                               borderRadius: 25,
                               borderColor: e.selected
                                   ? AppStyles.pinkColor
@@ -157,7 +157,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                 ),
                 SizedBox(height: 15.h),
                 AppText(
-                  size: 21.sp,
+                  size: 18.sp,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                       .fontFamily,
                   text: AppLocalizations.of(context)!.size,
@@ -166,14 +166,14 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                 Wrap(
                   runSpacing: 10.w,
                   children: [
-                    ...sizeOfDog.map(
+                    ...sizeOfDogs.map(
                       (e) {
                         return DefaultAppBtn(
                           fontWeight:
                               e.selected ? FontWeight.w700 : FontWeight.normal,
                           height: size.height / 14,
                           width: size.width / 4,
-                          border: e.selected ? 3.r : 1.r,
+                          border: e.selected ? 2.r : 1.r,
                           borderRadius: 25.r,
                           borderColor: e.selected
                               ? AppStyles.pinkColor
@@ -183,7 +183,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                               ? AppStyles.blackColor
                               : AppStyles.greyColor,
                           onTap: () {
-                            for (var tapped in sizeOfDog) {
+                            for (var tapped in sizeOfDogs) {
                               tapped.selected = false;
                             }
                             e.selected = true;
@@ -197,48 +197,52 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
                 ),
                 SizedBox(height: 15.h),
                 AppText(
-                  size: 21.sp,
+                  size: 18.sp,
                   fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.bold)
                       .fontFamily,
                   text: AppLocalizations.of(context)!.mydogislookingfor,
                 ),
                 SizedBox(height: 15.h),
-                Wrap(
-                  runSpacing: 10.w,
-                  spacing: 10.w,
-                  children: [
-                    ...dogLookingFor.map(
-                      (e) {
-                        return DefaultAppBtn(
-                          fontWeight: myDogLookingFor.contains(e.name)
-                              ? FontWeight.w700
-                              : FontWeight.normal,
-                          height: size.height / 14,
-                          width: size.width / 2.6,
-                          border: myDogLookingFor.contains(e.name) ? 3.r : 1.r,
-                          borderRadius: 25.r,
-                          borderColor: myDogLookingFor.contains(e.name)
-                              ? AppStyles.pinkColor
-                              : AppStyles.greyColor,
-                          txt: e.name,
-                          txtColor: myDogLookingFor.contains(e.name)
-                              ? AppStyles.blackColor
-                              : AppStyles.greyColor,
-                          onTap: () {
-                            if (myDogLookingFor.contains(e.name)) {
-                              myDogLookingFor.remove(e.name);
-                              print(myDogLookingFor);
-                            } else {
-                              myDogLookingFor.add(e.name);
-                            }
-                            setState(
-                              () {},
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ],
+                Padding(
+                  padding: EdgeInsets.only(bottom: 30.h),
+                  child: Wrap(
+                    runSpacing: 10.w,
+                    spacing: 10.w,
+                    children: [
+                      ...dogLookingFors.map(
+                        (e) {
+                          return DefaultAppBtn(
+                            fontWeight: myDogLookingFor.contains(e.name)
+                                ? FontWeight.w700
+                                : FontWeight.normal,
+                            height: size.height / 14,
+                            width: size.width / 2.6,
+                            border:
+                                myDogLookingFor.contains(e.name) ? 2.r : 1.r,
+                            borderRadius: 25.r,
+                            borderColor: myDogLookingFor.contains(e.name)
+                                ? AppStyles.pinkColor
+                                : AppStyles.greyColor,
+                            txt: e.name,
+                            txtColor: myDogLookingFor.contains(e.name)
+                                ? AppStyles.blackColor
+                                : AppStyles.greyColor,
+                            onTap: () {
+                              if (myDogLookingFor.contains(e.name)) {
+                                myDogLookingFor.remove(e.name);
+                                print(myDogLookingFor);
+                              } else {
+                                myDogLookingFor.add(e.name);
+                              }
+                              setState(
+                                () {},
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 80.h),
               ],
