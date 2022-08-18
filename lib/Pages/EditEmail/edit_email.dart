@@ -4,6 +4,7 @@ import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:dating_app/Pages/EditEmail/enter_email.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
+import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,18 +23,6 @@ class EditEmail extends StatefulWidget {
 
 class _EditEmailState extends State<EditEmail> {
   bool isLoading = false;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +86,9 @@ class _EditEmailState extends State<EditEmail> {
               height: size.height / 14,
               txt: AppLocalizations.of(context)!.clickhereafterverifyemail,
               onTap: () {
+                setState(() {
+                  isLoading = true;
+                });
                 BlocProvider.of<AuthBloc>(context).add(
                   SessionRequest(
                     onSuccess: (user) {
@@ -109,6 +101,9 @@ class _EditEmailState extends State<EditEmail> {
                           timeInSecForIosWeb: 5,
                         );
                       }
+                      setState(() {
+                        isLoading = false;
+                      });
                     },
                   ),
                 );
