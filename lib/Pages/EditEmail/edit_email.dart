@@ -102,8 +102,8 @@ class _EditEmailState extends State<EditEmail> {
                         Navigator.pushReplacementNamed(
                             context, '/ChoosePartner');
                       } else {
-                        Navigator.pushReplacementNamed(
-                            context, '/ChoosePartner');
+                        // Navigator.pushReplacementNamed(
+                        //     context, '/ChoosePartner');
                         Fluttertoast.showToast(
                           msg: AppLocalizations.of(context)!
                               .pleaseverifyyouremail,
