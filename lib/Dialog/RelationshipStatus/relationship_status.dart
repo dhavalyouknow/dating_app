@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RelationshipStatus extends StatefulWidget {
   final Function(String) callback;
@@ -59,7 +60,7 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                         setState(() {
                           widget.status = relationShipStatus[index];
                           selectedStatus = relationShipStatus[index];
-                          widget.callback(selectedStatus);
+                          // widget.callback(selectedStatus);
                         });
                       },
                       child: Container(
@@ -93,20 +94,45 @@ class _RelationshipStatusState extends State<RelationshipStatus>
                 ),
               ),
               SizedBox(height: 15.h),
-              GradientBtn(
-                borderRadius: 10.r,
-                height: size.height / 14,
-                txt: AppLocalizations.of(context)!.save,
-                onTap: () {
-                  if (selectedStatus.isEmpty) {
-                    widget.callback(widget.status);
-                  } else {
-                    widget.callback(selectedStatus);
-                  }
+              Row(
+                children: [
+                  Flexible(
+                    child: GradientBtn(
+                      borderRadius: 10.r,
+                      height: size.height / 16,
+                      txt: AppLocalizations.of(context)!.cancel,
+                      onTap: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        String? status = prefs.getString('status');
+                        widget.callback(status.toString());
+                        Future.delayed(const Duration(seconds: 0), () {
+                          Navigator.pop(context);
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Flexible(
+                    child: GradientBtn(
+                      borderRadius: 10.r,
+                      height: size.height / 16,
+                      txt: AppLocalizations.of(context)!.save,
+                      onTap: () {
+                        if (selectedStatus.isEmpty) {
+                          widget.callback(widget.status);
+                        } else {
+                          widget.callback(selectedStatus);
+                        }
 
-                  Navigator.pop(context);
-                },
-              )
+                        Navigator.pop(context);
+                      },
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
         ),

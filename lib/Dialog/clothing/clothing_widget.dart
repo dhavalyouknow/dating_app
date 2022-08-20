@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ClothingStyleWidget extends StatefulWidget {
   final Function(String) callback;
@@ -28,89 +29,115 @@ class _ClothingStyleWidgetState extends State<ClothingStyleWidget>
       backgroundColor: AppStyles.trasnparentColor,
       body: Center(
         child: Container(
-            height: size.height / 1.4,
-            margin: EdgeInsets.symmetric(horizontal: 10.w),
-            padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
-            decoration: BoxDecoration(
-              color: AppStyles.whiteColor,
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-            child: Column(
-              children: [
-                SizedBox(height: 10.h),
-                AppText(
-                  size: 20.sp,
-                  fontFamily: GoogleFonts.raleway(fontWeight: FontWeight.w700)
-                      .fontFamily,
-                  text: "Clothing Style",
-                ),
-                SizedBox(height: 30.h),
-                Flexible(
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                      mainAxisExtent: 50,
-                    ),
-                    itemCount: clothingStyle.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            widget.alreadyUsed = clothingStyle[index];
-                            selectedClothingStyle = clothingStyle[index];
-                            widget.callback(selectedClothingStyle);
-                          });
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              width: widget.alreadyUsed
+          height: size.height / 1.4,
+          margin: EdgeInsets.symmetric(horizontal: 10.w),
+          padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
+          decoration: BoxDecoration(
+            color: AppStyles.whiteColor,
+            borderRadius: BorderRadius.circular(20.r),
+          ),
+          child: Column(
+            children: [
+              SizedBox(height: 10.h),
+              AppText(
+                size: 20.sp,
+                fontFamily:
+                    GoogleFonts.raleway(fontWeight: FontWeight.w700).fontFamily,
+                text: "Clothing Style",
+              ),
+              SizedBox(height: 30.h),
+              Flexible(
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    mainAxisExtent: 50,
+                  ),
+                  itemCount: clothingStyle.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          widget.alreadyUsed = clothingStyle[index];
+                          selectedClothingStyle = clothingStyle[index];
+                          //widget.callback(selectedClothingStyle);
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: widget.alreadyUsed
+                                        .contains(clothingStyle[index]) ||
+                                    selectedClothingStyle
+                                        .contains(clothingStyle[index])
+                                ? 2.r
+                                : 1.r,
+                            color: AppStyles.pinkColor,
+                          ),
+                          borderRadius: BorderRadius.circular(22),
+                        ),
+                        child: Center(
+                          child: AppText(
+                            text: clothingStyle[index],
+                            fontFamily: GoogleFonts.raleway(
+                              fontWeight: widget.alreadyUsed
                                           .contains(clothingStyle[index]) ||
                                       selectedClothingStyle
                                           .contains(clothingStyle[index])
-                                  ? 2.r
-                                  : 1.r,
-                              color: AppStyles.pinkColor,
-                            ),
-                            borderRadius: BorderRadius.circular(22),
-                          ),
-                          child: Center(
-                            child: AppText(
-                              text: clothingStyle[index],
-                              fontFamily: GoogleFonts.raleway(
-                                fontWeight: widget.alreadyUsed
-                                            .contains(clothingStyle[index]) ||
-                                        selectedClothingStyle
-                                            .contains(clothingStyle[index])
-                                    ? FontWeight.w700
-                                    : FontWeight.normal,
-                              ).fontFamily,
-                            ),
+                                  ? FontWeight.w700
+                                  : FontWeight.normal,
+                            ).fontFamily,
                           ),
                         ),
-                      );
-                    },
-                  ),
-                ),
-                GradientBtn(
-                  borderRadius: 10.r,
-                  height: size.height / 14,
-                  txt: AppLocalizations.of(context)!.save,
-                  onTap: () {
-                    if (selectedClothingStyle.isEmpty) {
-                      widget.callback(widget.alreadyUsed);
-                    } else {
-                      widget.callback(selectedClothingStyle);
-                    }
-                    setState(() {});
-                    Navigator.pop(context);
+                      ),
+                    );
                   },
                 ),
-              ],
-            )),
+              ),
+              Row(
+                children: [
+                  Flexible(
+                    child: GradientBtn(
+                      borderRadius: 10.r,
+                      height: size.height / 16,
+                      txt: AppLocalizations.of(context)!.cancel,
+                      onTap: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        String? selectedClothingStyle =
+                            prefs.getString('selectedClothingStyle');
+                        widget.callback(selectedClothingStyle.toString());
+                        Future.delayed(const Duration(seconds: 0), () {
+                          Navigator.pop(context);
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Flexible(
+                    child: GradientBtn(
+                      borderRadius: 10.r,
+                      height: size.height / 16,
+                      txt: AppLocalizations.of(context)!.save,
+                      onTap: () {
+                        if (selectedClothingStyle.isEmpty) {
+                          widget.callback(widget.alreadyUsed);
+                        } else {
+                          widget.callback(selectedClothingStyle);
+                        }
+                        setState(() {});
+                        Navigator.pop(context);
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

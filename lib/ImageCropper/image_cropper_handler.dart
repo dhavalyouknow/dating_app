@@ -270,6 +270,8 @@ mixin ImageCropperHandlers<T extends StatefulWidget> on State<T> {
     else {
       Dog dog = BlocProvider.of<DogBloc>(context).state.dog as Dog;
 
+      print('doggggg ==> $dog');
+
       setState(() {
         isLoading = true;
       });

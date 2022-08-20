@@ -161,6 +161,7 @@ class _OtherLoginCreateAccountState extends State<OtherLoginCreateAccount>
                                   context: context,
                                   builder: (BuildContext context) {
                                     return SelectGender(
+                                      alreadySelected: selectedGender,
                                       callback: (value) {
                                         selectedGender = value;
                                         setState(() {});

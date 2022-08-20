@@ -2,11 +2,13 @@ import 'package:dating_app/Bloc/Dog/dog_bloc.dart';
 import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/ImageCropper/image_cropper_handler.dart';
+import 'package:dating_app/Pages/ChooseDogPicture/choose_dog_picture_handler.dart';
 import 'package:dating_app/widget/Button/gradient_button.dart';
 import 'package:dating_app/widget/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -20,7 +22,7 @@ class ChooseDogPicture extends StatefulWidget {
 }
 
 class _ChooseDogPictureState extends State<ChooseDogPicture>
-    with ImageCropperHandlers {
+    with ImageCropperHandlers, DogPictureHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -43,6 +45,11 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
             if (imageFile != null) {
               Navigator.pushNamedAndRemoveUntil(
                   context, '/MyPage', (route) => false);
+            } else {
+              Fluttertoast.showToast(
+                msg: 'Image required',
+                timeInSecForIosWeb: 5,
+              );
             }
           },
         ),
@@ -50,6 +57,7 @@ class _ChooseDogPictureState extends State<ChooseDogPicture>
       appBar: AppBar(
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
+        iconTheme: const IconThemeData(color: AppStyles.greyColor),
       ),
       body: BlocBuilder<DogBloc, DogState>(
         builder: (context, state) {

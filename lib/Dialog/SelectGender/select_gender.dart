@@ -10,7 +10,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SelectGender extends StatefulWidget {
   final Function(String) callback;
-  const SelectGender({Key? key, required this.callback}) : super(key: key);
+  String alreadySelected;
+  SelectGender(
+      {Key? key, required this.callback, required this.alreadySelected})
+      : super(key: key);
 
   @override
   State<SelectGender> createState() => _SelectGenderState();
@@ -20,7 +23,7 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    print(widget.alreadySelected);
     return Scaffold(
       backgroundColor: AppStyles.trasnparentColor,
       body: Center(
@@ -48,18 +51,23 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
                     padding: EdgeInsets.symmetric(vertical: 5.h),
                     child: GenderBtn(
                       height: size.height / 14,
-                      border: e.selected ? 2.r : 1.r,
+                      border: widget.alreadySelected == e.name || e.selected
+                          ? 2.r
+                          : 1.r,
                       borderRadius: 20.r,
-                      borderColor: e.selected
-                          ? AppStyles.pinkColor
-                          : AppStyles.greyColor,
+                      borderColor:
+                          widget.alreadySelected == e.name || e.selected
+                              ? AppStyles.pinkColor
+                              : AppStyles.greyColor,
                       txt: e.name,
-                      txtColor: e.selected
+                      txtColor: widget.alreadySelected == e.name || e.selected
                           ? AppStyles.blackColor
                           : AppStyles.greyColor,
-                      fontWeight:
-                          e.selected ? FontWeight.w600 : FontWeight.normal,
+                      fontWeight: widget.alreadySelected == e.name || e.selected
+                          ? FontWeight.w600
+                          : FontWeight.normal,
                       onTap: () {
+                        widget.alreadySelected = '';
                         for (var tapped in selectGender) {
                           tapped.selected = false;
                         }
@@ -100,7 +108,13 @@ class _SelectGenderState extends State<SelectGender> with SelectGenderHandlers {
                       height: size.height / 18,
                       txt: "Save",
                       onTap: () {
-                        widget.callback(yourGender);
+                        if (yourGender.isEmpty) {
+                          yourGender = widget.alreadySelected;
+                          widget.callback(yourGender);
+                        } else {
+                          widget.callback(yourGender);
+                        }
+
                         Navigator.pop(context);
                       },
                     ),

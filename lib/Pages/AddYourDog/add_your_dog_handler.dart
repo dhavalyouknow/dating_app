@@ -91,7 +91,14 @@ mixin AddYourDogHandlers<T extends StatefulWidget> on State<T> {
             user = user?.copyWith(dog: [...?user?.dog, dog]);
             BlocProvider.of<UserBloc>(context).add(SetUser(user: user!));
             print(user?.dog!.length);
-            Navigator.pushReplacementNamed(context, ChooseDogPicture.routeName);
+            Navigator.pushNamed(context, ChooseDogPicture.routeName,
+                arguments: {
+                  "dogName": dogNameController.text,
+                  "gender": selectedDogGender,
+                  "size": selectedDogSize,
+                  "lookingFor": myDogLookingFor,
+                  "id": user!.id!
+                });
             for (var tapped in sizeOfDogs) {
               tapped.selected = false;
             }

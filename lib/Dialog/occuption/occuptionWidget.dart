@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OccupationWidget extends StatefulWidget {
   final Function(String) callback;
@@ -59,7 +60,7 @@ class _OccupationWidgetState extends State<OccupationWidget>
                         setState(() {
                           widget.alreadyUsed = occupations[index];
                           selectedOccupation = occupations[index];
-                          widget.callback(selectedOccupation);
+                          // widget.callback(selectedOccupation);
                         });
                       },
                       child: Container(
@@ -92,19 +93,45 @@ class _OccupationWidgetState extends State<OccupationWidget>
                   },
                 ),
               ),
-              GradientBtn(
-                borderRadius: 10.r,
-                height: size.height / 14,
-                txt: AppLocalizations.of(context)!.save,
-                onTap: () {
-                  if (selectedOccupation.isEmpty) {
-                    widget.callback(widget.alreadyUsed);
-                  } else {
-                    widget.callback(selectedOccupation);
-                  }
-                  setState(() {});
-                  Navigator.pop(context);
-                },
+              Row(
+                children: [
+                  Flexible(
+                    child: GradientBtn(
+                      borderRadius: 10.r,
+                      height: size.height / 16,
+                      txt: AppLocalizations.of(context)!.cancel,
+                      onTap: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        String? selectedOccupation =
+                            prefs.getString('selectedOccupation');
+                        widget.callback(selectedOccupation.toString());
+                        Future.delayed(const Duration(seconds: 0), () {
+                          Navigator.pop(context);
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+                  Flexible(
+                    child: GradientBtn(
+                      borderRadius: 10.r,
+                      height: size.height / 16,
+                      txt: AppLocalizations.of(context)!.save,
+                      onTap: () {
+                        if (selectedOccupation.isEmpty) {
+                          widget.callback(widget.alreadyUsed);
+                        } else {
+                          widget.callback(selectedOccupation);
+                        }
+                        setState(() {});
+                        Navigator.pop(context);
+                      },
+                    ),
+                  )
+                ],
               ),
             ],
           ),

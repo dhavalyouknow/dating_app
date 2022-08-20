@@ -1,5 +1,6 @@
 import 'package:dating_app/Bloc/Auth/auth_bloc.dart';
 import 'package:dating_app/Bloc/User/user_bloc.dart';
+import 'package:dating_app/Constant/Appstyles/appstyles.dart';
 import 'package:dating_app/Constant/Apptext/apptext.dart';
 import 'package:dating_app/Model/user.dart';
 import 'package:dating_app/Pages/EditEmail/enter_email.dart';
@@ -30,6 +31,11 @@ class _EditEmailState extends State<EditEmail> {
     User? user = BlocProvider.of<UserBloc>(context).state.user;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppStyles.skyBlueColor.withOpacity(0.6),
+        elevation: 0.0,
+        iconTheme: const IconThemeData(color: AppStyles.greyColor),
+      ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         height: size.height,
@@ -96,6 +102,8 @@ class _EditEmailState extends State<EditEmail> {
                         Navigator.pushReplacementNamed(
                             context, '/ChoosePartner');
                       } else {
+                        Navigator.pushReplacementNamed(
+                            context, '/ChoosePartner');
                         Fluttertoast.showToast(
                           msg: AppLocalizations.of(context)!
                               .pleaseverifyyouremail,

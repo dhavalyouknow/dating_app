@@ -72,10 +72,7 @@ class _SetUpProfileNowState extends State<SetUpProfileNow> {
                       txt: AppLocalizations.of(context)!.later,
                       txtColor: AppStyles.blackColor,
                       onTap: () {
-                        // Navigator.pushReplacementNamed(
-                        //   context,
-                        //   HomePage.routeName,
-                        // );
+                        Navigator.pushReplacementNamed(context, '/MyPage');
                       },
                     ),
                   )

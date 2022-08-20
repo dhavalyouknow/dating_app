@@ -135,7 +135,8 @@ class _UploadProfileState extends State<UploadProfile>
                                 const Icon(Icons.camera_alt_outlined),
                                 SizedBox(width: 10.w),
                                 AppText(
-                                  text: AppLocalizations.of(context)!.remove,
+                                  text: AppLocalizations.of(context)!
+                                      .uploadPicture,
                                   fontFamily: GoogleFonts.raleway(
                                           fontWeight: FontWeight.bold)
                                       .fontFamily,

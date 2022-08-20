@@ -14,6 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SetupProfile1 extends StatefulWidget {
   static const routeName = "/SetupProfile1";
@@ -173,10 +174,13 @@ class _SetupProfile1State extends State<SetupProfile1>
                         builder: (context) {
                           return RelationshipStatus(
                             status: selectedStatus,
-                            callback: (value) {
+                            callback: (value) async {
                               setState(() {
                                 selectedStatus = value;
                               });
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setString('status', selectedStatus);
                             },
                           );
                         },
@@ -212,10 +216,14 @@ class _SetupProfile1State extends State<SetupProfile1>
                         builder: (BuildContext context) {
                           return ImInterestedIn(
                             alreadyUsed: selectedInterestedIn,
-                            callback: (value) {
+                            callback: (value) async {
                               setState(() {
                                 selectedInterestedIn = value;
                               });
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setString(
+                                  'selectedInterestedIn', selectedInterestedIn);
                             },
                           );
                         },
@@ -291,10 +299,14 @@ class _SetupProfile1State extends State<SetupProfile1>
                         builder: (BuildContext context) {
                           return OccupationWidget(
                             alreadyUsed: selectedOccupation,
-                            callback: (value) {
+                            callback: (value) async {
                               setState(() {
                                 selectedOccupation = value;
                               });
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setString(
+                                  'selectedOccupation', selectedOccupation);
                             },
                           );
                         },
@@ -330,10 +342,14 @@ class _SetupProfile1State extends State<SetupProfile1>
                         builder: (BuildContext context) {
                           return ClothingStyleWidget(
                             alreadyUsed: selectedClothingStyle,
-                            callback: (value) {
+                            callback: (value) async {
                               setState(() {
                                 selectedClothingStyle = value;
                               });
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setString('selectedClothingStyle',
+                                  selectedClothingStyle);
                             },
                           );
                         },
@@ -370,10 +386,14 @@ class _SetupProfile1State extends State<SetupProfile1>
                         builder: (BuildContext context) {
                           return SelectEyeColorWidget(
                             alreadyUsed: selectedEyeColor,
-                            callback: (value) {
+                            callback: (value) async {
                               setState(() {
                                 selectedEyeColor = value;
                               });
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setString(
+                                  'selectedEyeColor', selectedEyeColor);
                             },
                           );
                         },

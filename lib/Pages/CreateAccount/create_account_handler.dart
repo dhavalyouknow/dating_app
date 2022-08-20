@@ -31,6 +31,9 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   bool isOnTapFName = false;
   bool isOnTapEmail = false;
   bool isOnTapSurname = false;
+  bool isGenderEmpty = false;
+  bool isDateEmpty = false;
+  bool isCountryValueEmpty = false;
 
   // Icon selectedIcon;
 
@@ -110,37 +113,51 @@ mixin CreateAccountHandlers<T extends StatefulWidget> on State<T> {
   //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
   onSubmit() {
     if (formKey.currentState!.validate()) {
-      BlocProvider.of<AuthBloc>(context).add(
-        DuplicateEvent(
-          email: emailController.text,
-          onSuccess: () {
-            Fluttertoast.showToast(
-              msg: AppLocalizations.of(context)!.validemail,
-              timeInSecForIosWeb: 5,
-            );
-            Navigator.pushNamed(
-              context,
-              CreatePassword.routeName,
-              arguments: {
-                "name": nameController.text,
-                "surname": surnameController.text,
-                "email": emailController.text,
-                "gender": selectedGender,
-                "dob": selectedDate.toString(),
-                "location": locationController.text,
-              },
-            );
-          },
-          onError: (value) {
-            isColorRed = true;
-            setState(() {});
-            Fluttertoast.showToast(
-              msg: '${value.split('.').first}.',
-              timeInSecForIosWeb: 5,
-            );
-          },
-        ),
-      );
+      if (selectedGender.isEmpty) {
+        isGenderEmpty = true;
+        setState(() {});
+      } else if (selectedDate.toString().split(' ').first ==
+          DateTime.now().toString().split(' ').first) {
+        isDateEmpty = true;
+
+        setState(() {});
+      } else if (countryValue.isEmpty) {
+        isCountryValueEmpty = true;
+        setState(() {});
+        print(isCountryValueEmpty);
+      } else {
+        BlocProvider.of<AuthBloc>(context).add(
+          DuplicateEvent(
+            email: emailController.text,
+            onSuccess: () {
+              Fluttertoast.showToast(
+                msg: AppLocalizations.of(context)!.validemail,
+                timeInSecForIosWeb: 5,
+              );
+              Navigator.pushNamed(
+                context,
+                CreatePassword.routeName,
+                arguments: {
+                  "name": nameController.text,
+                  "surname": surnameController.text,
+                  "email": emailController.text,
+                  "gender": selectedGender,
+                  "dob": selectedDate.toString(),
+                  "location": locationController.text,
+                },
+              );
+            },
+            onError: (value) {
+              isColorRed = true;
+              setState(() {});
+              Fluttertoast.showToast(
+                msg: '${value.split('.').first}.',
+                timeInSecForIosWeb: 5,
+              );
+            },
+          ),
+        );
+      }
     }
   }
 

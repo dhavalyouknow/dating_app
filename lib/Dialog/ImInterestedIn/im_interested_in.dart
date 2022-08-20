@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ImInterestedIn extends StatefulWidget {
   final Function(String) callback;
@@ -86,12 +87,18 @@ class _ImInterestedInState extends State<ImInterestedIn>
                         borderRadius: 10.r,
                         height: size.height / 18,
                         txt: AppLocalizations.of(context)!.cancel,
-                        onTap: () {
+                        onTap: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          String? selectedInterestedIn =
+                              prefs.getString('selectedInterestedIn');
+                          widget.callback(selectedInterestedIn.toString());
+                          Future.delayed(const Duration(seconds: 0), () {
+                            Navigator.pop(context);
+                          });
                           for (var tapped in selectedInterestedName) {
                             tapped.selected = false;
                           }
-                          widget.callback(widget.alreadyUsed);
-                          Navigator.pop(context);
                         },
                       ),
                     ),

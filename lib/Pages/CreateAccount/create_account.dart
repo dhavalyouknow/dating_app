@@ -191,8 +191,10 @@ class _CreateAccountState extends State<CreateAccount>
                                   context: context,
                                   builder: (BuildContext context) {
                                     return SelectGender(
+                                      alreadySelected: selectedGender,
                                       callback: (value) {
                                         selectedGender = value;
+                                        isGenderEmpty = false;
                                         setState(() {});
                                       },
                                     );
@@ -217,6 +219,7 @@ class _CreateAccountState extends State<CreateAccount>
                           child: GestureDetector(
                             onTap: () {
                               selectDate(context);
+                              isDateEmpty = false;
                               tapped = true;
                             },
                             child: Container(
@@ -268,9 +271,33 @@ class _CreateAccountState extends State<CreateAccount>
                         )
                       ],
                     ),
+                    if (isGenderEmpty)
+                      Padding(
+                        padding: EdgeInsets.only(top: 3.h),
+                        child: Text(
+                          'Gender required',
+                          style: TextStyle(color: Colors.red, fontSize: 10.sp),
+                        ),
+                      ),
+                    if (isDateEmpty)
+                      Padding(
+                        padding: EdgeInsets.only(top: 3.h),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Date Of Birth required',
+                              style:
+                                  TextStyle(color: Colors.red, fontSize: 10.sp),
+                            ),
+                          ],
+                        ),
+                      ),
                     LocationPicker(
                       countryCallback: (countryName) {
                         countryValue = countryName;
+                        isCountryValueEmpty = false;
+                        setState(() {});
                       },
                       stateCallback: (stateName) {
                         stateValue = stateName;
@@ -280,6 +307,14 @@ class _CreateAccountState extends State<CreateAccount>
                         locationController.text = cityName;
                       },
                     ),
+                    if (isCountryValueEmpty)
+                      Padding(
+                        padding: EdgeInsets.only(left: 3.h),
+                        child: Text(
+                          'Country required',
+                          style: TextStyle(color: Colors.red, fontSize: 10.sp),
+                        ),
+                      ),
                     SizedBox(height: 20.h),
                     GradientBtn(
                       borderRadius: 10.r,

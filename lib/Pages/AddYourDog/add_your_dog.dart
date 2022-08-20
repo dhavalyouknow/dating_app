@@ -43,18 +43,7 @@ class _AddYourDogState extends State<AddYourDog> with AddYourDogHandlers {
         ),
       ),
       appBar: AppBar(
-        leading: Padding(
-            padding: EdgeInsets.only(left: 10.w),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_back_ios,
-                size: 30.h,
-                color: AppStyles.greyColor,
-              ),
-            )),
+        iconTheme: const IconThemeData(color: AppStyles.greyColor),
         backgroundColor: AppStyles.whiteColor,
         elevation: 0.0,
       ),
